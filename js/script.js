@@ -292,14 +292,7 @@ class BackToTop {
     }
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new MobileMenu();
-    new HeroSlider();
-    new FormHandler();
-    new BackToTop();
-});
-    // Loading Screen Handler
+// Loading Screen Handler
 class LoadingScreen {
     constructor() {
         this.loader = document.querySelector('.loading-screen');
@@ -322,6 +315,14 @@ class LoadingScreen {
         }, 500);
     }
 }
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new LoadingScreen();
+    new MobileMenu();
+    new HeroSlider();
+    new FormHandler();
+    new BackToTop();
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
