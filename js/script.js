@@ -298,6 +298,30 @@ document.addEventListener('DOMContentLoaded', () => {
     new HeroSlider();
     new FormHandler();
     new BackToTop();
+});
+    // Loading Screen Handler
+class LoadingScreen {
+    constructor() {
+        this.loader = document.querySelector('.loading-screen');
+        this.init();
+    }
+
+    init() {
+        // Hide loader after content is loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                this.hideLoader();
+            }, 1500);
+        });
+    }
+
+    hideLoader() {
+        this.loader.style.opacity = '0';
+        setTimeout(() => {
+            this.loader.style.display = 'none';
+        }, 500);
+    }
+}
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
