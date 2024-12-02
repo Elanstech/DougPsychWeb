@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Douglas Uhlig - Psychological Services</title>
-    <meta name="description" content="Professional psychological services by Dr. Douglas Uhlig. Specialized in Cognitive Behavioral Therapy with locations in Rego Park, NY.">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Professional psychological services by Dr. Douglas Uhlig. Expert in Cognitive Behavioral Therapy in Rego Park, NY.">
     <meta name="keywords" content="psychology, therapy, CBT, Douglas Uhlig, Rego Park">
     
     <!-- Preload Critical Assets -->
@@ -18,93 +20,135 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <div class="loading-overlay">
-        <div class="loader"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader">
+            <span class="loader-text">Welcome</span>
+            <div class="progress-bar"></div>
+        </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="main-nav" data-nav-status="static">
+    <nav class="main-nav">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <img src="https://github.com/Elanstech/Doug-/blob/main/Doug%20Uhlig%20Psychological%20Services%20PLLC.png?raw=true" alt="Dr. Douglas Uhlig Psychological Services" width="200" height="70">
+                <img src="assets/images/logo.png" alt="Dr. Douglas Uhlig Psychological Services" width="200">
             </a>
             <div class="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <div class="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
             <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#team">Our Team</a></li>
                 <li><a href="#books">Books</a></li>
                 <li><a href="#contact" class="cta-button">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section with Slideshow -->
+    <!-- Hero Section with Advanced Slider -->
     <section id="home" class="hero-section">
         <div class="hero-slider">
-            <div class="slide active">
+            <!-- Slide 1: Welcome -->
+            <div class="slide" data-background="assets/images/hero-1.jpg">
                 <div class="slide-content">
-                    <h1>Welcome to Dr. Douglas Uhlig's Practice</h1>
-                    <p>Transforming lives through evidence-based psychological care</p>
-                    <a href="#contact" class="cta-button">Schedule a Consultation</a>
+                    <h1 class="reveal-text">Welcome to a Journey of Growth</h1>
+                    <p class="fade-in-up">Discover professional psychological care with Dr. Douglas Uhlig</p>
+                    <a href="#contact" class="cta-button pulse">Start Your Journey</a>
                 </div>
             </div>
-            <div class="slide">
+            
+            <!-- Slide 2: Services -->
+            <div class="slide" data-background="assets/images/hero-2.jpg">
                 <div class="slide-content">
-                    <h1>Specialized in Cognitive Behavioral Therapy</h1>
-                    <p>Professional psychological services tailored to your needs</p>
-                    <a href="#services" class="cta-button">Explore Services</a>
+                    <h1 class="reveal-text">Expert Psychological Services</h1>
+                    <p class="fade-in-up">Specialized in Cognitive Behavioral Therapy</p>
+                    <a href="#services" class="cta-button pulse">Explore Services</a>
                 </div>
             </div>
-            <div class="slide">
+            
+            <!-- Slide 3: Books -->
+            <div class="slide" data-background="assets/images/hero-3.jpg">
                 <div class="slide-content">
-                    <h1>Published Author and Expert</h1>
-                    <p>Discover insights through Dr. Uhlig's published works</p>
-                    <a href="#books" class="cta-button">View Books</a>
+                    <h1 class="reveal-text">Discover Our Publications</h1>
+                    <p class="fade-in-up">Insights and guidance through professional literature</p>
+                    <a href="#books" class="cta-button pulse">View Books</a>
+                </div>
+            </div>
+            
+            <!-- Slide 4: Contact -->
+            <div class="slide" data-background="assets/images/hero-4.jpg">
+                <div class="slide-content">
+                    <h1 class="reveal-text">Begin Your Healing Journey</h1>
+                    <p class="fade-in-up">Two convenient locations to serve you better</p>
+                    <a href="#contact" class="cta-button pulse">Get in Touch</a>
                 </div>
             </div>
         </div>
+        
+        <!-- Slider Controls -->
         <div class="slider-controls">
             <button class="prev" aria-label="Previous slide">‹</button>
             <div class="slider-dots"></div>
             <button class="next" aria-label="Next slide">›</button>
         </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-arrow"></div>
+        </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section" data-aos="fade-up">
+    <section id="about" class="section about-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-aos="fade-up">
                 <h2>About Dr. Uhlig</h2>
                 <div class="underline"></div>
             </div>
+            
             <div class="about-grid">
                 <div class="about-image" data-aos="fade-right">
-                    <img src="assets/images/office.jpg" alt="Professional therapy office" loading="lazy">
+                    <div class="image-container">
+                        <img src="assets/images/office.jpg" alt="Professional therapy office">
+                        <div class="floating-badge">
+                            <span>20+ Years</span>
+                            <span>Experience</span>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="about-content" data-aos="fade-left">
-                    <h3>Experienced Professional Care</h3>
+                    <h3>Dedicated to Your Mental Well-being</h3>
                     <p>With over two decades of experience, Dr. Douglas Uhlig provides comprehensive psychological services in a supportive and professional environment.</p>
-                    <div class="credentials">
-                        <div class="credential-item">
-                            <i class="icon education"></i>
+                    
+                    <div class="credentials-grid">
+                        <div class="credential-card">
+                            <div class="icon"><i class="education-icon"></i></div>
                             <h4>Education</h4>
                             <p>Ph.D. in Clinical Psychology</p>
                         </div>
-                        <div class="credential-item">
-                            <i class="icon experience"></i>
-                            <h4>Experience</h4>
-                            <p>20+ Years in Practice</p>
+                        <div class="credential-card">
+                            <div class="icon"><i class="practice-icon"></i></div>
+                            <h4>Practice</h4>
+                            <p>Licensed in New York State</p>
                         </div>
+                    </div>
+                    
+                    <div class="cta-container">
+                        <a href="#contact" class="btn-secondary">Schedule Consultation</a>
+                        <a href="#about" class="btn-text">View More About Us <span class="arrow">→</span></a>
                     </div>
                 </div>
             </div>
@@ -112,12 +156,13 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
+    <section id="services" class="section services-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Our Services</h2>
                 <div class="underline"></div>
             </div>
+            
             <div class="services-grid">
                 <div class="service-card" data-aos="zoom-in">
                     <div class="service-icon">
@@ -130,8 +175,9 @@
                         <li>Personalized treatment plans</li>
                         <li>Evidence-based approaches</li>
                     </ul>
-                    <a href="#contact" class="learn-more">Learn More</a>
+                    <a href="#contact" class="btn-text">Learn More <span class="arrow">→</span></a>
                 </div>
+                
                 <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="service-icon">
                         <i class="icon cbt"></i>
@@ -143,8 +189,9 @@
                         <li>Skill development</li>
                         <li>Practical strategies</li>
                     </ul>
-                    <a href="#contact" class="learn-more">Learn More</a>
+                    <a href="#contact" class="btn-text">Learn More <span class="arrow">→</span></a>
                 </div>
+                
                 <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
                     <div class="service-icon">
                         <i class="icon assessment"></i>
@@ -156,113 +203,98 @@
                         <li>Professional reports</li>
                         <li>Treatment recommendations</li>
                     </ul>
-                    <a href="#contact" class="learn-more">Learn More</a>
+                    <a href="#contact" class="btn-text">Learn More <span class="arrow">→</span></a>
                 </div>
+            </div>
+            
+            <div class="section-footer" data-aos="fade-up">
+                <a href="#services" class="btn-primary">View All Services</a>
             </div>
         </div>
     </section>
 
-    <!-- Book Section -->
-    <section id="books" class="books-section">
+    <!-- Books Section -->
+    <section id="books" class="section books-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Published Works</h2>
                 <div class="underline"></div>
             </div>
-            <div class="books-grid" data-aos="fade-up">
+            
+            <div class="books-grid">
                 <!-- Books will be dynamically loaded via JavaScript -->
             </div>
-            <div class="book-modal">
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <div class="book-details"></div>
-                </div>
+            
+            <div class="section-footer" data-aos="fade-up">
+                <a href="#books" class="btn-primary">Explore All Books</a>
             </div>
         </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="team-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Our Team</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="team-grid">
-                <div class="team-member" data-aos="fade-up">
-                    <div class="member-image">
-                        <img src="assets/images/placeholder.jpg" alt="Team member" loading="lazy">
-                    </div>
-                    <div class="member-info">
-                        <h3>Dr. Douglas Uhlig</h3>
-                        <p>Clinical Psychologist</p>
-                        <div class="member-bio">
-                            <p>Leading our practice with expertise in Cognitive Behavioral Therapy and psychological assessments.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Additional team members can be added here -->
+        
+        <!-- Book Modal -->
+        <div class="book-modal">
+            <div class="modal-content">
+                <button class="close-modal" aria-label="Close modal">&times;</button>
+                <div class="book-details"></div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section id="contact" class="section contact-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Contact Us</h2>
+                <h2>Get in Touch</h2>
                 <div class="underline"></div>
             </div>
+            
             <div class="contact-grid">
                 <div class="contact-form-container" data-aos="fade-right">
                     <form id="contactForm" class="contact-form">
-                        <div class="form-group">
+                        <div class="form-group floating-label">
                             <input type="text" id="name" name="name" required>
                             <label for="name">Full Name</label>
                             <div class="form-indicator"></div>
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-group floating-label">
                             <input type="email" id="email" name="email" required>
                             <label for="email">Email Address</label>
                             <div class="form-indicator"></div>
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-group floating-label">
                             <input type="tel" id="phone" name="phone" required>
                             <label for="phone">Phone Number</label>
                             <div class="form-indicator"></div>
                         </div>
-                        <div class="form-group">
+                        
+                        <div class="form-group floating-label">
                             <textarea id="message" name="message" required></textarea>
                             <label for="message">Your Message</label>
                             <div class="form-indicator"></div>
                         </div>
-                        <button type="submit" class="submit-button">
+                        
+                        <button type="submit" class="btn-primary">
                             <span class="button-text">Send Message</span>
                             <span class="button-icon">→</span>
                         </button>
                     </form>
                 </div>
+                
                 <div class="contact-info" data-aos="fade-left">
                     <div class="info-card">
-                        <div class="info-icon">
-                            <i class="icon location"></i>
-                        </div>
                         <h3>Office Location</h3>
                         <p>63-44 Saunders Street, Ste 106</p>
                         <p>Rego Park, NY 11374</p>
                     </div>
+                    
                     <div class="info-card">
-                        <div class="info-icon">
-                            <i class="icon phone"></i>
-                        </div>
                         <h3>Contact Details</h3>
                         <p>Phone: (917) 617-6731</p>
                         <p>Email: duhlig2004@yahoo.com</p>
                     </div>
+                    
                     <div class="info-card">
-                        <div class="info-icon">
-                            <i class="icon clock"></i>
-                        </div>
                         <h3>Office Hours</h3>
                         <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
                         <p>Saturday: By Appointment</p>
@@ -270,11 +302,6 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Map Section -->
-    <section id="map" class="map-section">
-        <div id="locationMap" class="location-map"></div>
     </section>
 
     <!-- Footer -->
@@ -285,6 +312,7 @@
                     <img src="assets/images/logo.png" alt="Dr. Douglas Uhlig Psychological Services" class="footer-logo">
                     <p>Professional psychological services focused on improving mental health and wellbeing.</p>
                 </div>
+                
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -295,6 +323,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-contact">
                     <h4>Contact Us</h4>
                     <p>63-44 Saunders Street, Ste 106</p>
@@ -303,16 +332,24 @@
                     <p>Email: duhlig2004@yahoo.com</p>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2024 Dr. Douglas Uhlig Psychological Services. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Scripts -->
+    <!-- Essential Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom Script -->
     <script src="js/script.js"></script>
+
+    <!-- Preload Hero Images -->
+    <link rel="preload" as="image" href="assets/images/hero-1.jpg">
+    <link rel="preload" as="image" href="assets/images/hero-2.jpg">
+    <link rel="preload" as="image" href="assets/images/hero-3.jpg">
+    <link rel="preload" as="image" href="assets/images/hero-4.jpg">
 </body>
 </html>
