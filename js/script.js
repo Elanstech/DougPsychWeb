@@ -55,6 +55,7 @@ class HeroSlider {
         this.nextBtn = document.querySelector('.next');
         this.currentSlide = 0;
         this.slideInterval = null;
+        this.isAnimating = false;
         
         this.init();
     }
@@ -91,24 +92,25 @@ class HeroSlider {
 
         slider.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe();
+            this.handleSwipe(touchStartX - touchEndX);
         });
+    }
 
-        this.handleSwipe = () => {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    this.nextSlide();
-                } else {
-                    this.prevSlide();
-                }
+    handleSwipe(swipeDistance) {
+        const threshold = 50;
+        if (Math.abs(swipeDistance) > threshold) {
+            if (swipeDistance > 0) {
+                this.nextSlide();
+            } else {
+                this.prevSlide();
             }
-        };
+        }
     }
 
     goToSlide(index) {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
         // Remove active classes
         this.slides[this.currentSlide].classList.remove('active');
         this.dots.children[this.currentSlide].classList.remove('active');
@@ -117,6 +119,11 @@ class HeroSlider {
         this.currentSlide = index;
         this.slides[this.currentSlide].classList.add('active');
         this.dots.children[this.currentSlide].classList.add('active');
+
+        // Reset animation flag
+        setTimeout(() => {
+            this.isAnimating = false;
+        }, 1000);
     }
 
     nextSlide() {
@@ -154,6 +161,12 @@ class FormHandler {
         const inputs = this.form.querySelectorAll('input, textarea');
         
         inputs.forEach(input => {
+            // Initial state check
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+
+            // Focus events
             input.addEventListener('focus', () => {
                 input.parentElement.classList.add('focused');
             });
@@ -164,17 +177,48 @@ class FormHandler {
                 }
             });
 
-            // Check initial state
-            if (input.value) {
-                input.parentElement.classList.add('focused');
-            }
+            // Input events for real-time validation
+            input.addEventListener('input', () => this.validateInput(input));
         });
+    }
+
+    validateInput(input) {
+        const value = input.value.trim();
+        let isValid = true;
+
+        switch(input.type) {
+            case 'email':
+                isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                break;
+            case 'tel':
+                isValid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(value);
+                break;
+            default:
+                isValid = value.length >= 3;
+        }
+
+        input.parentElement.classList.toggle('error', !isValid);
+        return isValid;
     }
 
     async handleSubmit(e) {
         e.preventDefault();
         const submitBtn = this.form.querySelector('button[type="submit"]');
         
+        // Validate all inputs
+        const inputs = this.form.querySelectorAll('input, textarea');
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!this.validateInput(input)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            this.showNotification('Please check your inputs and try again.', 'error');
+            return;
+        }
+
         // Disable button and show loading state
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
@@ -186,6 +230,11 @@ class FormHandler {
             // Show success message
             this.showNotification('Message sent successfully!', 'success');
             this.form.reset();
+            
+            // Reset labels
+            inputs.forEach(input => {
+                input.parentElement.classList.remove('focused');
+            });
         } catch (error) {
             this.showNotification('Error sending message. Please try again.', 'error');
         } finally {
@@ -204,6 +253,7 @@ class FormHandler {
         
         document.body.appendChild(notification);
         
+        // Trigger animation
         setTimeout(() => {
             notification.classList.add('show');
             setTimeout(() => {
@@ -249,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new FormHandler();
     new BackToTop();
 
-    // Add smooth scrolling for anchor links
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
