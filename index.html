@@ -9,18 +9,16 @@
     <meta name="description" content="Professional psychological services by Dr. Douglas Uhlig. Expert in Cognitive Behavioral Therapy in Rego Park, NY.">
     <meta name="keywords" content="psychology, therapy, CBT, Douglas Uhlig, Rego Park">
     
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="css/styles.css" as="style">
-    <link rel="preload" href="js/script.js" as="script">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -56,42 +54,28 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Advanced Slider -->
+    <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-slider">
-            <!-- Slide 1: Welcome -->
-            <div class="slide" data-background="https://github.com/Elanstech/DougPsychWeb/blob/main/Backround1.jpeg?raw=true">
+            <div class="slide active" style="background-image: url('https://github.com/Elanstech/DougPsychWeb/blob/main/Backround1.jpeg?raw=true')">
                 <div class="slide-content">
-                    <h1 class="reveal-text">Welcome to a Journey of Growth</h1>
-                    <p class="fade-in-up">Discover professional psychological care with Dr. Douglas Uhlig</p>
-                    <a href="#contact" class="cta-button pulse">Start Your Journey</a>
+                    <h1>Welcome to a Journey of Growth</h1>
+                    <p>Discover professional psychological care with Dr. Douglas Uhlig</p>
+                    <a href="#contact" class="cta-button">Start Your Journey</a>
                 </div>
             </div>
-            
-            <!-- Slide 2: Services -->
-            <div class="slide" data-background="https://github.com/Elanstech/DougPsychWeb/blob/main/backround2.jpeg?raw=true">
+            <div class="slide" style="background-image: url('https://github.com/Elanstech/DougPsychWeb/blob/main/backround2.jpeg?raw=true')">
                 <div class="slide-content">
-                    <h1 class="reveal-text">Expert Psychological Services</h1>
-                    <p class="fade-in-up">Specialized in Cognitive Behavioral Therapy</p>
-                    <a href="#services" class="cta-button pulse">Explore Services</a>
+                    <h1>Expert Psychological Services</h1>
+                    <p>Specialized in Cognitive Behavioral Therapy</p>
+                    <a href="#services" class="cta-button">Explore Services</a>
                 </div>
             </div>
-            
-            <!-- Slide 3: Books -->
-            <div class="slide" data-background="https://github.com/Elanstech/DougPsychWeb/blob/main/Backround3.jpeg?raw=true">
+            <div class="slide" style="background-image: url('https://github.com/Elanstech/DougPsychWeb/blob/main/Backround3.jpeg?raw=true')">
                 <div class="slide-content">
-                    <h1 class="reveal-text">Discover Our Publications</h1>
-                    <p class="fade-in-up">Insights and guidance through professional literature</p>
-                    <a href="#books" class="cta-button pulse">View Books</a>
-                </div>
-            </div>
-            
-            <!-- Slide 4: Contact -->
-            <div class="slide" data-background="assets/images/hero-4.jpg">
-                <div class="slide-content">
-                    <h1 class="reveal-text">Begin Your Healing Journey</h1>
-                    <p class="fade-in-up">Two convenient locations to serve you better</p>
-                    <a href="#contact" class="cta-button pulse">Get in Touch</a>
+                    <h1>Discover Our Publications</h1>
+                    <p>Insights and guidance through professional literature</p>
+                    <a href="#books" class="cta-button">View Books</a>
                 </div>
             </div>
         </div>
@@ -111,44 +95,24 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about-section">
+    <section id="about" class="section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>About Dr. Uhlig</h2>
                 <div class="underline"></div>
             </div>
-            
-            <div class="about-grid">
-                <div class="about-image" data-aos="fade-right">
-                    <div class="image-container">
-                        <img src="assets/images/office.jpg" alt="Professional therapy office">
-                        <div class="floating-badge">
-                            <span>20+ Years</span>
-                            <span>Experience</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-content" data-aos="fade-left">
-                    <h3>Dedicated to Your Mental Well-being</h3>
-                    <p>With over two decades of experience, Dr. Douglas Uhlig provides comprehensive psychological services in a supportive and professional environment.</p>
-                    
-                    <div class="credentials-grid">
-                        <div class="credential-card">
-                            <div class="icon"><i class="education-icon"></i></div>
+            <div class="about-content" data-aos="fade-up">
+                <div class="about-text">
+                    <p>With over two decades of experience, Dr. Douglas Uhlig provides comprehensive psychological services in a supportive and professional environment. Specializing in Cognitive Behavioral Therapy, he helps individuals overcome challenges and achieve personal growth.</p>
+                    <div class="credentials">
+                        <div class="credential">
                             <h4>Education</h4>
                             <p>Ph.D. in Clinical Psychology</p>
                         </div>
-                        <div class="credential-card">
-                            <div class="icon"><i class="practice-icon"></i></div>
-                            <h4>Practice</h4>
-                            <p>Licensed in New York State</p>
+                        <div class="credential">
+                            <h4>License</h4>
+                            <p>Licensed Psychologist in NY State</p>
                         </div>
-                    </div>
-                    
-                    <div class="cta-container">
-                        <a href="#contact" class="btn-secondary">Schedule Consultation</a>
-                        <a href="#about" class="btn-text">View More About Us <span class="arrow">→</span></a>
                     </div>
                 </div>
             </div>
@@ -156,144 +120,84 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section services-section">
+    <section id="services" class="section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Our Services</h2>
                 <div class="underline"></div>
             </div>
-            
             <div class="services-grid">
-                <div class="service-card" data-aos="zoom-in">
-                    <div class="service-icon">
-                        <i class="icon therapy"></i>
-                    </div>
+                <div class="service-card" data-aos="fade-up">
                     <h3>Individual Therapy</h3>
                     <p>Personalized therapeutic approaches tailored to your unique needs and goals.</p>
-                    <ul class="service-features">
+                    <ul>
                         <li>One-on-one sessions</li>
                         <li>Personalized treatment plans</li>
                         <li>Evidence-based approaches</li>
                     </ul>
-                    <a href="#contact" class="btn-text">Learn More <span class="arrow">→</span></a>
                 </div>
-                
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="icon cbt"></i>
-                    </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <h3>Cognitive Behavioral Therapy</h3>
                     <p>Specialized CBT sessions focusing on thought patterns and behavioral changes.</p>
-                    <ul class="service-features">
+                    <ul>
                         <li>Structured approach</li>
                         <li>Skill development</li>
                         <li>Practical strategies</li>
                     </ul>
-                    <a href="#contact" class="btn-text">Learn More <span class="arrow">→</span></a>
                 </div>
-                
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="icon assessment"></i>
-                    </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Psychological Assessment</h3>
                     <p>Comprehensive evaluation services for accurate diagnosis and treatment planning.</p>
-                    <ul class="service-features">
+                    <ul>
                         <li>Detailed evaluation</li>
                         <li>Professional reports</li>
                         <li>Treatment recommendations</li>
                     </ul>
-                    <a href="#contact" class="btn-text">Learn More <span class="arrow">→</span></a>
                 </div>
-            </div>
-            
-            <div class="section-footer" data-aos="fade-up">
-                <a href="#services" class="btn-primary">View All Services</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Books Section -->
-    <section id="books" class="section books-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Published Works</h2>
-                <div class="underline"></div>
-            </div>
-            
-            <div class="books-grid">
-                <!-- Books will be dynamically loaded via JavaScript -->
-            </div>
-            
-            <div class="section-footer" data-aos="fade-up">
-                <a href="#books" class="btn-primary">Explore All Books</a>
-            </div>
-        </div>
-        
-        <!-- Book Modal -->
-        <div class="book-modal">
-            <div class="modal-content">
-                <button class="close-modal" aria-label="Close modal">&times;</button>
-                <div class="book-details"></div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Get in Touch</h2>
                 <div class="underline"></div>
             </div>
-            
             <div class="contact-grid">
-                <div class="contact-form-container" data-aos="fade-right">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group floating-label">
-                            <input type="text" id="name" name="name" required>
+                <div class="contact-form" data-aos="fade-right">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" required>
                             <label for="name">Full Name</label>
-                            <div class="form-indicator"></div>
                         </div>
-                        
-                        <div class="form-group floating-label">
-                            <input type="email" id="email" name="email" required>
+                        <div class="form-group">
+                            <input type="email" id="email" required>
                             <label for="email">Email Address</label>
-                            <div class="form-indicator"></div>
                         </div>
-                        
-                        <div class="form-group floating-label">
-                            <input type="tel" id="phone" name="phone" required>
+                        <div class="form-group">
+                            <input type="tel" id="phone" required>
                             <label for="phone">Phone Number</label>
-                            <div class="form-indicator"></div>
                         </div>
-                        
-                        <div class="form-group floating-label">
-                            <textarea id="message" name="message" required></textarea>
+                        <div class="form-group">
+                            <textarea id="message" required></textarea>
                             <label for="message">Your Message</label>
-                            <div class="form-indicator"></div>
                         </div>
-                        
-                        <button type="submit" class="btn-primary">
-                            <span class="button-text">Send Message</span>
-                            <span class="button-icon">→</span>
-                        </button>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
-                
                 <div class="contact-info" data-aos="fade-left">
                     <div class="info-card">
                         <h3>Office Location</h3>
                         <p>63-44 Saunders Street, Ste 106</p>
                         <p>Rego Park, NY 11374</p>
                     </div>
-                    
                     <div class="info-card">
                         <h3>Contact Details</h3>
                         <p>Phone: (917) 617-6731</p>
                         <p>Email: duhlig2004@yahoo.com</p>
                     </div>
-                    
                     <div class="info-card">
                         <h3>Office Hours</h3>
                         <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
@@ -309,21 +213,18 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
-                    <img src="assets/images/logo.png" alt="Dr. Douglas Uhlig Psychological Services" class="footer-logo">
+                    <img src="https://github.com/Elanstech/DougPsychWeb/blob/main/Doug%20Uhlig%20Psychological%20Services%20PLLC.png?raw=true" alt="Logo" width="150">
                     <p>Professional psychological services focused on improving mental health and wellbeing.</p>
                 </div>
-                
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#books">Books</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-contact">
                     <h4>Contact Us</h4>
                     <p>63-44 Saunders Street, Ste 106</p>
@@ -332,24 +233,14 @@
                     <p>Email: duhlig2004@yahoo.com</p>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2024 Dr. Douglas Uhlig Psychological Services. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    <!-- Essential Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <!-- Custom Script -->
-    <script src="js/script.js"></script>
 
-    <!-- Preload Hero Images -->
-    <link rel="preload" as="image" href="https://github.com/Elanstech/DougPsychWeb/blob/main/Backround1.jpeg?raw=true">
-    <link rel="preload" as="image" href="https://github.com/Elanstech/DougPsychWeb/blob/main/backround2.jpeg?raw=true">
-    <link rel="preload" as="image" href="https://github.com/Elanstech/DougPsychWeb/blob/main/Backround3.jpeg?raw=true">
-    <link rel="preload" as="image" href="assets/images/hero-4.jpg">
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
