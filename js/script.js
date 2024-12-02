@@ -12,143 +12,102 @@ class CustomCursor {
             dot: document.querySelector('.cursor-dot'),
             outline: document.querySelector('.cursor-outline')
         };
-        this.bounds = {
-            dot: { x: 0, y: 0 },
-            outline: { x: 0, y: 0 }
-        };
-        this.cursorVisible = true;
-        this.cursorEnlarged = false;
-        
         this.init();
     }
 
     init() {
-        // Hide cursor initially
-        document.documentElement.style.cursor = 'none';
+        document.addEventListener('mousemove', (e) => this.moveCursor(e));
+        document.addEventListener('mouseenter', () => this.showCursor());
+        document.addEventListener('mouseleave', () => this.hideCursor());
         
-        // Set up event listeners
-        document.addEventListener('mousedown', () => this.cursorEnlarged = true);
-        document.addEventListener('mouseup', () => this.cursorEnlarged = false);
-        document.addEventListener('mousemove', e => this.onMouseMove(e));
-        document.addEventListener('mouseenter', () => this.cursorVisible = true);
-        document.addEventListener('mouseleave', () => this.cursorVisible = false);
-
         // Add hover effect for clickable elements
-        const clickables = document.querySelectorAll(
-            'a, button, input[type="submit"], .service-card, .book-card'
-        );
-        
+        const clickables = document.querySelectorAll('a, button, input[type="submit"]');
         clickables.forEach(el => {
-            el.addEventListener('mouseover', () => this.cursorEnlarged = true);
-            el.addEventListener('mouseout', () => this.cursorEnlarged = false);
+            el.addEventListener('mouseenter', () => this.enlargeCursor());
+            el.addEventListener('mouseleave', () => this.resetCursor());
         });
-
-        // Start animation loop
-        requestAnimationFrame(() => this.render());
     }
 
-    onMouseMove(e) {
-        this.bounds.dot.x = e.clientX;
-        this.bounds.dot.y = e.clientY;
-        this.bounds.outline.x = e.clientX;
-        this.bounds.outline.y = e.clientY;
+    moveCursor(e) {
+        const { dot, outline } = this.cursor;
+        dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        outline.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     }
 
-    render() {
-        if (this.cursorVisible) {
-            this.cursor.dot.style.opacity = 1;
-            this.cursor.outline.style.opacity = 1;
+    showCursor() {
+        const { dot, outline } = this.cursor;
+        dot.style.opacity = '1';
+        outline.style.opacity = '1';
+    }
 
-            this.cursor.dot.style.transform = `translate(${this.bounds.dot.x}px, ${this.bounds.dot.y}px)`;
-            this.cursor.outline.style.transform = `translate(${this.bounds.outline.x}px, ${this.bounds.outline.y}px) scale(${this.cursorEnlarged ? 1.5 : 1})`;
-        } else {
-            this.cursor.dot.style.opacity = 0;
-            this.cursor.outline.style.opacity = 0;
-        }
+    hideCursor() {
+        const { dot, outline } = this.cursor;
+        dot.style.opacity = '0';
+        outline.style.opacity = '0';
+    }
 
-        requestAnimationFrame(() => this.render());
+    enlargeCursor() {
+        this.cursor.outline.style.transform += ' scale(1.5)';
+    }
+
+    resetCursor() {
+        this.cursor.outline.style.transform = this.cursor.outline.style.transform.replace(' scale(1.5)', '');
     }
 }
 
-// Enhanced Hero Slider
+// Hero Slider
 class HeroSlider {
     constructor() {
         this.slides = document.querySelectorAll('.slide');
+        this.dots = document.querySelector('.slider-dots');
+        this.prevBtn = document.querySelector('.prev');
+        this.nextBtn = document.querySelector('.next');
         this.currentSlide = 0;
         this.slideInterval = null;
-        this.isAnimating = false;
+        
         this.init();
     }
 
     init() {
         // Create dots
-        this.createDots();
-        
-        // Set up controls
-        document.querySelector('.prev').addEventListener('click', () => this.prevSlide());
-        document.querySelector('.next').addEventListener('click', () => this.nextSlide());
-        
-        // Start autoplay
-        this.startAutoplay();
-        
-        // Handle hover pause
-        const slider = document.querySelector('.hero-slider');
-        slider.addEventListener('mouseenter', () => this.pauseAutoplay());
-        slider.addEventListener('mouseleave', () => this.startAutoplay());
-        
-        // Set initial active slide
-        this.activateSlide(0);
-    }
-
-    createDots() {
-        const dotsContainer = document.querySelector('.slider-dots');
         this.slides.forEach((_, index) => {
             const dot = document.createElement('button');
             dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
             dot.addEventListener('click', () => this.goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
-    }
-
-    activateSlide(index) {
-        if (this.isAnimating) return;
-        this.isAnimating = true;
-
-        // Remove active class from all slides
-        this.slides.forEach(slide => {
-            slide.classList.remove('active');
-            slide.style.zIndex = 0;
+            this.dots.appendChild(dot);
         });
 
-        // Add active class to current slide
-        const currentSlide = this.slides[index];
-        currentSlide.style.zIndex = 1;
-        currentSlide.classList.add('active');
+        // Add event listeners
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
 
-        // Update dots
-        document.querySelectorAll('.dot').forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
+        // Start autoplay
+        this.startAutoplay();
 
-        // Reset animation flag after transition
-        setTimeout(() => {
-            this.isAnimating = false;
-        }, 1000);
-    }
-
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-        this.activateSlide(this.currentSlide);
-    }
-
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-        this.activateSlide(this.currentSlide);
+        // Pause on hover
+        const slider = document.querySelector('.hero-slider');
+        slider.addEventListener('mouseenter', () => this.pauseAutoplay());
+        slider.addEventListener('mouseleave', () => this.startAutoplay());
     }
 
     goToSlide(index) {
+        // Remove active classes
+        this.slides[this.currentSlide].classList.remove('active');
+        this.dots.children[this.currentSlide].classList.remove('active');
+
+        // Set new slide
         this.currentSlide = index;
-        this.activateSlide(this.currentSlide);
+        this.slides[this.currentSlide].classList.add('active');
+        this.dots.children[this.currentSlide].classList.add('active');
+    }
+
+    nextSlide() {
+        this.goToSlide((this.currentSlide + 1) % this.slides.length);
+    }
+
+    prevSlide() {
+        this.goToSlide((this.currentSlide - 1 + this.slides.length) % this.slides.length);
     }
 
     startAutoplay() {
@@ -160,99 +119,38 @@ class HeroSlider {
     }
 }
 
-// Form Handler with Advanced Validation
+// Form Handler
 class FormHandler {
     constructor() {
         this.form = document.getElementById('contactForm');
-        this.inputs = this.form.querySelectorAll('input, textarea');
-        this.submitButton = this.form.querySelector('button[type="submit"]');
-        
         this.init();
     }
 
     init() {
-        // Form submission
-        this.form.addEventListener('submit', e => this.handleSubmit(e));
-        
-        // Real-time validation
-        this.inputs.forEach(input => {
-            input.addEventListener('input', () => this.validateField(input));
-            input.addEventListener('blur', () => this.validateField(input));
-        });
-    }
-
-    validateField(field) {
-        const value = field.value.trim();
-        let isValid = true;
-        let message = '';
-
-        switch(field.type) {
-            case 'email':
-                isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-                message = 'Please enter a valid email address';
-                break;
-            case 'tel':
-                isValid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(value);
-                message = 'Please enter a valid phone number';
-                break;
-            default:
-                isValid = value.length >= 3;
-                message = 'This field is required (minimum 3 characters)';
-        }
-
-        this.updateFieldStatus(field, isValid, message);
-        return isValid;
-    }
-
-    updateFieldStatus(field, isValid, message) {
-        const formGroup = field.closest('.form-group');
-        formGroup.classList.toggle('error', !isValid);
-        
-        let errorDiv = formGroup.querySelector('.error-message');
-        if (!isValid) {
-            if (!errorDiv) {
-                errorDiv = document.createElement('div');
-                errorDiv.className = 'error-message';
-                formGroup.appendChild(errorDiv);
-            }
-            errorDiv.textContent = message;
-            gsap.from(errorDiv, {
-                y: -10,
-                opacity: 0,
-                duration: 0.3
-            });
-        } else if (errorDiv) {
-            errorDiv.remove();
-        }
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
 
     async handleSubmit(e) {
         e.preventDefault();
+        const submitBtn = this.form.querySelector('button[type="submit"]');
         
-        if (!this.validateForm()) return;
-
-        this.submitButton.disabled = true;
-        this.submitButton.innerHTML = '<span class="spinner"></span> Sending...';
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
 
         try {
-            // Simulate API call
+            // Simulate form submission
             await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Show success message
             this.showNotification('Message sent successfully!', 'success');
             this.form.reset();
         } catch (error) {
             this.showNotification('Error sending message. Please try again.', 'error');
         } finally {
-            this.submitButton.disabled = false;
-            this.submitButton.innerHTML = 'Send Message';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
         }
-    }
-
-    validateForm() {
-        let isValid = true;
-        this.inputs.forEach(input => {
-            if (!this.validateField(input)) isValid = false;
-        });
-        return isValid;
     }
 
     showNotification(message, type) {
@@ -262,18 +160,8 @@ class FormHandler {
         
         document.body.appendChild(notification);
         
-        gsap.fromTo(notification, 
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5 }
-        );
-
         setTimeout(() => {
-            gsap.to(notification, {
-                y: 50,
-                opacity: 0,
-                duration: 0.5,
-                onComplete: () => notification.remove()
-            });
+            notification.remove();
         }, 3000);
     }
 }
@@ -282,81 +170,21 @@ class FormHandler {
 class LoadingScreen {
     constructor() {
         this.loader = document.querySelector('.loading-screen');
-        this.progress = 0;
-        this.init();
-    }
-
-    init() {
-        gsap.to(this, {
-            progress: 100,
-            duration: 2,
-            ease: "power2.inOut",
-            onUpdate: () => this.updateProgress()
-        });
-    }
-
-    updateProgress() {
-        if (this.progress >= 100) {
-            this.hide();
-        }
+        setTimeout(() => this.hide(), 2000);
     }
 
     hide() {
-        gsap.to(this.loader, {
-            opacity: 0,
-            duration: 0.5,
-            onComplete: () => {
-                this.loader.style.display = 'none';
-                this.initPageAnimations();
-            }
-        });
-    }
-
-    initPageAnimations() {
-        // Initialize hero section animations
-        gsap.from('.hero-content', {
-            y: 100,
-            opacity: 0,
-            duration: 1,
-            ease: "power2.out"
-        });
+        this.loader.style.opacity = '0';
+        setTimeout(() => {
+            this.loader.style.display = 'none';
+        }, 500);
     }
 }
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const cursor = new CustomCursor();
-    const slider = new HeroSlider();
-    const form = new FormHandler();
-    const loading = new LoadingScreen();
-
-    // Initialize GSAP ScrollTrigger animations
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Animate service cards on scroll
-    gsap.utils.toArray('.service-card').forEach(card => {
-        gsap.from(card, {
-            scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                toggleActions: "play none none reverse"
-            },
-            y: 100,
-            opacity: 0,
-            duration: 1,
-            ease: "power2.out"
-        });
-    });
-
-    // Parallax effect on hero section
-    gsap.to('.hero-section', {
-        scrollTrigger: {
-            trigger: '.hero-section',
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-        },
-        backgroundPosition: "50% 100%",
-        ease: "none"
-    });
+    new CustomCursor();
+    new HeroSlider();
+    new FormHandler();
+    new LoadingScreen();
 });
