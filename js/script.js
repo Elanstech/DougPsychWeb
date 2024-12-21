@@ -1,5 +1,15 @@
+// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-    // Navigation
+    // Initialize all components
+    initNavigation();
+    initScrollEffects();
+    initForms();
+    initBackToTop();
+    initAnimations();
+});
+
+// Navigation
+function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -46,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Navbar scroll handling
+    // Scroll effects for navbar
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
@@ -67,8 +77,170 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lastScroll = currentScroll;
     });
+}
 
-    // Back to Top Button
+// Scroll Effects
+function initScrollEffects() {
+    const sections = document.querySelectorAll('section');
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+// Form Handling
+function initForms() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', handleFormSubmit);
+        
+        // Real-time validation
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => validateField(input));
+            input.addEventListener('input', () => validateField(input));
+        });
+    });
+}
+
+async function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    if (!validateForm(form)) {
+        showNotification('Please check your inputs and try again.', 'error');
+        return;
+    }
+
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+
+    try {
+        // Simulate form submission
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        showNotification('Message sent successfully!', 'success');
+        form.reset();
+        
+        // Remove success states
+        form.querySelectorAll('.form-group').forEach(group => {
+            group.classList.remove('success');
+        });
+    } catch (error) {
+        showNotification('Error sending message. Please try again.', 'error');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+    }
+}
+
+function validateField(field) {
+    const parent = field.closest('.form-group');
+    removeError(parent);
+
+    if (!field.required && field.value === '') {
+        return true;
+    }
+
+    // Required field validation
+    if (field.required && field.value.trim() === '') {
+        showError(parent, 'This field is required');
+        return false;
+    }
+
+    // Email validation
+    if (field.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+            showError(parent, 'Please enter a valid email address');
+            return false;
+        }
+    }
+
+    // Phone validation
+    if (field.type === 'tel') {
+        const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        if (!phoneRegex.test(field.value)) {
+            showError(parent, 'Please enter a valid phone number');
+            return false;
+        }
+    }
+
+    parent.classList.add('success');
+    return true;
+}
+
+function validateForm(form) {
+    let isValid = true;
+    const inputs = form.querySelectorAll('input, textarea');
+    
+    inputs.forEach(input => {
+        if (!validateField(input)) {
+            isValid = false;
+        }
+    });
+    
+    return isValid;
+}
+
+function showError(parent, message) {
+    parent.classList.add('error');
+    const error = document.createElement('div');
+    error.className = 'error-message';
+    error.textContent = message;
+    parent.appendChild(error);
+}
+
+function removeError(parent) {
+    parent.classList.remove('error');
+    const error = parent.querySelector('.error-message');
+    if (error) {
+        error.remove();
+    }
+}
+
+// Notification System
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+
+    const container = document.querySelector('.notification-container');
+    container.appendChild(notification);
+
+    // Animate in
+    setTimeout(() => notification.classList.add('show'), 10);
+
+    // Remove notification after delay
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Back to Top Button
+function initBackToTop() {
     const backToTopButton = document.querySelector('#backToTop');
     
     window.addEventListener('scroll', () => {
@@ -85,8 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+}
 
-    // Intersection Observer for animations
+// Animations
+function initAnimations() {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -102,170 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Observe elements with animation classes
     document.querySelectorAll('.fade-in, .slide-in').forEach(element => {
         observer.observe(element);
     });
-
-    // Form validation
-    const forms = document.querySelectorAll('form');
-    
-    forms.forEach(form => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Basic form validation
-            let isValid = true;
-            const formElements = form.elements;
-            
-            for (let element of formElements) {
-                if (element.type !== 'submit') {
-                    if (validateField(element) === false) {
-                        isValid = false;
-                    }
-                }
-            }
-
-            if (isValid) {
-                // Show loading state
-                const submitBtn = form.querySelector('button[type="submit"]');
-                if (submitBtn) {
-                    submitBtn.disabled = true;
-                    submitBtn.classList.add('loading');
-                }
-
-                // Simulate form submission (replace with actual form submission)
-                setTimeout(() => {
-                    showNotification('Message sent successfully!', 'success');
-                    form.reset();
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('loading');
-                    }
-                }, 1500);
-            }
-        });
-
-        // Real-time validation
-        form.querySelectorAll('input, textarea').forEach(input => {
-            input.addEventListener('blur', () => validateField(input));
-            input.addEventListener('input', () => validateField(input));
-        });
-    });
-
-    // Field validation function
-    function validateField(field) {
-        const parent = field.parentElement;
-        removeError(parent);
-
-        // Skip validation if field is empty and not required
-        if (!field.required && field.value === '') {
-            return true;
-        }
-
-        // Required field validation
-        if (field.required && field.value.trim() === '') {
-            showError(parent, 'This field is required');
-            return false;
-        }
-
-        // Email validation
-        if (field.type === 'email') {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(field.value)) {
-                showError(parent, 'Please enter a valid email address');
-                return false;
-            }
-        }
-
-        // Phone validation
-        if (field.type === 'tel') {
-            const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-            if (!phoneRegex.test(field.value)) {
-                showError(parent, 'Please enter a valid phone number');
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    // Error handling functions
-    function showError(parent, message) {
-        removeError(parent);
-        parent.classList.add('error');
-        const error = document.createElement('div');
-        error.className = 'error-message';
-        error.textContent = message;
-        parent.appendChild(error);
-    }
-
-    function removeError(parent) {
-        parent.classList.remove('error');
-        const existingError = parent.querySelector('.error-message');
-        if (existingError) {
-            existingError.remove();
-        }
-    }
-
-    // Notification system
-    function showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-            <span>${message}</span>
-        `;
-
-        const container = document.querySelector('.notification-container') || createNotificationContainer();
-        container.appendChild(notification);
-
-        // Animate in
-        setTimeout(() => notification.classList.add('show'), 10);
-
-        // Remove notification after delay
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-
-    function createNotificationContainer() {
-        const container = document.createElement('div');
-        container.className = 'notification-container';
-        document.body.appendChild(container);
-        return container;
-    }
-
-    // Google Reviews Integration
-    function loadGoogleReviews() {
-        // Replace with your Google Place ID
-        const placeId = 'YOUR_PLACE_ID';
-        const apiKey = 'YOUR_API_KEY';
-
-        // This is a placeholder for Google Places API integration
-        // You'll need to implement the actual API call based on your Google API setup
-        console.log('Google Reviews would load here');
-    }
-
-    // Initialize Reviews
-    loadGoogleReviews();
-
-    // Booking Widget Integration
-    function initializeBookingWidget() {
-        // Add your booking widget initialization code here
-        console.log('Booking widget would initialize here');
-    }
-
-    // Initialize Booking
-    initializeBookingWidget();
-
-    // ElfWidget Integration
-    function initializeElfWidget() {
-        // Add your ElfWidget initialization code here
-        console.log('ElfWidget would initialize here');
-    }
-
-    // Initialize ElfWidget
-    initializeElfWidget();
-});
+}
