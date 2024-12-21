@@ -19,30 +19,10 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="index.html" class="logo">
-                    <img src="Doug_Uhlig_Psychological_Services_PLLC-removebg-preview.png" alt="Dr. Douglas Uhlig Psychological Services">
-                </a>
-                <div class="nav-toggle">
-                    <span></span><span></span><span></span>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#online">Online Therapy</a></li>
-                    <li><a href="#locations">Locations</a></li>
-                    <li><a href="#insurance">Insurance</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#book" class="btn-primary">Book Appointment</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader"></div>
+    </div>
 
     <!-- Emergency Banner -->
     <div class="emergency-banner">
@@ -58,31 +38,66 @@
         </div>
     </div>
 
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Dr. Douglas Uhlig">
+                </a>
+                <div class="nav-menu">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#approach">Our Approach</a>
+                    <a href="#locations">Locations</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#book" class="btn-primary">Book Now</a>
+                </div>
+                <button class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="parallax-bg"></div>
-        <div class="hero-content">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-text" data-aos="fade-right">
-                        <h1>Transform Your Life Through Professional Guidance</h1>
-                        <p>Experience premium psychological care with Dr. Douglas Uhlig in NYC</p>
-                        <div class="certification-badges">
-                            <img src="badge1.png" alt="Licensed Psychologist">
-                            <img src="badge2.png" alt="Board Certified">
-                            <img src="badge3.png" alt="Military Veteran">
+        <div class="hero-overlay"></div>
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-right">
+                    <h1>Transform Your Life Through Expert Guidance</h1>
+                    <p>Experience premium psychological care with Dr. Douglas Uhlig, where compassionate expertise meets innovative therapeutic approaches.</p>
+                    <div class="certification-badges">
+                        <div class="badge">
+                            <img src="images/cert1.png" alt="Board Certified">
+                            <span>Board Certified</span>
                         </div>
-                        <div class="hero-buttons">
-                            <a href="#book" class="btn-primary">Schedule Consultation</a>
-                            <a href="#about" class="btn-secondary">Learn More</a>
+                        <div class="badge">
+                            <img src="images/cert2.png" alt="Military Veteran">
+                            <span>Military Veteran</span>
+                        </div>
+                        <div class="badge">
+                            <img src="images/cert3.png" alt="Clinical Excellence">
+                            <span>Clinical Excellence</span>
                         </div>
                     </div>
-                    <div class="booking-card" data-aos="fade-left">
-                        <h3>Quick Appointment Request</h3>
-                        <form id="quickBookForm">
+                    <div class="hero-buttons">
+                        <a href="#book" class="btn-primary">Schedule Consultation</a>
+                        <a href="#about" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-form" data-aos="fade-left">
+                    <div class="form-card">
+                        <h3>Request Consultation</h3>
+                        <form id="consultationForm">
                             <div class="form-group">
                                 <input type="text" id="name" required>
-                                <label for="name">Your Name</label>
+                                <label for="name">Full Name</label>
                             </div>
                             <div class="form-group">
                                 <input type="email" id="email" required>
@@ -106,10 +121,15 @@
                 </div>
             </div>
         </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- Services Preview -->
+    <section id="services-preview" class="services-preview">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Our Services</h2>
@@ -121,30 +141,29 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <h3>Individual Therapy</h3>
-                    <p>Personalized treatment plans focusing on your unique needs and goals</p>
+                    <p>Personalized treatment plans focused on your unique needs and goals.</p>
                     <ul class="service-features">
                         <li>Cognitive Behavioral Therapy</li>
-                        <li>Anxiety & Depression Treatment</li>
+                        <li>Anxiety & Depression</li>
                         <li>Trauma Recovery</li>
-                        <li>Stress Management</li>
                     </ul>
                     <div class="service-price">
-                        <span class="price">$200</span>
+                        <span class="amount">$200</span>
                         <span class="period">per session</span>
                     </div>
                     <a href="#book" class="btn-primary">Book Now</a>
                 </div>
-                <!-- Similar cards for Family Therapy and Couples Therapy -->
+                <!-- More service cards... -->
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- About Preview -->
+    <section id="about-preview" class="about-preview">
         <div class="container">
             <div class="about-grid">
                 <div class="about-image" data-aos="fade-right">
-                    <img src="dr-uhlig.jpg" alt="Dr. Douglas Uhlig">
+                    <img src="images/dr-uhlig.jpg" alt="Dr. Douglas Uhlig">
                     <div class="experience-badge">
                         <span>20+</span>
                         <p>Years Experience</p>
@@ -153,298 +172,42 @@
                 <div class="about-content" data-aos="fade-left">
                     <h2>Dr. Douglas Uhlig</h2>
                     <p class="subtitle">Clinical Psychologist & Military Veteran</p>
-                    <div class="about-text">
-                        <p>[Detailed biography here]</p>
-                    </div>
-                    <div class="credentials-grid">
+                    <p class="about-text">With over two decades of experience, Dr. Uhlig combines clinical expertise with a compassionate approach...</p>
+                    <div class="credentials">
                         <div class="credential-item">
                             <i class="fas fa-graduation-cap"></i>
                             <h4>Education</h4>
-                            <p>Ph.D. in Clinical Psychology</p>
+                            <p>Ph.D. Clinical Psychology</p>
                         </div>
-                        <!-- More credential items -->
+                        <!-- More credentials... -->
                     </div>
+                    <a href="#about" class="btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Online Therapy Section -->
-    <section id="online" class="online-therapy">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Online Therapy</h2>
-                <p>Professional care from the comfort of your home</p>
-            </div>
-            <div class="online-features-grid">
-                <div class="feature-card" data-aos="fade-up">
-                    <i class="fas fa-video"></i>
-                    <h3>Secure Video Sessions</h3>
-                    <p>HIPAA-compliant platform for your privacy</p>
-                </div>
-                <!-- More feature cards -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Insurance Section -->
-    <section id="insurance" class="insurance">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Insurance & Payment</h2>
-                <p>Multiple payment options for your convenience</p>
-            </div>
-            <div class="insurance-grid">
-                <div class="insurance-info">
-                    <h3>Accepted Insurance Plans</h3>
-                    <div class="insurance-logos">
-                        <!-- Insurance company logos -->
-                    </div>
-                    <ul class="insurance-list">
-                        <li>Blue Cross Blue Shield</li>
-                        <li>Aetna</li>
-                        <li>United Healthcare</li>
-                        <!-- More insurance providers -->
-                    </ul>
-                </div>
-                <div class="payment-info">
-                    <h3>Payment Options</h3>
-                    <ul class="payment-methods">
-                        <li><i class="fas fa-credit-card"></i> Credit Cards</li>
-                        <li><i class="fas fa-wallet"></i> FSA/HSA</li>
-                        <li><i class="fas fa-sliders-h"></i> Sliding Scale Available</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location Section -->
-    <section id="locations" class="locations">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Our Location</h2>
-                <p>Conveniently located in Rego Park, NYC</p>
-            </div>
-            <div class="location-grid">
-                <div class="map-container" data-aos="fade-right">
-                    <div id="map"></div>
-                </div>
-                <div class="location-info" data-aos="fade-left">
-                    <div class="office-card">
-                        <h3>Rego Park Office</h3>
-                        <address>
-                            <p><i class="fas fa-map-marker-alt"></i> 63-44 Saunders Street, Suite 106</p>
-                            <p>Rego Park, NY 11374</p>
-                        </address>
-                        <div class="office-details">
-                            <p><i class="fas fa-phone"></i> (646) 481-5080</p>
-                            <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 7:00 PM</p>
-                            <p><i class="fas fa-subway"></i> Nearby: 63 Dr-Rego Park Station</p>
-                        </div>
-                        <a href="https://maps.google.com" class="btn-secondary" target="_blank">Get Directions</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Latest Insights</h2>
-                <p>Professional articles and mental health resources</p>
-            </div>
-            <div class="blog-grid">
-                <article class="blog-card" data-aos="fade-up">
-                    <div class="blog-image">
-                        <img src="blog1.jpg" alt="Blog Post">
-                        <div class="blog-category">Mental Health</div>
-                    </div>
-                    <div class="blog-content">
-                        <h3>Understanding Anxiety in Modern Life</h3>
-                        <p class="blog-excerpt">Learn about the causes and management strategies for anxiety...</p>
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar"></i> Jan 15, 2024</span>
-                            <span><i class="far fa-clock"></i> 5 min read</span>
-                        </div>
-                        <a href="blog-post.html" class="btn-secondary">Read More</a>
-                    </div>
-                </article>
-                <!-- More blog cards -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Crisis Resources Section -->
-    <section id="crisis" class="crisis-resources">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Crisis Resources</h2>
-                <p>24/7 Support When You Need It Most</p>
-            </div>
-            <div class="resources-grid">
-                <div class="resource-card" data-aos="fade-up">
-                    <h3>Emergency Numbers</h3>
-                    <ul class="resource-list">
-                        <li>
-                            <span class="resource-name">Suicide Prevention Lifeline</span>
-                            <a href="tel:988" class="resource-contact">988</a>
-                        </li>
-                        <li>
-                            <span class="resource-name">NYC Well</span>
-                            <a href="tel:18886929355" class="resource-contact">1-888-692-9355</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- More resource cards -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- Contact Preview -->
+    <section id="contact-preview" class="contact-preview">
         <div class="container">
             <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right">
-                    <h2>Get in Touch</h2>
-                    <p>We're here to help answer any questions you may have</p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h3>Call Us</h3>
-                                <p>(646) 481-5080</p>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h3>Email Us</h3>
-                                <p>contact@douglasuhlig.com</p>
-                            </div>
-                        </div>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fas fa-phone"></i>
+                        <h3>Call Us</h3>
+                        <p>(646) 481-5080</p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>contact@douglasuhlig.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Visit Us</h3>
+                        <p>63-44 Saunders Street, Suite 106<br>Rego Park, NY 11374</p>
                     </div>
                 </div>
-                <div class="contact-form" data-aos="fade-left">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="contactName" required>
-                            <label for="contactName">Your Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="contactEmail" required>
-                            <label for="contactEmail">Email Address</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="contactPhone" required>
-                            <label for="contactPhone">Phone Number</label>
-                        </div>
-                        <div class="form-group">
-                            <select id="contactReason" required>
-                                <option value="">Select Reason for Contact</option>
-                                <option value="appointment">Schedule Appointment</option>
-                                <option value="insurance">Insurance Question</option>
-                                <option value="general">General Inquiry</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="contactMessage" required></textarea>
-                            <label for="contactMessage">Your Message</label>
-                        </div>
-                        <button type="submit" class="btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Section -->
-    <section id="book" class="booking">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Schedule Your Appointment</h2>
-                <p>Take the first step towards positive change</p>
-            </div>
-            <div class="booking-grid">
-                <div class="calendar-container" data-aos="fade-right">
-                    <div id="appointmentCalendar"></div>
-                </div>
-                <div class="booking-form" data-aos="fade-left">
-                    <form id="appointmentForm">
-                        <div class="form-group">
-                            <input type="text" id="bookingName" required>
-                            <label for="bookingName">Full Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="bookingEmail" required>
-                            <label for="bookingEmail">Email Address</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="bookingPhone" required>
-                            <label for="bookingPhone">Phone Number</label>
-                        </div>
-                        <div class="form-group">
-                            <select id="bookingService" required>
-                                <option value="">Select Service</option>
-                                <option value="individual">Individual Therapy</option>
-                                <option value="couples">Couples Therapy</option>
-                                <option value="family">Family Therapy</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="selectedDate" readonly required>
-                            <label for="selectedDate">Selected Date</label>
-                        </div>
-                        <div class="form-group">
-                            <select id="bookingTime" required>
-                                <option value="">Select Time</option>
-                                <!-- Time slots will be populated by JavaScript -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="bookingNotes"></textarea>
-                            <label for="bookingNotes">Additional Notes (Optional)</label>
-                        </div>
-                        <button type="submit" class="btn-primary">Schedule Appointment</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Patient Reviews</h2>
-                <p>What our clients say about their experience</p>
-            </div>
-            <div class="reviews-slider" data-aos="fade-up">
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-avatar">
-                            <img src="avatar1.jpg" alt="Client">
-                        </div>
-                        <div class="review-info">
-                            <h4>Sarah M.</h4>
-                            <div class="review-stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="review-text">"Dr. Uhlig's approach to therapy has been transformative. His expertise and compassion have helped me overcome significant challenges."</p>
-                </div>
-                <!-- More review cards will be added dynamically -->
-            </div>
-            <div class="review-controls">
-                <button class="review-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="review-next"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -454,7 +217,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
-                    <img src="logo.png" alt="Logo" class="footer-logo">
+                    <img src="images/logo.png" alt="Logo" class="footer-logo">
                     <p>Premium psychological services focused on improving mental health and well-being.</p>
                     <div class="social-links">
                         <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -468,8 +231,6 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#online">Online Therapy</a></li>
-                        <li><a href="#insurance">Insurance</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -498,12 +259,8 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Notification System -->
-    <div id="notificationSystem" class="notification-system"></div>
-
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>
