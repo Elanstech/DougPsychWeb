@@ -8,26 +8,26 @@ AOS.init({
 // Mobile Menu Handler
 class MobileMenu {
     constructor() {
-        this.toggle = document.querySelector('.nav-toggle');
-        this.menu = document.querySelector('.mobile-menu');
-        this.hamburger = document.querySelector('.hamburger');
+        this.navToggle = document.querySelector('.nav-toggle');
+        this.navMenu = document.querySelector('.nav-menu');
+        this.navLinks = document.querySelectorAll('.nav-link');
         this.isOpen = false;
         
         this.init();
     }
 
     init() {
-        this.toggle.addEventListener('click', () => this.toggleMenu());
+        // Toggle menu on button click
+        this.navToggle.addEventListener('click', () => this.toggleMenu());
         
-        // Close menu when clicking menu items
-        const menuItems = this.menu.querySelectorAll('a');
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => this.closeMenu());
+        // Close menu when clicking links
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', () => this.closeMenu());
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-toggle') && !e.target.closest('.mobile-menu')) {
+            if (!e.target.closest('.nav-toggle') && !e.target.closest('.nav-menu')) {
                 this.closeMenu();
             }
         });
@@ -35,111 +35,48 @@ class MobileMenu {
 
     toggleMenu() {
         this.isOpen = !this.isOpen;
-        this.menu.classList.toggle('active');
-        this.hamburger.classList.toggle('active');
+        this.navToggle.classList.toggle('active');
+        this.navMenu.classList.toggle('active');
     }
 
     closeMenu() {
         this.isOpen = false;
-        this.menu.classList.remove('active');
-        this.hamburger.classList.remove('active');
+        this.navToggle.classList.remove('active');
+        this.navMenu.classList.remove('active');
     }
 }
 
-// Hero Slider
-class HeroSlider {
+// Navbar Scroll Handler
+class NavbarScroll {
     constructor() {
-        this.slides = document.querySelectorAll('.slide');
-        this.dots = document.querySelector('.slider-dots');
-        this.prevBtn = document.querySelector('.prev');
-        this.nextBtn = document.querySelector('.next');
-        this.currentSlide = 0;
-        this.slideInterval = null;
-        this.isAnimating = false;
+        this.navbar = document.querySelector('.navbar');
+        this.lastScroll = 0;
         
         this.init();
     }
 
     init() {
-        // Create dots
-        this.slides.forEach((_, index) => {
-            const dot = document.createElement('button');
-            dot.classList.add('dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => this.goToSlide(index));
-            this.dots.appendChild(dot);
-        });
-
-        // Add event listeners
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
-
-        // Start autoplay
-        this.startAutoplay();
-
-        // Pause on hover
-        const slider = document.querySelector('.hero-slider');
-        slider.addEventListener('mouseenter', () => this.pauseAutoplay());
-        slider.addEventListener('mouseleave', () => this.startAutoplay());
-
-        // Touch events for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        slider.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        slider.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe(touchStartX - touchEndX);
-        });
+        window.addEventListener('scroll', () => this.handleScroll());
     }
 
-    handleSwipe(swipeDistance) {
-        const threshold = 50;
-        if (Math.abs(swipeDistance) > threshold) {
-            if (swipeDistance > 0) {
-                this.nextSlide();
-            } else {
-                this.prevSlide();
-            }
+    handleScroll() {
+        const currentScroll = window.pageYOffset;
+
+        // Add/remove background on scroll
+        if (currentScroll > 50) {
+            this.navbar.classList.add('scrolled');
+        } else {
+            this.navbar.classList.remove('scrolled');
         }
-    }
 
-    goToSlide(index) {
-        if (this.isAnimating) return;
-        this.isAnimating = true;
+        // Hide/show navbar on scroll up/down
+        if (currentScroll > this.lastScroll && currentScroll > 500) {
+            this.navbar.style.transform = 'translateY(-100%)';
+        } else {
+            this.navbar.style.transform = 'translateY(0)';
+        }
 
-        // Remove active classes
-        this.slides[this.currentSlide].classList.remove('active');
-        this.dots.children[this.currentSlide].classList.remove('active');
-
-        // Set new slide
-        this.currentSlide = index;
-        this.slides[this.currentSlide].classList.add('active');
-        this.dots.children[this.currentSlide].classList.add('active');
-
-        // Reset animation flag
-        setTimeout(() => {
-            this.isAnimating = false;
-        }, 1000);
-    }
-
-    nextSlide() {
-        this.goToSlide((this.currentSlide + 1) % this.slides.length);
-    }
-
-    prevSlide() {
-        this.goToSlide((this.currentSlide - 1 + this.slides.length) % this.slides.length);
-    }
-
-    startAutoplay() {
-        this.slideInterval = setInterval(() => this.nextSlide(), 5000);
-    }
-
-    pauseAutoplay() {
-        clearInterval(this.slideInterval);
+        this.lastScroll = currentScroll;
     }
 }
 
@@ -163,23 +100,27 @@ class FormHandler {
         inputs.forEach(input => {
             // Initial state check
             if (input.value) {
-                input.parentElement.classList.add('focused');
+                input.classList.add('has-value');
             }
 
-            // Focus events
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('focused');
+            // Input events
+            input.addEventListener('input', () => {
+                input.classList.toggle('has-value', input.value !== '');
             });
-
-            input.addEventListener('blur', () => {
-                if (!input.value) {
-                    input.parentElement.classList.remove('focused');
-                }
-            });
-
-            // Input events for real-time validation
-            input.addEventListener('input', () => this.validateInput(input));
         });
+    }
+
+    validateForm() {
+        let isValid = true;
+        const inputs = this.form.querySelectorAll('input, textarea');
+
+        inputs.forEach(input => {
+            if (!this.validateInput(input)) {
+                isValid = false;
+            }
+        });
+
+        return isValid;
     }
 
     validateInput(input) {
@@ -197,29 +138,19 @@ class FormHandler {
                 isValid = value.length >= 3;
         }
 
-        input.parentElement.classList.toggle('error', !isValid);
+        input.classList.toggle('error', !isValid);
         return isValid;
     }
 
     async handleSubmit(e) {
         e.preventDefault();
-        const submitBtn = this.form.querySelector('button[type="submit"]');
-        
-        // Validate all inputs
-        const inputs = this.form.querySelectorAll('input, textarea');
-        let isValid = true;
-        inputs.forEach(input => {
-            if (!this.validateInput(input)) {
-                isValid = false;
-            }
-        });
 
-        if (!isValid) {
+        if (!this.validateForm()) {
             this.showNotification('Please check your inputs and try again.', 'error');
             return;
         }
 
-        // Disable button and show loading state
+        const submitBtn = this.form.querySelector('button[type="submit"]');
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
@@ -227,13 +158,12 @@ class FormHandler {
             // Simulate form submission
             await new Promise(resolve => setTimeout(resolve, 2000));
             
-            // Show success message
             this.showNotification('Message sent successfully!', 'success');
             this.form.reset();
             
-            // Reset labels
-            inputs.forEach(input => {
-                input.parentElement.classList.remove('focused');
+            // Reset floating labels
+            this.form.querySelectorAll('input, textarea').forEach(input => {
+                input.classList.remove('has-value');
             });
         } catch (error) {
             this.showNotification('Error sending message. Please try again.', 'error');
@@ -253,7 +183,6 @@ class FormHandler {
         
         document.body.appendChild(notification);
         
-        // Trigger animation
         setTimeout(() => {
             notification.classList.add('show');
             setTimeout(() => {
@@ -264,7 +193,7 @@ class FormHandler {
     }
 }
 
-// Back to Top Button
+// Back to Top Button Handler
 class BackToTop {
     constructor() {
         this.button = document.querySelector('.back-to-top');
@@ -292,19 +221,49 @@ class BackToTop {
     }
 }
 
-// Loading Screen Handler
-class LoadingScreen {
+// Smooth Scroll Handler
+class SmoothScroll {
     constructor() {
-        this.loader = document.querySelector('.loading-screen');
         this.init();
     }
 
     init() {
-        // Hide loader after content is loaded
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => this.handleClick(e));
+        });
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        const target = document.querySelector(e.currentTarget.getAttribute('href'));
+        
+        if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.offsetTop;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
+}
+
+// Loading Animation Handler
+class LoadingScreen {
+    constructor() {
+        this.loader = document.querySelector('.loading-screen');
+        if (this.loader) {
+            this.init();
+        }
+    }
+
+    init() {
         window.addEventListener('load', () => {
             setTimeout(() => {
                 this.hideLoader();
-            }, 1500);
+            }, 1000);
         });
     }
 
@@ -316,29 +275,77 @@ class LoadingScreen {
     }
 }
 
-// Initialize everything when DOM is loaded
+// Animation Handler for Counters
+class CounterAnimation {
+    constructor() {
+        this.counters = document.querySelectorAll('.counter');
+        if (this.counters.length) {
+            this.init();
+        }
+    }
+
+    init() {
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        this.counters.forEach(counter => {
+            observer.observe(counter);
+        });
+    }
+
+    animateCounter(counter) {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                counter.textContent = Math.ceil(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        };
+
+        updateCounter();
+    }
+}
+
+// Initialize all components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new LoadingScreen();
     new MobileMenu();
-    new HeroSlider();
+    new NavbarScroll();
     new FormHandler();
     new BackToTop();
+    new SmoothScroll();
+    new LoadingScreen();
+    new CounterAnimation();
+});
 
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 100;
-                const elementPosition = target.offsetTop;
-                const offsetPosition = elementPosition - headerOffset;
+// Handle page transitions
+window.addEventListener('beforeunload', () => {
+    document.body.classList.add('page-transition');
+});
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
+// Handle service worker if needed
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(registration => {
+            console.log('ServiceWorker registration successful');
+        }).catch(err => {
+            console.log('ServiceWorker registration failed:', err);
         });
     });
-});
+}
