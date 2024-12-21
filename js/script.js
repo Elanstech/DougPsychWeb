@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initForms();
     initBackToTop();
     initAnimations();
+    initCarousel(); // Added carousel initialization
 });
 
 // Navigation
@@ -279,4 +280,105 @@ function initAnimations() {
     document.querySelectorAll('.fade-in, .slide-in').forEach(element => {
         observer.observe(element);
     });
+}
+
+// Carousel Implementation
+function initCarousel() {
+    const container = document.querySelector('.carousel-container');
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const prevButton = document.querySelector('.carousel-prev');
+    const nextButton = document.querySelector('.carousel-next');
+    
+    let currentIndex = 0;
+    let interval;
+
+    // Create dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    function updateCarousel() {
+        // Update track position
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+        resetInterval();
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+        resetInterval();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+        resetInterval();
+    }
+
+    function resetInterval() {
+        clearInterval(interval);
+        startInterval();
+    }
+
+    function startInterval() {
+        interval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    // Event listeners
+    prevButton?.addEventListener('click', prevSlide);
+    nextButton?.addEventListener('click', nextSlide);
+
+    // Touch events for swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container?.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    container?.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const difference = touchStartX - touchEndX;
+
+        if (Math.abs(difference) > swipeThreshold) {
+            if (difference > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+
+    // Pause carousel on hover
+    container?.addEventListener('mouseenter', () => clearInterval(interval));
+    container?.addEventListener('mouseleave', startInterval);
+
+    // Initialize if carousel exists
+    if (container && track && slides.length) {
+        updateCarousel();
+        startInterval();
+    }
 }
