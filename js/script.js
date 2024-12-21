@@ -1,8 +1,9 @@
 // Initialize AOS
 AOS.init({
     duration: 800,
+    offset: 100,
     once: true,
-    offset: 100
+    easing: 'ease-out-cubic'
 });
 
 // Mobile Menu Handler
@@ -10,17 +11,14 @@ class MobileMenu {
     constructor() {
         this.navToggle = document.querySelector('.nav-toggle');
         this.navMenu = document.querySelector('.nav-menu');
-        this.navLinks = document.querySelectorAll('.nav-link');
+        this.navLinks = document.querySelectorAll('.nav-menu a');
         this.isOpen = false;
         
         this.init();
     }
 
     init() {
-        // Toggle menu on button click
         this.navToggle.addEventListener('click', () => this.toggleMenu());
-        
-        // Close menu when clicking links
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => this.closeMenu());
         });
@@ -37,12 +35,14 @@ class MobileMenu {
         this.isOpen = !this.isOpen;
         this.navToggle.classList.toggle('active');
         this.navMenu.classList.toggle('active');
+        document.body.style.overflow = this.isOpen ? 'hidden' : '';
     }
 
     closeMenu() {
         this.isOpen = false;
         this.navToggle.classList.remove('active');
         this.navMenu.classList.remove('active');
+        document.body.style.overflow = '';
     }
 }
 
@@ -51,7 +51,6 @@ class NavbarScroll {
     constructor() {
         this.navbar = document.querySelector('.navbar');
         this.lastScroll = 0;
-        
         this.init();
     }
 
@@ -80,30 +79,124 @@ class NavbarScroll {
     }
 }
 
-// Form Handler
-class FormHandler {
+// Smooth Scroll Handler
+class SmoothScroll {
     constructor() {
-        this.form = document.getElementById('contactForm');
         this.init();
     }
 
     init() {
-        if (this.form) {
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-            this.setupFloatingLabels();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => this.handleClick(e));
+        });
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        const target = document.querySelector(e.currentTarget.getAttribute('href'));
+        
+        if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.offsetTop;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
+    }
+}
+
+// Stats Counter Animation
+class StatsCounter {
+    constructor() {
+        this.counters = document.querySelectorAll('.counter');
+        this.init();
+    }
+
+    init() {
+        this.counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            counter.innerText = '0';
+
+            const updateCounter = () => {
+                const count = +counter.innerText;
+                const increment = target / 200;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCounter, 10);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            // Use Intersection Observer to trigger counter
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(counter);
+        });
+    }
+}
+
+// Back to Top Button Handler
+class BackToTop {
+    constructor() {
+        this.button = document.querySelector('.back-to-top');
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('scroll', () => this.toggleButton());
+        this.button.addEventListener('click', () => this.scrollToTop());
+    }
+
+    toggleButton() {
+        if (window.pageYOffset > 300) {
+            this.button.classList.add('visible');
+        } else {
+            this.button.classList.remove('visible');
+        }
+    }
+
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Form Validation and Handler
+class FormHandler {
+    constructor() {
+        this.form = document.getElementById('contactForm');
+        if (this.form) {
+            this.init();
+        }
+    }
+
+    init() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        this.setupFloatingLabels();
     }
 
     setupFloatingLabels() {
         const inputs = this.form.querySelectorAll('input, textarea');
         
         inputs.forEach(input => {
-            // Initial state check
             if (input.value) {
                 input.classList.add('has-value');
             }
 
-            // Input events
             input.addEventListener('input', () => {
                 input.classList.toggle('has-value', input.value !== '');
             });
@@ -161,7 +254,6 @@ class FormHandler {
             this.showNotification('Message sent successfully!', 'success');
             this.form.reset();
             
-            // Reset floating labels
             this.form.querySelectorAll('input, textarea').forEach(input => {
                 input.classList.remove('has-value');
             });
@@ -193,159 +285,25 @@ class FormHandler {
     }
 }
 
-// Back to Top Button Handler
-class BackToTop {
-    constructor() {
-        this.button = document.querySelector('.back-to-top');
-        this.init();
-    }
-
-    init() {
-        window.addEventListener('scroll', () => this.toggleButton());
-        this.button.addEventListener('click', () => this.scrollToTop());
-    }
-
-    toggleButton() {
-        if (window.pageYOffset > 300) {
-            this.button.classList.add('visible');
-        } else {
-            this.button.classList.remove('visible');
-        }
-    }
-
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-}
-
-// Smooth Scroll Handler
-class SmoothScroll {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => this.handleClick(e));
-        });
-    }
-
-    handleClick(e) {
-        e.preventDefault();
-        const target = document.querySelector(e.currentTarget.getAttribute('href'));
-        
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.offsetTop;
-            const offsetPosition = elementPosition - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    }
-}
-
-// Loading Animation Handler
-class LoadingScreen {
-    constructor() {
-        this.loader = document.querySelector('.loading-screen');
-        if (this.loader) {
-            this.init();
-        }
-    }
-
-    init() {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                this.hideLoader();
-            }, 1000);
-        });
-    }
-
-    hideLoader() {
-        this.loader.style.opacity = '0';
-        setTimeout(() => {
-            this.loader.style.display = 'none';
-        }, 500);
-    }
-}
-
-// Animation Handler for Counters
-class CounterAnimation {
-    constructor() {
-        this.counters = document.querySelectorAll('.counter');
-        if (this.counters.length) {
-            this.init();
-        }
-    }
-
-    init() {
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        this.counters.forEach(counter => {
-            observer.observe(counter);
-        });
-    }
-
-    animateCounter(counter) {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
-
-        const updateCounter = () => {
-            current += step;
-            if (current < target) {
-                counter.textContent = Math.ceil(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target;
-            }
-        };
-
-        updateCounter();
-    }
-}
-
 // Initialize all components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new MobileMenu();
     new NavbarScroll();
-    new FormHandler();
-    new BackToTop();
     new SmoothScroll();
-    new LoadingScreen();
-    new CounterAnimation();
+    new StatsCounter();
+    new BackToTop();
+    new FormHandler();
 });
 
-// Handle page transitions
-window.addEventListener('beforeunload', () => {
-    document.body.classList.add('page-transition');
+// Remove loading screen when page is fully loaded
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.loading-screen');
+    if (loader) {
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }, 1000);
+    }
 });
-
-// Handle service worker if needed
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then(registration => {
-            console.log('ServiceWorker registration successful');
-        }).catch(err => {
-            console.log('ServiceWorker registration failed:', err);
-        });
-    });
-}
