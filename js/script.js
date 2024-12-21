@@ -1,4 +1,4 @@
-// Initialize AOS
+// Initialize AOS (Animate On Scroll)
 AOS.init({
     duration: 800,
     offset: 100,
@@ -18,7 +18,10 @@ class MobileMenu {
     }
 
     init() {
+        // Toggle menu on button click
         this.navToggle.addEventListener('click', () => this.toggleMenu());
+        
+        // Close menu when clicking links
         this.navLinks.forEach(link => {
             link.addEventListener('click', () => this.closeMenu());
         });
@@ -79,103 +82,7 @@ class NavbarScroll {
     }
 }
 
-// Smooth Scroll Handler
-class SmoothScroll {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => this.handleClick(e));
-        });
-    }
-
-    handleClick(e) {
-        e.preventDefault();
-        const target = document.querySelector(e.currentTarget.getAttribute('href'));
-        
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.offsetTop;
-            const offsetPosition = elementPosition - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    }
-}
-
-// Stats Counter Animation
-class StatsCounter {
-    constructor() {
-        this.counters = document.querySelectorAll('.counter');
-        this.init();
-    }
-
-    init() {
-        this.counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            counter.innerText = '0';
-
-            const updateCounter = () => {
-                const count = +counter.innerText;
-                const increment = target / 200;
-
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(updateCounter, 10);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-
-            // Use Intersection Observer to trigger counter
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        updateCounter();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            observer.observe(counter);
-        });
-    }
-}
-
-// Back to Top Button Handler
-class BackToTop {
-    constructor() {
-        this.button = document.querySelector('.back-to-top');
-        this.init();
-    }
-
-    init() {
-        window.addEventListener('scroll', () => this.toggleButton());
-        this.button.addEventListener('click', () => this.scrollToTop());
-    }
-
-    toggleButton() {
-        if (window.pageYOffset > 300) {
-            this.button.classList.add('visible');
-        } else {
-            this.button.classList.remove('visible');
-        }
-    }
-
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-}
-
-// Form Validation and Handler
+// Form Handler
 class FormHandler {
     constructor() {
         this.form = document.getElementById('contactForm');
@@ -285,17 +192,151 @@ class FormHandler {
     }
 }
 
-// Initialize all components when DOM is loaded
+// Stats Counter
+class StatsCounter {
+    constructor() {
+        this.counters = document.querySelectorAll('.counter');
+        this.init();
+    }
+
+    init() {
+        this.counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            counter.innerText = '0';
+
+            const updateCounter = () => {
+                const count = +counter.innerText;
+                const increment = target / 200;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCounter, 10);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            // Use Intersection Observer to trigger counter
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(counter);
+        });
+    }
+}
+
+// Review Slider
+class ReviewSlider {
+    constructor() {
+        this.slider = document.querySelector('.reviews-slider');
+        this.slides = document.querySelectorAll('.review-card');
+        this.currentSlide = 0;
+        
+        if (this.slider && this.slides.length > 0) {
+            this.init();
+        }
+    }
+
+    init() {
+        this.setupControls();
+        this.setupAutoPlay();
+        this.setupTouchEvents();
+    }
+
+    setupControls() {
+        const prevBtn = document.querySelector('.review-prev');
+        const nextBtn = document.querySelector('.review-next');
+
+        prevBtn.addEventListener('click', () => this.prevSlide());
+        nextBtn.addEventListener('click', () => this.nextSlide());
+    }
+
+    setupAutoPlay() {
+        setInterval(() => this.nextSlide(), 5000);
+    }
+
+    setupTouchEvents() {
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        this.slider.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        this.slider.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            
+            if (touchStartX - touchEndX > 50) {
+                this.nextSlide();
+            } else if (touchEndX - touchStartX > 50) {
+                this.prevSlide();
+            }
+        });
+    }
+
+    nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.updateSlider();
+    }
+
+    prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.updateSlider();
+    }
+
+    updateSlider() {
+        const offset = -this.currentSlide * 100;
+        this.slider.style.transform = `translateX(${offset}%)`;
+    }
+}
+
+// Back to Top Button
+class BackToTop {
+    constructor() {
+        this.button = document.querySelector('.back-to-top');
+        if (this.button) {
+            this.init();
+        }
+    }
+
+    init() {
+        window.addEventListener('scroll', () => this.toggleButton());
+        this.button.addEventListener('click', () => this.scrollToTop());
+    }
+
+    toggleButton() {
+        if (window.pageYOffset > 300) {
+            this.button.classList.add('visible');
+        } else {
+            this.button.classList.remove('visible');
+        }
+    }
+
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Initialize all components
 document.addEventListener('DOMContentLoaded', () => {
     new MobileMenu();
     new NavbarScroll();
-    new SmoothScroll();
-    new StatsCounter();
-    new BackToTop();
     new FormHandler();
+    new StatsCounter();
+    new ReviewSlider();
+    new BackToTop();
 });
 
-// Remove loading screen when page is fully loaded
+// Remove loading screen
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loading-screen');
     if (loader) {
