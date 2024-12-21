@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Douglas Uhlig - Psychological Services</title>
+    <title>Dr. Douglas Uhlig - Premium Psychological Services</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="Professional psychological services by Dr. Douglas Uhlig. Expert in CBT, family therapy, and psychological evaluations in NYC.">
-    <meta name="keywords" content="psychology, therapy, CBT, Douglas Uhlig, NYC, Rego Park">
+    <meta name="description" content="Premium psychological services by Dr. Douglas Uhlig. Expert in CBT, family therapy, and psychological evaluations in NYC.">
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -28,17 +27,16 @@
                     <img src="logo.png" alt="Dr. Douglas Uhlig Psychological Services">
                 </a>
                 <div class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span></span><span></span><span></span>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#team" class="nav-link">Our Team</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><a href="#appointment" class="btn-primary">Book Appointment</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#therapists">Our Therapists</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#locations">Locations</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#book" class="btn-primary">Book Appointment</a></li>
                 </ul>
             </div>
         </div>
@@ -46,122 +44,232 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content" data-aos="fade-up">
-                <h1>Welcome to a Journey of Growth</h1>
-                <p>Comprehensive psychotherapy and counseling services in NYC, specializing in individual, family, and relationship coaching.</p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn-primary">Our Services</a>
-                    <a href="#contact" class="btn-secondary">Get in Touch</a>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text" data-aos="fade-right">
+                        <h1>Transform Your Life Through Professional Guidance</h1>
+                        <p>Experience premium psychological care with Dr. Douglas Uhlig in the heart of NYC</p>
+                        <div class="hero-buttons">
+                            <a href="#appointment" class="btn-primary">Schedule Consultation</a>
+                            <a href="#about" class="btn-secondary">Learn More</a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="counter" data-target="20">0</span>+
+                                <p>Years Experience</p>
+                            </div>
+                            <div class="stat-item">
+                                <span class="counter" data-target="1000">0</span>+
+                                <p>Clients Helped</p>
+                            </div>
+                            <div class="stat-item">
+                                <span class="counter" data-target="5">0</span>
+                                <p>Star Rating</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d" alt="Professional Therapy">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="hero-overlay"></div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- Therapists Section -->
+    <section id="therapists" class="therapists">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Our Services</h2>
-                <p>Specialized therapeutic approaches tailored to your unique needs</p>
+                <h2>Meet Our Expert Therapists</h2>
+                <p>Experienced professionals dedicated to your mental well-being</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-brain service-icon"></i>
-                    <h3>Individual Therapy</h3>
-                    <p>Personalized therapy sessions focused on your individual growth and well-being.</p>
-                    <a href="services.html" class="service-link">Learn More</a>
+            <div class="therapists-grid">
+                <div class="therapist-card" data-aos="fade-up">
+                    <div class="therapist-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" alt="Dr. Douglas Uhlig">
+                        <div class="therapist-overlay">
+                            <a href="#profile" class="btn-tertiary">View Profile</a>
+                        </div>
+                    </div>
+                    <div class="therapist-info">
+                        <h3>Dr. Douglas Uhlig</h3>
+                        <p>Clinical Psychologist</p>
+                        <div class="specialties">
+                            <span>CBT</span>
+                            <span>PTSD</span>
+                            <span>Anxiety</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-users service-icon"></i>
-                    <h3>Family Therapy</h3>
-                    <p>Strengthen family bonds and improve communication through guided sessions.</p>
-                    <a href="services.html" class="service-link">Learn More</a>
+                <!-- Add more therapist cards -->
+            </div>
+            <div class="section-footer">
+                <a href="#team" class="btn-primary">Meet Our Full Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suicide Prevention Section -->
+    <section class="suicide-prevention">
+        <div class="container">
+            <div class="prevention-content" data-aos="fade-up">
+                <h2>Protect Yourself and Others from the Risk of Suicide</h2>
+                <p>If you or someone you know is in crisis, help is available 24/7</p>
+                <div class="hotline-box">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="hotline-info">
+                        <h3>National Suicide Prevention Lifeline</h3>
+                        <a href="tel:988" class="hotline-number">988</a>
+                        <p>Free and Confidential Support</p>
+                    </div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-heart service-icon"></i>
-                    <h3>Relationship Coaching</h3>
-                    <p>Build stronger, healthier relationships with professional guidance.</p>
-                    <a href="services.html" class="service-link">Learn More</a>
+                <div class="crisis-resources">
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Crisis Resources
+                    </a>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-comment-alt"></i>
+                        Chat with a Counselor
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Online Counseling Section -->
+    <section class="online-counseling">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-image" data-aos="fade-right">
-                    <img src="doctor-image.jpg" alt="Dr. Douglas Uhlig">
-                    <div class="experience-badge">20+ Years Experience</div>
+            <div class="counseling-grid">
+                <div class="counseling-image" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624" alt="Online Counseling">
                 </div>
-                <div class="about-content" data-aos="fade-left">
-                    <h2>About Dr. Douglas Uhlig</h2>
-                    <p>With over two decades of experience, Dr. Douglas Uhlig provides comprehensive psychological services combining clinical expertise with life coaching approaches.</p>
-                    <div class="credentials">
-                        <div class="credential-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h4>Education</h4>
-                            <p>Ph.D., Walden University<br>M.B.A., New York University</p>
+                <div class="counseling-content" data-aos="fade-left">
+                    <h2>Is Online Counseling Right for You?</h2>
+                    <div class="benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-home"></i>
+                            <h3>Comfort of Home</h3>
+                            <p>Access therapy from anywhere</p>
                         </div>
-                        <div class="credential-item">
-                            <i class="fas fa-award"></i>
-                            <h4>Certifications</h4>
-                            <p>Licensed Psychologist<br>APA Member</p>
+                        <div class="benefit-item">
+                            <i class="fas fa-clock"></i>
+                            <h3>Flexible Scheduling</h3>
+                            <p>Sessions that fit your schedule</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Secure Platform</h3>
+                            <p>HIPAA-compliant video sessions</p>
                         </div>
                     </div>
-                    <a href="about.html" class="btn-primary">Learn More</a>
+                    <a href="#online" class="btn-primary">Learn More About Online Therapy</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- Locations Section -->
+    <section id="locations" class="locations">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2>Get in Touch</h2>
-                <p>Take the first step towards positive change</p>
+                <h2>Our Locations</h2>
+                <p>Convenient therapy locations in NYC</p>
             </div>
-            <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right">
-                    <div class="info-item">
-                        <i class="fas fa-location-dot"></i>
-                        <h3>Location</h3>
-                        <p>63-44 Saunders Street, Suite 106<br>Rego Park, New York 11374</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <h3>Phone</h3>
-                        <p>(646) 481-5080</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <p>contact@douglasuhlig.com</p>
+            <div class="location-grid">
+                <div class="location-map" data-aos="fade-right">
+                    <!-- Replace with actual Google Maps embed -->
+                    <div class="map-placeholder">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM40zMCc!5e0!3m2!1sen!2sus!4v1" 
+                                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
-                <form class="contact-form" data-aos="fade-left" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Your Name</label>
+                <div class="location-info" data-aos="fade-left">
+                    <div class="office-card">
+                        <h3>Rego Park Office</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 63-44 Saunders Street, Suite 106</p>
+                        <p>Rego Park, New York 11374</p>
+                        <div class="office-details">
+                            <p><i class="fas fa-phone"></i> (646) 481-5080</p>
+                            <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 7:00 PM</p>
+                            <p><i class="fas fa-subway"></i> Nearby Subway: 63 Dr-Rego Park</p>
+                        </div>
+                        <a href="#directions" class="btn-secondary">Get Directions</a>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Email Address</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>What Our Clients Say</h2>
+                <p>Real experiences from real people</p>
+            </div>
+            <div class="reviews-grid">
+                <!-- Google Reviews Widget Placeholder -->
+                <div class="google-reviews" data-aos="fade-up">
+                    <!-- Replace with actual Google Reviews widget -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="https://images.unsplash.com/photo-1544348817-5f2cf14b88c8?crop=faces&fit=crop&h=50&w=50" alt="Review">
+                            <div>
+                                <h4>Sarah M.</h4>
+                                <div class="stars">★★★★★</div>
+                            </div>
+                        </div>
+                        <p>"Dr. Uhlig has been instrumental in helping me overcome my anxiety. His approach is both professional and compassionate."</p>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" name="phone" required>
-                        <label for="phone">Phone Number</label>
+                    <!-- Add more review cards -->
+                </div>
+            </div>
+            <div class="section-footer">
+                <a href="#testimonials" class="btn-secondary">Read More Reviews</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Latest Insights</h2>
+                <p>Expert advice and mental health resources</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card" data-aos="fade-up">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88" alt="Blog Post">
                     </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" required></textarea>
-                        <label for="message">Your Message</label>
+                    <div class="blog-content">
+                        <div class="blog-category">Mental Health</div>
+                        <h3>Understanding Anxiety in the Modern World</h3>
+                        <p>Explore the causes and management strategies for anxiety in today's fast-paced environment.</p>
+                        <a href="#post" class="blog-link">Read More</a>
                     </div>
-                    <button type="submit" class="btn-primary">Send Message</button>
-                </form>
+                </article>
+                <!-- Add more blog cards -->
+            </div>
+            <div class="section-footer">
+                <a href="#blog" class="btn-primary">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>Take the first step towards positive change today</p>
+                <div class="cta-buttons">
+                    <a href="#appointment" class="btn-primary">Schedule Consultation</a>
+                    <a href="#contact" class="btn-secondary">Contact Us</a>
+                </div>
             </div>
         </div>
     </section>
@@ -172,7 +280,7 @@
             <div class="footer-grid">
                 <div class="footer-info">
                     <img src="logo.png" alt="Logo" class="footer-logo">
-                    <p>Professional psychological services focused on improving mental health and well-being.</p>
+                    <p>Premium psychological services focused on improving mental health and well-being.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -183,26 +291,25 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="#therapists">Our Therapists</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#team">Our Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-services">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="#services">Individual Therapy</a></li>
-                        <li><a href="#services">Family Therapy</a></li>
-                        <li><a href="#services">Relationship Coaching</a></li>
-                        <li><a href="#services">Career Counseling</a></li>
+                        <li><a href="#locations">Locations</a></li>
+                        <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 63-44 Saunders Street, Suite 106</p>
+                    <p>Rego Park, NY 11374</p>
+                    <p><i class="fas fa-phone"></i> (646) 481-5080</p>
+                    <p><i class="fas fa-envelope"></i> contact@douglasuhlig.com</p>
+                </div>
+                <div class="footer-hours">
                     <h4>Office Hours</h4>
                     <p><i class="far fa-clock"></i> Monday - Friday: 9:00 AM - 7:00 PM</p>
                     <p><i class="far fa-clock"></i> Saturday: By Appointment</p>
                     <p><i class="far fa-clock"></i> Sunday: Closed</p>
+                    <a href="#appointment" class="btn-primary">Book Appointment</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -218,6 +325,6 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
