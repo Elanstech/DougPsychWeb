@@ -262,6 +262,21 @@ body {
     max-width: 600px;
 }
 
+.hero-title {
+    font-family: var(--heading-font);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--gray-700);
+    margin-bottom: 2rem;
+}
+
 .hero-buttons {
     display: flex;
     gap: 1rem;
@@ -292,6 +307,7 @@ body {
     color: var(--gray-600);
 }
 
+/* Hero Carousel */
 .hero-image {
     position: relative;
     border-radius: var(--radius-lg);
@@ -300,15 +316,134 @@ body {
     aspect-ratio: 4/3;
 }
 
-.hero-image img {
+.carousel-container {
+    position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
     object-fit: cover;
+}
+
+.carousel-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-normal);
+    z-index: 2;
+}
+
+.carousel-nav button:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-prev {
+    left: 16px;
+}
+
+.carousel-next {
+    right: 16px;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 2;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
     transition: var(--transition-normal);
 }
 
-.hero-image:hover img {
-    transform: scale(1.05);
+.carousel-dot.active {
+    background: white;
+    width: 16px;
+    border-radius: 8px;
+}
+
+/* Responsive Design for Hero Section */
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .hero-buttons,
+    .hero-badges {
+        justify-content: center;
+    }
+
+    .hero-image {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero-badges {
+        gap: 1.5rem;
+    }
+
+    .carousel-nav button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-badges {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .badge {
+        flex-basis: calc(50% - 1rem);
+    }
+
+    .carousel-nav button {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 /* Buttons */
