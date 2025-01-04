@@ -1,14 +1,15 @@
-// Initialize everything when DOM is ready
+// Initialize all functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initHeroSlider();
     initScrollEffects();
+    initParallax();
     initForms();
     initBackToTop();
     initEmergencyBanner();
 });
 
-// Navigation
+// Navigation Functions
 function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const navToggle = document.querySelector('.nav-toggle');
@@ -148,35 +149,39 @@ function initHeroSlider() {
 // Scroll Effects
 function initScrollEffects() {
     const sections = document.querySelectorAll('section');
+    const fadeElements = document.querySelectorAll('.fade-in, .fade-up');
     
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: 0.2
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
-                if (entry.target.classList.contains('numbers-section')) {
-                    startCounters();
-                }
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     sections.forEach(section => observer.observe(section));
+    fadeElements.forEach(element => observer.observe(element));
+}
 
-    // Parallax effect for hero section
+// Parallax Effect
+function initParallax() {
+    const parallaxElements = document.querySelectorAll('.parallax');
+    
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            const speed = 0.5;
+        
+        parallaxElements.forEach(element => {
+            const speed = element.dataset.speed || 0.5;
             const yPos = -(scrolled * speed);
-            hero.style.backgroundPosition = `center ${yPos}px`;
-        }
+            element.style.transform = `translateY(${yPos}px)`;
+        });
     });
 }
 
@@ -333,10 +338,8 @@ function showNotification(message, type = 'success') {
     const container = document.querySelector('.notification-container') || createNotificationContainer();
     container.appendChild(notification);
 
-    // Add show class after a small delay for animation
     setTimeout(() => notification.classList.add('show'), 10);
 
-    // Remove notification after delay
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => notification.remove(), 300);
