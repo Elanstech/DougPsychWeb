@@ -13,6 +13,9 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- Elfsight Widget -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </head>
 <body>
     <!-- Emergency Banner -->
@@ -48,139 +51,60 @@
                 <a href="#locations" class="nav-link">Locations</a>
                 <a href="#online" class="nav-link">Online Therapy</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <a href="#book" class="btn btn-primary">Book Now</a>
+                <a href="#book" class="btn btn-primary btn-book">Book Now</a>
             </div>
         </div>
     </nav>
 
-    <!-- Parallax Hero Section -->
-    <section id="home" class="hero parallax-container">
-        <div class="parallax-bg">
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800" 
-                             alt="Modern Therapy Office">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=800" 
-                             alt="Virtual Therapy Session">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1567498952889-c4c6ea6b9bc9?w=800" 
-                             alt="Healing Environment">
-                    </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-slider">
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800" alt="Therapy Office">
                 </div>
-                <div class="carousel-nav">
-                    <button class="carousel-prev" aria-label="Previous slide">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-next" aria-label="Next slide">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=800" alt="Counseling Session">
                 </div>
-                <div class="carousel-dots"></div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1567498952889-c4c6ea6b9bc9?w=800" alt="Peaceful Environment">
+                </div>
             </div>
         </div>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="container">
+        <div class="hero-content container">
+            <div class="hero-text">
                 <h1 class="hero-title">Welcome to Doug Uhlig Psychological Services PLLC</h1>
                 <p class="hero-subtitle">Premier Mental Health Care in NYC</p>
-                <div class="hero-badges">
-                    <div class="badge">
-                        <i class="fas fa-brain"></i>
-                        <span>Expert Care</span>
-                    </div>
-                    <div class="badge">
-                        <i class="fas fa-heart"></i>
-                        <span>Personalized Approach</span>
-                    </div>
-                    <div class="badge">
-                        <i class="fas fa-star"></i>
-                        <span>Proven Results</span>
-                    </div>
+            </div>
+            <div class="hero-cards">
+                <div class="hero-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Expert Care</h3>
+                    <p>Professional psychological services tailored to your needs</p>
                 </div>
-                <div class="hero-buttons">
-                    <a href="#book" class="btn btn-primary">
-                        <i class="fas fa-calendar-alt"></i>
-                        Start Your Journey
-                    </a>
-                    <a href="#about" class="btn btn-secondary">Discover More</a>
+                <div class="hero-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Personalized Approach</h3>
+                    <p>Individualized treatment plans for optimal results</p>
+                </div>
+                <div class="hero-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Proven Results</h3>
+                    <p>Evidence-based methods for lasting positive change</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Leadership Section -->
-    <section id="leadership" class="leadership-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Transformative Leadership in Mental Health</h2>
-                <p>Experience the difference with our expert-led approach to psychological care</p>
+            <div class="hero-cta">
+                <a href="#book" class="btn btn-primary">
+                    <i class="fas fa-calendar-alt"></i>
+                    Start Your Journey
+                </a>
+                <a href="#about" class="btn btn-outline">Learn More</a>
             </div>
-            <div class="leadership-grid">
-                <div class="leadership-profile">
-                    <div class="leadership-image">
-                        <img src="doug.jpeg" alt="Dr. Douglas Uhlig">
-                        <div class="image-overlay"></div>
-                    </div>
-                    <div class="leadership-content">
-                        <h3>Dr. Douglas Uhlig, Ph.D.</h3>
-                        <p class="leadership-title">Founder & Clinical Director</p>
-                        <div class="credentials-list">
-                            <div class="credential-item">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span>Ph.D., Clinical Psychology, Walden University</span>
-                            </div>
-                            <div class="credential-item">
-                                <i class="fas fa-certificate"></i>
-                                <span>Licensed Clinical Psychologist</span>
-                            </div>
-                            <div class="credential-item">
-                                <i class="fas fa-award"></i>
-                                <span>Board Certified, American Board of Professional Psychology</span>
-                            </div>
-                            <div class="credential-item">
-                                <i class="fas fa-medal"></i>
-                                <span>Retired Lieutenant Colonel, USAF</span>
-                            </div>
-                        </div>
-                        <p class="leadership-bio">With over two decades of transformative experience, Dr. Uhlig leads our team in providing innovative, evidence-based psychological care. His unique background combines military precision with deep emotional intelligence, ensuring each client receives exceptional, personalized treatment.</p>
-                        <div class="memberships">
-                            <h4>Professional Affiliations</h4>
-                            <div class="membership-list">
-                                <span>American Psychological Association (APA)</span>
-                                <span>National Association of Cognitive Behavioral Therapists</span>
-                                <span>American Society of Clinical Hypnosis</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-showcase">
-                    <div class="team-image">
-                        <img src="team.jpg" alt="Our Expert Team">
-                        <div class="image-overlay"></div>
-                    </div>
-                    <div class="team-content">
-                        <h3>Meet Our Expert Team</h3>
-                        <p>Join forces with our diverse group of skilled therapists, each bringing unique expertise and a shared commitment to your mental well-being.</p>
-                        <div class="team-stats">
-                            <div class="stat">
-                                <span class="number">20+</span>
-                                <span class="label">Years Experience</span>
-                            </div>
-                            <div class="stat">
-                                <span class="number">1000+</span>
-                                <span class="label">Clients Helped</span>
-                            </div>
-                            <div class="stat">
-                                <span class="number">15+</span>
-                                <span class="label">Specialists</span>
-                            </div>
-                        </div>
-                        <a href="#team" class="btn btn-secondary">Meet Our Specialists</a>
-                    </div>
+            <div class="hero-scroll">
+                <div class="scroll-indicator">
+                    <span>Scroll to Explore</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </div>
@@ -190,8 +114,8 @@
     <section id="services" class="services-section">
         <div class="container">
             <div class="section-header">
-                <h2>Comprehensive Mental Health Services</h2>
-                <p>Tailored therapeutic approaches for your unique journey</p>
+                <h2>Our Services</h2>
+                <p>Comprehensive Mental Health Support</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
@@ -201,10 +125,10 @@
                     <h3>Individual Therapy</h3>
                     <p>Personalized support for your mental health journey</p>
                     <ul class="service-features">
-                        <li>Depression & Anxiety Management</li>
-                        <li>Trauma Recovery & PTSD</li>
-                        <li>Personal Growth & Development</li>
-                        <li>Stress & Burnout Management</li>
+                        <li>Depression & Anxiety</li>
+                        <li>Trauma Recovery</li>
+                        <li>Personal Growth</li>
+                        <li>Stress Management</li>
                     </ul>
                     <a href="#book" class="btn btn-outline">Learn More</a>
                 </div>
@@ -215,7 +139,7 @@
                     <h3>Couples Therapy</h3>
                     <p>Strengthen your relationship and deepen connection</p>
                     <ul class="service-features">
-                        <li>Communication Enhancement</li>
+                        <li>Communication</li>
                         <li>Conflict Resolution</li>
                         <li>Trust Building</li>
                         <li>Pre-marital Counseling</li>
@@ -240,41 +164,31 @@
         </div>
     </section>
 
-    <!-- Online Therapy Section -->
-    <section id="online" class="online-section">
+    <!-- Team Section -->
+    <section id="team" class="team-section">
         <div class="container">
-            <div class="online-grid">
-                <div class="online-content">
-                    <h2>Virtual Therapy Sessions</h2>
-                    <p class="subtitle">Professional care from the comfort of your home</p>
-                    <div class="benefits-list">
-                        <div class="benefit-item">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h4>Flexible Scheduling</h4>
-                                <p>Sessions that fit your busy lifestyle</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-lock"></i>
-                            <div>
-                                <h4>Secure Platform</h4>
-                                <p>HIPAA-compliant video sessions</p>
-                            </div>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-home"></i>
-                            <div>
-                                <h4>Comfort & Privacy</h4>
-                                <p>Therapy in your preferred environment</p>
-                            </div>
+            <div class="section-header">
+                <h2>Our Team</h2>
+                <p>Expert Mental Health Professionals</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-lead">
+                    <div class="team-image">
+                        <img src="doug.jpeg" alt="Dr. Douglas Uhlig">
+                    </div>
+                    <div class="team-content">
+                        <h3>Dr. Douglas Uhlig, Ph.D.</h3>
+                        <p class="team-title">Founder & Clinical Director</p>
+                        <p class="team-bio">With over two decades of experience, Dr. Uhlig leads our team with expertise in evidence-based psychological care.</p>
+                        <div class="team-credentials">
+                            <span><i class="fas fa-graduation-cap"></i> Ph.D. Clinical Psychology</span>
+                            <span><i class="fas fa-certificate"></i> Licensed Psychologist</span>
+                            <span><i class="fas fa-award"></i> Board Certified</span>
                         </div>
                     </div>
-                    <a href="#book" class="btn btn-primary">Schedule Online Session</a>
                 </div>
-                <div class="online-image">
-                    <img src="virtual-therapy.jpg" alt="Virtual Therapy Session">
-                    <div class="image-overlay"></div>
+                <div class="team-grid-small">
+                    <!-- Additional team members would go here -->
                 </div>
             </div>
         </div>
@@ -285,13 +199,12 @@
         <div class="container">
             <div class="section-header">
                 <h2>Our Locations</h2>
-                <p>Convenient offices in Brooklyn and Queens</p>
+                <p>Convenient Offices in NYC</p>
             </div>
             <div class="locations-grid">
                 <div class="location-card">
                     <div class="location-image">
                         <img src="brooklyn-office.jpg" alt="Brooklyn Office">
-                        <div class="image-overlay"></div>
                     </div>
                     <div class="location-content">
                         <h3>Brooklyn Office</h3>
@@ -306,7 +219,6 @@
                 <div class="location-card">
                     <div class="location-image">
                         <img src="queens-office.jpg" alt="Queens Office">
-                        <div class="image-overlay"></div>
                     </div>
                     <div class="location-content">
                         <h3>Queens Office</h3>
@@ -322,17 +234,23 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
         <div class="container">
             <div class="section-header">
-                <h2>Get in Touch</h2>
-                <p>Take the first step towards positive change</p>
+                <h2>Client Success Stories</h2>
+                <p>Read what our clients say about their journey with us</p>
             </div>
+            <div class="elfsight-app-345fc429-0347-4493-8043-afbb1cb52b6e" data-elfsight-app-lazy></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
+                    <h2>Get in Touch</h2>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
@@ -358,27 +276,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <h4>Connect With Us</h4>
-                        <div class="social-icons">
-                            <a href="#" target="_blank" rel="noopener">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" target="_blank" rel="noopener">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" target="_blank" rel="noopener">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
                 </div>
-                <div class="contact-form-wrapper">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-header">
-                            <h3>Send Us a Message</h3>
-                            <p>We'll get back to you within 24 hours</p>
-                        </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
                         <div class="form-group">
                             <input type="text" id="name" required>
                             <label for="name">Full Name</label>
@@ -397,60 +298,14 @@
                                 <option value="individual">Individual Therapy</option>
                                 <option value="couples">Couples Therapy</option>
                                 <option value="family">Family Therapy</option>
-                                <option value="online">Online Therapy</option>
                             </select>
-                            <label for="service">Interested Service</label>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" required rows="4"></textarea>
+                            <textarea id="message" required></textarea>
                             <label for="message">Your Message</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Client Success Stories</h2>
-                <p>Read what our clients say about their journey with us</p>
-            </div>
-            <div class="reviews-slider">
-                <div class="reviews-track">
-                    <div class="review-card">
-                        <div class="review-content">
-                            <div class="review-stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="review-text">"The care and professionalism I received here transformed my life. Dr. Uhlig and his team provided the support I needed to overcome my challenges."</p>
-                        </div>
-                        <div class="review-author">
-                            <div class="author-info">
-                                <h4>Sarah M.</h4>
-                                <p>Individual Therapy Client</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- More review cards... -->
-                </div>
-                <div class="reviews-nav">
-                    <button class="review-prev" aria-label="Previous review">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="review-next" aria-label="Next review">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                 </div>
             </div>
         </div>
@@ -458,59 +313,46 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-info">
-                        <img src="logo.png" alt="Doug Uhlig Psychological Services PLLC" class="footer-logo">
-                        <p>Professional psychological services focused on improving mental health and well-being in NYC.</p>
-                        <div class="social-links">
-                            <a href="#" target="_blank" rel="noopener">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" target="_blank" rel="noopener">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" target="_blank" rel="noopener">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="footer-links">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#team">Our Team</a></li>
-                            <li><a href="#locations">Locations</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-locations">
-                        <h4>Our Locations</h4>
-                        <div class="location">
-                            <h5>Brooklyn Office</h5>
-                            <p>1517 Voorhies Ave</p>
-                            <p>Brooklyn, NY 11235</p>
-                            <a href="tel:6464815080">(646) 481-5080</a>
-                        </div>
-                        <div class="location">
-                            <h5>Queens Office</h5>
-                            <p>63-44 Saunders Street, Suite 106</p>
-                            <p>Rego Park, NY 11374</p>
-                            <a href="tel:6464815080">(646) 481-5080</a>
-                        </div>
-                    </div>
-                    <div class="footer-hours">
-                        <h4>Office Hours</h4>
-                        <ul>
-                            <li><span>Monday - Friday:</span> 9:00 AM - 7:00 PM</li>
-                            <li><span>Saturday:</span> By Appointment</li>
-                            <li><span>Sunday:</span> Closed</li>
-                        </ul>
-                    </div>
+        <div class="footer-content container">
+            <div class="footer-info">
+                <img src="logo.png" alt="Doug Uhlig Psychological Services PLLC" class="footer-logo">
+                <p>Professional psychological services focused on improving mental health and well-being in NYC.</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#locations">Locations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-locations">
+                <h4>Our Locations</h4>
+                <div class="location">
+                    <h5>Brooklyn Office</h5>
+                    <p>1517 Voorhies Ave</p>
+                    <p>Brooklyn, NY 11235</p>
+                </div>
+                <div class="location">
+                    <h5>Queens Office</h5>
+                    <p>63-44 Saunders St, Suite 106</p>
+                    <p>Rego Park, NY 11374</p>
+                </div>
+            </div>
+            <div class="footer-hours">
+                <h4>Office Hours</h4>
+                <ul>
+                    <li><span>Monday - Friday:</span> 9:00 AM - 7:00 PM</li>
+                    <li><span>Saturday:</span> By Appointment</li>
+                    <li><span>Sunday:</span> Closed</li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
@@ -528,9 +370,6 @@
     <button id="backToTop" class="back-to-top" aria-label="Back to Top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
-    <!-- Notification Container -->
-    <div class="notification-container"></div>
 
     <!-- Scripts -->
     <script src="./js/script.js"></script>
