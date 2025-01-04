@@ -1,13 +1,10 @@
-// Event Listeners
+// Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
-    initParallax();
-    initCarousel();
+    initHeroSlider();
     initScrollEffects();
     initForms();
     initBackToTop();
-    initReviewsSlider();
-    initAnimations();
     initEmergencyBanner();
 });
 
@@ -20,8 +17,8 @@ function initNavigation() {
 
     // Toggle mobile menu
     navToggle?.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
         document.body.classList.toggle('menu-open');
     });
 
@@ -29,7 +26,7 @@ function initNavigation() {
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.nav-menu') && !e.target.closest('.nav-toggle')) {
             navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
+            navToggle?.classList.remove('active');
             document.body.classList.remove('menu-open');
         }
     });
@@ -53,13 +50,13 @@ function initNavigation() {
 
                 // Close mobile menu after click
                 navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
+                navToggle?.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
         });
     });
 
-    // Navbar scroll effects
+    // Navbar scroll effect
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
@@ -82,126 +79,75 @@ function initNavigation() {
     });
 }
 
-// Parallax Effect
-function initParallax() {
-    const parallaxItems = document.querySelectorAll('.parallax-bg');
-    
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        
-        parallaxItems.forEach(item => {
-            const speed = 0.5;
-            const yPos = -(scrolled * speed);
-            item.style.transform = `translateY(${yPos}px)`;
-        });
-    });
-}
-
-// Hero Carousel
-function initCarousel() {
-    const track = document.querySelector('.carousel-track');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const nextButton = document.querySelector('.carousel-next');
-    const prevButton = document.querySelector('.carousel-prev');
-    const dotsContainer = document.querySelector('.carousel-dots');
-
-    if (!track || !slides.length) return;
-
-    let currentIndex = 0;
+// Hero Slider
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slider .slide');
+    let currentSlide = 0;
     let interval;
 
-    // Create dots
-    slides.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.classList.add('carousel-dot');
-        if (index === 0) dot.classList.add('active');
-        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-    });
-
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-    function updateSlides() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
     }
 
     function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlides();
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
     }
 
     function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlides();
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
     }
 
-    function goToSlide(index) {
-        currentIndex = index;
-        updateSlides();
-        resetInterval();
-    }
-
-    function startInterval() {
+    function startSlider() {
         interval = setInterval(nextSlide, 5000);
     }
 
-    function resetInterval() {
+    function stopSlider() {
         clearInterval(interval);
-        startInterval();
     }
 
-    // Event listeners
-    nextButton?.addEventListener('click', () => {
-        nextSlide();
-        resetInterval();
-    });
+    if (slides.length > 0) {
+        // Initialize slider
+        showSlide(currentSlide);
+        startSlider();
 
-    prevButton?.addEventListener('click', () => {
-        prevSlide();
-        resetInterval();
-    });
+        // Touch events for mobile
+        const heroSection = document.querySelector('.hero');
+        let touchStartX = 0;
+        let touchEndX = 0;
 
-    // Touch events for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
+        heroSection.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            stopSlider();
+        });
 
-    track.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-        clearInterval(interval);
-    });
+        heroSection.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+        });
 
-    track.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        startInterval();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const difference = touchStartX - touchEndX;
-
-        if (Math.abs(difference) > swipeThreshold) {
-            if (difference > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
+        heroSection.addEventListener('touchend', () => {
+            const difference = touchStartX - touchEndX;
+            if (Math.abs(difference) > 50) {
+                if (difference > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
             }
-        }
-    }
+            startSlider();
+        });
 
-    // Start carousel
-    updateSlides();
-    startInterval();
+        // Mouse hover pause
+        heroSection.addEventListener('mouseenter', stopSlider);
+        heroSection.addEventListener('mouseleave', startSlider);
+    }
 }
 
 // Scroll Effects
 function initScrollEffects() {
     const sections = document.querySelectorAll('section');
-    const animatedElements = document.querySelectorAll('.fade-in, .slide-in');
     
     const observerOptions = {
         root: null,
@@ -212,18 +158,25 @@ function initScrollEffects() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                entry.target.classList.add('in-view');
+                if (entry.target.classList.contains('numbers-section')) {
+                    startCounters();
+                }
             }
         });
     }, observerOptions);
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
 
-    animatedElements.forEach(element => {
-        observer.observe(element);
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const speed = 0.5;
+            const yPos = -(scrolled * speed);
+            hero.style.backgroundPosition = `center ${yPos}px`;
+        }
     });
 }
 
@@ -254,7 +207,7 @@ async function handleFormSubmit(e) {
     }
 
     submitBtn.disabled = true;
-    submitBtn.classList.add('loading');
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
     try {
         // Simulate form submission
@@ -270,7 +223,7 @@ async function handleFormSubmit(e) {
         showNotification('Error sending message. Please try again.', 'error');
     } finally {
         submitBtn.disabled = false;
-        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
     }
 }
 
@@ -327,7 +280,7 @@ function showError(parent, message) {
     parent.classList.add('error');
     const error = document.createElement('div');
     error.className = 'error-message';
-    error.textContent = message;
+    error.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
     parent.appendChild(error);
 }
 
@@ -339,60 +292,9 @@ function removeError(parent) {
     }
 }
 
-// Reviews Slider
-function initReviewsSlider() {
-    const track = document.querySelector('.reviews-track');
-    const cards = document.querySelectorAll('.review-card');
-    const prevButton = document.querySelector('.review-prev');
-    const nextButton = document.querySelector('.review-next');
-
-    if (!track || !cards.length) return;
-
-    let currentIndex = 0;
-    const cardWidth = cards[0].offsetWidth + 32; // Include gap
-
-    function updateSlider() {
-        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % (cards.length - 2);
-        updateSlider();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + cards.length - 2) % (cards.length - 2);
-        updateSlider();
-    }
-
-    prevButton?.addEventListener('click', prevSlide);
-    nextButton?.addEventListener('click', nextSlide);
-
-    // Touch events
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    track.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    track.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        const difference = touchStartX - touchEndX;
-
-        if (Math.abs(difference) > 50) {
-            if (difference > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    });
-}
-
 // Back to Top Button
 function initBackToTop() {
-    const backToTopButton = document.querySelector('#backToTop');
+    const backToTopButton = document.querySelector('.back-to-top');
     
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
@@ -407,28 +309,6 @@ function initBackToTop() {
             top: 0,
             behavior: 'smooth'
         });
-    });
-}
-
-// Animations
-function initAnimations() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('[data-animate]').forEach(element => {
-        observer.observe(element);
     });
 }
 
@@ -450,13 +330,35 @@ function showNotification(message, type = 'success') {
         <span>${message}</span>
     `;
 
-    const container = document.querySelector('.notification-container');
+    const container = document.querySelector('.notification-container') || createNotificationContainer();
     container.appendChild(notification);
 
+    // Add show class after a small delay for animation
     setTimeout(() => notification.classList.add('show'), 10);
 
+    // Remove notification after delay
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => notification.remove(), 300);
     }, 3000);
+}
+
+function createNotificationContainer() {
+    const container = document.createElement('div');
+    container.className = 'notification-container';
+    document.body.appendChild(container);
+    return container;
+}
+
+// Helper Functions
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
