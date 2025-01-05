@@ -3,103 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doug Uhlig Psychological Services | Expert Mental Health Care NYC</title>
+    <title>Doug Uhlig Psychology | Modern Mental Healthcare</title>
     
-    <meta name="description" content="Experience transformative mental health care in NYC. Our expert team provides personalized psychological services under the leadership of Dr. Douglas Uhlig.">
-    
-    <!-- Fonts and Icons -->
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Crisis Banner -->
-    <div class="crisis-banner" role="alert">
+    <!-- Floating Navigation -->
+    <nav class="navbar glassmorphism">
         <div class="container">
-            <div class="crisis-content">
-                <i class="fas fa-phone-alt"></i>
-                <p><strong>24/7 Crisis Support:</strong> Call 988 for immediate help</p>
-                <div class="crisis-buttons">
-                    <a href="tel:988" class="btn btn-emergency">Call Now</a>
-                    <button class="btn btn-text" onclick="toggleCrisisInfo()">Learn More</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="logo.png" alt="Doug Uhlig Psychological Services" width="180" height="50">
+            <a href="/" class="nav-logo">
+                <svg class="logo-mark" viewBox="0 0 50 50">
+                    <path class="logo-path" d="M25,2 A23,23 0 0,1 25,48 A23,23 0 0,1 25,2" fill="none" stroke="currentColor"/>
+                    <path class="logo-path" d="M15,25 C15,15 35,15 35,25 C35,35 15,35 15,25" fill="none" stroke="currentColor"/>
+                </svg>
+                <span class="logo-text">Dr. Doug Uhlig</span>
             </a>
-            
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
 
             <div class="nav-menu">
-                <div class="nav-links">
-                    <a href="#services">Services</a>
-                    <a href="#about">About</a>
-                    <a href="#approach">Our Approach</a>
-                    <a href="#locations">Locations</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                
-                <div class="nav-actions">
-                    <a href="tel:6464815080" class="phone-link">
-                        <i class="fas fa-phone"></i>
-                        (646) 481-5080
-                    </a>
-                    <a href="#book" class="btn btn-primary">Book Consultation</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#approach" class="nav-link">Approach</a>
+                <a href="#team" class="nav-link">Team</a>
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle">Resources</button>
+                    <div class="dropdown-menu glassmorphism">
+                        <a href="#blog">Mental Health Blog</a>
+                        <a href="#faqs">FAQs</a>
+                        <a href="#insurance">Insurance</a>
+                    </div>
                 </div>
             </div>
+
+            <div class="nav-actions">
+                <a href="tel:6464815080" class="phone-link">
+                    <i class="fas fa-phone"></i>
+                    <span>(646) 481-5080</span>
+                </a>
+                <a href="#book" class="btn btn-primary">
+                    Book a Session
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <button class="nav-toggle" aria-label="Toggle Menu">
+                <div class="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-slider">
-            <div class="slide active">
-                <img src="images/office-1.jpg" alt="Modern therapy office">
-            </div>
-            <div class="slide">
-                <img src="images/office-2.jpg" alt="Comfortable therapy space">
-            </div>
-            <div class="slide">
-                <img src="images/office-3.jpg" alt="Welcoming waiting area">
+        <div class="hero-bg">
+            <div class="gradient-overlay"></div>
+            <div class="pattern-overlay"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
             </div>
         </div>
-        
-        <div class="hero-content container">
-            <h1>Begin Your Journey to Better Mental Health</h1>
-            <p class="hero-subtitle">Expert psychological care tailored to your unique needs</p>
-            
-            <div class="hero-features">
-                <div class="feature">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Evidence-Based Treatment</span>
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="text-gradient">Transform</span> Your Life
+                    <br>Through Modern Therapy
+                </h1>
+                <p class="hero-subtitle">Experience innovative psychological care that combines evidence-based practices with a compassionate, personalized approach.</p>
+                
+                <div class="hero-features">
+                    <div class="feature-card glassmorphism">
+                        <i class="fas fa-brain feature-icon"></i>
+                        <h3>Evidence-Based</h3>
+                        <p>Proven therapeutic methods</p>
+                    </div>
+                    <div class="feature-card glassmorphism">
+                        <i class="fas fa-heart feature-icon"></i>
+                        <h3>Personalized Care</h3>
+                        <p>Tailored to your needs</p>
+                    </div>
+                    <div class="feature-card glassmorphism">
+                        <i class="fas fa-comments feature-icon"></i>
+                        <h3>Open Dialogue</h3>
+                        <p>Safe, supportive space</p>
+                    </div>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Insurance Accepted</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Flexible Scheduling</span>
+
+                <div class="hero-cta">
+                    <a href="#book" class="btn btn-primary btn-lg">
+                        Start Your Journey
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#learn" class="btn btn-outline btn-lg">
+                        Learn More
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="hero-cta">
-                <a href="#book" class="btn btn-primary btn-lg">Schedule Consultation</a>
-                <a href="#learn" class="btn btn-outline btn-lg">Learn More</a>
+            <div class="hero-image">
+                <img src="images/modern-therapy-office.jpg" alt="Modern therapy space" class="main-image">
+                <div class="floating-card glassmorphism">
+                    <div class="card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4>Trusted Care</h4>
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>4.9/5 from 200+ reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrows">
+                <span class="arrow"></span>
+                <span class="arrow"></span>
+                <span class="arrow"></span>
             </div>
         </div>
     </section>
@@ -108,109 +150,136 @@
     <section id="services" class="services">
         <div class="container">
             <header class="section-header">
-                <span class="overline">Our Services</span>
-                <h2>Comprehensive Mental Health Care</h2>
-                <p>Personalized treatment approaches for your specific needs</p>
+                <span class="section-tag">Our Services</span>
+                <h2>
+                    <span class="text-gradient">Comprehensive</span>
+                    Mental Health Care
+                </h2>
+                <p class="section-description">Discover our range of specialized therapeutic services designed to support your mental health journey.</p>
             </header>
 
             <div class="services-grid">
                 <!-- Individual Therapy -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user"></i>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3>Individual Therapy</h3>
+                            <p>Personalized one-on-one counseling for your unique needs</p>
+                            <div class="hover-hint">
+                                <span>Hover to learn more</span>
+                                <i class="fas fa-sync"></i>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>What to Expect</h3>
+                            <ul class="service-features">
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Personalized treatment plans</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Evidence-based techniques</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Regular progress tracking</span>
+                                </li>
+                            </ul>
+                            <div class="service-specialties">
+                                <span class="specialty">Anxiety</span>
+                                <span class="specialty">Depression</span>
+                                <span class="specialty">Trauma</span>
+                                <span class="specialty">Growth</span>
+                            </div>
+                            <a href="#book" class="btn btn-primary">Schedule Now</a>
+                        </div>
                     </div>
-                    <h3>Individual Therapy</h3>
-                    <p>One-on-one counseling to help you overcome challenges and achieve personal growth.</p>
-                    
-                    <div class="service-tags">
-                        <span>Depression</span>
-                        <span>Anxiety</span>
-                        <span>Trauma</span>
-                        <span>Growth</span>
-                    </div>
-                    
-                    <ul class="service-features">
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Personalized treatment plans
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Evidence-based techniques
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Flexible scheduling
-                        </li>
-                    </ul>
-                    
-                    <a href="#book" class="btn btn-outline">Learn More</a>
                 </div>
 
                 <!-- Couples Therapy -->
                 <div class="service-card featured">
-                    <div class="service-icon">
-                        <i class="fas fa-heart"></i>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Couples Therapy</h3>
+                            <p>Build stronger, healthier relationships together</p>
+                            <div class="hover-hint">
+                                <span>Hover to learn more</span>
+                                <i class="fas fa-sync"></i>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>What to Expect</h3>
+                            <ul class="service-features">
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Gottman Method trained</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Communication tools</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Conflict resolution</span>
+                                </li>
+                            </ul>
+                            <div class="service-specialties">
+                                <span class="specialty">Communication</span>
+                                <span class="specialty">Trust</span>
+                                <span class="specialty">Intimacy</span>
+                                <span class="specialty">Growth</span>
+                            </div>
+                            <a href="#book" class="btn btn-primary">Schedule Now</a>
+                        </div>
                     </div>
-                    <h3>Couples Therapy</h3>
-                    <p>Build stronger relationships through improved communication and understanding.</p>
-                    
-                    <div class="service-tags">
-                        <span>Communication</span>
-                        <span>Conflict</span>
-                        <span>Intimacy</span>
-                        <span>Trust</span>
-                    </div>
-                    
-                    <ul class="service-features">
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Gottman Method trained
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Pre-marital counseling
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Relationship enhancement
-                        </li>
-                    </ul>
-                    
-                    <a href="#book" class="btn btn-primary">Learn More</a>
                 </div>
 
                 <!-- Family Therapy -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="service-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>Family Therapy</h3>
+                            <p>Create harmony and understanding in your family</p>
+                            <div class="hover-hint">
+                                <span>Hover to learn more</span>
+                                <i class="fas fa-sync"></i>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>What to Expect</h3>
+                            <ul class="service-features">
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Systemic approach</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Child-inclusive methods</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check"></i>
+                                    <span>Generational healing</span>
+                                </li>
+                            </ul>
+                            <div class="service-specialties">
+                                <span class="specialty">Parenting</span>
+                                <span class="specialty">Dynamics</span>
+                                <span class="specialty">Communication</span>
+                                <span class="specialty">Healing</span>
+                            </div>
+                            <a href="#book" class="btn btn-primary">Schedule Now</a>
+                        </div>
                     </div>
-                    <h3>Family Therapy</h3>
-                    <p>Create harmony and understanding within your family dynamic.</p>
-                    
-                    <div class="service-tags">
-                        <span>Parenting</span>
-                        <span>Communication</span>
-                        <span>Conflict</span>
-                        <span>Growth</span>
-                    </div>
-                    
-                    <ul class="service-features">
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Systemic approach
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Child-inclusive methods
-                        </li>
-                        <li>
-                            <i class="fas fa-check"></i>
-                            Multi-generational healing
-                        </li>
-                    </ul>
-                    
-                    <a href="#book" class="btn btn-outline">Learn More</a>
                 </div>
             </div>
         </div>
@@ -218,53 +287,73 @@
 
     <!-- Approach Section -->
     <section id="approach" class="approach">
+        <div class="approach-bg">
+            <div class="gradient-sphere"></div>
+            <div class="pattern-grid"></div>
+        </div>
+
         <div class="container">
-            <div class="approach-grid">
-                <div class="approach-content">
-                    <span class="overline">Our Approach</span>
-                    <h2>Evidence-Based Care with a Personal Touch</h2>
-                    
-                    <div class="approach-features">
-                        <div class="approach-feature">
+            <div class="approach-content">
+                <header class="section-header">
+                    <span class="section-tag">Our Approach</span>
+                    <h2>Modern Solutions for
+                        <span class="text-gradient">Modern Challenges</span>
+                    </h2>
+                </header>
+
+                <div class="approach-grid">
+                    <div class="approach-card glassmorphism">
+                        <div class="approach-icon">
                             <i class="fas fa-brain"></i>
-                            <div>
-                                <h3>Cognitive Behavioral Therapy</h3>
-                                <p>Transform negative thought patterns into positive ones</p>
+                        </div>
+                        <h3>Evidence-Based Methods</h3>
+                        <p>Using proven therapeutic techniques backed by research and clinical studies</p>
+                        <ul class="approach-features">
+                            <li>Cognitive Behavioral Therapy</li>
+                            <li>EMDR Therapy</li>
+                            <li>Mindfulness Practices</li>
+                        </ul>
+                    </div>
+
+                    <div class="approach-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Initial Consultation</h4>
+                                <p>Free 15-minute consultation to understand your needs</p>
                             </div>
                         </div>
-                        
-                        <div class="approach-feature">
-                            <i class="fas fa-heart"></i>
-                            <div>
-                                <h3>Compassionate Care</h3>
-                                <p>Create a safe, non-judgmental space for healing</p>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Treatment Planning</h4>
+                                <p>Develop a personalized plan aligned with your goals</p>
                             </div>
                         </div>
-                        
-                        <div class="approach-feature">
-                            <i class="fas fa-chart-line"></i>
-                            <div>
-                                <h3>Measured Progress</h3>
-                                <p>Track your progress with proven assessment tools</p>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Regular Sessions</h4>
+                                <p>Ongoing support and progress tracking</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="approach-image">
-                    <img src="images/therapy-session.jpg" alt="Therapy session in progress">
-                    <div class="approach-stats">
-                        <div class="stat">
-                            <span class="stat-number">92%</span>
-                            <span class="stat-label">Client Satisfaction</span>
+
+                    <div class="approach-stats glassmorphism">
+                        <div class="stat-item">
+                            <div class="stat-number" data-value="92">0</div>
+                            <div class="stat-label">Client Satisfaction</div>
                         </div>
-                        <div class="stat">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-label">Years Experience</span>
+                        <div class="stat-item">
+                            <div class="stat-number" data-value="20">0</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-value="5000">0</div>
+                            <div class="stat-label">Sessions Completed</div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    </div>
         </div>
     </section>
 
@@ -272,56 +361,110 @@
     <section id="team" class="team">
         <div class="container">
             <header class="section-header">
-                <span class="overline">Our Team</span>
-                <h2>Expert Mental Health Professionals</h2>
-                <p>Dedicated to providing compassionate, evidence-based care</p>
+                <span class="section-tag">Our Team</span>
+                <h2>Meet Your <span class="text-gradient">Mental Health</span> Partners</h2>
+                <p class="section-description">Expert professionals dedicated to your well-being and growth</p>
             </header>
 
-            <div class="team-grid">
-                <div class="team-card main">
-                    <div class="team-image">
-                        <img src="images/dr-uhlig.jpg" alt="Dr. Douglas Uhlig">
-                        <div class="team-social">
-                            <a href="#" aria-label="LinkedIn Profile">
+            <div class="team-showcase">
+                <div class="team-card main glassmorphism">
+                    <div class="team-image-wrapper">
+                        <img src="images/dr-uhlig.jpg" alt="Dr. Douglas Uhlig" class="team-image">
+                        <div class="image-overlay"></div>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="LinkedIn">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="#" aria-label="Send Email">
-                                <i class="fas fa-envelope"></i>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
                             </a>
                         </div>
                     </div>
-                    
                     <div class="team-content">
-                        <h3>Dr. Douglas Uhlig, Ph.D.</h3>
-                        <p class="team-title">Founder & Clinical Director</p>
-                        <p class="team-bio">With over two decades of experience, Dr. Uhlig specializes in cognitive behavioral therapy and relationship counseling.</p>
-                        
-                        <div class="team-credentials">
-                            <div class="credential">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span>Ph.D. Clinical Psychology</span>
-                            </div>
-                            <div class="credential">
-                                <i class="fas fa-certificate"></i>
-                                <span>Licensed Psychologist</span>
-                            </div>
-                            <div class="credential">
-                                <i class="fas fa-award"></i>
-                                <span>Board Certified</span>
-                            </div>
+                        <div class="name-title">
+                            <h3>Dr. Douglas Uhlig</h3>
+                            <span class="title">Founder & Clinical Director</span>
                         </div>
-
-                        <div class="team-specialties">
+                        <div class="credentials">
+                            <span class="credential">
+                                <i class="fas fa-graduation-cap"></i>
+                                Ph.D. Clinical Psychology
+                            </span>
+                            <span class="credential">
+                                <i class="fas fa-certificate"></i>
+                                Licensed Psychologist
+                            </span>
+                            <span class="credential">
+                                <i class="fas fa-award"></i>
+                                Board Certified
+                            </span>
+                        </div>
+                        <p class="bio">With over two decades of experience, Dr. Uhlig combines evidence-based practices with a compassionate approach to help clients achieve lasting positive change.</p>
+                        <div class="specialties">
                             <h4>Specializations</h4>
                             <div class="specialty-tags">
-                                <span>Anxiety & Depression</span>
-                                <span>Relationship Counseling</span>
-                                <span>Trauma Recovery</span>
-                                <span>Personal Growth</span>
+                                <span class="specialty">Anxiety & Depression</span>
+                                <span class="specialty">Trauma Recovery</span>
+                                <span class="specialty">Relationship Counseling</span>
+                                <span class="specialty">Personal Growth</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-bg">
+            <div class="gradient-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+        </div>
+        <div class="container">
+            <header class="section-header">
+                <span class="section-tag">Testimonials</span>
+                <h2>Client <span class="text-gradient">Success</span> Stories</h2>
+                <p class="section-description">Read what our clients say about their transformation journey</p>
+            </header>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card glassmorphism">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">Dr. Uhlig's approach completely transformed my perspective on therapy. The combination of traditional methods with modern techniques helped me overcome challenges I've struggled with for years.</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="images/testimonial-1.jpg" alt="Sarah M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <span>Individual Therapy Client</span>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- More testimonial cards would be dynamically loaded -->
+            </div>
+
+            <div class="testimonial-controls">
+                <button class="control-btn prev">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="testimonial-dots"></div>
+                <button class="control-btn next">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -331,89 +474,95 @@
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <span class="overline">Get in Touch</span>
-                    <h2>Start Your Journey Today</h2>
-                    <p>Take the first step towards positive change. We're here to help you begin your journey to better mental health.</p>
+                    <header class="section-header">
+                        <span class="section-tag">Get Started</span>
+                        <h2>Begin Your <span class="text-gradient">Journey</span> Today</h2>
+                        <p class="section-description">Take the first step towards positive change with a free consultation</p>
+                    </header>
 
                     <div class="contact-cards">
-                        <div class="contact-card">
-                            <i class="fas fa-phone"></i>
-                            <div>
+                        <div class="contact-card glassmorphism">
+                            <div class="card-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="card-content">
                                 <h3>Call Us</h3>
                                 <p>Speak with our intake coordinator</p>
-                                <a href="tel:6464815080">(646) 481-5080</a>
+                                <a href="tel:6464815080" class="contact-link">(646) 481-5080</a>
                             </div>
+                            <div class="hover-effect"></div>
                         </div>
 
-                        <div class="contact-card">
-                            <i class="fas fa-envelope"></i>
-                            <div>
+                        <div class="contact-card glassmorphism">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="card-content">
                                 <h3>Email Us</h3>
-                                <p>We'll respond within 24 hours</p>
-                                <a href="mailto:contact@douglasuhlig.com">contact@douglasuhlig.com</a>
+                                <p>Get a response within 24 hours</p>
+                                <a href="mailto:contact@douglasuhlig.com" class="contact-link">contact@douglasuhlig.com</a>
                             </div>
+                            <div class="hover-effect"></div>
                         </div>
 
-                        <div class="contact-card">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h3>Visit Us</h3>
-                                <p>Brooklyn & Queens Locations</p>
-                                <a href="#locations">View Our Offices</a>
+                        <div class="contact-card glassmorphism">
+                            <div class="card-icon">
+                                <i class="fas fa-video"></i>
                             </div>
+                            <div class="card-content">
+                                <h3>Virtual Sessions</h3>
+                                <p>Convenient online therapy</p>
+                                <a href="#telehealth" class="contact-link">Learn More</a>
+                            </div>
+                            <div class="hover-effect"></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="contact-form">
-                    <div class="form-card">
-                        <h3>Schedule a Consultation</h3>
-                        <form id="consultationForm">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="tel" id="phone" name="phone" required>
-                                </div>
-                            </div>
+                <div class="contact-form glassmorphism">
+                    <h3>Schedule a Consultation</h3>
+                    <form id="consultationForm" class="modern-form">
+                        <div class="form-floating">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Your Name</label>
+                            <div class="focus-border"></div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="service">Service Interested In</label>
-                                <select id="service" name="service" required>
-                                    <option value="">Select a Service</option>
-                                    <option value="individual">Individual Therapy</option>
-                                    <option value="couples">Couples Therapy</option>
-                                    <option value="family">Family Therapy</option>
-                                    <option value="other">Other Services</option>
-                                </select>
+                        <div class="form-row">
+                            <div class="form-floating">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Email Address</label>
+                                <div class="focus-border"></div>
                             </div>
-
-                            <div class="form-group">
-                                <label for="message">Brief Message</label>
-                                <textarea id="message" name="message" rows="4"></textarea>
+                            <div class="form-floating">
+                                <input type="tel" id="phone" name="phone" required>
+                                <label for="phone">Phone Number</label>
+                                <div class="focus-border"></div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" required>
-                                    <span>I agree to the privacy policy and terms of service</span>
-                                </label>
-                            </div>
+                        <div class="form-floating">
+                            <select id="service" name="service" required>
+                                <option value="">Select a Service</option>
+                                <option value="individual">Individual Therapy</option>
+                                <option value="couples">Couples Therapy</option>
+                                <option value="family">Family Therapy</option>
+                            </select>
+                            <label for="service">Service Interested In</label>
+                            <div class="focus-border"></div>
+                        </div>
 
-                            <button type="submit" class="btn btn-primary btn-block">
-                                Schedule Consultation
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </form>
-                    </div>
+                        <div class="form-floating">
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <label for="message">Tell us briefly about what brings you here</label>
+                            <div class="focus-border"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Schedule Consultation
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -421,69 +570,65 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-main">
+        <div class="footer-top">
             <div class="container">
                 <div class="footer-grid">
-                    <!-- Company Info -->
                     <div class="footer-info">
-                        <img src="images/logo-white.png" alt="Doug Uhlig Psychological Services" class="footer-logo">
-                        <p>Professional psychological services focused on improving mental health and well-being in NYC.</p>
+                        <a href="/" class="footer-logo">
+                            <svg class="logo-mark" viewBox="0 0 50 50">
+                                <path class="logo-path" d="M25,2 A23,23 0 0,1 25,48 A23,23 0 0,1 25,2" fill="none" stroke="currentColor"/>
+                                <path class="logo-path" d="M15,25 C15,15 35,15 35,25 C35,35 15,35 15,25" fill="none" stroke="currentColor"/>
+                            </svg>
+                            <span class="logo-text">Dr. Doug Uhlig</span>
+                        </a>
+                        <p>Modern psychological services focused on providing evidence-based care in a compassionate environment.</p>
                         <div class="social-links">
-                            <a href="#" aria-label="LinkedIn">
+                            <a href="#" class="social-link" aria-label="LinkedIn">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="#" aria-label="Facebook">
+                            <a href="#" class="social-link" aria-label="Facebook">
                                 <i class="fab fa-facebook"></i>
                             </a>
-                            <a href="#" aria-label="Instagram">
+                            <a href="#" class="social-link" aria-label="Instagram">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Quick Links -->
                     <div class="footer-links">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#services">Our Services</a></li>
+                            <li><a href="#services">Services</a></li>
                             <li><a href="#about">About Us</a></li>
-                            <li><a href="#insurance">Insurance</a></li>
-                            <li><a href="#faq">FAQs</a></li>
+                            <li><a href="#approach">Our Approach</a></li>
                             <li><a href="#blog">Mental Health Blog</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
 
-                    <!-- Services -->
                     <div class="footer-services">
-                        <h4>Services</h4>
+                        <h4>Our Services</h4>
                         <ul>
                             <li><a href="#individual">Individual Therapy</a></li>
                             <li><a href="#couples">Couples Therapy</a></li>
                             <li><a href="#family">Family Therapy</a></li>
                             <li><a href="#group">Group Sessions</a></li>
-                            <li><a href="#teletherapy">Online Therapy</a></li>
+                            <li><a href="#online">Online Therapy</a></li>
                         </ul>
                     </div>
 
-                    <!-- Contact Info -->
                     <div class="footer-contact">
                         <h4>Contact Us</h4>
-                        <div class="contact-info">
-                            <p>
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:6464815080">(646) 481-5080</a>
-                            </p>
-                            <p>
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:contact@douglasuhlig.com">contact@douglasuhlig.com</a>
-                            </p>
-                            <div class="office-info">
+                        <div class="office-info">
+                            <div class="office">
                                 <h5>Brooklyn Office</h5>
-                                <p>1517 Voorhies Ave, Brooklyn, NY 11235</p>
+                                <p>1517 Voorhies Ave</p>
+                                <p>Brooklyn, NY 11235</p>
                             </div>
-                            <div class="office-info">
+                            <div class="office">
                                 <h5>Queens Office</h5>
-                                <p>63-44 Saunders St, Suite 106, Rego Park, NY 11374</p>
+                                <p>63-44 Saunders St, Suite 106</p>
+                                <p>Rego Park, NY 11374</p>
                             </div>
                         </div>
                     </div>
@@ -503,12 +648,32 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
+    <!-- Floating Elements -->
+    <div class="floating-cta">
+        <button class="cta-toggle">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="cta-menu glassmorphism">
+            <a href="tel:6464815080" class="cta-option">
+                <i class="fas fa-phone"></i>
+                <span>Call Now</span>
+            </a>
+            <a href="#book" class="cta-option">
+                <i class="fas fa-calendar"></i>
+                <span>Book Online</span>
+            </a>
+            <a href="#chat" class="cta-option">
+                <i class="fas fa-comment"></i>
+                <span>Live Chat</span>
+            </a>
+        </div>
+    </div>
+
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Scripts -->
-    <script src="./js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
