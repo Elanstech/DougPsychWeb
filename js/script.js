@@ -1,25 +1,23 @@
 // Main Application Class
 class PsychologyWebsite {
     constructor() {
-        // Initialize components
-        this.navigation = new Navigation();
-        this.heroSlider = new HeroSlider();
-        this.forms = new FormHandler();
-        this.scrollEffects = new ScrollEffects();
-        this.backToTop = new BackToTop();
-        
-        // Initialize the application
-        this.init();
+        this.initializeModules();
+        this.initializeEventListeners();
     }
 
-    init() {
-        // Wait for DOM to be fully loaded
+    initializeModules() {
+        this.navigation = new Navigation();
+        this.parallax = new ParallaxEffect();
+        this.forms = new FormHandler();
+        this.animations = new ScrollAnimations();
+    }
+
+    initializeEventListeners() {
         document.addEventListener('DOMContentLoaded', () => {
             this.navigation.init();
-            this.heroSlider.init();
+            this.parallax.init();
             this.forms.init();
-            this.scrollEffects.init();
-            this.backToTop.init();
+            this.animations.init();
         });
     }
 }
@@ -31,18 +29,23 @@ class Navigation {
         this.navToggle = document.querySelector('.nav-toggle');
         this.navMenu = document.querySelector('.nav-menu');
         this.navLinks = document.querySelectorAll('.nav-link');
-        this.isMenuOpen = false;
         this.lastScroll = 0;
+        this.isMenuOpen = false;
     }
 
     init() {
-        this.setupEventListeners();
-        this.setupScrollEffects();
+        this.handleMobileMenu();
+        this.handleNavScroll();
+        this.handleSmoothScroll();
     }
 
-    setupEventListeners() {
-        // Mobile menu toggle
-        this.navToggle?.addEventListener('click', () => this.toggleMenu());
+    handleMobileMenu() {
+        this.navToggle?.addEventListener('click', () => {
+            this.isMenuOpen = !this.isMenuOpen;
+            this.navToggle.classList.toggle('active');
+            this.navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
@@ -50,14 +53,16 @@ class Navigation {
                 this.closeMenu();
             }
         });
-
-        // Smooth scroll for navigation links
-        this.navLinks.forEach(link => {
-            link.addEventListener('click', (e) => this.handleNavLinkClick(e));
-        });
     }
 
-    setupScrollEffects() {
+    closeMenu() {
+        this.isMenuOpen = false;
+        this.navToggle?.classList.remove('active');
+        this.navMenu?.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+
+    handleNavScroll() {
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
 
@@ -69,7 +74,7 @@ class Navigation {
             }
 
             // Auto-hide navbar on scroll down
-            if (currentScroll > this.lastScroll && currentScroll > 500) {
+            if (currentScroll > this.lastScroll && currentScroll > 500 && !this.isMenuOpen) {
                 this.navbar.style.transform = 'translateY(-100%)';
             } else {
                 this.navbar.style.transform = 'translateY(0)';
@@ -79,114 +84,52 @@ class Navigation {
         });
     }
 
-    toggleMenu() {
-        this.isMenuOpen = !this.isMenuOpen;
-        this.navToggle.classList.toggle('active');
-        this.navMenu.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    }
+    handleSmoothScroll() {
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const headerOffset = 80;
+                    const elementPosition = targetSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-    closeMenu() {
-        this.isMenuOpen = false;
-        this.navToggle?.classList.remove('active');
-        this.navMenu.classList.remove('active');
-        document.body.classList.remove('menu-open');
-    }
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
 
-    handleNavLinkClick(e) {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const headerOffset = 80;
-            const elementPosition = targetSection.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
+                    this.closeMenu();
+                }
             });
-
-            this.closeMenu();
-        }
+        });
     }
 }
 
-// Hero Slider
-class HeroSlider {
+// Parallax Effect Handler
+class ParallaxEffect {
     constructor() {
-        this.slides = document.querySelectorAll('.hero-slider .slide');
-        this.currentSlide = 0;
-        this.slideInterval = null;
-        this.intervalDuration = 5000;
+        this.parallaxElements = document.querySelectorAll('.parallax-bg');
     }
 
     init() {
-        if (this.slides.length > 0) {
-            this.setupSlider();
-            this.setupTouchEvents();
+        if (this.parallaxElements.length > 0) {
+            this.handleParallax();
         }
     }
 
-    setupSlider() {
-        this.showSlide(this.currentSlide);
-        this.startSlideshow();
-
-        // Pause on hover
-        const heroSection = document.querySelector('.hero');
-        heroSection.addEventListener('mouseenter', () => this.pauseSlideshow());
-        heroSection.addEventListener('mouseleave', () => this.startSlideshow());
-    }
-
-    setupTouchEvents() {
-        const heroSection = document.querySelector('.hero');
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        heroSection.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            this.pauseSlideshow();
+    handleParallax() {
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => {
+                this.parallaxElements.forEach(element => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * 0.5;
+                    element.style.transform = `translateY(${rate}px)`;
+                });
+            });
         });
-
-        heroSection.addEventListener('touchmove', (e) => {
-            touchEndX = e.touches[0].clientX;
-        });
-
-        heroSection.addEventListener('touchend', () => {
-            const difference = touchStartX - touchEndX;
-            if (Math.abs(difference) > 50) {
-                if (difference > 0) {
-                    this.nextSlide();
-                } else {
-                    this.previousSlide();
-                }
-            }
-            this.startSlideshow();
-        });
-    }
-
-    showSlide(index) {
-        this.slides.forEach(slide => slide.classList.remove('active'));
-        this.slides[index].classList.add('active');
-    }
-
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-        this.showSlide(this.currentSlide);
-    }
-
-    previousSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-        this.showSlide(this.currentSlide);
-    }
-
-    startSlideshow() {
-        this.slideInterval = setInterval(() => this.nextSlide(), this.intervalDuration);
-    }
-
-    pauseSlideshow() {
-        clearInterval(this.slideInterval);
     }
 }
 
@@ -194,65 +137,62 @@ class HeroSlider {
 class FormHandler {
     constructor() {
         this.forms = document.querySelectorAll('form');
+        this.inputs = document.querySelectorAll('.modern-form input, .modern-form textarea, .modern-form select');
     }
 
     init() {
+        this.setupFormValidation();
+        this.handleInputEffects();
+    }
+
+    setupFormValidation() {
         this.forms.forEach(form => {
-            form.addEventListener('submit', (e) => this.handleSubmit(e));
-            
-            // Real-time validation
-            const inputs = form.querySelectorAll('input, textarea, select');
-            inputs.forEach(input => {
-                input.addEventListener('blur', () => this.validateField(input));
-                input.addEventListener('input', () => this.validateField(input));
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (this.validateForm(form)) {
+                    const submitBtn = form.querySelector('[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    try {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                        
+                        // Simulate form submission (replace with actual API call)
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        
+                        this.showNotification('Message sent successfully!', 'success');
+                        form.reset();
+                    } catch (error) {
+                        this.showNotification('Error sending message. Please try again.', 'error');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    }
+                }
             });
         });
     }
 
-    async handleSubmit(e) {
-        e.preventDefault();
-        const form = e.target;
-        const submitBtn = form.querySelector('button[type="submit"]');
+    validateForm(form) {
+        let isValid = true;
+        const inputs = form.querySelectorAll('[required]');
         
-        if (!this.validateForm(form)) {
-            this.showNotification('Please check your inputs and try again.', 'error');
-            return;
-        }
-
-        submitBtn.disabled = true;
-        const originalBtnText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-        try {
-            // Simulate form submission (replace with actual API call)
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            this.showNotification('Message sent successfully!', 'success');
-            form.reset();
-            
-            // Reset success states
-            form.querySelectorAll('.form-group').forEach(group => {
-                group.classList.remove('success');
-            });
-        } catch (error) {
-            this.showNotification('Error sending message. Please try again.', 'error');
-            console.error('Form submission error:', error);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-        }
+        inputs.forEach(input => {
+            if (!this.validateField(input)) {
+                isValid = false;
+            }
+        });
+        
+        return isValid;
     }
 
     validateField(field) {
         const parent = field.closest('.form-group');
         this.removeError(parent);
 
-        if (!field.required && field.value === '') {
-            return true;
-        }
-
         // Required field validation
-        if (field.required && field.value.trim() === '') {
+        if (!field.value.trim()) {
             this.showError(parent, 'This field is required');
             return false;
         }
@@ -275,21 +215,7 @@ class FormHandler {
             }
         }
 
-        parent.classList.add('success');
         return true;
-    }
-
-    validateForm(form) {
-        let isValid = true;
-        const inputs = form.querySelectorAll('input, textarea, select');
-        
-        inputs.forEach(input => {
-            if (!this.validateField(input)) {
-                isValid = false;
-            }
-        });
-        
-        return isValid;
     }
 
     showError(parent, message) {
@@ -301,14 +227,31 @@ class FormHandler {
     }
 
     removeError(parent) {
-        parent.classList.remove('error', 'success');
+        parent.classList.remove('error');
         const error = parent.querySelector('.error-message');
         if (error) {
             error.remove();
         }
     }
 
-    showNotification(message, type = 'success') {
+    handleInputEffects() {
+        this.inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.closest('.form-group').classList.add('focused');
+            });
+
+            input.addEventListener('blur', () => {
+                input.closest('.form-group').classList.remove('focused');
+                if (input.value) {
+                    input.closest('.form-group').classList.add('filled');
+                } else {
+                    input.closest('.form-group').classList.remove('filled');
+                }
+            });
+        });
+    }
+
+    showNotification(message, type) {
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
         notification.innerHTML = `
@@ -316,38 +259,32 @@ class FormHandler {
             <span>${message}</span>
         `;
 
-        const container = document.querySelector('.notification-container') 
-            || this.createNotificationContainer();
+        document.body.appendChild(notification);
         
-        container.appendChild(notification);
+        // Trigger animation
+        requestAnimationFrame(() => {
+            notification.classList.add('show');
+        });
 
-        // Animate in
-        setTimeout(() => notification.classList.add('show'), 10);
-
-        // Animate out and remove
+        // Remove notification
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
-
-    createNotificationContainer() {
-        const container = document.createElement('div');
-        container.className = 'notification-container';
-        document.body.appendChild(container);
-        return container;
-    }
 }
 
-// Scroll Effects
-class ScrollEffects {
+// Scroll Animations
+class ScrollAnimations {
     constructor() {
-        this.elements = document.querySelectorAll('.fade-in, .fade-up, .fade-left, .fade-right');
-        this.sections = document.querySelectorAll('section');
+        this.elements = document.querySelectorAll('.fade-up, .service-card, .approach-card');
+        this.initialized = false;
     }
 
     init() {
-        this.setupObserver();
+        if ('IntersectionObserver' in window && this.elements.length > 0) {
+            this.setupObserver();
+        }
     }
 
     setupObserver() {
@@ -360,47 +297,14 @@ class ScrollEffects {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
+                    entry.target.classList.add('animated');
                     observer.unobserve(entry.target);
                 }
             });
         }, options);
 
-        this.elements.forEach(element => observer.observe(element));
-        this.sections.forEach(section => observer.observe(section));
-    }
-}
-
-// Back to Top Button
-class BackToTop {
-    constructor() {
-        this.button = document.querySelector('.back-to-top');
-        this.scrollThreshold = 300;
-    }
-
-    init() {
-        if (this.button) {
-            this.setupEventListeners();
-        }
-    }
-
-    setupEventListeners() {
-        window.addEventListener('scroll', () => this.toggleButtonVisibility());
-        this.button.addEventListener('click', () => this.scrollToTop());
-    }
-
-    toggleButtonVisibility() {
-        if (window.pageYOffset > this.scrollThreshold) {
-            this.button.classList.add('visible');
-        } else {
-            this.button.classList.remove('visible');
-        }
-    }
-
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        this.elements.forEach(element => {
+            observer.observe(element);
         });
     }
 }
