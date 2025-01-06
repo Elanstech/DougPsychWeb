@@ -79,7 +79,7 @@ body {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
-    height: 65px;
+    height: 75px;
 }
 
 .navbar .container {
