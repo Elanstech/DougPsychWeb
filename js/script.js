@@ -7,17 +7,26 @@ class PsychologyWebsite {
 
     initializeModules() {
         this.navigation = new Navigation();
-        this.parallax = new ParallaxEffect();
+        this.heroSlider = new HeroSlider();
         this.forms = new FormHandler();
-        this.animations = new ScrollAnimations();
+        this.animations = new AnimationHandler();
+        this.scrollEffects = new ScrollEffects();
     }
 
     initializeEventListeners() {
         document.addEventListener('DOMContentLoaded', () => {
             this.navigation.init();
-            this.parallax.init();
+            this.heroSlider.init();
             this.forms.init();
             this.animations.init();
+            this.scrollEffects.init();
+            
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
         });
     }
 }
@@ -40,12 +49,14 @@ class Navigation {
     }
 
     handleMobileMenu() {
-        this.navToggle?.addEventListener('click', () => {
-            this.isMenuOpen = !this.isMenuOpen;
-            this.navToggle.classList.toggle('active');
-            this.navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
+        if (this.navToggle) {
+            this.navToggle.addEventListener('click', () => {
+                this.isMenuOpen = !this.isMenuOpen;
+                this.navToggle.classList.toggle('active');
+                this.navMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+        }
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
@@ -108,28 +119,71 @@ class Navigation {
     }
 }
 
-// Parallax Effect Handler
-class ParallaxEffect {
+// Hero Slider
+class HeroSlider {
     constructor() {
-        this.parallaxElements = document.querySelectorAll('.parallax-bg');
+        this.slides = document.querySelectorAll('.slide');
+        this.currentSlide = 0;
+        this.slideInterval = 5000; // 5 seconds
+        this.autoPlayTimer = null;
     }
 
     init() {
-        if (this.parallaxElements.length > 0) {
-            this.handleParallax();
+        if (this.slides.length > 0) {
+            this.startAutoPlay();
+            this.addEventListeners();
         }
     }
 
-    handleParallax() {
-        window.addEventListener('scroll', () => {
-            requestAnimationFrame(() => {
-                this.parallaxElements.forEach(element => {
-                    const scrolled = window.pageYOffset;
-                    const rate = scrolled * 0.5;
-                    element.style.transform = `translateY(${rate}px)`;
-                });
-            });
-        });
+    startAutoPlay() {
+        this.autoPlayTimer = setInterval(() => {
+            this.nextSlide();
+        }, this.slideInterval);
+    }
+
+    stopAutoPlay() {
+        clearInterval(this.autoPlayTimer);
+    }
+
+    nextSlide() {
+        this.slides[this.currentSlide].classList.remove('active');
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.slides[this.currentSlide].classList.add('active');
+    }
+
+    prevSlide() {
+        this.slides[this.currentSlide].classList.remove('active');
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.slides[this.currentSlide].classList.add('active');
+    }
+
+    addEventListeners() {
+        // Add touch support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.hero').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.querySelector('.hero').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            this.handleSwipe();
+        }, false);
+
+        // Handle swipe
+        this.handleSwipe = () => {
+            const swipeThreshold = 50;
+            const swipeLength = touchEndX - touchStartX;
+
+            if (Math.abs(swipeLength) > swipeThreshold) {
+                if (swipeLength > 0) {
+                    this.prevSlide();
+                } else {
+                    this.nextSlide();
+                }
+            }
+        };
     }
 }
 
@@ -137,7 +191,6 @@ class ParallaxEffect {
 class FormHandler {
     constructor() {
         this.forms = document.querySelectorAll('form');
-        this.inputs = document.querySelectorAll('.modern-form input, .modern-form textarea, .modern-form select');
     }
 
     init() {
@@ -235,7 +288,9 @@ class FormHandler {
     }
 
     handleInputEffects() {
-        this.inputs.forEach(input => {
+        const inputs = document.querySelectorAll('.modern-form input, .modern-form textarea, .modern-form select');
+        
+        inputs.forEach(input => {
             input.addEventListener('focus', () => {
                 input.closest('.form-group').classList.add('focused');
             });
@@ -274,17 +329,14 @@ class FormHandler {
     }
 }
 
-// Scroll Animations
-class ScrollAnimations {
+// Animation Handler
+class AnimationHandler {
     constructor() {
-        this.elements = document.querySelectorAll('.fade-up, .service-card, .approach-card');
-        this.initialized = false;
+        this.elements = document.querySelectorAll('.fade-up, .service-card, .modality-card');
     }
 
     init() {
-        if ('IntersectionObserver' in window && this.elements.length > 0) {
-            this.setupObserver();
-        }
+        this.setupObserver();
     }
 
     setupObserver() {
@@ -306,6 +358,48 @@ class ScrollAnimations {
         this.elements.forEach(element => {
             observer.observe(element);
         });
+    }
+}
+
+// Scroll Effects
+class ScrollEffects {
+    constructor() {
+        this.parallaxElements = document.querySelectorAll('[data-parallax]');
+        this.scrollIndicator = document.querySelector('.scroll-indicator');
+    }
+
+    init() {
+        this.handleParallax();
+        this.handleScrollIndicator();
+    }
+
+    handleParallax() {
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => {
+                this.parallaxElements.forEach(element => {
+                    const speed = element.dataset.parallax || 0.5;
+                    const rect = element.getBoundingClientRect();
+                    const scrolled = window.pageYOffset;
+                    
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const translateY = scrolled * speed;
+                        element.style.transform = `translateY(${translateY}px)`;
+                    }
+                });
+            });
+        });
+    }
+
+    handleScrollIndicator() {
+        if (this.scrollIndicator) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    this.scrollIndicator.classList.add('hidden');
+                } else {
+                    this.scrollIndicator.classList.remove('hidden');
+                }
+            });
+        }
     }
 }
 
