@@ -278,7 +278,7 @@ img {
 }
 
 .logo-container img {
-    height: 45px;
+    height: 100px;
     width: auto;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
