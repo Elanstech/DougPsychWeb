@@ -68,7 +68,6 @@ body {
     background: var(--background);
     overflow-x: hidden;
 }
-
 /* Header Styling */
 .header {
     position: fixed;
@@ -80,6 +79,11 @@ body {
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
     height: 75px;
+    transition: background var(--transition-fast);
+}
+
+.header.scrolled {
+    background: var(--royal-blue);
 }
 
 .navbar .container {
@@ -161,6 +165,109 @@ body {
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+.btn-primary {
+    background: var(--gradient-gold);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform var(--transition-fast);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+/* Mobile Menu */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1010;
+}
+
+.nav-toggle span {
+    width: 100%;
+    height: 2px;
+    background: var(--text-dark);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+}
+
+.nav-toggle span:nth-child(1) {
+    transform-origin: 1px;
+}
+
+.nav-toggle span:nth-child(3) {
+    transform-origin: 1px;
+}
+
+.nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-menu-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--background);
+    justify-content: center;
+    gap: var(--space-md);
+    z-index: 1000;
+    transition: transform var(--transition-fast);
+    transform: translateY(-100%);
+}
+
+.nav-menu-mobile.open {
+    display: flex;
+    transform: translateY(0);
+}
+
+.nav-menu-mobile .nav-link {
+    font-size: 1.5rem;
+    padding: var(--space-md) 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar .container {
+        padding: 0 var(--space-sm);
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-menu-mobile {
+        display: flex;
+    }
 }
 
 .btn-primary {
