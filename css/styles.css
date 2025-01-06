@@ -614,7 +614,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
 /* Book Section */
 .book-feature {
     padding: var(--space-xl) 0;
@@ -724,8 +723,7 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
-    .book-grid,
-    .team-carousel {
+    .book-grid {
         grid-template-columns: 1fr;
     }
 
@@ -735,8 +733,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .book-feature,
-    .team {
+    .book-feature {
         padding: var(--space-lg) 0;
     }
 
