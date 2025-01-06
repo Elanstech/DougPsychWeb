@@ -614,13 +614,13 @@ body {
         grid-template-columns: 1fr;
     }
 }
-/* Book Section */
-.book-feature {
+/* Dr. Uhlig's Latest Book Section */
+.book-section {
     padding: var(--space-xl) 0;
-    background: white;
+    background: var(--background);
 }
 
-.book-grid {
+.book-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-lg);
@@ -630,30 +630,25 @@ body {
     padding: 0 var(--space-md);
 }
 
-.book-preview {
-    display: flex;
-    justify-content: center;
-    perspective: 1000px;
-}
-
 .book-cover {
     position: relative;
-    width: 80%;
-    max-width: 400px;
-    transition: transform 0.4s ease;
+    perspective: 1000px;
 }
 
 .book-cover img {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     transition: transform 0.4s ease;
+    width: 80%;
+    max-width: 400px;
 }
 
 .book-cover:hover img {
     transform: scale(1.05) rotateY(-5deg);
 }
 
-.book-cover-reflection {
+.book-cover::after {
+    content: '';
     position: absolute;
     bottom: -10%;
     left: 0;
@@ -665,16 +660,16 @@ body {
     opacity: 0.5;
 }
 
-.book-content {
+.book-details {
     background: var(--background-light);
     padding: var(--space-lg);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     position: relative;
     overflow: hidden;
 }
 
-.book-content::before {
+.book-details::before {
     content: '';
     position: absolute;
     top: 0;
@@ -684,18 +679,26 @@ body {
     background: var(--gradient-gold);
 }
 
-.book-content h3 {
+.book-details h3 {
+    font-family: var(--font-heading);
     color: var(--royal-blue);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
 }
 
-.book-subtitle {
+.book-details .book-subtitle {
+    font-family: var(--font-body);
     color: var(--text-medium);
     font-style: italic;
     margin-bottom: var(--space-md);
 }
 
-.book-features {
+.book-details .book-description {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    margin-bottom: var(--space-lg);
+}
+
+.book-details .book-features {
     list-style: none;
     display: grid;
     gap: var(--space-sm);
@@ -704,36 +707,36 @@ body {
     padding-top: var(--space-md);
 }
 
-.book-features li {
+.book-details .book-features li {
     display: flex;
     align-items: center;
-    gap: var (--space-sm);
+    gap: var(--space-sm);
     color: var(--text-medium);
 }
 
-.book-features li i {
+.book-details .book-features li i {
     color: var(--gold);
     font-size: 1.2rem;
 }
 
-.book-cta {
+.book-details .book-cta {
     display: flex;
     gap: var(--space-md);
 }
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
-    .book-grid {
+    .book-container {
         grid-template-columns: 1fr;
     }
 
-    .book-preview {
+    .book-cover {
         margin-bottom: var(--space-lg);
     }
 }
 
 @media (max-width: 768px) {
-    .book-feature {
+    .book-section {
         padding: var(--space-lg) 0;
     }
 
