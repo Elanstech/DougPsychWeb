@@ -579,7 +579,7 @@ body {
 
 .team-info .position {
     color: var(--text-medium);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var (--space-sm);
 }
 
 .team-info .specialty {
@@ -606,6 +606,13 @@ body {
 
 .team-social a:hover {
     color: var(--gold);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .team-carousel {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Book Section */
