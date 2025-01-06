@@ -1480,59 +1480,170 @@ img {
     position: relative;
     z-index: 1;
 }
-
-/* Social Widget Integration */
+/* Social Proof & Reviews Section */
 .social-widgets {
-    padding: var(--space-2xl) 0;
+    position: relative;
+    padding: var(--space-3xl) 0;
     background: var(--neutral-100);
+    overflow: hidden;
 }
 
-.widget-wrapper {
+/* Background Effects */
+.social-widgets::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.social-widgets::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* Section Header */
+.widget-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--space-2xl);
+    position: relative;
+}
+
+.widget-header .section-tag {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    box-shadow: var(--shadow-md);
+}
+
+.widget-header h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-md);
+    background: var(--gradient-modern);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.widget-header p {
+    color: var(--neutral-600);
+    font-size: var(--font-size-lg);
+}
+
+/* Widget Grid */
+.widget-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
     max-width: var(--container-xl);
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 var(--space-md);
 }
 
-.widget-container {
+/* Widget Cards */
+.widget-card {
     background: white;
     border-radius: var(--radius-xl);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    transition: transform var(--transition-base);
+    transition: all var(--transition-base);
+    position: relative;
 }
 
-.widget-container:hover {
+.widget-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.widget-card:hover {
     transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+}
+
+.widget-card:hover::before {
+    opacity: 1;
+}
+
+/* Widget Headers */
+.widget-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.widget-title i {
+    font-size: var(--font-size-2xl);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.widget-title h3 {
+    font-size: var(--font-size-xl);
+    margin: 0;
+}
+
+/* Widget Content */
+.widget-content {
+    padding: var(--space-lg);
+    min-height: 400px;
+}
+
+/* Reviews Widget Specific */
+.reviews-widget .elfsight-app-reviews {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Instagram Widget Specific */
+.instagram-widget .elfsight-app-instagram {
+    height: 100%;
+    overflow: hidden;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
-    .book-container,
-    .widget-wrapper {
-        grid-template-columns: 1fr;
-        gap: var(--space-xl);
-    }
-
-    .book-cover {
-        max-width: 300px;
-        margin-bottom: var(--space-xl);
+    .widget-grid {
+        gap: var(--space-lg);
     }
 }
 
 @media (max-width: 768px) {
-    .team-card {
-        margin: 0 var(--space-md);
-    }
-
-    .team-info {
-        padding: var(--space-lg);
+    .widget-grid {
+        grid-template-columns: 1fr;
     }
 
     .social-widgets {
-        padding: var(--space-xl) var(--space-md);
+        padding: var(--space-2xl) 0;
+    }
+
+    .widget-card {
+        max-width: 500px;
+        margin: 0 auto;
     }
 }
 /* Modern Contact Section */
