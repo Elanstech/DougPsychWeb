@@ -105,7 +105,7 @@ body {
 
 .logo-container img {
     height: 85px;
-    width: 895px;
+    width: 85px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: var(--space-sm);
