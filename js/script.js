@@ -84,29 +84,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mobile Navigation
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    // Enhanced Mobile Navigation
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
     const navbar = document.querySelector('.navbar');
 
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
     }
 
+    // Close mobile menu when clicking on a link
+    const mobileLinks = document.querySelectorAll('.mobile-menu a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-menu') && !e.target.closest('.nav-toggle')) {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
+        if (!e.target.closest('.mobile-menu') && !e.target.closest('.hamburger-btn')) {
+            hamburgerBtn?.classList.remove('active');
+            mobileMenu?.classList.remove('active');
             document.body.classList.remove('menu-open');
         }
     });
 
-    // Smooth Scroll for Navigation Links
+    // Enhanced Smooth Scroll for Navigation Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -114,8 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (target) {
                 // Close mobile menu if open
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
+                hamburgerBtn?.classList.remove('active');
+                mobileMenu?.classList.remove('active');
                 document.body.classList.remove('menu-open');
 
                 // Calculate offset based on navbar height
@@ -131,26 +141,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Navbar Scroll Effect
+    // Enhanced Navbar Scroll Effect
     let lastScroll = 0;
+    const scrollThreshold = 50;
+    let scrollTimer;
+
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
+        const header = document.querySelector('.header');
+        
+        // Clear the previous timer
+        clearTimeout(scrollTimer);
         
         // Add/remove scrolled class
-        if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
+        if (currentScroll > scrollThreshold) {
+            header.classList.add('scrolled');
         } else {
-            navbar.classList.remove('scrolled');
+            header.classList.remove('scrolled');
         }
-
+        
         // Hide/show navbar on scroll
-        if (currentScroll > lastScroll && currentScroll > 500 && !document.body.classList.contains('menu-open')) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
+        if (!document.body.classList.contains('menu-open')) {
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
         }
         
         lastScroll = currentScroll;
+        
+        // Set timer to remove transition after scrolling stops
+        scrollTimer = setTimeout(() => {
+            header.style.transition = '';
+        }, 150);
     });
 
     // Back to Top Button
