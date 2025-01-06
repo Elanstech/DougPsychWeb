@@ -320,11 +320,22 @@ function showNotification(message, type) {
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
-// Book 3D Effect
-document.addEventListener('DOMContentLoaded', function() {
-    const bookWrapper = document.querySelector('.book-wrapper');
-    
-    if (bookWrapper) {
-        document.addEventListener('mousemove', (e) => {
-            const { left, top, width, height } = bookWrapper.getBoundingClientRect();
-            const x = (e.clientX - left) /
+
+// Book Cover 3D Effect
+const bookCover = document.querySelector('.book-cover');
+if (bookCover) {
+    bookCover.addEventListener('mousemove', (e) => {
+        const { left, top, width, height } = bookCover.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        
+        const rotateY = (x - 0.5) * 20;
+        const rotateX = (y - 0.5) * -20;
+        
+        bookCover.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+    });
+
+    bookCover.addEventListener('mouseleave', () => {
+        bookCover.style.transform = 'rotateY(0) rotateX(0)';
+    });
+}
