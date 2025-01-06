@@ -1,100 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <userStyle>Normal</userStyle>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Doug Uhlig | Psychological Services PLLC</title>
+    <title>Dr. Doug Uhlig | Psychological Services</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="Expert psychological care combining CBT, Meditation, and innovative therapeutic approaches by Dr. Doug Uhlig and team in NYC.">
-    <meta name="keywords" content="psychology, therapy, CBT, meditation, mindfulness, mental health, NYC therapy">
+    <meta name="description" content="Expert psychological care combining CBT, Meditation, and innovative therapeutic approaches">
+    <meta name="keywords" content="psychology, therapy, CBT, meditation, mindfulness, mental health">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- AOS Animation Library -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Swiper.js for Carousels -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <!-- Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
-
-    <!-- ELFSight Platform -->
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="container">
             <a href="/" class="nav-logo">
-                <img src="images/logo.png" alt="Dr. Doug Uhlig Logo">
+                <img src="https://placehold.co/200x60" alt="Dr. Doug Uhlig Logo">
             </a>
-            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
             <div class="nav-menu">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#modalities" class="nav-link">Modalities</a>
-                <a href="#team" class="nav-link">Our Team</a>
-                <a href="#book-section" class="nav-link">My Book</a>
-                <a href="#locations" class="nav-link">Locations</a>
-                <a href="tel:6464815080" class="nav-phone">
-                    <i class="fas fa-phone"></i>
-                    (646) 481-5080
-                </a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#book-section" class="nav-link">Book</a>
+                <a href="#contact" class="nav-link">Contact</a>
                 <a href="#consultation" class="btn btn-primary">Book Consultation</a>
             </div>
-
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-slider">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?auto=format&fit=crop&w=2000')">
-                <div class="slide-content">
-                    <h1>Holistic Mental Wellness Through <span class="highlight">Innovative Therapy</span></h1>
-                    <p>Combining Traditional CBT with Meditation and Modern Therapeutic Approaches</p>
-                    <div class="hero-buttons">
-                        <a href="#consultation" class="btn btn-primary">Schedule Consultation</a>
-                        <a href="#about" class="btn btn-outline">Learn More</a>
+        <div class="swiper hero-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <h1>Expert Psychological Care <span class="highlight">for Your Well-being</span></h1>
+                        <p>Combining Traditional CBT with Meditation and Modern Therapeutic Approaches</p>
+                        <div class="hero-buttons">
+                            <a href="#consultation" class="btn btn-primary">Schedule Consultation</a>
+                            <a href="#about" class="btn btn-outline">Learn More</a>
+                        </div>
                     </div>
+                    <div class="slide-bg" style="background-image: url('https://placehold.co/1920x1080')"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <h1>35+ Years of Experience in <span class="highlight">Transformative Care</span></h1>
+                        <p>Expert psychological services combining Eastern wisdom with Western psychology</p>
+                        <div class="hero-buttons">
+                            <a href="#services" class="btn btn-primary">Our Services</a>
+                            <a href="#modalities" class="btn btn-outline">Our Approach</a>
+                        </div>
+                    </div>
+                    <div class="slide-bg" style="background-image: url('https://placehold.co/1920x1080')"></div>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=2000')">
-                <div class="slide-content">
-                    <h1>35+ Years of Experience in <span class="highlight">Transformative Care</span></h1>
-                    <p>Expert psychological services combining Eastern wisdom with Western psychology</p>
-                    <div class="hero-buttons">
-                        <a href="#services" class="btn btn-primary">Our Services</a>
-                        <a href="#modalities" class="btn btn-outline">Our Approach</a>
-                    </div>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2000')">
-                <div class="slide-content">
-                    <h1>Comprehensive <span class="highlight">Psychological Care</span></h1>
-                    <p>From therapy to evaluation services for schools, immigration, and legal purposes</p>
-                    <div class="hero-buttons">
-                        <a href="#team" class="btn btn-primary">Meet Our Team</a>
-                        <a href="#book-section" class="btn btn-outline">View Publications</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
-            <span>Scroll to explore</span>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </section>
 
@@ -121,35 +104,32 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- About Dr. Doug Section -->
+    <section id="about" class="about-founder">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">About Dr. Uhlig</span>
-                <h2>Experience Meets Innovation</h2>
+                <span class="section-tag">About Dr. Doug</span>
+                <h2>Meet Your Expert Care Provider</h2>
                 <p>A unique blend of traditional therapy and mindfulness practices</p>
             </div>
-            
-            <div class="about-grid">
-                <div class="about-content" data-aos="fade-right">
-                    <div class="about-text">
-                        <p class="lead">I am a New York State licensed psychologist and psychotherapist who combines traditional Cognitive Behavioral Therapy with over 35 years of teaching Transcendental Meditation and Mindfulness.</p>
-                        <div class="certifications">
-                            <h3>Certifications & Training:</h3>
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> Cognitive Behavioral Therapy - National Association for CBT</li>
-                                <li><i class="fas fa-check-circle"></i> Gestalt Therapy – Three year institute training</li>
-                                <li><i class="fas fa-check-circle"></i> Mindfulness Meditation - University of Washington</li>
-                                <li><i class="fas fa-check-circle"></i> Certified Teacher of Transcendental Meditation</li>
-                                <li><i class="fas fa-check-circle"></i> Certified Hypnotherapist - National Guild of Hypnotists</li>
-                            </ul>
-                        </div>
-                        <a href="#about-full" class="btn btn-outline">Learn More About Us</a>
+            <div class="founder-grid">
+                <div class="founder-content" data-aos="fade-right">
+                    <p class="lead">Dr. Doug Uhlig is a New York State licensed psychologist and psychotherapist who combines traditional Cognitive Behavioral Therapy with over 35 years of teaching Transcendental Meditation and Mindfulness.</p>
+                    <div class="certifications">
+                        <h3>Professional Certifications:</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Cognitive Behavioral Therapy - National Association for CBT</li>
+                            <li><i class="fas fa-check-circle"></i> Gestalt Therapy – Three year institute training</li>
+                            <li><i class="fas fa-check-circle"></i> Mindfulness Meditation - University of Washington</li>
+                            <li><i class="fas fa-check-circle"></i> Certified Teacher of Transcendental Meditation</li>
+                            <li><i class="fas fa-check-circle"></i> Certified Hypnotherapist - National Guild of Hypnotists</li>
+                        </ul>
                     </div>
+                    <a href="#about-full" class="btn btn-primary">Full Biography</a>
                 </div>
-                <div class="about-image" data-aos="fade-left">
-                    <img src="images/dr-uhlig.jpg" alt="Dr. Doug Uhlig" class="main-image">
-                    <div class="experience-card">
+                <div class="founder-image" data-aos="fade-left">
+                    <img src="https://placehold.co/600x800" alt="Dr. Doug Uhlig">
+                    <div class="experience-badge">
                         <span class="number">35+</span>
                         <span class="text">Years of Excellence</span>
                     </div>
@@ -158,7 +138,78 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Book Section -->
+    <section id="book-section" class="book-feature">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Featured Publication</span>
+                <h2>Dr. Uhlig's Latest Book</h2>
+                <p>Discover insights from decades of psychological practice</p>
+            </div>
+            <div class="book-grid">
+                <div class="book-preview" data-aos="fade-right">
+                    <div class="book-cover">
+                        <img src="https://placehold.co/400x600" alt="Book Cover">
+                        <div class="book-reflection"></div>
+                    </div>
+                </div>
+                <div class="book-content" data-aos="fade-left">
+                    <h3>The Mind-Body Connection</h3>
+                    <p class="book-subtitle">A Comprehensive Guide to Mental Well-being</p>
+                    <div class="book-description">
+                        <p>In this groundbreaking work, Dr. Uhlig combines decades of clinical experience with cutting-edge research to provide a comprehensive approach to mental health and well-being.</p>
+                        <ul class="book-features">
+                            <li><i class="fas fa-star"></i> Evidence-based therapeutic techniques</li>
+                            <li><i class="fas fa-star"></i> Practical meditation exercises</li>
+                            <li><i class="fas fa-star"></i> Real case studies and success stories</li>
+                            <li><i class="fas fa-star"></i> Actionable strategies for daily practice</li>
+                        </ul>
+                    </div>
+                    <div class="book-cta">
+                        <a href="#" class="btn btn-primary">Purchase Book</a>
+                        <a href="#" class="btn btn-outline">Read Preview</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section with Carousel -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Team</span>
+                <h2>Meet Our Expert Practitioners</h2>
+                <p>A dedicated team of mental health professionals</p>
+            </div>
+            <div class="swiper team-carousel" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="team-card">
+                            <div class="team-image">
+                                <img src="https://placehold.co/400x500" alt="Team Member">
+                            </div>
+                            <div class="team-info">
+                                <h3>Dr. Sarah Johnson</h3>
+                                <p class="position">Clinical Psychologist</p>
+                                <p class="specialty">Specializing in Anxiety & Depression</p>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more team members -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+<!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -179,77 +230,35 @@
                         <li><i class="fas fa-check"></i>Holistic Approach</li>
                         <li><i class="fas fa-check"></i>Regular Progress Monitoring</li>
                     </ul>
-                    <a href="#services-detail" class="btn btn-outline">Learn More</a>
+                    <a href="#services-detail" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon">
                         <i class="fas fa-peace"></i>
                     </div>
-                    <h3>Anxiety Disorder</h3>
+                    <h3>Anxiety Disorders</h3>
                     <p>Comprehensive treatment combining CBT and mindfulness approaches</p>
                     <ul class="service-features">
                         <li><i class="fas fa-check"></i>Anxiety Management</li>
                         <li><i class="fas fa-check"></i>Stress Reduction</li>
                         <li><i class="fas fa-check"></i>Coping Strategies</li>
                     </ul>
-                    <a href="#services-detail" class="btn btn-outline">Learn More</a>
+                    <a href="#services-detail" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon">
-                        <i class="fas fa-heart-broken"></i>
-                    </div>
-                    <h3>PTSD Treatment</h3>
-                    <p>Specialized care for trauma recovery and post-traumatic stress</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i>Trauma-Informed Care</li>
-                        <li><i class="fas fa-check"></i>EMDR Therapy</li>
-                        <li><i class="fas fa-check"></i>Support Groups</li>
-                    </ul>
-                    <a href="#services-detail" class="btn btn-outline">Learn More</a>
-                </div>
-
-                <div class="service-card" data-aos="fade-up">
-                    <div class="service-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Marital & Career Counseling</h3>
-                    <p>Support for relationship and professional development challenges</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i>Relationship Building</li>
-                        <li><i class="fas fa-check"></i>Career Guidance</li>
-                        <li><i class="fas fa-check"></i>Work-Life Balance</li>
-                    </ul>
-                    <a href="#services-detail" class="btn btn-outline">Learn More</a>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
                         <i class="fas fa-om"></i>
                     </div>
-                    <h3>Meditation & Stress Reduction</h3>
+                    <h3>Meditation & Mindfulness</h3>
                     <p>Learn proven techniques for managing stress and anxiety</p>
                     <ul class="service-features">
                         <li><i class="fas fa-check"></i>Mindfulness Training</li>
                         <li><i class="fas fa-check"></i>Meditation Classes</li>
                         <li><i class="fas fa-check"></i>Stress Management</li>
                     </ul>
-                    <a href="#services-detail" class="btn btn-outline">Learn More</a>
-                </div>
-
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-file-medical"></i>
-                    </div>
-                    <h3>Psychological Evaluation</h3>
-                    <p>Comprehensive assessments for schools, immigration, and legal purposes</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i>Educational Testing</li>
-                        <li><i class="fas fa-check"></i>Immigration Evaluations</li>
-                        <li><i class="fas fa-check"></i>Legal Assessments</li>
-                    </ul>
-                    <a href="#services-detail" class="btn btn-outline">Learn More</a>
+                    <a href="#services-detail" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -268,121 +277,37 @@
                 <div class="modality-card" data-aos="fade-up">
                     <h3>Cognitive Behavioral Therapy</h3>
                     <p>Evidence-based approach for changing thought patterns and behaviors</p>
-                    <a href="#modalities-detail" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="modality-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <a href="#modalities-detail" class="learn-more">Explore More <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <div class="modality-card" data-aos="fade-up" data-aos-delay="100">
                     <h3>Gestalt Therapy</h3>
                     <p>Holistic approach focusing on present moment awareness</p>
-                    <a href="#modalities-detail" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="modality-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <a href="#modalities-detail" class="learn-more">Explore More <i class="fas fa-arrow-right"></i></a>
                 </div>
+
                 <div class="modality-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Transcendental Meditation</h3>
                     <p>Ancient technique for stress reduction and self-development</p>
-                    <a href="#modalities-detail" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="modality-icon">
+                        <i class="fas fa-om"></i>
+                    </div>
+                    <a href="#modalities-detail" class="learn-more">Explore More <i class="fas fa-arrow-right"></i></a>
                 </div>
 
-                <div class="modality-card" data-aos="fade-up">
+                <div class="modality-card" data-aos="fade-up" data-aos-delay="300">
                     <h3>Hypnotherapy</h3>
                     <p>Therapeutic technique for accessing the subconscious mind</p>
-                    <a href="#modalities-detail" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Testimonials</span>
-                <h2>What Our Clients Say</h2>
-                <p>Real experiences from people we've helped</p>
-            </div>
-
-            <!-- ELFSight Google Reviews Widget -->
-            <div class="elfsight-app-345fc429-0347-4493-8043-afbb1cb52b6e" data-elfsight-app-lazy></div>
-        </div>
-    </section>
-
-    <!-- Instagram Feed Section -->
-    <section id="instagram" class="instagram">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Connect With Us</span>
-                <h2>Follow Our Journey</h2>
-                <p>Stay updated with our latest insights and events</p>
-            </div>
-
-            <!-- ELFSight Instagram Feed Widget -->
-            <div class="elfsight-app-083aff3d-cad9-41af-b05b-535284996846" data-elfsight-app-lazy></div>
-        </div>
-    </section>
-
-    <!-- Locations Section -->
-    <section id="locations" class="locations">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Offices</span>
-                <h2>Visit Us</h2>
-                <p>Two convenient locations to serve you better</p>
-            </div>
-
-            <div class="locations-grid">
-                <!-- Brooklyn Office -->
-                <div class="location-card" data-aos="fade-up">
-                    <div class="location-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3028.990759089882!2d-73.9549!3d40.586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c244262a64b001%3A0x9d3f6f8d4a21e!2s1517%20Voorhies%20Ave%2C%20Brooklyn%2C%20NY%2011235" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="modality-icon">
+                        <i class="fas fa-spa"></i>
                     </div>
-                    <div class="location-info">
-                        <h3>Brooklyn Office</h3>
-                        <address>
-                            1517 Voorhies Ave<br>
-                            Brooklyn, NY 11235
-                        </address>
-                        <div class="location-details">
-                            <div class="detail-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Mon-Fri: 9AM-7PM</span>
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:6464815080">(646) 481-5080</a>
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-directions"></i>
-                                <a href="https://maps.google.com/?q=1517+Voorhies+Ave,+Brooklyn,+NY+11235" target="_blank">Get Directions</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Queens Office -->
-                <div class="location-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="location-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.7!2d-73.8613!3d40.7307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25e2e1c0b7e6d%3A0x7edf0a3a5d4e8b0!2s63-44%20Saunders%20St%2C%20Rego%20Park%2C%20NY%2011374" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                    <div class="location-info">
-                        <h3>Queens Office</h3>
-                        <address>
-                            63-44 Saunders St, Suite 106<br>
-                            Rego Park, NY 11374
-                        </address>
-                        <div class="location-details">
-                            <div class="detail-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Mon-Fri: 9AM-7PM</span>
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:6464815080">(646) 481-5080</a>
-                            </div>
-                            <div class="detail-item">
-                                <i class="fas fa-directions"></i>
-                                <a href="https://maps.google.com/?q=63-44+Saunders+St,+Suite+106,+Rego+Park,+NY+11374" target="_blank">Get Directions</a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="#modalities-detail" class="learn-more">Explore More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -418,54 +343,50 @@
                                     <p>We'll respond within 24 hours</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="emergency-info">
-                            <h4>Emergency Resources</h4>
-                            <p>If you're experiencing a mental health emergency:</p>
-                            <ul>
-                                <li>Call 911 for immediate assistance</li>
-                                <li>National Crisis Hotline: 988</li>
-                                <li>NYC Well: 1-888-NYC-WELL</li>
-                            </ul>
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Locations</h4>
+                                    <p>Brooklyn: 1517 Voorhies Ave</p>
+                                    <p>Queens: 63-44 Saunders St, Suite 106</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="contact-form" data-aos="fade-left">
-                    <form id="contactForm" class="modern-form">
+                <form class="contact-form modern-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Full Name</label>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">Full Name</label>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" required>
-                                <label for="email">Email Address</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" id="phone" name="phone" required>
-                                <label for="phone">Phone Number</label>
-                            </div>
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email Address</label>
                         </div>
                         <div class="form-group">
-                            <select id="inquiry" name="inquiry" required>
-                                <option value="">Select Inquiry Type</option>
-                                <option value="appointment">Schedule Appointment</option>
-                                <option value="insurance">Insurance Question</option>
-                                <option value="general">General Inquiry</option>
-                            </select>
+                            <input type="tel" id="phone" name="phone" required>
+                            <label for="phone">Phone Number</label>
                         </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="4" required></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">
-                            Send Message
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <select id="inquiry" name="inquiry" required>
+                            <option value="">Select Service Type</option>
+                            <option value="individual">Individual Therapy</option>
+                            <option value="meditation">Meditation Training</option>
+                            <option value="evaluation">Psychological Evaluation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Send Message
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -488,10 +409,11 @@
                     <div class="footer-links">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#about">About</a></li>
+                            <li><a href="#about">About Dr. Doug</a></li>
                             <li><a href="#services">Services</a></li>
+                            <li><a href="#modalities">Modalities</a></li>
+                            <li><a href="#book-section">Book</a></li>
                             <li><a href="#team">Our Team</a></li>
-                            <li><a href="#locations">Locations</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
@@ -500,11 +422,11 @@
                         <h4>Our Locations</h4>
                         <div class="location">
                             <h5>Brooklyn Office</h5>
-                            <p>1517 Voorhies Ave<br>Brooklyn, NY 11235</p>
+                            <address>1517 Voorhies Ave<br>Brooklyn, NY 11235</address>
                         </div>
                         <div class="location">
                             <h5>Queens Office</h5>
-                            <p>63-44 Saunders St, Suite 106<br>Rego Park, NY 11374</p>
+                            <address>63-44 Saunders St, Suite 106<br>Rego Park, NY 11374</address>
                         </div>
                     </div>
                 </div>
@@ -517,21 +439,21 @@
                 <div class="footer-legal">
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#terms">Terms of Service</a>
-                    <a href="#accessibility">Accessibility</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Book Button -->
-    <button class="floating-button">
-        <i class="fas fa-calendar-alt"></i>
-        <span>Book Now</span>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Notification System -->
+    <div id="notification" class="notification"></div>
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="./js/main.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
