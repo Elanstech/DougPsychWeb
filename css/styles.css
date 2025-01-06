@@ -707,7 +707,7 @@ body {
 .book-features li {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var (--space-sm);
     color: var(--text-medium);
 }
 
