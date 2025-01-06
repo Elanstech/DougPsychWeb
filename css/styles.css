@@ -892,17 +892,18 @@ img {
 }
 
 .section-tag {
-    display: inline-block;
+    display: block;
     padding: 0.75rem 2rem;
     background: var(--gradient-primary);
     color: white;
     border-radius: var(--radius-full);
     font-weight: 600;
     font-size: var(--font-size-sm);
-    margin-bottom: var(--space-md);
+    margin: 0 auto var(--space-md);
     box-shadow: var(--shadow-md);
     transform: translateY(0);
     transition: all var(--transition-bounce);
+    max-width: fit-content;
 }
 
 .section-tag:hover {
