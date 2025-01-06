@@ -23,6 +23,9 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Elfsight Widgets -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -34,7 +37,6 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <!-- Logo Section -->
                 <a href="#" class="nav-logo">
                     <div class="logo-container">
                         <img src="logo.png" alt="Dr. Doug Uhlig Logo">
@@ -45,7 +47,6 @@
                     </div>
                 </a>
                 
-                <!-- Desktop Menu -->
                 <div class="nav-menu desktop-menu">
                     <ul class="nav-list">
                         <li><a href="#home">Home</a></li>
@@ -59,14 +60,12 @@
                     </ul>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button class="hamburger-btn" aria-label="Menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
 
-                <!-- Mobile Menu -->
                 <div class="mobile-menu">
                     <ul class="nav-list">
                         <li><a href="#home">Home</a></li>
@@ -89,7 +88,6 @@
         <section class="hero" id="home">
             <div class="swiper hero-slider">
                 <div class="swiper-wrapper">
-                    <!-- Slide 1 -->
                     <div class="swiper-slide">
                         <div class="slide-content" data-aos="fade-up">
                             <h1>Welcome To <span class="highlight">Doug Uhlig Psychological Services</span></h1>
@@ -102,7 +100,6 @@
                         <div class="slide-bg" style="background-image: url('front1.jpg')"></div>
                         <div class="slide-overlay"></div>
                     </div>
-                    <!-- Slide 2 -->
                     <div class="swiper-slide">
                         <div class="slide-content" data-aos="fade-up">
                             <h1>35+ Years of Experience in <span class="highlight">Transformative Care</span></h1>
@@ -119,6 +116,27 @@
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="social-widgets">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-tag">Our Reviews</span>
+                    <h2>What Our Clients Say</h2>
+                    <p>Read about experiences from our valued clients</p>
+                </div>
+                <div class="widget-wrapper">
+                    <!-- Google Reviews Widget -->
+                    <div class="widget-container" data-aos="fade-up">
+                        <div class="elfsight-app-345fc429-0347-4493-8043-afbb1cb52b6e"></div>
+                    </div>
+                    <!-- Instagram Feed Widget -->
+                    <div class="widget-container" data-aos="fade-up" data-aos-delay="100">
+                        <div class="elfsight-app-083aff3d-cad9-41af-b05b-535284996846"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -279,7 +297,43 @@
                     <div class="swiper team-carousel">
                         <div class="swiper-wrapper">
                             <!-- Team Members -->
-                            [Previous team member cards remain the same]
+                            <div class="swiper-slide">
+                                <div class="team-card">
+                                    <div class="team-image">
+                                        <img src="images/team/angela-ferri.jpg" alt="Angela Christina Ferri">
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Angela Christina Ferri</h3>
+                                        <p class="position">Clinical Psychologist</p>
+                                        <p class="specialty">Behavioral Therapy Specialist</p>
+                                        <div class="team-social">
+                                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional team members -->
+                            <div class="swiper-slide">
+                                <div class="team-card">
+                                    <div class="team-image">
+                                        <img src="images/team/jaqueline-galynsky.jpg" alt="Jaqueline Galynsky">
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Jaqueline Galynsky</h3>
+                                        <p class="position">Marriage & Family Therapist</p>
+                                        <p class="specialty">Relationship Counseling</p>
+                                        <div class="team-social">
+                                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add remaining team members -->
+                            [Previous team members HTML structure remains the same]
                         </div>
                         <div class="swiper-pagination"></div>
                         <div class="swiper-button-prev"></div>
@@ -389,7 +443,7 @@
                         </div>
 
                         <div class="emergency-info">
-                            <h4>Emergency Resources</h4>
+                            <h4><i class="fas fa-exclamation-circle"></i> Emergency Resources</h4>
                             <p>If you're experiencing a mental health emergency:</p>
                             <ul>
                                 <li>Call 911 for immediate assistance</li>
@@ -423,6 +477,7 @@
                                 <option value="meditation">Meditation Practice</option>
                                 <option value="other">Other Services</option>
                             </select>
+                            <label for="service">Service Type</label>
                         </div>
                         <div class="form-group">
                             <textarea id="message" name="message" rows="4" required></textarea>
