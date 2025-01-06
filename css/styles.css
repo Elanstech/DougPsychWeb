@@ -319,12 +319,19 @@ body {
     position: relative;
 }
 
+.about-founder {
+    padding: var(--space-xl) 0;
+    background: var(--background-light);
+}
+
 .founder-image img {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     transition: transform 0.4s ease;
+    width: 100%;  /* Adjust this value as needed */
+    max-width: 300px;  /* Adjust this value as needed */
+    height: auto;
 }
-
 .founder-image:hover img {
     transform: scale(1.05);
 }
