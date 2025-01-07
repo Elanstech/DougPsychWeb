@@ -35,81 +35,84 @@
 
 <!-- Header -->
 <header class="header">
-    <div class="container">
+    <div class="header-container">
         <nav class="navbar">
-            <a href="#" class="nav-logo">
-                <div class="logo-container">
-                    <img src="logo.png" alt="Dr. Doug Uhlig Logo" width="60" height="60">
-                    <div class="logo-text">
-                        <span class="brand-name">Dr. Doug Uhlig</span>
-                        <span class="brand-title">Psychological Services</span>
+            <div class="nav-brand">
+                <a href="#" class="logo-link">
+                    <div class="logo-wrapper">
+                        <div class="logo-symbol">DU</div>
+                        <div class="logo-text">
+                            <span class="logo-title">Dr. Doug Uhlig</span>
+                            <span class="logo-subtitle">Psychological Services</span>
+                        </div>
                     </div>
-                </div>
-            </a>
-            
-            <div class="nav-menu desktop-menu">
+                </a>
+            </div>
+
+            <div class="nav-menu">
                 <ul class="nav-list">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#book" class="btn btn-primary">Book Session</a></li>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#team" class="nav-link">Team</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#book" class="nav-link nav-cta">Book Session</a></li>
                 </ul>
             </div>
 
-            <button class="hamburger-btn" aria-label="Toggle menu">
+            <button class="mobile-toggle" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </nav>
-
-        <div class="mobile-menu">
-            <ul class="nav-list">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#book" class="btn btn-primary">Book Session</a></li>
-            </ul>
-        </div>
     </div>
 </header>
 
 <!-- Hero Section -->
 <section class="hero" id="home">
-    <div class="container">
+    <div class="hero-background">
+        <div class="gradient-overlay"></div>
+        <div class="pattern-overlay"></div>
+        <div class="floating-elements">
+            <div class="float-element fe-1"></div>
+            <div class="float-element fe-2"></div>
+            <div class="float-element fe-3"></div>
+        </div>
+    </div>
+    
+    <div class="hero-container">
         <div class="hero-content">
-            <div class="hero-text" data-aos="fade-right">
-                <h1>Transform Your Life Through Expert Care</h1>
-                <p class="hero-subtitle">Combining 35+ years of traditional therapy with innovative mindfulness approaches</p>
-                <div class="hero-buttons">
+            <div class="hero-text">
+                <h1 class="hero-title">Transform Your Life Through Expert Care</h1>
+                <p class="hero-subtitle">Combining traditional therapy with innovative mindfulness approaches for over 35 years</p>
+                <div class="hero-cta">
                     <a href="#consultation" class="btn btn-primary">
-                        <span>Schedule Consultation</span>
-                        <i class="fas fa-arrow-right"></i>
+                        Schedule Consultation
+                        <span class="btn-icon">→</span>
                     </a>
                     <a href="#about" class="btn btn-secondary">
-                        <span>Learn More</span>
+                        Learn More
+                        <span class="btn-icon">↓</span>
                     </a>
                 </div>
             </div>
-            <div class="hero-image" data-aos="fade-left">
-                <div class="image-wrapper">
-                    <img src="hero-image.jpg" alt="Therapeutic Environment" width="600" height="400">
+            
+            <div class="hero-visual">
+                <div class="hero-image-wrapper">
+                    <img src="hero-image.jpg" alt="Therapeutic Environment" class="hero-image">
                     <div class="experience-badge">
-                        <span class="number">35+</span>
-                        <span class="text">Years of Excellence</span>
+                        <span class="badge-number">35+</span>
+                        <span class="badge-text">Years of Excellence</span>
                     </div>
+                </div>
+                <div class="hero-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="hero-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
     </div>
 </section>
 
