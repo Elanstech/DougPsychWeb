@@ -127,20 +127,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Enhanced Mobile Navigation
     const initMobileNav = () => {
-        const hamburgerBtn = document.querySelector('.hamburger-btn');
-        const mobileMenu = document.querySelector('.mobile-menu');
+        const hamburgerBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
         const body = document.body;
         const header = document.querySelector('.header');
 
         if (hamburgerBtn) {
             hamburgerBtn.addEventListener('click', () => {
                 hamburgerBtn.classList.toggle('active');
-                mobileMenu.classList.toggle('active');
+                navMenu.classList.toggle('active');
                 body.classList.toggle('menu-open');
             });
 
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburgerBtn.contains(e.target) && 
+                    !navMenu.contains(e.target) && 
+                    navMenu.classList.contains('active')) {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            const navLinks = navMenu.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                });
+            });
+
             // Enhanced mobile menu animations
-            const menuItems = mobileMenu.querySelectorAll('.nav-list li');
+            const menuItems = navMenu.querySelectorAll('.nav-list li');
             menuItems.forEach((item, index) => {
                 item.style.animationDelay = `${index * 0.1}s`;
             });
@@ -196,15 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = document.querySelector(this.getAttribute('href'));
                 
                 if (target) {
-                    // Close mobile menu if open
-                    const mobileMenu = document.querySelector('.mobile-menu');
-                    const hamburgerBtn = document.querySelector('.hamburger-btn');
-                    if (mobileMenu?.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                        hamburgerBtn?.classList.remove('active');
-                        document.body.classList.remove('menu-open');
-                    }
-
                     // Calculate offset based on header height
                     const headerHeight = document.querySelector('.header').offsetHeight;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
@@ -446,97 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initForms();
     initBookCover();
 
-    // Enhance performance with requestAnimationFrame
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                // Update any scroll-based animations here
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    // Handle resize events efficiently
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            // Update any size-dependent layouts here
-            AOS.refresh();
-        }, 250);
-    });
-
-    // Add CSS animations
-    document.head.insertAdjacentHTML('beforeend', `
-        <style>
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
-            }
-
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                    }
-            }
-
-            @keyframes slideIn {
-                from {
-                    opacity: 0;
-                    transform: translateX(-30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-
-            @keyframes scaleIn {
-                from {
-                    opacity: 0;
-                    transform: scale(0.9);
-                }
-                to {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-
-            @keyframes rotate {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        </style>
-    `);
-
-    // Enhanced Parallax Effects
-    const initParallax = () => {
-        const parallaxElements = document.querySelectorAll('[data-parallax]');
-        
-        window.addEventListener('scroll', () => {
-            requestAnimationFrame(() => {
-                parallaxElements.forEach(element => {
-                    const speed = element.dataset.parallax || 0.5;
-                    const rect = element.getBoundingClientRect();
-                    const visible = rect.top < window.innerHeight && rect.bottom > 0;
-                    
-                    if (visible) {
-                        const yOffset = window.pageYOffset;
-                        element.style.transform = `translateY(${yOffset * speed}px)`;
-                    }
-                });
-            });
-        });
-    };
-
     // Enhanced Service Card Interactions
     const initServiceCards = () => {
         const serviceCards = document.querySelectorAll('.service-card');
@@ -547,7 +468,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (icon) {
                     icon.style.animation = 'rotate 0.6s ease-in-out';
                 }
-                
                 // Add hover effect to list items
                 const listItems = card.querySelectorAll('.service-features li');
                 listItems.forEach((item, index) => {
@@ -713,4 +633,45 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add any additional widget initializations here
         console.log('Widgets initialized');
     }, 2000);
+
+    // Enhanced Parallax Effects
+    const initParallax = () => {
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+        
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => {
+                parallaxElements.forEach(element => {
+                    const speed = element.dataset.parallax || 0.5;
+                    const rect = element.getBoundingClientRect();
+                    const visible = rect.top < window.innerHeight && rect.bottom > 0;
+                    
+                    if (visible) {
+                        const yOffset = window.pageYOffset;
+                        element.style.transform = `translateY(${yOffset * speed}px)`;
+                    }
+                });
+            });
+        });
+    };
+
+    // Handle resize events efficiently
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Update any size-dependent layouts here
+            AOS.refresh();
+        }, 250);
+    });
+
+    // Close dropdown menus when clicking outside
+    document.addEventListener('click', (e) => {
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        dropdowns.forEach(dropdown => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    });
+
 });
