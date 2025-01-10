@@ -198,6 +198,12 @@ p {
 /* Navigation Menu */
 .nav-menu {
     margin-left: auto;
+    display: none; /* Hide by default on mobile */
+}
+@media (min-width: 768px) {
+    .nav-menu {
+        display: block; /* Show on desktop */
+    }
 }
 
 .nav-list {
@@ -287,7 +293,7 @@ p {
 
 /* Mobile Menu Button */
 .mobile-menu-btn {
-    display: none;
+    display: none; /* Hide by default on desktop */
     background: none;
     border: none;
     cursor: pointer;
@@ -295,6 +301,13 @@ p {
     z-index: 1001;
 }
 
+@media (max-width: 767px) {
+    .mobile-menu-btn {
+        display: block; /* Show on mobile */
+    }
+}
+
+/* Mobile Menu Icon */
 .menu-icon {
     width: 24px;
     height: 20px;
@@ -311,6 +324,41 @@ p {
     background: var(--text-primary);
     transition: all var(--transition-base);
     transform-origin: left;
+}
+/* Mobile Menu States */
+.nav-menu.active {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    padding: 1rem 0;
+    box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 767px) {
+    .nav-list {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-link {
+        padding: 1rem 1.5rem;
+        display: block;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        padding-left: 1.5rem;
+    }
+
+    .nav-cta {
+        margin: 1rem 1.5rem;
+        display: block;
+        text-align: center;
+    }
 }
 
 /* Navigation CTA Button */
