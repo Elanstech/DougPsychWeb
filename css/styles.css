@@ -151,6 +151,11 @@ p {
     overflow: hidden;
 }
 
+.logo-image {
+    max-height: 50px; /* Adjust the height as needed */
+    width: auto;
+}
+
 .logo-svg {
     position: absolute;
     width: 100%;
