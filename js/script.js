@@ -8,7 +8,8 @@ class WebsiteManager {
     this.initHeroSection();
     this.initServices();
     this.initTeamCarousel();
-    this.initPublicationSection(); // Add this line
+    this.initPublicationSection();
+    this.initGoogleReviews();
     this.initContactForm();
     this.initAnimations();
     this.initBackToTop();
@@ -301,6 +302,28 @@ initPublicationSection() {
     const elements = document.querySelectorAll('.book-3d, .highlight-card, .feature-list li');
     elements.forEach(el => observer.observe(el));
 }
+
+// Add this method to your WebsiteManager class
+initGoogleReviews() {
+    // Wait for the widget to load
+    window.addEventListener('load', () => {
+        const reviewsContainer = document.querySelector('.reviews-widget-container');
+        if (!reviewsContainer) return;
+
+        // Add loading state
+        reviewsContainer.classList.add('loading');
+
+        // Check if widget is loaded
+        const checkWidget = setInterval(() => {
+            const widget = document.querySelector('.elfsight-app-345fc429-0347-4493-8043-afbb1cb52b6e iframe');
+            if (widget) {
+                reviewsContainer.classList.remove('loading');
+                clearInterval(checkWidget);
+            }
+        }, 500);
+    });
+}
+
 
     // Contact Form
     initContactForm() {
