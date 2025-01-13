@@ -117,7 +117,7 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
-    height: 80px; /* Increased from 70px for better visibility */
+    height: 120px; /* Increased from 70px for better visibility */
     transition: height var(--transition-base);
 }
 
