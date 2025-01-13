@@ -1516,25 +1516,27 @@ body.menu-open {
     position: relative;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px;
+    overflow: hidden; /* Add this to hide overflow */
 }
 
 .team-carousel {
     display: flex;
-    overflow: hidden;
     position: relative;
-    padding: 20px 0;
+    gap: 30px; /* Add specific gap between slides */
 }
 
 /* Team Member Slide */
 .team-slide {
-    min-width: calc(100% / 3);
-    padding: 0 15px;
+    min-width: calc((100% - 60px) / 3); /* Adjust width accounting for gaps */
+    flex: 0 0 auto;
+    padding: 0;
     transition: all 0.5s ease;
     opacity: 0.5;
     transform: scale(0.9);
 }
 
+/* Ensure proper spacing and visibility */
 .team-slide.active {
     opacity: 1;
     transform: scale(1);
@@ -1695,16 +1697,18 @@ body.menu-open {
     }
 }
 
+/* Media Queries for Responsive Design */
 @media (max-width: 1024px) {
     .team-slide {
-        min-width: 50%;
+        min-width: calc((100% - 30px) / 2); /* Adjust for 2 slides */
     }
 }
 
 @media (max-width: 768px) {
     .team-slide {
-        min-width: 100%;
+        min-width: 100%; /* Full width for mobile */
     }
+}
     
     .section-title {
         font-size: 2rem;
