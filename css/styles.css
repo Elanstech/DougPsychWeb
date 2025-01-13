@@ -90,17 +90,10 @@ body {
     transition: all var(--transition-base);
 }
 
-/* REPLACE the navbar.scrolled styles */
-.navbar.scrolled {
-    padding: 0.5rem 0;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    box-shadow: var(--shadow-md);
-}
-
 .nav-container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0.5rem 2rem; /* Added vertical padding */
+    padding: 0.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
