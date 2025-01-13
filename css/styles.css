@@ -1550,18 +1550,20 @@ body.menu-open {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 60px;
+    overflow: hidden; /* Add this */
 }
 
 .team-carousel {
     display: flex;
-    overflow: hidden;
+    transition: transform 0.5s ease;
     gap: 2rem;
-    transition: transform var(--transition-base);
+    width: 100%;
 }
 
 .team-card {
-    flex: 0 0 calc(33.333% - 2rem);
-    min-width: 300px;
+    flex: 0 0 calc(33.333% - 1.334rem);
+    min-width: 280px;    
+    opacity: 1;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -1569,6 +1571,15 @@ body.menu-open {
     border-radius: 15px;
     overflow: hidden;
     transition: all var(--transition-base);
+    transition: all 0.5s ease;
+    transform: scale(1);
+}
+/* Ensure proper spacing and alignment */
+@media (max-width: 768px) {
+    .team-card {
+        flex: 0 0 100%;
+        min-width: 280px;
+    }
 }
 
 .team-card:hover {
