@@ -556,180 +556,107 @@
         </div>
     </div>
 </section>
-    
+
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+        <!-- Contact Header -->
+        <div class="contact-header">
+            <span class="section-tag">Get In Touch</span>
+            <h2>Let's Start a Conversation</h2>
+            <p>Ready to take the first step towards positive change?</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Information -->
             <div class="contact-info">
-                <div class="info-content">
-                    <h2>Get in Touch</h2>
-                    <p>Take the first step towards positive change</p>
-                    
-                    <div class="info-items">
-                        <div class="info-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h3>Phone</h3>
-                                <a href="tel:6464815080">(646) 481-5080</a>
-                                <p>Mon-Fri: 9AM-7PM</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h3>Email</h3>
-                                <a href="mailto:contact@douguhlig.com">contact@douguhlig.com</a>
-                                <p>Response within 24 hours</p>
-                            </div>
-                        </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
-
-                    <div class="locations-info">
-                        <div class="location">
-                            <h3>Brooklyn Office</h3>
-                            <p>1517 Voorhies Ave<br>Brooklyn, NY 11235</p>
-                        </div>
-                        <div class="location">
-                            <h3>Queens Office</h3>
-                            <p>63-44 Saunders St, Suite 106<br>Rego Park, NY 11374</p>
-                        </div>
-                    </div>
-
-                    <div class="emergency-info">
-                        <h4>Emergency Resources</h4>
-                        <p>If you're experiencing a mental health emergency:</p>
-                        <ul>
-                            <li>Call 911 for immediate assistance</li>
-                            <li>National Crisis Hotline: 988</li>
-                            <li>NYC Well: 1-888-NYC-WELL</li>
-                        </ul>
+                    <div class="contact-details">
+                        <h3>Visit Us</h3>
+                        <p>1517 Voorhies Ave<br>Brooklyn, NY 11235</p>
                     </div>
                 </div>
-             </div>
-             <form class="contact-form glass-morphism">
-                <div class="form-group floating">
-                    <input type="text" id="name" required>
-                    <label for="name">Full Name</label>
-                    <span class="focus-border"></span>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email Us</h3>
+                        <a href="mailto:contact@douguhlig.com" class="email-link">
+                            contact@douguhlig.com
+                        </a>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group floating">
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Follow Us</h3>
+                        <a href="https://instagram.com/yourusername" target="_blank" class="instagram-link">
+                            @douguhlig
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Full Name</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="form-group">
                         <input type="email" id="email" required>
                         <label for="email">Email Address</label>
                         <span class="focus-border"></span>
                     </div>
-                    <div class="form-group floating">
-                        <input type="tel" id="phone" required>
-                        <label for="phone">Phone Number</label>
+
+                    <div class="form-group">
+                        <input type="text" id="subject" required>
+                        <label for="subject">Subject</label>
                         <span class="focus-border"></span>
                     </div>
-                </div>
-                <div class="form-group floating">
-                    <select id="service" required>
-                        <option value=""></option>
-                        <option value="cbt">Cognitive Behavioral Therapy</option>
-                        <option value="meditation">Meditation & Mindfulness</option>
-                        <option value="relationship">Relationship Counseling</option>
-                        <option value="anger">Anger Management</option>
-                        <option value="ptsd">PTSD Treatment</option>
-                        <option value="hypnotherapy">Hypnotherapy</option>
-                    </select>
-                    <label for="service">Select Service</label>
-                    <span class="focus-border"></span>
-                </div>
-                <div class="form-group floating">
-                    <textarea id="message" rows="4" required></textarea>
-                    <label for="message">Your Message</label>
-                    <span class="focus-border"></span>
-                </div>
-                <button type="submit" class="submit-button magnetic">
-                    Send Message
-                    <i class="fas fa-paper-plane"></i>
-                    <span class="button-overlay"></span>
-                </button>
-            </form>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-waves">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
 
-        <div class="footer-content">
-            <div class="footer-info">
-                <div class="footer-logo">
-                    <div class="logo-icon">DU</div>
-                    <div class="logo-text">
-                        <span class="logo-title">Dr. Doug Uhlig</span>
-                        <span class="logo-subtitle">Psychological Services</span>
+                    <div class="form-group">
+                        <textarea id="message" rows="4" required></textarea>
+                        <label for="message">Your Message</label>
+                        <span class="focus-border"></span>
                     </div>
-                </div>
-                <p>Providing comprehensive psychological services and innovative therapeutic approaches for over 35 years.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="LinkedIn" class="magnetic">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" aria-label="Facebook" class="magnetic">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" aria-label="Instagram" class="magnetic">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#team">Our Team</a></li>
-                    <li><a href="#book">Book</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-locations">
-                <h4>Our Locations</h4>
-                <div class="location">
-                    <h5>Brooklyn Office</h5>
-                    <address>
-                        <i class="fas fa-map-marker-alt"></i>
-                        1517 Voorhies Ave<br>Brooklyn, NY 11235
-                    </address>
-                    <a href="tel:6464815080" class="phone">
-                        <i class="fas fa-phone"></i> (646) 481-5080
-                    </a>
-                </div>
-                <div class="location">
-                    <h5>Queens Office</h5>
-                    <address>
-                        <i class="fas fa-map-marker-alt"></i>
-                        63-44 Saunders St, Suite 106<br>Rego Park, NY 11374
-                    </address>
-                    <a href="tel:6464815080" class="phone">
-                        <i class="fas fa-phone"></i> (646) 481-5080
-                    </a>
-                </div>
+                    <button type="submit" class="submit-button">
+                        Send Message
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2024 Dr. Doug Uhlig Psychological Services PLLC. All rights reserved.</p>
-                <div class="footer-legal">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#accessibility">Accessibility</a>
-                </div>
+        <!-- Social Proof -->
+        <div class="social-proof">
+            <div class="social-stat">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Happy Clients</span>
+            </div>
+            <div class="social-stat">
+                <span class="stat-number">35+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="social-stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Support</span>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top magnetic" aria-label="Back to top">
