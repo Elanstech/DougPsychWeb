@@ -167,6 +167,8 @@ function initCarousel() {
     let serviceIndex = 0;
     const cardsToShow = window.innerWidth < 768 ? 1 : 3;
     const cardWidth = cards[0].offsetWidth + 32; // Including gap
+    let autoScrollInterval;
+    let isHovered = false;
 
     function updateCarousel() {
         const offset = -serviceIndex * cardWidth;
@@ -193,21 +195,61 @@ function initCarousel() {
     function moveNext() {
         if (serviceIndex < cards.length - cardsToShow) {
             serviceIndex++;
+        } else {
+            serviceIndex = 0;
+            track.style.transition = 'none';
             updateCarousel();
+            track.offsetHeight; // Force reflow
+            track.style.transition = 'transform 0.5s ease';
         }
+        updateCarousel();
     }
 
     function movePrev() {
         if (serviceIndex > 0) {
             serviceIndex--;
+        } else {
+            serviceIndex = cards.length - cardsToShow;
+            track.style.transition = 'none';
             updateCarousel();
+            track.offsetHeight; // Force reflow
+            track.style.transition = 'transform 0.5s ease';
         }
+        updateCarousel();
     }
+
+    // Auto scroll function
+    function startAutoScroll() {
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(() => {
+            if (!isHovered) {
+                moveNext();
+            }
+        }, 3000); // Scroll every 3 seconds
+    }
+
+    // Initialize auto scroll
+    startAutoScroll();
+
+    // Pause on hover
+    track.addEventListener('mouseenter', () => {
+        isHovered = true;
+    });
+
+    track.addEventListener('mouseleave', () => {
+        isHovered = false;
+    });
 
     // Event Listeners
     if (prevButton && nextButton) {
-        nextButton.addEventListener('click', moveNext);
-        prevButton.addEventListener('click', movePrev);
+        nextButton.addEventListener('click', () => {
+            moveNext();
+            startAutoScroll(); // Reset timer after manual navigation
+        });
+        prevButton.addEventListener('click', () => {
+            movePrev();
+            startAutoScroll(); // Reset timer after manual navigation
+        });
     }
 
     // Touch events for mobile
@@ -216,6 +258,7 @@ function initCarousel() {
 
     track.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
+        isHovered = true; // Pause auto-scroll on touch
     }, false);
 
     track.addEventListener('touchend', e => {
@@ -225,6 +268,8 @@ function initCarousel() {
         } else if (touchEndX - touchStartX > 50) {
             movePrev();
         }
+        isHovered = false; // Resume auto-scroll after touch
+        startAutoScroll(); // Reset timer after touch navigation
     }, false);
 
     // Handle window resize
@@ -359,7 +404,6 @@ function init3DCards() {
         });
     });
 }
-
 // Notification System
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
@@ -381,32 +425,247 @@ function showNotification(message, type = 'success') {
     }, 3000);
 }
 
+// Book Preview Effect
+function initBookPreview() {
+    const books = document.querySelectorAll('.book-3d');
+    
+    books.forEach(book => {
+        book.addEventListener('mousemove', (e) => {
+            const rect = book.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const angleX = (y - centerY) / 20;
+            const angleY = (centerX - x) / 20;
+            
+            book.style.transform = `
+                perspective(1000px)
+                rotateX(${angleX}deg)
+                rotateY(${angleY}deg)
+                scale3d(1.1, 1.1, 1.1)
+            `;
+            
+            const glare = book.querySelector('.book-glare');
+            if (glare) {
+                const glareX = (x / rect.width) * 100;
+                const glareY = (y / rect.height) * 100;
+                glare.style.background = `
+                    radial-gradient(
+                        circle at ${glareX}% ${glareY}%,
+                        rgba(255, 255, 255, 0.3) 0%,
+                        rgba(255, 255, 255, 0) 80%
+                    )
+                `;
+            }
+        });
+
+        book.addEventListener('mouseleave', () => {
+            book.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            const glare = book.querySelector('.book-glare');
+            if (glare) {
+                glare.style.background = 'none';
+            }
+        });
+    });
+}
+
+// Text Scramble Effect
+class TextScramble {
+    constructor(el) {
+        this.el = el;
+        this.chars = '!<>-_\\/[]{}—=+*^?#________';
+        this.update = this.update.bind(this);
+    }
+    
+    setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+            const from = oldText[i] || '';
+            const to = newText[i] || '';
+            const start = Math.floor(Math.random() * 40);
+            const end = start + Math.floor(Math.random() * 40);
+            this.queue.push({ from, to, start, end });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+    }
+    
+    update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+            let { from, to, start, end, char } = this.queue[i];
+            if (this.frame >= end) {
+                complete++;
+                output += to;
+            } else if (this.frame >= start) {
+                if (!char || Math.random() < 0.28) {
+                    char = this.randomChar();
+                    this.queue[i].char = char;
+                }
+                output += `<span class="text-scramble-effect">${char}</span>`;
+            } else {
+                output += from;
+            }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+            this.resolve();
+        } else {
+            this.frameRequest = requestAnimationFrame(this.update);
+            this.frame++;
+        }
+    }
+    
+    randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+    }
+}
+
+// Initialize text scramble effect
+function initTextScramble() {
+    const elements = document.querySelectorAll('.text-scramble');
+    elements.forEach(el => {
+        const fx = new TextScramble(el);
+        const text = el.dataset.text;
+        fx.setText(text);
+        
+        el.addEventListener('mouseenter', () => {
+            fx.setText(text);
+        });
+    });
+}
+
+// Mouse trail effect
+function initMouseTrail() {
+    const trail = document.querySelector('.mouse-trail');
+    if (!trail) return;
+
+    const points = [];
+    const trailLength = 20;
+    const trailFade = 0.1;
+    
+    for (let i = 0; i < trailLength; i++) {
+        const point = document.createElement('div');
+        point.className = 'trail-point';
+        trail.appendChild(point);
+        points.push({
+            element: point,
+            x: 0,
+            y: 0,
+            age: i * trailFade
+        });
+    }
+    
+    document.addEventListener('mousemove', e => {
+        points.forEach(point => {
+            point.x = e.clientX;
+            point.y = e.clientY;
+            point.element.style.transform = `translate(${point.x}px, ${point.y}px)`;
+            point.element.style.opacity = 1 - point.age;
+            point.age = Math.min(point.age + trailFade, 1);
+        });
+    });
+    
+    function animate() {
+        points.forEach(point => {
+            point.element.style.opacity = 1 - point.age;
+            point.age = Math.min(point.age + trailFade, 1);
+        });
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+}
+
 // Performance Monitoring
 function initPerformanceMonitoring() {
+    if (!window.performance) return;
+    
     let fps = 60;
     let frameCount = 0;
     let lastTime = performance.now();
-
+    
+    const fpsThreshold = 30;
+    const heavyAnimationClass = 'heavy-animation';
+    
     function checkPerformance() {
         const now = performance.now();
         frameCount++;
-
+        
         if (now > lastTime + 1000) {
             fps = Math.round((frameCount * 1000) / (now - lastTime));
             frameCount = 0;
             lastTime = now;
             
-            if (fps < 30) {
-                console.warn(`Low FPS detected: ${fps}`);
-                // Disable intensive animations if needed
+            // If FPS drops below threshold, optimize animations
+            if (fps < fpsThreshold) {
+                document.body.classList.add(heavyAnimationClass);
+                console.warn(`Low FPS detected: ${fps}. Optimizing animations.`);
+            } else {
+                document.body.classList.remove(heavyAnimationClass);
             }
         }
-
+        
         requestAnimationFrame(checkPerformance);
     }
-
+    
     requestAnimationFrame(checkPerformance);
 }
 
-// Initialize performance monitoring
-initPerformanceMonitoring();
+// Load optimization
+function initLoadOptimization() {
+    // Lazy load images
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    lazyImages.forEach(img => imageObserver.observe(img));
+    
+    // Preload critical resources
+    const preloadLinks = document.querySelectorAll('link[rel="preload"]');
+    preloadLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href) {
+            const prefetch = document.createElement('link');
+            prefetch.rel = 'prefetch';
+            prefetch.href = href;
+            document.head.appendChild(prefetch);
+        }
+    });
+}
+
+// Initialize all features
+document.addEventListener('DOMContentLoaded', () => {
+    initCustomCursor();
+    initSmoothScroll();
+    initNavigation();
+    initParallax();
+    initCarousel();
+    initAnimations();
+    initForm();
+    initBackToTop();
+    initMagneticButtons();
+    init3DCards();
+    initBookPreview();
+    initTextScramble();
+    initMouseTrail();
+    initPerformanceMonitoring();
+    initLoadOptimization();
+});
