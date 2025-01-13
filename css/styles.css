@@ -1808,7 +1808,7 @@ body.menu-open {
 .team-card:nth-child(3) {
     animation-delay: 0.4s;
 }
-/* Publications Section */
+/* Publications Section - Core Styles */
 .publications-section {
     padding: 6rem 0;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
@@ -1828,32 +1828,64 @@ body.menu-open {
     pointer-events: none;
 }
 
+.publications-section .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Section Header Styles */
+.publications-section .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
 .section-tag {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     background: var(--accent);
     color: var(--white);
     border-radius: 25px;
     font-size: 0.9rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(196, 164, 85, 0.3);
 }
 
+.publications-section .section-title {
+    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.publications-section .section-subtitle {
+    font-size: 1.2rem;
+    color: var(--accent-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Book Display Layout */
 .publication-showcase {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     margin-top: 3rem;
-    position: relative;
+    align-items: center;
 }
 
-/* Book Display */
+/* Book 3D Display */
 .book-display {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 500px;
 }
 
 .book-3d {
@@ -1868,19 +1900,23 @@ body.menu-open {
     width: 300px;
     height: 450px;
     transform: rotateY(30deg);
-    transition: transform 0.5s ease;
-}
-
-.book-cover:hover {
-    transform: rotateY(0deg);
+    transition: all 0.5s ease;
 }
 
 .book-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.book-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .book-spine {
@@ -1889,27 +1925,43 @@ body.menu-open {
     top: 0;
     width: 40px;
     height: 100%;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent-dark) 0%, var(--accent) 100%);
     transform: rotateY(-90deg) translateX(-20px);
     transform-origin: right;
 }
 
+.book-shadow {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    filter: blur(10px);
+    transform: rotateX(90deg);
+}
+
+/* Floating Elements */
 .floating-elements {
     position: absolute;
     width: 100%;
     height: 100%;
+    pointer-events: none;
 }
 
 .float-element {
     position: absolute;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     animation: float 6s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    pointer-events: auto;
+    transition: all 0.3s ease;
 }
 
 .float-element i {
@@ -1917,29 +1969,33 @@ body.menu-open {
     font-size: 1.5rem;
 }
 
+.float-element span {
+    color: var(--white);
+    font-weight: 500;
+}
+
 .element-1 { top: 10%; right: 20%; animation-delay: 0s; }
 .element-2 { top: 40%; left: 10%; animation-delay: 1s; }
 .element-3 { bottom: 20%; right: 15%; animation-delay: 2s; }
 
-/* Book Content */
+/* Book Content Styles */
 .publication-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 2rem;
 }
 
 .lead-text {
     font-size: 1.2rem;
     line-height: 1.8;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: rgba(255, 255, 255, 0.9);
 }
 
+/* Book Highlights */
 .book-highlights {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .highlight-card {
@@ -1948,11 +2004,13 @@ body.menu-open {
     padding: 1.5rem;
     border-radius: 15px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .highlight-card:hover {
     transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .highlight-card i {
@@ -1964,12 +2022,28 @@ body.menu-open {
 .highlight-card h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
+    color: var(--white);
+}
+
+.highlight-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* Feature List */
+.book-features {
+    margin-bottom: 2.5rem;
+}
+
+.book-features h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
 }
 
 .feature-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 2rem;
 }
 
 .feature-list li {
@@ -1977,44 +2051,101 @@ body.menu-open {
     align-items: center;
     gap: 1rem;
     margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .feature-list i {
     color: var(--accent);
+    font-size: 1.1rem;
 }
 
+/* CTA Buttons */
 .book-cta {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
+}
+
+.book-cta .cta-button {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.cta-button.cta-primary {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+}
+
+.cta-button.cta-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button.cta-primary:hover {
+    background: var(--accent-light);
+}
+
+.cta-button.cta-secondary:hover {
+    background: var(--white);
+    color: var(--primary);
 }
 
 /* Animations */
 @keyframes floatBook {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { 
+        transform: translateY(0) rotateX(0);
+    }
+    50% { 
+        transform: translateY(-20px) rotateX(3deg);
+    }
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { 
+        transform: translateY(0);
+    }
+    50% { 
+        transform: translateY(-10px);
+    }
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .book-cover {
+        width: 250px;
+        height: 375px;
+    }
+}
+
 @media (max-width: 992px) {
     .publication-showcase {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
     }
 
     .book-display {
-        margin-bottom: 2rem;
+        min-height: 400px;
     }
 }
 
 @media (max-width: 768px) {
-    .book-cover {
-        width: 250px;
-        height: 375px;
+    .publications-section {
+        padding: 4rem 0;
+    }
+
+    .publications-section .section-title {
+        font-size: 2rem;
     }
 
     .book-highlights {
@@ -2024,17 +2155,57 @@ body.menu-open {
     .book-cta {
         flex-direction: column;
     }
+
+    .float-element {
+        padding: 0.75rem 1rem;
+    }
+
+    .float-element i {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 480px) {
-    .publications-section {
-        padding: 4rem 0;
-    }
-
     .book-cover {
         width: 200px;
         height: 300px;
     }
+
+    .publications-section .container {
+        padding: 0 1rem;
+    }
+
+    .lead-text {
+        font-size: 1rem;
+    }
+
+    .floating-elements {
+        display: none;
+    }
+}
+
+/* Entrance Animations */
+.book-3d, 
+.highlight-card, 
+.feature-list li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.book-3d.visible, 
+.highlight-card.visible, 
+.feature-list li.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.highlight-card {
+    transition-delay: calc(var(--i) * 0.2s);
+}
+
+.feature-list li {
+    transition-delay: calc(var(--i) * 0.1s);
 }
 
 
