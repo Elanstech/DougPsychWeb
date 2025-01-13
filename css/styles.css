@@ -734,20 +734,6 @@ body.menu-open {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Services Section Styles */
 .services-section {
     background: linear-gradient(135deg, #1a365d 0%, #234876 30%, #2a4a7f 50%, #b8860b 80%, #ffd700 100%);
@@ -1036,117 +1022,410 @@ body.menu-open {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Team Section */
-.team {
-    padding: 8rem 0;
-    background: var(--white);
+.certifications-section {
+    background: linear-gradient(135deg, #1a365d 0%, #234876 30%, #2a4a7f 50%, #b8860b 80%, #ffd700 100%);
+    padding: 6rem 0;
+    color: #fff;
     position: relative;
     overflow: hidden;
 }
 
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.team-card {
-    position: relative;
-    height: 400px;
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.card-front,
-.card-back {
+.certifications-section::before {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transition: transform 0.8s cubic-bezier(0.75, 0, 0.85, 1);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(26, 54, 93, 0.2) 70%);
+    pointer-events: none;
 }
 
-.card-front {
-    background: var(--white);
-    box-shadow: var(--shadow-md);
-}
-
-.card-back {
-    background: var(--gradient-primary);
-    color: var(--white);
-    transform: rotateY(180deg);
-    padding: 2rem;
-}
-
-.team-card:hover .card-front {
-    transform: rotateY(180deg);
-}
-
-.team-card:hover .card-back {
-    transform: rotateY(360deg);
-}
-
-.member-image {
+.certifications-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
     position: relative;
-    height: 60%;
-    overflow: hidden;
+    z-index: 1;
 }
 
-.member-image img {
+.certifications-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Founder Image Styles */
+.founder-image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    background: #1a365d;
+    aspect-ratio: 3/4;
+}
+
+.founder-image-container:hover {
+    transform: translateY(-10px);
+}
+
+.founder-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-base);
+    display: block;
+    transition: transform 0.5s ease;
 }
 
-.team-card:hover .member-image img {
-    transform: scale(1.1);
+.founder-image-container:hover .founder-image {
+    transform: scale(1.05);
 }
 
-.image-overlay {
+.founder-overlay {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
-}
-
-.member-info {
-    padding: 1.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(26, 54, 93, 0.95), transparent);
+    padding: 2rem;
     text-align: center;
 }
 
-.member-info h3 {
+.founder-overlay h3 {
+    color: #ffd700;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
-    color: var(--primary);
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.position {
+.founder-overlay p {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.military-service {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #ffd700;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Section Title Styles */
+.section-title {
+    font-size: 2.8rem;
+    margin-bottom: 2.5rem;
+    color: #ffd700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #ffd700, transparent);
+}
+
+/* Certification Grid Styles */
+.certification-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.certification-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.certification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.certification-card i {
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.certification-card h4 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.certification-card p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+.certification-card .specialty {
     display: block;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.specialty {
-    color: var(--primary-light);
-    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    color: #ffd700;
+    font-size: 0.9rem;
     font-style: italic;
 }
+
+/* Professional Memberships Styles */
+.memberships-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.memberships-section h3 {
+    color: #ffd700;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.membership-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.membership-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.membership-item:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.membership-item i {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+/* Military Service Styles */
+.military-service-section {
+    background: rgba(26, 54, 93, 0.5);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.military-service-section h3 {
+    color: #ffd700;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.service-details {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.service-details i {
+    color: #ffd700;
+    font-size: 2.5rem;
+    margin-top: 0.5rem;
+}
+
+.service-text p {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.service-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.service-text ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.service-text ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+}
+
+/* Expertise List Styles */
+.expertise-list {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.expertise-list h3 {
+    color: #ffd700;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.expertise-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.expertise-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.expertise-list li:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.expertise-list i {
+    color: #ffd700;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .certifications-container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .certifications-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .founder-image-container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .certification-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .expertise-list ul {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .service-details {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .membership-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .certifications-section {
+        padding: 4rem 0;
+    }
+
+    .founder-overlay h3 {
+        font-size: 1.6rem;
+    }
+
+    .certification-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Book Section */
 .book {
