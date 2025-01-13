@@ -214,122 +214,256 @@ class WebsiteManager {
         track.addEventListener('mouseleave', startAutoScroll);
     }
 
-    // Team Carousel
-    initTeamCarousel() {
-        const track = document.querySelector('.team-carousel');
-        const prevButton = document.querySelector('.carousel-button.prev');
-        const nextButton = document.querySelector('.carousel-button.next');
-        const cards = document.querySelectorAll('.team-card');
-        const indicators = document.querySelector('.carousel-indicators');
+    class TeamCarousel {
+    constructor() {
+        // Core elements
+        this.carousel = document.querySelector('.team-carousel');
+        this.prevBtn = document.querySelector('.prev-btn');
+        this.nextBtn = document.querySelector('.next-btn');
+        this.dotsContainer = document.querySelector('.carousel-dots');
 
-        if (!track || !cards.length) return;
+        // Configuration
+        this.currentSlide = 0;
+        this.autoPlayInterval = 5000; // 5 seconds between slides
+        this.slidesPerView = this.getSlidesPerView();
+        this.autoPlayTimer = null;
+        this.isDragging = false;
+        this.startPos = 0;
+        this.currentTranslate = 0;
+        this.prevTranslate = 0;
 
-        let currentPosition = 0;
-        const cardWidth = cards[0].offsetWidth + 32;
-        const visibleCards = window.innerWidth > 768 ? 3 : 1;
-        const maxPosition = Math.max(0, cards.length - visibleCards);
-        let autoScrollInterval;
-
-        // Create indicator dots
-        indicators.innerHTML = '';
-        for (let i = 0; i <= maxPosition; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('indicator-dot');
-            dot.setAttribute('aria-label', `Team Member ${i + 1}`);
-            indicators.appendChild(dot);
-        }
-
-        const updateCarousel = () => {
-            track.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
-            prevButton.disabled = currentPosition === 0;
-            nextButton.disabled = currentPosition >= maxPosition;
-
-            const dots = document.querySelectorAll('.indicator-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentPosition);
-            });
-
-            cards.forEach((card, index) => {
-                const isVisible = index >= currentPosition && 
-                                index < currentPosition + visibleCards;
-                card.style.opacity = isVisible ? '1' : '0.3';
-                card.style.transform = isVisible ? 'scale(1)' : 'scale(0.9)';
-            });
-        };
-
-        // Navigation functions
-        const startAutoScroll = () => {
-            stopAutoScroll();
-            autoScrollInterval = setInterval(() => {
-                if (currentPosition < maxPosition) {
-                    currentPosition++;
-                } else {
-                    currentPosition = 0;
-                }
-                updateCarousel();
-            }, 5000);
-        };
-
-        const stopAutoScroll = () => {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
+        // Team members data
+        this.teamMembers = [
+            {
+                name: 'Angela Christina Ferri',
+                role: 'Clinical Psychologist',
+                image: 'images/team/angela.jpg',
+                specialties: ['Anxiety', 'Depression', 'Trauma'],
+                email: 'angela@douguhlig.com'
+            },
+            {
+                name: 'Jaqueline Galynsky',
+                role: 'Mental Health Counselor',
+                image: 'images/team/jaqueline.jpg',
+                specialties: ['CBT', 'Mindfulness', 'Stress'],
+                email: 'jaqueline@douguhlig.com'
+            },
+            {
+                name: 'Zbigniew Korczak',
+                role: 'Psychiatric Specialist',
+                image: 'images/team/zbigniew.jpg',
+                specialties: ['Psychiatry', 'Evaluation', 'Disorders'],
+                email: 'zbigniew@douguhlig.com'
+            },
+            {
+                name: 'Stephanie Palacios',
+                role: 'Family Therapist',
+                image: 'images/team/stephanie.jpg',
+                specialties: ['Family', 'Relationships', 'Parenting'],
+                email: 'stephanie@douguhlig.com'
+            },
+            {
+                name: 'Rashanda Allen',
+                role: 'Behavioral Therapist',
+                image: 'images/team/rashanda.jpg',
+                specialties: ['Behavioral', 'Cognitive', 'Therapy'],
+                email: 'rashanda@douguhlig.com'
+            },
+            {
+                name: 'Yunetta Baron',
+                role: 'Child Psychologist',
+                image: 'images/team/yunetta.jpg',
+                specialties: ['Children', 'Development', 'Play Therapy'],
+                email: 'yunetta@douguhlig.com'
+            },
+            {
+                name: 'Thomas Gerard Smith',
+                role: 'Trauma Specialist',
+                image: 'images/team/thomas.jpg',
+                specialties: ['Trauma', 'PTSD', 'Recovery'],
+                email: 'thomas@douguhlig.com'
             }
-        };
+        ];
 
-        // Event listeners
-        prevButton?.addEventListener('click', () => {
-            if (currentPosition > 0) {
-                currentPosition--;
-                updateCarousel();
-            }
-        });
-
-        nextButton?.addEventListener('click', () => {
-            if (currentPosition < maxPosition) {
-                currentPosition++;
-                updateCarousel();
-            }
-        });
-
-        // Indicator clicks
-        indicators.addEventListener('click', (e) => {
-            if (e.target.classList.contains('indicator-dot')) {
-                const dots = Array.from(indicators.children);
-                currentPosition = dots.indexOf(e.target);
-                updateCarousel();
-            }
-        });
-
-        // Touch events
-        let touchStartX = 0;
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            stopAutoScroll();
-        }, { passive: true });
-
-        track.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const swipeDistance = touchStartX - touchEndX;
-            
-            if (Math.abs(swipeDistance) > 50) {
-                if (swipeDistance > 0 && currentPosition < maxPosition) {
-                    currentPosition++;
-                } else if (swipeDistance < 0 && currentPosition > 0) {
-                    currentPosition--;
-                }
-                updateCarousel();
-            }
-            startAutoScroll();
-        });
-
-        // Initialize
-        updateCarousel();
-        startAutoScroll();
-
-        // Hover pause
-        track.addEventListener('mouseenter', stopAutoScroll);
-        track.addEventListener('mouseleave', startAutoScroll);
+        this.init();
     }
+
+    init() {
+        this.renderSlides();
+        this.createDots();
+        this.updateCarousel();
+        this.bindEvents();
+        this.startAutoPlay();
+        this.setupTouchEvents();
+        this.setupResizeObserver();
+    }
+
+    getSlidesPerView() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+    }
+
+    renderSlides() {
+        this.carousel.innerHTML = this.teamMembers.map((member, index) => `
+            <div class="team-slide" data-index="${index}">
+                <div class="card-inner">
+                    <div class="member-image">
+                        <img src="${member.image}" alt="${member.name}" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="member-info">
+                        <h3>${member.name}</h3>
+                        <span class="role">${member.role}</span>
+                        <div class="specialties">
+                            ${member.specialties.map(specialty => 
+                                `<span>${specialty}</span>`
+                            ).join('')}
+                        </div>
+                        <a href="mailto:${member.email}" class="contact-btn">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    createDots() {
+        const numberOfDots = Math.ceil(this.teamMembers.length / this.slidesPerView);
+        this.dotsContainer.innerHTML = Array.from({ length: numberOfDots }, (_, i) => `
+            <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
+        `).join('');
+    }
+
+    updateCarousel() {
+        const slides = document.querySelectorAll('.team-slide');
+        const slideWidth = 100 / this.slidesPerView;
+        const translateValue = -this.currentSlide * slideWidth;
+        
+        slides.forEach((slide, index) => {
+            slide.style.transform = `translateX(${translateValue}%)`;
+            slide.classList.toggle('active', 
+                index >= this.currentSlide && 
+                index < this.currentSlide + this.slidesPerView
+            );
+        });
+
+        // Update dots
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === Math.floor(this.currentSlide / this.slidesPerView));
+        });
+    }
+
+    bindEvents() {
+        // Navigation buttons
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+        // Dot navigation
+        this.dotsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('dot')) {
+                const index = parseInt(e.target.dataset.index);
+                this.goToSlide(index * this.slidesPerView);
+            }
+        });
+
+        // Pause autoplay on hover
+        this.carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
+        this.carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+    }
+
+    setupTouchEvents() {
+        this.carousel.addEventListener('touchstart', (e) => this.touchStart(e));
+        this.carousel.addEventListener('touchmove', (e) => this.touchMove(e));
+        this.carousel.addEventListener('touchend', () => this.touchEnd());
+    }
+
+    touchStart(e) {
+        this.isDragging = true;
+        this.startPos = e.touches[0].clientX;
+        this.stopAutoPlay();
+    }
+
+    touchMove(e) {
+        if (!this.isDragging) return;
+        const currentPosition = e.touches[0].clientX;
+        const diff = currentPosition - this.startPos;
+        
+        if (Math.abs(diff) > 50) { // Minimum drag distance
+            this.currentTranslate = this.prevTranslate + diff;
+            requestAnimationFrame(() => this.updateSlidePosition());
+        }
+    }
+
+    touchEnd() {
+        this.isDragging = false;
+        const movedBy = this.currentTranslate - this.prevTranslate;
+        
+        if (Math.abs(movedBy) > 100) { // Minimum distance for slide change
+            if (movedBy < 0) this.nextSlide();
+            else this.prevSlide();
+        }
+        
+        this.startAutoPlay();
+    }
+
+    updateSlidePosition() {
+        this.carousel.style.transform = `translateX(${this.currentTranslate}px)`;
+    }
+
+    prevSlide() {
+        if (this.currentSlide > 0) {
+            this.currentSlide--;
+            this.updateCarousel();
+        }
+    }
+
+    nextSlide() {
+        if (this.currentSlide < this.teamMembers.length - this.slidesPerView) {
+            this.currentSlide++;
+            this.updateCarousel();
+        }
+    }
+
+    goToSlide(index) {
+        this.currentSlide = Math.min(
+            Math.max(0, index),
+            this.teamMembers.length - this.slidesPerView
+        );
+        this.updateCarousel();
+    }
+
+    startAutoPlay() {
+        this.stopAutoPlay();
+        this.autoPlayTimer = setInterval(() => this.nextSlide(), this.autoPlayInterval);
+    }
+
+    stopAutoPlay() {
+        if (this.autoPlayTimer) {
+            clearInterval(this.autoPlayTimer);
+            this.autoPlayTimer = null;
+        }
+    }
+
+    setupResizeObserver() {
+        window.addEventListener('resize', () => {
+            const newSlidesPerView = this.getSlidesPerView();
+            if (newSlidesPerView !== this.slidesPerView) {
+                this.slidesPerView = newSlidesPerView;
+                this.currentSlide = 0;
+                this.createDots();
+                this.updateCarousel();
+            }
+        });
+    }
+}
+
+// Initialize the carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new TeamCarousel();
+});
 
     // Publication Section
     initPublicationSection() {
