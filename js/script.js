@@ -18,6 +18,8 @@ function initCustomCursor() {
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
     
+    if (!cursor || !cursorFollower) return;
+
     document.addEventListener('mousemove', (e) => {
         cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
         cursorFollower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
@@ -63,6 +65,9 @@ function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    
+    if (!navbar || !menuToggle || !navMenu) return;
+    
     let lastScroll = 0;
 
     // Handle scroll
@@ -104,6 +109,7 @@ function initNavigation() {
 // Parallax Effect
 function initParallax() {
     const parallaxElements = document.querySelectorAll('[data-parallax]');
+    if (!parallaxElements.length) return;
     
     window.addEventListener('scroll', () => {
         requestAnimationFrame(() => {
@@ -121,31 +127,32 @@ function initParallax() {
     });
 }
 
-// Image Carousel
+// Carousel Initialization
 function initCarousel() {
+    // Image Carousel
     const carousel = document.querySelector('.image-carousel');
-    if (!carousel) return;
+    if (carousel) {
+        const items = carousel.querySelectorAll('.carousel-item');
+        let imageIndex = 0;
 
-    const items = carousel.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
+        function showSlide(index) {
+            items.forEach(item => {
+                item.classList.remove('active');
+                item.style.transform = 'translateX(100px)';
+                item.style.opacity = '0';
+            });
 
-    function showSlide(index) {
-        items.forEach(item => {
-            item.classList.remove('active');
-            item.style.transform = 'translateX(100px)';
-            item.style.opacity = '0';
-        });
+            items[index].classList.add('active');
+            items[index].style.transform = 'translateX(0)';
+            items[index].style.opacity = '1';
+        }
 
-        items[index].classList.add('active');
-        items[index].style.transform = 'translateX(0)';
-        items[index].style.opacity = '1';
+        // Auto advance slides
+        setInterval(() => {
+            imageIndex = (imageIndex + 1) % items.length;
+            showSlide(imageIndex);
+        }, 5000);
     }
-
-    // Auto advance slides
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % items.length;
-        showSlide(currentIndex);
-    }, 5000);
 
     // Services Carousel
     const track = document.querySelector('.carousel-track');
@@ -155,17 +162,19 @@ function initCarousel() {
     const prevButton = document.querySelector('.carousel-button.left');
     const nextButton = document.querySelector('.carousel-button.right');
     
-    let currentIndex = 0;
+    if (!cards.length) return;
+
+    let serviceIndex = 0;
     const cardsToShow = window.innerWidth < 768 ? 1 : 3;
     const cardWidth = cards[0].offsetWidth + 32; // Including gap
 
     function updateCarousel() {
-        const offset = -currentIndex * cardWidth;
+        const offset = -serviceIndex * cardWidth;
         track.style.transform = `translateX(${offset}px)`;
         
         // Update active states
         cards.forEach((card, index) => {
-            if (index >= currentIndex && index < currentIndex + cardsToShow) {
+            if (index >= serviceIndex && index < serviceIndex + cardsToShow) {
                 card.style.opacity = '1';
                 card.style.transform = 'scale(1)';
             } else {
@@ -173,25 +182,33 @@ function initCarousel() {
                 card.style.transform = 'scale(0.95)';
             }
         });
+
+        // Update button states
+        if (prevButton && nextButton) {
+            prevButton.style.display = serviceIndex === 0 ? 'none' : 'flex';
+            nextButton.style.display = serviceIndex >= cards.length - cardsToShow ? 'none' : 'flex';
+        }
     }
 
     function moveNext() {
-        if (currentIndex < cards.length - cardsToShow) {
-            currentIndex++;
+        if (serviceIndex < cards.length - cardsToShow) {
+            serviceIndex++;
             updateCarousel();
         }
     }
 
     function movePrev() {
-        if (currentIndex > 0) {
-            currentIndex--;
+        if (serviceIndex > 0) {
+            serviceIndex--;
             updateCarousel();
         }
     }
 
     // Event Listeners
-    nextButton.addEventListener('click', moveNext);
-    prevButton.addEventListener('click', movePrev);
+    if (prevButton && nextButton) {
+        nextButton.addEventListener('click', moveNext);
+        prevButton.addEventListener('click', movePrev);
+    }
 
     // Touch events for mobile
     let touchStartX = 0;
@@ -210,10 +227,21 @@ function initCarousel() {
         }
     }, false);
 
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            serviceIndex = 0;
+            updateCarousel();
+        }, 250);
+    });
+
     // Initial update
     updateCarousel();
+}
 
-    // Scroll Animations
+// Scroll Animations
 function initAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -289,6 +317,7 @@ function initBackToTop() {
 // Magnetic Buttons
 function initMagneticButtons() {
     const buttons = document.querySelectorAll('.magnetic');
+    if (!buttons.length) return;
     
     buttons.forEach(button => {
         button.addEventListener('mousemove', (e) => {
@@ -308,6 +337,7 @@ function initMagneticButtons() {
 // 3D Card Effect
 function init3DCards() {
     const cards = document.querySelectorAll('.service-card, .team-card');
+    if (!cards.length) return;
     
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
