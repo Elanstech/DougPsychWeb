@@ -190,6 +190,188 @@ class WebsiteManager {
         });
     }
 
+    class TeamCarousel {
+    constructor() {
+        // Carousel elements
+        this.carousel = document.querySelector('.team-carousel');
+        this.cards = document.querySelectorAll('.team-card');
+        this.prevButton = document.querySelector('.carousel-button.prev');
+        this.nextButton = document.querySelector('.carousel-button.next');
+        this.indicators = document.querySelector('.carousel-indicators');
+
+        // Carousel state
+        this.currentIndex = 0;
+        this.cardsPerView = this.getCardsPerView();
+        this.totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+
+        // Initialize
+        this.init();
+    }
+
+    init() {
+        // Create indicators
+        this.createIndicators();
+
+        // Set initial state
+        this.updateCarousel();
+        this.updateIndicators();
+
+        // Add event listeners
+        this.addEventListeners();
+
+        // Add resize handler
+        this.handleResize();
+    }
+
+    getCardsPerView() {
+        // Determine cards per view based on screen width
+        if (window.innerWidth >= 1200) return 4;
+        if (window.innerWidth >= 768) return 3;
+        if (window.innerWidth >= 576) return 2;
+        return 1;
+    }
+
+    createIndicators() {
+        // Create indicator dots
+        for (let i = 0; i < this.totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('indicator-dot');
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            this.indicators.appendChild(dot);
+        }
+    }
+
+    updateCarousel() {
+        // Calculate the translation value
+        const translation = -(this.currentIndex * (100 / this.cardsPerView));
+        this.carousel.style.transform = `translateX(${translation}%)`;
+
+        // Update button states
+        this.prevButton.disabled = this.currentIndex === 0;
+        this.nextButton.disabled = this.currentIndex === this.totalSlides - 1;
+
+        // Add fade effect
+        this.cards.forEach((card, index) => {
+            if (index >= this.currentIndex * this.cardsPerView && 
+                index < (this.currentIndex + 1) * this.cardsPerView) {
+                card.style.opacity = '1';
+            } else {
+                card.style.opacity = '0.5';
+            }
+        });
+    }
+
+    updateIndicators() {
+        // Update indicator dots
+        const dots = this.indicators.querySelectorAll('.indicator-dot');
+        dots.forEach((dot, index) => {
+            if (index === this.currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    addEventListeners() {
+        // Previous button click
+        this.prevButton.addEventListener('click', () => {
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+                this.updateCarousel();
+                this.updateIndicators();
+            }
+        });
+
+        // Next button click
+        this.nextButton.addEventListener('click', () => {
+            if (this.currentIndex < this.totalSlides - 1) {
+                this.currentIndex++;
+                this.updateCarousel();
+                this.updateIndicators();
+            }
+        });
+
+        // Indicator dots click
+        this.indicators.addEventListener('click', (e) => {
+            if (e.target.classList.contains('indicator-dot')) {
+                const dots = Array.from(this.indicators.children);
+                this.currentIndex = dots.indexOf(e.target);
+                this.updateCarousel();
+                this.updateIndicators();
+            }
+        });
+
+        // Touch events for swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        this.carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        this.carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            this.handleSwipe();
+        });
+    }
+
+    handleSwipe() {
+        const swipeThreshold = 50;
+        const difference = touchStartX - touchEndX;
+
+        if (Math.abs(difference) > swipeThreshold) {
+            if (difference > 0 && this.currentIndex < this.totalSlides - 1) {
+                // Swipe left
+                this.currentIndex++;
+            } else if (difference < 0 && this.currentIndex > 0) {
+                // Swipe right
+                this.currentIndex--;
+            }
+            this.updateCarousel();
+            this.updateIndicators();
+        }
+    }
+
+    handleResize() {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newCardsPerView = this.getCardsPerView();
+                if (newCardsPerView !== this.cardsPerView) {
+                    this.cardsPerView = newCardsPerView;
+                    this.totalSlides = Math.ceil(this.cards.length / this.cardsPerView);
+                    this.currentIndex = Math.min(this.currentIndex, this.totalSlides - 1);
+                    
+                    // Clear and recreate indicators
+                    this.indicators.innerHTML = '';
+                    this.createIndicators();
+                    
+                    this.updateCarousel();
+                    this.updateIndicators();
+                }
+            }, 250);
+        });
+    }
+}
+
+// Initialize the carousel when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new TeamCarousel();
+
+    // Add hover effect for team cards
+    const teamCards = document.querySelectorAll('.team-card');
+    teamCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.classList.add('hovered');
+        });
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('hovered');
+        });
+    });
+});
+
     // Contact Form Management
     initContactForm() {
         const form = document.querySelector('.contact-form');
