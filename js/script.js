@@ -6,42 +6,42 @@ class WebsiteManager {
     constructor() {
         this.initNavigation();
         this.initHeroSection();
-        this.initServicesCarousel();
+        this.initServices();
         this.initTeamCarousel();
         this.initContactForm();
         this.initAnimations();
         this.initBackToTop();
     }
 
-    // Navigation and Mobile Menu
+    // Navigation Management
     initNavigation() {
         const navbar = document.querySelector('.navbar');
         const menuToggle = document.querySelector('.menu-toggle');
         const navMenu = document.querySelector('.nav-menu');
-        const navLinks = document.querySelectorAll('.nav-links li');
+        const navLinks = document.querySelectorAll('.nav-links li a');
 
-        // Mobile menu toggle
-        if (menuToggle) {
+        if (menuToggle && navMenu) {
             menuToggle.addEventListener('click', () => {
-                toggleMenu();
-            });
-
-            // Close menu when clicking on links
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    toggleMenu();
-                });
+                menuToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+                menuToggle.setAttribute('aria-expanded', 
+                    menuToggle.classList.contains('active'));
             });
         }
 
-        function toggleMenu() {
-            menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-            menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
-        }
+        // Active link highlighting
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                if (navMenu.classList.contains('active')) {
+                    menuToggle.click();
+                }
+            });
+        });
 
-        // Navbar scroll effect
+        // Scroll effect for navbar
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -49,31 +49,13 @@ class WebsiteManager {
                 navbar.classList.remove('scrolled');
             }
         });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
     }
 
     // Hero Section
     initHeroSection() {
-        const texts = document.querySelectorAll('.changing-text');
-        let currentIndex = 0;
-
-        function animateText() {
-            texts.forEach(text => text.style.opacity = '0');
-            texts[currentIndex].style.opacity = '1';
-            currentIndex = (currentIndex + 1) % texts.length;
-        }
-
-        setInterval(animateText, 3000);
-        animateText(); // Initial animation
-
-        // Hero images parallax effect
-        const heroImages = document.querySelectorAll('.image-box img');
+        const heroImages = document.querySelectorAll('.hero-image');
+        
+        // Parallax effect for hero images
         window.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
             const xAxis = (window.innerWidth / 2 - clientX) / 50;
@@ -87,114 +69,135 @@ class WebsiteManager {
     }
 
     // Services Carousel
-    initServicesCarousel() {
-        const track = document.querySelector('.services-carousel .carousel-track');
-        const prevButton = document.querySelector('.services-carousel .carousel-button.left');
-        const nextButton = document.querySelector('.services-carousel .carousel-button.right');
-        const cards = document.querySelectorAll('.services-carousel .service-card');
+    initServices() {
+        const track = document.querySelector('.carousel-track');
+        const prevButton = document.querySelector('.carousel-button.left');
+        const nextButton = document.querySelector('.carousel-button.right');
+        const cards = document.querySelectorAll('.service-card');
 
-        console.log('Services carousel elements:', { track, prevButton, nextButton, cards });
-
-        if (!track || !prevButton || !nextButton || !cards.length) return;
+        if (!track || !cards.length) return;
 
         let currentPosition = 0;
-        const updateCarouselPosition = () => {
-            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
-            const slidePercentage = (100 / cardsPerView);
+        const cardWidth = cards[0].offsetWidth + 32; // Including gap
+        const visibleCards = window.innerWidth > 768 ? 3 : 1;
+        const maxPosition = Math.max(0, cards.length - visibleCards);
 
-            track.style.transform = `translateX(-${currentPosition * slidePercentage}%)`;
+        const updateCarousel = () => {
+            track.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
             prevButton.disabled = currentPosition === 0;
-            nextButton.disabled = currentPosition >= cards.length - cardsPerView;
+            nextButton.disabled = currentPosition >= maxPosition;
         };
 
-        prevButton.addEventListener('click', () => {
+        prevButton?.addEventListener('click', () => {
             if (currentPosition > 0) {
                 currentPosition--;
-                updateCarouselPosition();
+                updateCarousel();
             }
         });
 
-        nextButton.addEventListener('click', () => {
-            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
-            if (currentPosition < cards.length - cardsPerView) {
+        nextButton?.addEventListener('click', () => {
+            if (currentPosition < maxPosition) {
                 currentPosition++;
-                updateCarouselPosition();
+                updateCarousel();
             }
         });
 
-        // Initial update
-        updateCarouselPosition();
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            updateCarouselPosition(); // Recalculate on resize
-        });
+        updateCarousel();
     }
 
     // Team Carousel
     initTeamCarousel() {
         const carousel = document.querySelector('.team-carousel');
-        const prevButton = document.querySelector('.team-carousel-container .carousel-button.prev');
-        const nextButton = document.querySelector('.team-carousel-container .carousel-button.next');
+        const cards = Array.from(document.querySelectorAll('.team-card'));
+        const prevButton = document.querySelector('.carousel-button.prev');
+        const nextButton = document.querySelector('.carousel-button.next');
         const indicators = document.querySelector('.carousel-indicators');
-        const cards = carousel.querySelectorAll('.team-card');
 
-        console.log('Team carousel elements:', { carousel, prevButton, nextButton, indicators, cards });
-
-        if (!carousel || !prevButton || !nextButton || !cards.length) return;
+        if (!carousel || !cards.length) return;
 
         let currentIndex = 0;
+        let autoScrollInterval;
+        const cardsPerView = window.innerWidth > 768 ? 3 : 1;
+        const totalSlides = Math.ceil(cards.length / cardsPerView);
+
+        // Create indicators
+        indicators.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('indicator-dot');
+            dot.setAttribute('aria-label', `Slide ${i + 1}`);
+            indicators.appendChild(dot);
+        }
+
         const updateCarousel = () => {
-            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
-            const slidePercentage = (100 / cardsPerView);
+            const offset = -(currentIndex * (100 / cardsPerView));
+            carousel.style.transform = `translateX(${offset}%)`;
 
-            carousel.style.transform = `translateX(-${currentIndex * slidePercentage}%)`;
             prevButton.disabled = currentIndex === 0;
-            nextButton.disabled = currentIndex >= cards.length - cardsPerView;
+            nextButton.disabled = currentIndex >= totalSlides - 1;
 
-            // Update indicators
-            const dots = indicators.querySelectorAll('.indicator-dot');
+            const dots = document.querySelectorAll('.indicator-dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
+
+            cards.forEach((card, index) => {
+                const isVisible = index >= currentIndex * cardsPerView && 
+                                index < (currentIndex + 1) * cardsPerView;
+                card.style.opacity = isVisible ? '1' : '0.3';
+                card.style.transform = isVisible ? 'scale(1)' : 'scale(0.9)';
+            });
         };
 
-        prevButton.addEventListener('click', () => {
+        const startAutoScroll = () => {
+            stopAutoScroll();
+            autoScrollInterval = setInterval(() => {
+                if (currentIndex < totalSlides - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateCarousel();
+            }, 5000);
+        };
+
+        const stopAutoScroll = () => {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+            }
+        };
+
+        // Event Listeners
+        prevButton?.addEventListener('click', () => {
             if (currentIndex > 0) {
                 currentIndex--;
                 updateCarousel();
             }
         });
 
-        nextButton.addEventListener('click', () => {
-            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
-            if (currentIndex < cards.length - cardsPerView) {
+        nextButton?.addEventListener('click', () => {
+            if (currentIndex < totalSlides - 1) {
                 currentIndex++;
                 updateCarousel();
             }
         });
 
-        // Create indicators
-        const createIndicators = () => {
-            indicators.innerHTML = ''; // Clear existing indicators
-            const totalSlides = Math.ceil(cards.length / (window.innerWidth >= 768 ? 3 : 1));
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('button');
-                dot.classList.add('indicator-dot');
-                dot.setAttribute('aria-label', `Slide ${i + 1}`);
-                indicators.appendChild(dot);
+        indicators.addEventListener('click', (e) => {
+            if (e.target.classList.contains('indicator-dot')) {
+                const dots = Array.from(indicators.children);
+                currentIndex = dots.indexOf(e.target);
+                updateCarousel();
             }
-        };
-
-        // Initial setup
-        createIndicators();
-        updateCarousel();
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            createIndicators();
-            updateCarousel();
         });
+
+        carousel.addEventListener('mouseenter', stopAutoScroll);
+        carousel.addEventListener('mouseleave', startAutoScroll);
+        carousel.addEventListener('touchstart', stopAutoScroll);
+        carousel.addEventListener('touchend', startAutoScroll);
+
+        // Initialize
+        updateCarousel();
+        startAutoScroll();
     }
 
     // Contact Form
@@ -208,7 +211,7 @@ class WebsiteManager {
             submitBtn.disabled = true;
 
             try {
-                // Add your form submission logic here
+                // Simulate form submission
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 this.showNotification('Message sent successfully!', 'success');
                 form.reset();
