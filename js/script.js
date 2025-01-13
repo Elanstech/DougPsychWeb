@@ -325,43 +325,68 @@ initGoogleReviews() {
 }
 
 
-    // Contact Form
-    initContactForm() {
-        const form = document.querySelector('.contact-form');
-        if (!form) return;
+   // Add this to your WebsiteManager class
+initContactForm() {
+    const form = document.getElementById('contactForm');
+    
+    if (!form) return;
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
 
-            try {
-                // Simulate form submission
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                this.showNotification('Message sent successfully!', 'success');
-                form.reset();
-            } catch (error) {
-                this.showNotification('Error sending message. Please try again.', 'error');
-            } finally {
-                submitBtn.disabled = false;
+        // Construct mailto URL
+        const mailtoUrl = `mailto:contact@douguhlig.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\n${message}`
+        )}`;
+
+        // Create success notification
+        const notification = document.createElement('div');
+        notification.className = 'contact-notification';
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas fa-check-circle"></i>
+                <p>Thank you for your message! Opening your email client...</p>
+            </div>
+        `;
+        document.body.appendChild(notification);
+
+        // Remove notification after 5 seconds
+        setTimeout(() => {
+            notification.remove();
+        }, 5000);
+
+        // Open mailto link
+        window.location.href = mailtoUrl;
+    });
+
+    // Add floating label animation
+    const formGroups = document.querySelectorAll('.form-group');
+    formGroups.forEach(group => {
+        const input = group.querySelector('input, textarea');
+        if (!input) return;
+
+        input.addEventListener('focus', () => {
+            group.classList.add('focused');
+        });
+
+        input.addEventListener('blur', () => {
+            if (!input.value) {
+                group.classList.remove('focused');
             }
         });
 
-        // Floating labels
-        const inputs = form.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('focused');
-            });
-
-            input.addEventListener('blur', () => {
-                if (!input.value) {
-                    input.parentElement.classList.remove('focused');
-                }
-            });
-        });
-    }
-
+        // Check initial state
+        if (input.value) {
+            group.classList.add('focused');
+        }
+    });
+}
+    
     // Animations
     initAnimations() {
         const observerOptions = {
