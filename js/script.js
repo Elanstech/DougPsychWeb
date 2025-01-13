@@ -146,8 +146,58 @@ function initCarousel() {
         currentIndex = (currentIndex + 1) % items.length;
         showSlide(currentIndex);
     }, 5000);
-}
 
+    // New Code for Services Carousel
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-button.right');
+    const prevButton = document.querySelector('.carousel-button.left');
+    const slideWidth = slides[0].getBoundingClientRect().width;
+
+    // Arrange the slides next to one another
+    const setSlidePosition = (slide, index) => {
+        slide.style.left = slideWidth * index + 'px';
+    };
+    slides.forEach(setSlidePosition);
+
+    const moveToSlide = (track, currentSlide, targetSlide) => {
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+        currentSlide.classList.remove('current-slide');
+        targetSlide.classList.add('current-slide');
+    };
+
+    nextButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling;
+        moveToSlide(track, currentSlide, nextSlide);
+    });
+
+    prevButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const prevSlide = currentSlide.previousElementSibling;
+        moveToSlide(track, currentSlide, prevSlide);
+    });
+
+    // Auto-scroll functionality for services carousel
+    let autoScroll = setInterval(() => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling || slides[0];
+        moveToSlide(track, currentSlide, nextSlide);
+    }, 3000);
+
+    // Pause auto-scroll on hover
+    track.addEventListener('mouseover', () => {
+        clearInterval(autoScroll);
+    });
+
+    track.addEventListener('mouseout', () => {
+        autoScroll = setInterval(() => {
+            const currentSlide = track.querySelector('.current-slide');
+            const nextSlide = currentSlide.nextElementSibling || slides[0];
+            moveToSlide(track, currentSlide, nextSlide);
+        }, 3000);
+    });
+}
 // Scroll Animations
 function initAnimations() {
     const observerOptions = {
