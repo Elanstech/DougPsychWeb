@@ -76,7 +76,6 @@ body {
     transition: transform var(--transition-base);
     opacity: 0.5;
 }
-
 /* Navigation */
 .navbar {
     position: fixed;
@@ -87,7 +86,7 @@ body {
     padding: 0.75rem 0;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     box-shadow: var(--shadow-md);
-    transition: transform var(--transition-base); /* only for slide up/down */
+    transition: transform var(--transition-base);
 }
 
 .nav-container {
@@ -104,13 +103,13 @@ body {
     align-items: center;
     gap: 1rem;
     text-decoration: none;
-    color: var(--white); /* Change from var(--primary) */
+    color: var(--white);
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    height: 100px; /* Adjust size as needed */
+    height: 120px;
     transition: all var(--transition-base);
 }
 
@@ -169,10 +168,8 @@ body {
 }
 
 .menu-icon span {
-    width: 100%;
+    background: var(--white);
     height: 2px;
-    background: var(--white); /* Ensure menu icon is white */
-    transition: all var(--transition-base);
 }
 
 .cta-button {
@@ -209,26 +206,6 @@ body {
     transform: translateX(100%) skewX(-15deg);
 }
 
-@media (max-width: 768px) {
-    .logo-container {
-        height: 70px;
-    }
-    
-    .nav-container {
-        padding: 0.25rem 1rem;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo-container {
-        height: 60px;
-    }
-}
-
 /* Mobile Menu */
 .menu-toggle {
     display: none;
@@ -250,9 +227,52 @@ body {
 .menu-icon span {
     width: 100%;
     height: 2px;
-    background: var(--primary);
+    background: var(--white);
     transition: all var(--transition-base);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo-container {
+        height: 65px;
+    }
+    
+    .nav-container {
+        padding: 0.25rem 1rem;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--primary);
+        padding: 1rem 0;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        height: 55px;
+    }
+}
+
 
 /* Hero Section */
 .hero {
