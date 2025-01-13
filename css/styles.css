@@ -1457,277 +1457,266 @@ body.menu-open {
         padding: 1.5rem;
     }
 }
-/* Teams Section Styles */
-/* Team Section Styles */
-.team-section {
-    background: linear-gradient(135deg, #1a365d 0%, #234876 30%, #2a4a7f 50%, #b8860b 80%, #ffd700 100%);
-    color: #fff;
-    padding: 6rem 0;
+/* Common Carousel Styles (for both Services and Team sections) */
+.carousel-container {
     position: relative;
-    overflow: hidden;
-    background-size: 200% 200%;
-    animation: gradientAnimation 15s ease infinite;
-}
-
-.team-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(26, 54, 93, 0.2) 70%);
-    pointer-events: none;
-}
-
-.team-section .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 60px;
-}
-
-.team-section .section-title {
-    font-size: 2.5rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.team-section .section-subtitle {
-    font-size: 1.8rem;
-    color: #fff;
-    margin-bottom: 3rem;
-    text-align: center;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.team-carousel-container {
-    position: relative;
-    margin: 2rem 0;
-}
-
-/* Team Cards */
-.team-card {
-    flex: 0 0 calc(33.333% - 2rem);
-    min-width: 300px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 2rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.team-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.member-image-container {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
+    padding: 0 40px;
     overflow: hidden;
-    border: 3px solid var(--accent);
-    box-shadow: 0 0 15px rgba(196, 164, 85, 0.3);
 }
 
-.member-image {
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 32px;
+    padding: 20px 0;
+}
+
+/* Card Styles (common for both sections) */
+.service-card,
+.team-card {
+    flex: 0 0 calc(33.333% - 32px);
+    min-width: 280px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
+.service-card.active,
+.team-card.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Card Content Styles */
+.card-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.team-card:hover .member-image {
-    transform: scale(1.1);
+.card-content {
+    padding: 16px 0;
 }
 
-.member-info h3 {
+.card-title {
     font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
 }
 
-.member-info p {
-    color: var(--accent);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+.card-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
 }
 
-/* Social Links */
-.team-card .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.team-card .social-links a {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.team-card .social-links a:hover {
-    background: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(196, 164, 85, 0.3);
-}
-
-/* Carousel Navigation */
-.team-section .carousel-button {
+/* Navigation Buttons */
+.carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: #ffffff;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 2;
     transition: all 0.3s ease;
 }
 
-.team-section .carousel-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
+.carousel-button:hover {
+    background: #f5f5f5;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.team-section .carousel-button.prev {
+.carousel-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.carousel-button.left,
+.carousel-button.prev {
     left: 0;
 }
 
-.team-section .carousel-button.next {
+.carousel-button.right,
+.carousel-button.next {
     right: 0;
 }
 
-.team-section .carousel-button i {
-    font-size: 1.2rem;
-}
-
-/* Carousel Indicators */
-.carousel-indicators {
+/* Indicator Dots */
+.carousel-indicators,
+.service-indicators {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
+    gap: 8px;
+    margin-top: 24px;
 }
 
 .indicator-dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: #ddd;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding: 0;
 }
 
 .indicator-dot.active {
-    background: var(--accent);
+    background: #333;
     transform: scale(1.2);
 }
 
-/* Team Button */
-.team-button-container {
-    text-align: center;
-    margin-top: 3rem;
+/* Hover Effects */
+.service-card:hover,
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
-.team-button {
-    display: inline-flex;
+.card-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Team Specific Styles */
+.team-card {
+    text-align: center;
+}
+
+.team-card .card-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.team-card .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.team-card .social-link {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    text-decoration: none;
+    justify-content: center;
+    color: #333;
     transition: all 0.3s ease;
 }
 
-.team-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.team-card .social-link:hover {
+    background: #333;
+    color: #fff;
 }
 
-.team-button i {
-    color: var(--accent);
-    transition: transform 0.3s ease;
-}
-
-.team-button:hover i {
-    transform: translateX(5px);
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .service-card,
     .team-card {
-        flex: 0 0 calc(50% - 2rem);
-    }
-}
-
-@media (max-width: 992px) {
-    .team-section {
-        padding: 4rem 0;
-    }
-    
-    .team-section .section-title {
-        font-size: 2rem;
-    }
-
-    .team-section .section-subtitle {
-        font-size: 1.5rem;
+        flex: 0 0 calc(50% - 32px);
     }
 }
 
 @media (max-width: 768px) {
+    .carousel-container {
+        padding: 0 20px;
+    }
+
+    .service-card,
     .team-card {
-        flex: 0 0 calc(100% - 2rem);
+        flex: 0 0 calc(100% - 32px);
     }
 
-    .team-carousel-container {
-        padding: 0 40px;
+    .card-image {
+        height: 180px;
     }
 
-    .carousel-button {
-        width: 35px;
-        height: 35px;
-    }
-}
-
-@media (max-width: 576px) {
-    .team-section {
-        padding: 3rem 0;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-
-    .section-subtitle {
-        font-size: 1.3rem;
+    .card-title {
+        font-size: 1.25rem;
     }
 }
 
+/* Animation Styles */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card,
+.team-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Loading State */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 2;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
 /* Publications Section - Core Styles */
 .publications-section {
     padding: 6rem 0;
