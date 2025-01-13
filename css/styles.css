@@ -709,6 +709,96 @@ body {
         font-size: 0.875rem;
     }
 }
+
+/* Carousel Navigation Buttons */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--white);
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-button:hover {
+    background: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button i {
+    font-size: 1.25rem;
+    color: var(--primary);
+    transition: color 0.3s ease;
+}
+
+.carousel-button:hover i {
+    color: var(--white);
+}
+
+.carousel-button.left {
+    left: -25px;
+}
+
+.carousel-button.right {
+    right: -25px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .service-card {
+        min-width: 260px;
+        padding: 2rem;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-button.left {
+        left: -20px;
+    }
+
+    .carousel-button.right {
+        right: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        min-width: 220px;
+        padding: 1.5rem;
+    }
+
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .service-features li {
+        font-size: 0.875rem;
+    }
+}
 /* Team Section */
 .team {
     padding: 8rem 0;
