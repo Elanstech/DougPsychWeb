@@ -6,8 +6,8 @@ class WebsiteManager {
     constructor() {
         this.initNavigation();
         this.initHeroSection();
-        this.initServices();
-        this.initTeamCarousel(); // Changed from initTeamCards to initTeamCarousel
+        this.initServicesCarousel();
+        this.initTeamCarousel();
         this.initContactForm();
         this.initAnimations();
         this.initBackToTop();
@@ -86,8 +86,8 @@ class WebsiteManager {
         });
     }
 
-    // Services Section
-    initServices() {
+    // Services Carousel
+    initServicesCarousel() {
         const track = document.querySelector('.carousel-track');
         const prevButton = document.querySelector('.carousel-button.left');
         const nextButton = document.querySelector('.carousel-button.right');
@@ -96,9 +96,14 @@ class WebsiteManager {
         if (!track || !prevButton || !nextButton) return;
 
         let currentPosition = 0;
-        const cardWidth = cards[0].offsetWidth;
-        const visibleCards = 3;
-        const maxPosition = cards.length - visibleCards;
+        const updateCarouselPosition = () => {
+            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
+            const slidePercentage = (100 / cardsPerView);
+            
+            track.style.transform = `translateX(-${currentPosition * slidePercentage}%)`;
+            prevButton.disabled = currentPosition === 0;
+            nextButton.disabled = currentPosition >= cards.length - cardsPerView;
+        };
 
         prevButton.addEventListener('click', () => {
             if (currentPosition > 0) {
@@ -108,58 +113,40 @@ class WebsiteManager {
         });
 
         nextButton.addEventListener('click', () => {
-            if (currentPosition < maxPosition) {
+            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
+            if (currentPosition < cards.length - cardsPerView) {
                 currentPosition++;
                 updateCarouselPosition();
             }
         });
 
-        function updateCarouselPosition() {
-            track.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
-            prevButton.disabled = currentPosition === 0;
-            nextButton.disabled = currentPosition === maxPosition;
-        }
+        // Initial update
+        updateCarouselPosition();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            updateCarouselPosition(); // Recalculate on resize
+        });
     }
 
-    // Team Carousel (New Implementation)
+    // Team Carousel
     initTeamCarousel() {
         const carousel = document.querySelector('.team-carousel');
-        if (!carousel) return;
-
-        const cards = document.querySelectorAll('.team-card');
+        const track = carousel.querySelector('.team-carousel');
         const prevButton = document.querySelector('.carousel-button.prev');
         const nextButton = document.querySelector('.carousel-button.next');
         const indicators = document.querySelector('.carousel-indicators');
+        const cards = carousel.querySelectorAll('.team-card');
 
         let currentIndex = 0;
-        const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
-        const totalSlides = Math.ceil(cards.length / cardsPerView);
-
-        // Create indicators
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('indicator-dot');
-            dot.setAttribute('aria-label', `Slide ${i + 1}`);
-            indicators.appendChild(dot);
-        }
-
-        // Update carousel state
         const updateCarousel = () => {
-            const translation = -(currentIndex * (100 / cardsPerView));
-            carousel.style.transform = `translateX(${translation}%)`;
+            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
+            const slidePercentage = (100 / cardsPerView);
             
-            // Update button states
+            track.style.transform = `translateX(-${currentIndex * slidePercentage}%)`;
             prevButton.disabled = currentIndex === 0;
-            nextButton.disabled = currentIndex === totalSlides - 1;
-
-            // Update card visibility
-            cards.forEach((card, index) => {
-                const isVisible = index >= currentIndex * cardsPerView && 
-                                index < (currentIndex + 1) * cardsPerView;
-                card.style.opacity = isVisible ? '1' : '0.3';
-                card.style.transform = isVisible ? 'scale(1)' : 'scale(0.9)';
-            });
-
+            nextButton.disabled = currentIndex >= cards.length - cardsPerView;
+            
             // Update indicators
             const dots = indicators.querySelectorAll('.indicator-dot');
             dots.forEach((dot, index) => {
@@ -167,7 +154,6 @@ class WebsiteManager {
             });
         };
 
-        // Navigation handlers
         prevButton.addEventListener('click', () => {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -176,56 +162,33 @@ class WebsiteManager {
         });
 
         nextButton.addEventListener('click', () => {
-            if (currentIndex < totalSlides - 1) {
+            const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
+            if (currentIndex < cards.length - cardsPerView) {
                 currentIndex++;
                 updateCarousel();
             }
         });
 
-        // Indicator clicks
-        indicators.addEventListener('click', (e) => {
-            if (e.target.classList.contains('indicator-dot')) {
-                const dots = Array.from(indicators.children);
-                currentIndex = dots.indexOf(e.target);
-                updateCarousel();
+        // Create indicators
+        const createIndicators = () => {
+            indicators.innerHTML = ''; // Clear existing indicators
+            const totalSlides = Math.ceil(cards.length / (window.innerWidth >= 768 ? 3 : 1));
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('indicator-dot');
+                dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                indicators.appendChild(dot);
             }
-        });
+        };
 
-        // Touch support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        carousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        }, { passive: true });
-
-        carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            const difference = touchStartX - touchEndX;
-            
-            if (Math.abs(difference) > 50) {
-                if (difference > 0 && currentIndex < totalSlides - 1) {
-                    currentIndex++;
-                } else if (difference < 0 && currentIndex > 0) {
-                    currentIndex--;
-                }
-                updateCarousel();
-            }
-        });
-
-        // Initial update
+        // Initial setup
+        createIndicators();
         updateCarousel();
 
-        // Resize handling
-        let resizeTimer;
+        // Handle window resize
         window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                const newCardsPerView = window.innerWidth >= 768 ? 3 : 1;
-                if (newCardsPerView !== cardsPerView) {
-                    location.reload(); // Refresh page on breakpoint change
-                }
-            }, 250);
+            createIndicators();
+            updateCarousel();
         });
     }
 
