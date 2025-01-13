@@ -184,28 +184,242 @@ body {
 }
 
 /* Mobile Menu */
+/* Mobile Menu Styles */
 .menu-toggle {
     display: none;
     background: none;
     border: none;
+    padding: 10px;
     cursor: pointer;
-    padding: 0.5rem;
+    z-index: 1000;
 }
 
 .menu-icon {
-    width: 24px;
+    width: 30px;
     height: 20px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    cursor: pointer;
 }
 
 .menu-icon span {
-    width: 100%;
+    display: block;
+    position: absolute;
     height: 2px;
-    background: var(--white);
-    transition: all var(--transition-base);
+    width: 100%;
+    background: var(--text-color);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu-icon span:first-child {
+    top: 0;
+}
+
+.menu-icon span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-icon span:last-child {
+    bottom: 0;
+}
+
+/* Active State for Hamburger */
+.menu-toggle.active .menu-icon span:first-child {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.menu-toggle.active .menu-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .menu-icon span:last-child {
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Mobile Styles */
+@media (max-width: 992px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100vh;
+        background: var(--background-color);
+        flex-direction: column;
+        padding: 80px 2rem 2rem;
+        transition: all 0.3s ease-in-out;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        margin-top: 2rem;
+        width: 100%;
+    }
+    /* Optional: Add backdrop when menu is open */
+    .nav-menu::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+
+    .nav-menu.active::before {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Enhance mobile menu animations */
+    .nav-links li {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+        transition-delay: calc(0.1s * var(--i));
+    }
+
+    .nav-menu.active .nav-links li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Style the navbar when menu is open */
+    .navbar {
+        position: relative;
+        z-index: 1000;
+    }
+
+    .navbar.menu-open {
+        background: var(--background-color);
+    }
+
+    /* Fix logo and menu button positioning */
+    .nav-container {
+        position: relative;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Enhance mobile CTA button */
+    .nav-menu .cta-button {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        transition-delay: 0.4s;
+    }
+
+    .nav-menu.active .cta-button {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Add close button for mobile menu */
+    .menu-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        cursor: pointer;
+        display: none;
+    }
+
+    .nav-menu.active .menu-close {
+        display: block;
+    }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 576px) {
+    .nav-menu {
+        width: 100%;
+        max-width: none;
+    }
+
+    .nav-container {
+        padding: 1rem;
+    }
+
+    .logo-container {
+        max-width: 150px;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 0.8rem 0;
+    }
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Add smooth transitions for menu items */
+.nav-links a {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
 }
 
 /* Responsive Design */
