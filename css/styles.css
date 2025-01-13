@@ -1513,9 +1513,26 @@ body.menu-open {
 .team-carousel {
     display: flex;
     gap: 2rem;
+    transition: transform 0.5s ease-in-out;
     overflow-x: hidden;
     scroll-behavior: smooth;
     padding: 1rem 0;
+}
+
+.team-card {
+    transition: all 0.5s ease-in-out;
+}
+
+@media (min-width: 768px) {
+    .team-card {
+        width: 33.333%; /* 3 cards per view */
+    }
+}
+
+@media (max-width: 767px) {
+    .team-card {
+        width: 100%; /* 1 card per view */
+    }
 }
 
 /* Team Card Styles */
