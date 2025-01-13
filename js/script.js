@@ -105,101 +105,147 @@ class WebsiteManager {
 
         updateCarousel();
     }
-
-    // Team Carousel
+  
     initTeamCarousel() {
-        const carousel = document.querySelector('.team-carousel');
-        const cards = Array.from(document.querySelectorAll('.team-card'));
-        const prevButton = document.querySelector('.carousel-button.prev');
-        const nextButton = document.querySelector('.carousel-button.next');
-        const indicators = document.querySelector('.carousel-indicators');
+    const carousel = document.querySelector('.team-carousel');
+    const cards = Array.from(document.querySelectorAll('.team-card'));
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    const indicators = document.querySelector('.carousel-indicators');
 
-        if (!carousel || !cards.length) return;
+    if (!carousel || !cards.length) return;
 
-        let currentIndex = 0;
-        let autoScrollInterval;
-        const cardsPerView = window.innerWidth > 768 ? 3 : 1;
-        const totalSlides = Math.ceil(cards.length / cardsPerView);
+    let currentIndex = 0;
+    let autoScrollInterval;
+    const cardsPerView = window.innerWidth > 768 ? 3 : 1;
+    const totalSlides = Math.ceil(cards.length / cardsPerView);
 
-        // Create indicators
-        indicators.innerHTML = '';
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('indicator-dot');
-            dot.setAttribute('aria-label', `Slide ${i + 1}`);
-            indicators.appendChild(dot);
-        }
+    // Create indicator dots
+    indicators.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('indicator-dot');
+        dot.setAttribute('aria-label', `Slide ${i + 1}`);
+        indicators.appendChild(dot);
+    }
 
-        const updateCarousel = () => {
-            const offset = -(currentIndex * (100 / cardsPerView));
-            carousel.style.transform = `translateX(${offset}%)`;
+    const updateCarousel = () => {
+        // Calculate the width each card takes up including gap
+        const cardWidth = carousel.offsetWidth / cardsPerView;
+        const offset = -(currentIndex * cardWidth * cardsPerView);
+        
+        // Update carousel position
+        carousel.style.transform = `translateX(${offset}px)`;
 
-            prevButton.disabled = currentIndex === 0;
-            nextButton.disabled = currentIndex >= totalSlides - 1;
+        // Update button states
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex >= totalSlides - 1;
 
-            const dots = document.querySelectorAll('.indicator-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-
-            cards.forEach((card, index) => {
-                const isVisible = index >= currentIndex * cardsPerView && 
-                                index < (currentIndex + 1) * cardsPerView;
-                card.style.opacity = isVisible ? '1' : '0.3';
-                card.style.transform = isVisible ? 'scale(1)' : 'scale(0.9)';
-            });
-        };
-
-        const startAutoScroll = () => {
-            stopAutoScroll();
-            autoScrollInterval = setInterval(() => {
-                if (currentIndex < totalSlides - 1) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0;
-                }
-                updateCarousel();
-            }, 5000);
-        };
-
-        const stopAutoScroll = () => {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
-            }
-        };
-
-        // Event Listeners
-        prevButton?.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
+        // Update indicator dots
+        const dots = document.querySelectorAll('.indicator-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
         });
 
-        nextButton?.addEventListener('click', () => {
+        // Update card visibility
+        cards.forEach((card, index) => {
+            const isVisible = index >= currentIndex * cardsPerView && 
+                            index < (currentIndex + 1) * cardsPerView;
+            card.style.opacity = isVisible ? '1' : '0.3';
+            card.style.transform = isVisible ? 'scale(1)' : 'scale(0.9)';
+        });
+    };
+
+    const startAutoScroll = () => {
+        stopAutoScroll();
+        autoScrollInterval = setInterval(() => {
             if (currentIndex < totalSlides - 1) {
                 currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            updateCarousel();
+        }, 5000);
+    };
+
+    const stopAutoScroll = () => {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+        }
+    };
+
+    // Event Listeners
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+        nextButton.addEventListener('click', () => {
+        if (currentIndex < totalSlides - 1) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+
+    // Indicator clicks
+    indicators.addEventListener('click', (e) => {
+        if (e.target.classList.contains('indicator-dot')) {
+            const dots = Array.from(indicators.children);
+            currentIndex = dots.indexOf(e.target);
+            updateCarousel();
+        }
+    });
+
+    // Touch events for mobile swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const swipeDistance = touchStartX - touchEndX;
+        
+        // Minimum swipe distance threshold
+        if (Math.abs(swipeDistance) > 50) {
+            if (swipeDistance > 0 && currentIndex < totalSlides - 1) {
+                // Swipe left
+                currentIndex++;
+            } else if (swipeDistance < 0 && currentIndex > 0) {
+                // Swipe right
+                currentIndex--;
+            }
+            updateCarousel();
+        }
+    });
+
+    // Pause auto-scroll on hover/touch
+    carousel.addEventListener('mouseenter', stopAutoScroll);
+    carousel.addEventListener('mouseleave', startAutoScroll);
+    carousel.addEventListener('touchstart', stopAutoScroll);
+    carousel.addEventListener('touchend', startAutoScroll);
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const newCardsPerView = window.innerWidth > 768 ? 3 : 1;
+            if (newCardsPerView !== cardsPerView) {
+                // Reset carousel position and update view
+                currentIndex = 0;
                 updateCarousel();
             }
-        });
+        }, 250);
+    });
 
-        indicators.addEventListener('click', (e) => {
-            if (e.target.classList.contains('indicator-dot')) {
-                const dots = Array.from(indicators.children);
-                currentIndex = dots.indexOf(e.target);
-                updateCarousel();
-            }
-        });
-
-        carousel.addEventListener('mouseenter', stopAutoScroll);
-        carousel.addEventListener('mouseleave', startAutoScroll);
-        carousel.addEventListener('touchstart', stopAutoScroll);
-        carousel.addEventListener('touchend', startAutoScroll);
-
-        // Initialize
-        updateCarousel();
-        startAutoScroll();
-    }
+    // Initialize carousel
+    updateCarousel();
+    startAutoScroll();
+}
 
     // Add this method to your WebsiteManager class
 initPublicationSection() {
