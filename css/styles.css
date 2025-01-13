@@ -652,7 +652,7 @@ body {
 }
 
 .service-card:hover .service-features li::before {
-    color: var(--white);
+    color: var (--white);
 }
 
 .carousel-button {
