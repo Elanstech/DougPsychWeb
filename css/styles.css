@@ -60,7 +60,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 0.75rem 0;
+    padding: 0.25rem 0;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     box-shadow: var(--shadow-md);
     transition: transform var(--transition-base);
@@ -69,7 +69,7 @@ body {
 .nav-container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0.5rem 2rem;
+    padding: 0.25rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,7 +86,7 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
-    height: 120px;
+    height: 100px;
     transition: all var(--transition-base);
 }
 
@@ -211,7 +211,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .logo-container {
-        height: 65px;
+        height: 50px;
     }
     
     .nav-container {
@@ -246,7 +246,7 @@ body {
 
 @media (max-width: 480px) {
     .logo-container {
-        height: 55px;
+        height: 45px;
     }
 }
 
