@@ -828,18 +828,24 @@ body.menu-open {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.15);
+.service-card:hover .service-icon {
+    /* Enhanced glow on hover */
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.5));
+    transform: scale(1.1);
+    transition: all 0.3s ease;
 }
 
 /* Service Icons */
 .service-icon {
     font-size: 2.5rem;
-    color: #60a5fa;
+    /* Gold gradient effect for icons */
+    background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 1.5rem;
-    text-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
+    /* Add glow effect */
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
 }
 
 .service-card h3 {
@@ -938,7 +944,7 @@ body.menu-open {
 }
 
 .view-more-btn i {
-    transition: transform 0.3s ease;
+    color: #ffd700;
 }
 
 .view-more-btn:hover i {
