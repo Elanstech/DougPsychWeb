@@ -1,18 +1,61 @@
-// Main JavaScript for DougPsychWeb
 document.addEventListener('DOMContentLoaded', () => {
     const app = new WebsiteManager();
 });
 
 class WebsiteManager {
     constructor() {
-        this.initHeroSection();
         this.initNavigation();
-        this.initCarousel();
+        this.initHeroSection();
+        this.initServices();
         this.initTeamCards();
         this.initContactForm();
-        this.initMagneticButtons();
-        this.initBackToTop();
         this.initAnimations();
+        this.initBackToTop();
+    }
+
+    // Navigation and Mobile Menu
+    initNavigation() {
+        const navbar = document.querySelector('.navbar');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        // Mobile menu toggle
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                toggleMenu();
+            });
+
+            // Close menu when clicking on links
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu();
+                });
+            });
+        }
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+            menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
     }
 
     // Hero Section
@@ -20,17 +63,17 @@ class WebsiteManager {
         const texts = document.querySelectorAll('.changing-text');
         let currentIndex = 0;
 
-        const animateText = () => {
+        function animateText() {
             texts.forEach(text => text.style.opacity = '0');
             texts[currentIndex].style.opacity = '1';
             currentIndex = (currentIndex + 1) % texts.length;
-        };
+        }
 
         setInterval(animateText, 3000);
-        animateText();
+        animateText(); // Initial animation
 
         // Hero images parallax effect
-        const heroImages = document.querySelectorAll('.hero-image');
+        const heroImages = document.querySelectorAll('.image-box img');
         window.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
             const xAxis = (window.innerWidth / 2 - clientX) / 50;
@@ -43,84 +86,39 @@ class WebsiteManager {
         });
     }
 
-    // Navigation
-    initNavigation() {
-        const navbar = document.querySelector('.navbar');
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        // Mobile menu toggle
-        menuToggle?.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-
-        // Navbar scroll effect
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            if (currentScroll > lastScroll && currentScroll > 500) {
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
-            lastScroll = currentScroll;
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    navMenu.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-        });
-    }
-
-    // Services Carousel
-    initCarousel() {
+    // Services Section
+    initServices() {
         const track = document.querySelector('.carousel-track');
-        const cards = document.querySelectorAll('.service-card');
         const prevButton = document.querySelector('.carousel-button.left');
         const nextButton = document.querySelector('.carousel-button.right');
-        
-        let currentIndex = 0;
-        const cardWidth = cards[0].offsetWidth + 32; // Including gap
-        const maxIndex = cards.length - 3; // Show 3 cards at a time
+        const cards = document.querySelectorAll('.service-card');
 
-        const updateCarousel = () => {
-            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-            prevButton.disabled = currentIndex === 0;
-            nextButton.disabled = currentIndex === maxIndex;
-        };
+        if (!track || !prevButton || !nextButton) return;
 
-        prevButton?.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
+        let currentPosition = 0;
+        const cardWidth = cards[0].offsetWidth;
+        const visibleCards = 3;
+        const maxPosition = cards.length - visibleCards;
+
+        prevButton.addEventListener('click', () => {
+            if (currentPosition > 0) {
+                currentPosition--;
+                updateCarouselPosition();
             }
         });
 
-        nextButton?.addEventListener('click', () => {
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateCarousel();
+        nextButton.addEventListener('click', () => {
+            if (currentPosition < maxPosition) {
+                currentPosition++;
+                updateCarouselPosition();
             }
         });
+
+        function updateCarouselPosition() {
+            track.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
+            prevButton.disabled = currentPosition === 0;
+            nextButton.disabled = currentPosition === maxPosition;
+        }
     }
 
     // Team Cards
@@ -141,21 +139,9 @@ class WebsiteManager {
     // Contact Form
     initContactForm() {
         const form = document.querySelector('.contact-form');
-        const inputs = form?.querySelectorAll('input, textarea, select');
+        if (!form) return;
 
-        inputs?.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('focused');
-            });
-
-            input.addEventListener('blur', () => {
-                if (!input.value) {
-                    input.parentElement.classList.remove('focused');
-                }
-            });
-        });
-
-        form?.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = form.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
@@ -171,43 +157,18 @@ class WebsiteManager {
                 submitBtn.disabled = false;
             }
         });
-    }
 
-    // Magnetic Buttons
-    initMagneticButtons() {
-        const buttons = document.querySelectorAll('.magnetic');
-        
-        buttons.forEach(button => {
-            button.addEventListener('mousemove', (e) => {
-                const rect = button.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        // Floating labels
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
             });
 
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'translate(0, 0)';
-            });
-        });
-    }
-
-    // Back to Top Button
-    initBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop?.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.classList.remove('focused');
+                }
             });
         });
     }
@@ -229,6 +190,27 @@ class WebsiteManager {
 
         document.querySelectorAll('[data-aos]').forEach(el => {
             observer.observe(el);
+        });
+    }
+
+    // Back to Top Button
+    initBackToTop() {
+        const backToTop = document.getElementById('backToTop');
+        if (!backToTop) return;
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
 
