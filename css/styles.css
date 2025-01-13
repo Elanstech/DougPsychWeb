@@ -1808,6 +1808,234 @@ body.menu-open {
 .team-card:nth-child(3) {
     animation-delay: 0.4s;
 }
+/* Publications Section */
+.publications-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.publications-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(26, 54, 93, 0.2) 70%);
+    pointer-events: none;
+}
+
+.section-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: var(--white);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.publication-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    position: relative;
+}
+
+/* Book Display */
+.book-display {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-3d {
+    position: relative;
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    animation: floatBook 6s ease-in-out infinite;
+}
+
+.book-cover {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    transform: rotateY(30deg);
+    transition: transform 0.5s ease;
+}
+
+.book-cover:hover {
+    transform: rotateY(0deg);
+}
+
+.book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.book-spine {
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background: var(--accent);
+    transform: rotateY(-90deg) translateX(-20px);
+    transform-origin: right;
+}
+
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.float-element {
+    position: absolute;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+.float-element i {
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.element-1 { top: 10%; right: 20%; animation-delay: 0s; }
+.element-2 { top: 40%; left: 10%; animation-delay: 1s; }
+.element-3 { bottom: 20%; right: 15%; animation-delay: 2s; }
+
+/* Book Content */
+.publication-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lead-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.book-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px);
+}
+
+.highlight-card i {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.highlight-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.feature-list i {
+    color: var(--accent);
+}
+
+.book-cta {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Animations */
+@keyframes floatBook {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .publication-showcase {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .book-display {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .book-cover {
+        width: 250px;
+        height: 375px;
+    }
+
+    .book-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .book-cta {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .publications-section {
+        padding: 4rem 0;
+    }
+
+    .book-cover {
+        width: 200px;
+        height: 300px;
+    }
+}
 
 
 
