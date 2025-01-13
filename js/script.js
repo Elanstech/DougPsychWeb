@@ -88,18 +88,20 @@ class WebsiteManager {
 
     // Services Carousel
     initServicesCarousel() {
-        const track = document.querySelector('.carousel-track');
-        const prevButton = document.querySelector('.carousel-button.left');
-        const nextButton = document.querySelector('.carousel-button.right');
-        const cards = document.querySelectorAll('.service-card');
+        const track = document.querySelector('.services-carousel .carousel-track');
+        const prevButton = document.querySelector('.services-carousel .carousel-button.left');
+        const nextButton = document.querySelector('.services-carousel .carousel-button.right');
+        const cards = document.querySelectorAll('.services-carousel .service-card');
 
-        if (!track || !prevButton || !nextButton) return;
+        console.log('Services carousel elements:', { track, prevButton, nextButton, cards });
+
+        if (!track || !prevButton || !nextButton || !cards.length) return;
 
         let currentPosition = 0;
         const updateCarouselPosition = () => {
             const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
             const slidePercentage = (100 / cardsPerView);
-            
+
             track.style.transform = `translateX(-${currentPosition * slidePercentage}%)`;
             prevButton.disabled = currentPosition === 0;
             nextButton.disabled = currentPosition >= cards.length - cardsPerView;
@@ -132,21 +134,24 @@ class WebsiteManager {
     // Team Carousel
     initTeamCarousel() {
         const carousel = document.querySelector('.team-carousel');
-        const track = carousel.querySelector('.team-carousel');
-        const prevButton = document.querySelector('.carousel-button.prev');
-        const nextButton = document.querySelector('.carousel-button.next');
+        const prevButton = document.querySelector('.team-carousel-container .carousel-button.prev');
+        const nextButton = document.querySelector('.team-carousel-container .carousel-button.next');
         const indicators = document.querySelector('.carousel-indicators');
         const cards = carousel.querySelectorAll('.team-card');
+
+        console.log('Team carousel elements:', { carousel, prevButton, nextButton, indicators, cards });
+
+        if (!carousel || !prevButton || !nextButton || !cards.length) return;
 
         let currentIndex = 0;
         const updateCarousel = () => {
             const cardsPerView = window.innerWidth >= 768 ? 3 : 1;
             const slidePercentage = (100 / cardsPerView);
-            
-            track.style.transform = `translateX(-${currentIndex * slidePercentage}%)`;
+
+            carousel.style.transform = `translateX(-${currentIndex * slidePercentage}%)`;
             prevButton.disabled = currentIndex === 0;
             nextButton.disabled = currentIndex >= cards.length - cardsPerView;
-            
+
             // Update indicators
             const dots = indicators.querySelectorAll('.indicator-dot');
             dots.forEach((dot, index) => {
