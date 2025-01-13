@@ -147,58 +147,73 @@ function initCarousel() {
         showSlide(currentIndex);
     }, 5000);
 
-    // New Code for Services Carousel
+    // Services Carousel
     const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const nextButton = document.querySelector('.carousel-button.right');
+    if (!track) return;
+
+    const cards = Array.from(document.querySelectorAll('.service-card'));
     const prevButton = document.querySelector('.carousel-button.left');
-    const slideWidth = slides[0].getBoundingClientRect().width;
+    const nextButton = document.querySelector('.carousel-button.right');
+    
+    let currentIndex = 0;
+    const cardsToShow = window.innerWidth < 768 ? 1 : 3;
+    const cardWidth = cards[0].offsetWidth + 32; // Including gap
 
-    // Arrange the slides next to one another
-    const setSlidePosition = (slide, index) => {
-        slide.style.left = slideWidth * index + 'px';
-    };
-    slides.forEach(setSlidePosition);
+    function updateCarousel() {
+        const offset = -currentIndex * cardWidth;
+        track.style.transform = `translateX(${offset}px)`;
+        
+        // Update active states
+        cards.forEach((card, index) => {
+            if (index >= currentIndex && index < currentIndex + cardsToShow) {
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            } else {
+                card.style.opacity = '0.5';
+                card.style.transform = 'scale(0.95)';
+            }
+        });
+    }
 
-    const moveToSlide = (track, currentSlide, targetSlide) => {
-        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-        currentSlide.classList.remove('current-slide');
-        targetSlide.classList.add('current-slide');
-    };
+    function moveNext() {
+        if (currentIndex < cards.length - cardsToShow) {
+            currentIndex++;
+            updateCarousel();
+        }
+    }
 
-    nextButton.addEventListener('click', () => {
-        const currentSlide = track.querySelector('.current-slide');
-        const nextSlide = currentSlide.nextElementSibling;
-        moveToSlide(track, currentSlide, nextSlide);
-    });
+    function movePrev() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    }
 
-    prevButton.addEventListener('click', () => {
-        const currentSlide = track.querySelector('.current-slide');
-        const prevSlide = currentSlide.previousElementSibling;
-        moveToSlide(track, currentSlide, prevSlide);
-    });
+    // Event Listeners
+    nextButton.addEventListener('click', moveNext);
+    prevButton.addEventListener('click', movePrev);
 
-    // Auto-scroll functionality for services carousel
-    let autoScroll = setInterval(() => {
-        const currentSlide = track.querySelector('.current-slide');
-        const nextSlide = currentSlide.nextElementSibling || slides[0];
-        moveToSlide(track, currentSlide, nextSlide);
-    }, 3000);
+    // Touch events for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-    // Pause auto-scroll on hover
-    track.addEventListener('mouseover', () => {
-        clearInterval(autoScroll);
-    });
+    track.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
 
-    track.addEventListener('mouseout', () => {
-        autoScroll = setInterval(() => {
-            const currentSlide = track.querySelector('.current-slide');
-            const nextSlide = currentSlide.nextElementSibling || slides[0];
-            moveToSlide(track, currentSlide, nextSlide);
-        }, 3000);
-    });
-}
-// Scroll Animations
+    track.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) {
+            moveNext();
+        } else if (touchEndX - touchStartX > 50) {
+            movePrev();
+        }
+    }, false);
+
+    // Initial update
+    updateCarousel();
+
+    // Scroll Animations
 function initAnimations() {
     const observerOptions = {
         threshold: 0.1,
