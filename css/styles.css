@@ -505,8 +505,6 @@ body {
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
-
-/* Services Section */
 /* Services Section */
 .services {
     padding: 8rem 0;
@@ -550,15 +548,31 @@ body {
     margin-bottom: 1rem;
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+.services-carousel {
     position: relative;
-    z-index: 2;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.carousel-track-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
 }
 
 .service-card {
+    min-width: 300px;
+    margin: 0 10px;
+    flex: 0 0 auto;
     background: var(--white);
     border-radius: var(--radius-lg);
     padding: 2rem;
@@ -639,6 +653,52 @@ body {
 
 .service-card:hover .service-features li::before {
     color: var(--white);
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-button.left {
+    left: 10px;
+}
+
+.carousel-button.right {
+    right: 10px;
+}
+
+.carousel-button i {
+    font-size: 20px;
+}
+
+.view-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-more-button {
+    background-color: #1a365d;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.view-more-button:hover {
+    background-color: #0f2543;
 }
 
 /* Responsive Design */
