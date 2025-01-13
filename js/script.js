@@ -1,239 +1,225 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const app = new WebsiteManager();
-});
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ===============================
+    // Navbar Functionality
+    // ===============================
+    const navbar = document.querySelector('.navbar');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-class WebsiteManager {
-    constructor() {
-        this.initNavigation();
-        this.initHeroSection();
-        this.initServices();
-        this.initTeamCards();
-        this.initContactForm();
-        this.initAnimations();
-        this.initBackToTop();
-    }
-
-    // Navigation and Mobile Menu
-    initNavigation() {
-        const navbar = document.querySelector('.navbar');
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const navLinks = document.querySelectorAll('.nav-links li');
-
-        // Mobile menu toggle
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                toggleMenu();
-            });
-
-            // Close menu when clicking on links
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    toggleMenu();
-                });
-            });
-        }
-
-        function toggleMenu() {
+    // Toggle mobile menu
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-            menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
+    });
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-    }
-
-    // Hero Section
-    initHeroSection() {
-        const texts = document.querySelectorAll('.changing-text');
-        let currentIndex = 0;
-
-        function animateText() {
-            texts.forEach(text => text.style.opacity = '0');
-            texts[currentIndex].style.opacity = '1';
-            currentIndex = (currentIndex + 1) % texts.length;
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
         }
+    });
 
-        setInterval(animateText, 3000);
-        animateText(); // Initial animation
-
-        // Hero images parallax effect
-        const heroImages = document.querySelectorAll('.image-box img');
-        window.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const xAxis = (window.innerWidth / 2 - clientX) / 50;
-            const yAxis = (window.innerHeight / 2 - clientY) / 50;
-
-            heroImages.forEach((image, index) => {
-                const factor = (3 - index) * 0.2;
-                image.style.transform = `translate(${xAxis * factor}px, ${yAxis * factor}px)`;
-            });
-        });
-    }
-
-    // Services Section
-    initServices() {
-        const track = document.querySelector('.carousel-track');
-        const prevButton = document.querySelector('.carousel-button.left');
-        const nextButton = document.querySelector('.carousel-button.right');
-        const cards = document.querySelectorAll('.service-card');
-
-        if (!track || !prevButton || !nextButton) return;
-
-        let currentPosition = 0;
-        const cardWidth = cards[0].offsetWidth;
-        const visibleCards = 3;
-        const maxPosition = cards.length - visibleCards;
-
-        prevButton.addEventListener('click', () => {
-            if (currentPosition > 0) {
-                currentPosition--;
-                updateCarouselPosition();
-            }
-        });
-
-        nextButton.addEventListener('click', () => {
-            if (currentPosition < maxPosition) {
-                currentPosition++;
-                updateCarouselPosition();
-            }
-        });
-
-        function updateCarouselPosition() {
-            track.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
-            prevButton.disabled = currentPosition === 0;
-            nextButton.disabled = currentPosition === maxPosition;
-        }
-    }
-
-    // Team Cards
-    initTeamCards() {
-        const teamCards = document.querySelectorAll('.team-card');
-        
-        teamCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.classList.add('flipped');
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.classList.remove('flipped');
-            });
-        });
-    }
-
-    // Contact Form
-    initContactForm() {
-        const form = document.querySelector('.contact-form');
-        if (!form) return;
-
-        form.addEventListener('submit', async (e) => {
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-
-            try {
-                // Add your form submission logic here
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                this.showNotification('Message sent successfully!', 'success');
-                form.reset();
-            } catch (error) {
-                this.showNotification('Error sending message. Please try again.', 'error');
-            } finally {
-                submitBtn.disabled = false;
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu after clicking
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
             }
         });
+    });
 
-        // Floating labels
-        const inputs = form.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.classList.add('focused');
-            });
+    // ===============================
+    // Services Carousel
+    // ===============================
+    const track = document.querySelector('.carousel-track');
+    if (track) {
+        const cards = Array.from(document.querySelectorAll('.service-card'));
+        const leftButton = document.querySelector('.carousel-button.left');
+        const rightButton = document.querySelector('.carousel-button.right');
+        
+        let currentIndex = 0;
+        let cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight);
+        let autoScrollInterval;
 
-            input.addEventListener('blur', () => {
-                if (!input.value) {
-                    input.parentElement.classList.remove('focused');
+        function updateButtons() {
+            leftButton.disabled = currentIndex === 0;
+            rightButton.disabled = currentIndex >= cards.length - getVisibleCards();
+        }
+
+        function getVisibleCards() {
+            const viewportWidth = window.innerWidth;
+            if (viewportWidth < 768) return 1;
+            if (viewportWidth < 1200) return 2;
+            return 3;
+        }
+
+        function moveCarousel(direction) {
+            if (direction === 'right' && currentIndex < cards.length - getVisibleCards()) {
+                currentIndex++;
+            } else if (direction === 'left' && currentIndex > 0) {
+                currentIndex--;
+            }
+            
+            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            updateButtons();
+        }
+
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                if (currentIndex >= cards.length - getVisibleCards()) {
+                    currentIndex = -1;
                 }
-            });
+                moveCarousel('right');
+            }, 5000);
+        }
+
+        leftButton.addEventListener('click', () => {
+            moveCarousel('left');
+            clearInterval(autoScrollInterval);
+            startAutoScroll();
+        });
+
+        rightButton.addEventListener('click', () => {
+            moveCarousel('right');
+            clearInterval(autoScrollInterval);
+            startAutoScroll();
+        });
+
+        track.addEventListener('mouseenter', () => {
+            clearInterval(autoScrollInterval);
+        });
+
+        track.addEventListener('mouseleave', () => {
+            startAutoScroll();
+        });
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight);
+                track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+                updateButtons();
+            }, 250);
+        });
+
+        updateButtons();
+        startAutoScroll();
+    }
+
+    // ===============================
+    // Contact Form Validation
+    // ===============================
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic form validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // If validation passes, you can submit the form
+            // Add your form submission logic here
+            alert('Thank you for your message. We will get back to you soon!');
+            contactForm.reset();
         });
     }
 
-    // Animations
-    initAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('[data-aos]').forEach(el => {
-            observer.observe(el);
-        });
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
+    // ===============================
+    // Testimonials Slider (if needed)
+    // ===============================
+    const testimonialsTrack = document.querySelector('.testimonials-track');
+    if (testimonialsTrack) {
+        let testimonialIndex = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        
+        function showTestimonial(index) {
+            testimonialsTrack.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        setInterval(() => {
+            testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+            showTestimonial(testimonialIndex);
+        }, 6000);
+    }
+
+    // ===============================
+    // Animation on Scroll
+    // ===============================
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observerOptions = {
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
+
+    // ===============================
     // Back to Top Button
-    initBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        if (!backToTop) return;
-
+    // ===============================
+    const backToTopButton = document.querySelector('.back-to-top');
+    if (backToTopButton) {
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 500) {
-                backToTop.classList.add('visible');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
             } else {
-                backToTop.classList.remove('visible');
+                backToTopButton.classList.remove('visible');
             }
         });
 
-        backToTop.addEventListener('click', () => {
+        backToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
     }
-
-    // Notification System
-    showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <span class="notification-message">${message}</span>
-                <button class="notification-close">&times;</button>
-            </div>
-        `;
-
-        document.body.appendChild(notification);
-        setTimeout(() => notification.classList.add('show'), 10);
-
-        const close = () => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        };
-
-        notification.querySelector('.notification-close').addEventListener('click', close);
-        setTimeout(close, 5000);
-    }
-}
+});
