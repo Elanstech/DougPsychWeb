@@ -70,21 +70,10 @@ function initNavigation() {
     
     let lastScroll = 0;
 
- // Handle scroll
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    navbar.classList.add('scrolled'); // Always keep the scrolled class
-
-    // Hide/show navbar on scroll
-    if (currentScroll > lastScroll && currentScroll > 500) {
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        navbar.style.transform = 'translateY(0)';
-    }
-    
-    lastScroll = currentScroll;
-    });
-
+    // Handle scroll - only for hiding/showing navbar
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
         // Hide/show navbar on scroll
         if (currentScroll > lastScroll && currentScroll > 500) {
             navbar.style.transform = 'translateY(-100%)';
