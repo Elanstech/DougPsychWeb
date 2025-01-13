@@ -507,6 +507,7 @@ body {
 }
 
 /* Services Section */
+/* Services Section */
 .services {
     padding: 8rem 0;
     background: linear-gradient(135deg, rgba(26, 54, 93, 0.05) 0%, rgba(196, 164, 85, 0.05) 100%);
@@ -640,6 +641,60 @@ body {
     color: var(--white);
 }
 
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-container {
+        padding: 0 1rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .service-features li {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-header h2 {
+        font-size: 1.75rem;
+    }
+
+    .service-card {
+        padding: 1rem;
+    }
+
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    .service-card h3 {
+        font-size: 1rem;
+    }
+
+    .service-features li {
+        font-size: 0.75rem;
+    }
+}
 /* Team Section */
 .team {
     padding: 8rem 0;
