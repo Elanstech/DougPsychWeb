@@ -3,15 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 class WebsiteManager {
-    constructor() {
-        this.initNavigation();
-        this.initHeroSection();
-        this.initServices();
-        this.initTeamCarousel();
-        this.initContactForm();
-        this.initAnimations();
-        this.initBackToTop();
-    }
+  constructor() {
+    this.initNavigation();
+    this.initHeroSection();
+    this.initServices();
+    this.initTeamCarousel();
+    this.initPublicationSection(); // Add this line
+    this.initContactForm();
+    this.initAnimations();
+    this.initBackToTop();
+}
 
     // Navigation Management
     initNavigation() {
@@ -199,6 +200,61 @@ class WebsiteManager {
         updateCarousel();
         startAutoScroll();
     }
+
+    // Add this method to your WebsiteManager class
+initPublicationSection() {
+    const bookCover = document.querySelector('.book-cover');
+    const floatingElements = document.querySelectorAll('.float-element');
+    
+    if (bookCover) {
+        // Enhance 3D effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const xAxis = (window.innerWidth / 2 - clientX) / 25;
+            const yAxis = (window.innerHeight / 2 - clientY) / 25;
+            
+            bookCover.style.transform = `rotateY(${30 + xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset transform on mouse leave
+        document.addEventListener('mouseleave', () => {
+            bookCover.style.transform = 'rotateY(30deg) rotateX(0)';
+        });
+    }
+
+    // Add hover effect for floating elements
+    floatingElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.2}s`;
+        
+        element.addEventListener('mouseenter', () => {
+            element.style.transform = 'scale(1.1)';
+            element.style.zIndex = '10';
+        });
+
+        element.addEventListener('mouseleave', () => {
+            element.style.transform = '';
+            element.style.zIndex = '';
+        });
+    });
+
+    // Optional: Add intersection observer for animation on scroll
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe publication section elements
+    const elements = document.querySelectorAll('.book-3d, .highlight-card, .feature-list li');
+    elements.forEach(el => observer.observe(el));
+}
 
     // Contact Form
     initContactForm() {
