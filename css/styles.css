@@ -748,10 +748,9 @@ body.menu-open {
 
 
 
-/* Modern Services Section - 2024 Style */
 /* Services Section Styles */
 .services-section {
-    background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 50%, #1a365d 100%);
+    background: linear-gradient(135deg, #1a365d 0%, #234876 30%, #2a4a7f 50%, #b8860b 80%, #ffd700 100%);
     color: #fff;
     padding: 6rem 0;
     position: relative;
@@ -765,10 +764,24 @@ body.menu-open {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(26, 54, 93, 0.2) 70%);
     pointer-events: none;
 }
-
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.services-section {
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
+}
 /* Section Header */
 .section-header {
     text-align: center;
