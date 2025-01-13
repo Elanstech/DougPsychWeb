@@ -70,16 +70,20 @@ function initNavigation() {
     
     let lastScroll = 0;
 
-    // Handle scroll
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        // Add/remove scrolled class
-        if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+ // Handle scroll
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    navbar.classList.add('scrolled'); // Always keep the scrolled class
+
+    // Hide/show navbar on scroll
+    if (currentScroll > lastScroll && currentScroll > 500) {
+        navbar.style.transform = 'translateY(-100%)';
+    } else {
+        navbar.style.transform = 'translateY(0)';
+    }
+    
+    lastScroll = currentScroll;
+    });
 
         // Hide/show navbar on scroll
         if (currentScroll > lastScroll && currentScroll > 500) {
