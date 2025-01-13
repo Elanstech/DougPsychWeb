@@ -90,6 +90,7 @@ body {
     transition: all var(--transition-base);
 }
 
+/* REPLACE the navbar.scrolled styles */
 .navbar.scrolled {
     padding: 0.5rem 0;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
@@ -194,11 +195,12 @@ body {
     transition: all var(--transition-base);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .button-overlay {
