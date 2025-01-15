@@ -21,71 +21,78 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    
-    <!-- Navigation -->
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="#" class="logo">
-            <div class="logo-container">
-                <img src="logo.png" alt="Dr. Doug Uhlig Logo" class="logo-image">
-            </div>
-        </a>
-        
-        <!-- Mobile Menu Button -->
-        <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
-            <div class="menu-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <!-- LOGO -->
+      <a href="#" class="logo-area">
+        <img src="logo.png" alt="Site Logo"/>
+        <span>Doug Uhlig</span>
+      </a>
 
-        <!-- Navigation Menu -->
-        <div class="nav-menu">
-            <ul class="nav-links">
-                <li><a href="#home" class="active"><span>Home</span></a></li>
-                <li><a href="#about"><span>About</span></a></li>
-                <li><a href="#services"><span>Services</span></a></li>
-                <li><a href="#team"><span>Team</span></a></li>
-                <li><a href="#contact"><span>Contact</span></a></li>
-            </ul>
-            <button class="cta-button magnetic">
-                Book Session
-                <span class="button-overlay"></span>
-            </button>
-        </div>
-    </div>
-</nav>
+      <!-- MENU TOGGLE (MOBILE) -->
+      <button class="menu-toggle" aria-label="Toggle Menu">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
 
-    <!-- Hero Section -->
-<section class="hero-section">
-    <div class="hero-content">
-        <p class="hero-tagline">Welcome to</p>
-        <h1 class="hero-title">
-            Doug Uhlig
-            <span>Psychological Services</span>
-        </h1>
-        <p class="hero-description">
-            Bridging Eastern wisdom and Western innovation, we harmonize tradition and modernity to bring transformative psychological insights and solutions to life. Let us guide you on a journey of balanced growth and exceptional understanding.        </p>
-        <div class="hero-cta">
-            <a href="#" class="cta-button cta-primary">Get Started</a>
-            <a href="#" class="cta-button cta-secondary">Learn More</a>
-        </div>
+      <!-- NAV -->
+      <nav>
+        <ul>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="#" class="cta-btn">Book Session</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    
-    <div class="hero-images">
-        <div class="hero-image image-1">
-            <img src="front1.jpg" alt="Feature Image 1">
+  </header>
+
+  <!-- HERO SECTION with 3 SLIDES -->
+  <section class="hero-section" id="home">
+    <div class="slider-container">
+      
+      <!-- Slide 1 -->
+      <div class="slide active"
+           style="background-image: url('front.jpg');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h1>Modern Psychological Care</h1>
+          <p>Discover the power of therapy and mindfulness in a supportive environment.</p>
+          <a href="#services" class="hero-btn">Learn More</a>
         </div>
-        <div class="hero-image image-2">
-            <img src="front.jpg" alt="Feature Image 2">
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide"
+           style="background-image: url('Slide2.jpg');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h1>Guiding You to Wellness</h1>
+          <p>We combine Eastern wisdom and Western innovation for a balanced approach.</p>
+          <a href="#about" class="hero-btn">Our Approach</a>
         </div>
-        <div class="hero-image image-3">
-            <img src="Backround1.jpeg" alt="Feature Image 3">
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide"
+           style="background-image: url('Slide3.jpg');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h1>Empower Your Mind</h1>
+          <p>Take the next step toward personal growth and self-discovery.</p>
+          <a href="#contact" class="hero-btn">Get Started</a>
         </div>
+      </div>
+
     </div>
-</section>
-  
+  </section>
+
     
     <!-- Services Section -->
 
