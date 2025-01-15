@@ -1,284 +1,193 @@
-class HeroController {
-    constructor() {
-        // Core elements
-        this.currentSlide = 0;
-        this.slides = document.querySelectorAll('.hero-slide');
-        this.dots = document.querySelectorAll('.nav-dot');
-        this.hamburger = document.querySelector('.hamburger');
-        this.navMenu = document.querySelector('.nav-menu');
-        
-        // State management
-        this.autoPlayInterval = null;
-        this.isTransitioning = false;
-        this.isMobile = window.innerWidth <= 768;
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Core Variables
+    const heroSlider = {
+        slides: document.querySelectorAll('.hero-slide'),
+        dots: document.querySelectorAll('.nav-dot'),
+        progressBar: document.querySelector('.progress-bar'),
+        currentSlide: 0,
+        slideInterval: null,
+        intervalDuration: 5000, // 5 seconds per slide
+    };
 
-        // Initialize
-        this.init();
-    }
+    // Initialize Hero Slider
+    const initHeroSlider = () => {
+        // Set up initial state
+        updateSlide(0);
+        startSlideTimer();
 
-    init() {
-        // Initialize all components
-        this.setupEventListeners();
-        this.setupMobileMenu();
-        this.initParallax();
-        this.initBubbles();
-        this.initScrollEffects();
-        this.startAutoPlay();
-    }
-
-    setupEventListeners() {
-        // Navigation dots click events
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
+        // Add event listeners for navigation dots
+        heroSlider.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                updateSlide(index);
+                resetSlideTimer();
+            });
         });
 
-        // Touch swipe events
+        // Add touch support for mobile devices
         let touchStartX = 0;
-        const hero = document.querySelector('.hero');
+        let touchEndX = 0;
 
-        hero.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        }, { passive: true });
+        document.querySelector('.hero-slider').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
 
-        hero.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
+        document.querySelector('.hero-slider').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        // Handle touch swipe
+        const handleSwipe = () => {
+            const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
 
-            if (Math.abs(diff) > 50) { // Minimum swipe distance
+            if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
-                    this.nextSlide();
+                    // Swipe left - next slide
+                    updateSlide((heroSlider.currentSlide + 1) % heroSlider.slides.length);
                 } else {
-                    this.previousSlide();
+                    // Swipe right - previous slide
+                    updateSlide(heroSlider.currentSlide === 0 ? heroSlider.slides.length - 1 : heroSlider.currentSlide - 1);
                 }
+                resetSlideTimer();
             }
-        }, { passive: true });
-
-        // Mouse hover events for autoplay
-        hero.addEventListener('mouseenter', () => this.stopAutoPlay());
-        hero.addEventListener('mouseleave', () => this.startAutoPlay());
-
-        // Window resize event
-        window.addEventListener('resize', () => {
-            this.isMobile = window.innerWidth <= 768;
-            this.handleResize();
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                this.previousSlide();
-            } else if (e.key === 'ArrowRight') {
-                this.nextSlide();
-            }
-        });
-    }
-
-    setupMobileMenu() {
-        if (!this.hamburger || !this.navMenu) return;
-
-        this.hamburger.addEventListener('click', () => {
-            this.hamburger.classList.toggle('active');
-            this.navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!this.navMenu.contains(e.target) && !this.hamburger.contains(e.target)) {
-                this.hamburger.classList.remove('active');
-                this.navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-
-    initParallax() {
-        if (this.isMobile) return;
-
-        const handleParallax = (e) => {
-            requestAnimationFrame(() => {
-                const slides = document.querySelectorAll('.slide-image');
-                slides.forEach(slide => {
-                    const speed = 0.05;
-                    const x = (window.innerWidth - e.clientX) * speed;
-                    const y = (window.innerHeight - e.clientY) * speed;
-                    slide.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
-                });
-            });
         };
+    };
 
-        document.querySelector('.hero').addEventListener('mousemove', handleParallax);
-    }
+    // Update Slide Function
+    const updateSlide = (index) => {
+        // Remove active class from current slide and dot
+        heroSlider.slides[heroSlider.currentSlide].classList.remove('active');
+        heroSlider.dots[heroSlider.currentSlide].classList.remove('active');
 
-    initBubbles() {
-        const bubbleContainer = document.querySelector('.bubble-container');
-        if (!bubbleContainer) return;
+        // Update current slide index
+        heroSlider.currentSlide = index;
 
-        const createBubble = () => {
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            
-            // Random size between 50px and 200px
-            const size = Math.random() * 150 + 50;
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            
-            // Random position and animation duration
-            bubble.style.left = `${Math.random() * 100}%`;
-            bubble.style.animationDuration = `${Math.random() * 10 + 15}s`;
-            bubble.style.opacity = Math.random() * 0.3;
-            
-            bubbleContainer.appendChild(bubble);
-            
-            // Remove bubble after animation
-            bubble.addEventListener('animationend', () => {
-                bubble.remove();
+        // Add active class to new slide and dot
+        heroSlider.slides[index].classList.add('active');
+        heroSlider.dots[index].classList.add('active');
+
+        // Update progress bar
+        updateProgress(index);
+
+        // Trigger slide content animation
+        animateSlideContent(heroSlider.slides[index]);
+    };
+
+    // Progress Bar Animation
+    const updateProgress = (index) => {
+        const progress = ((index + 1) / heroSlider.slides.length) * 100;
+        heroSlider.progressBar.style.transform = `translateX(${progress - 100}%)`;
+    };
+
+    // Slide Timer Functions
+    const startSlideTimer = () => {
+        heroSlider.slideInterval = setInterval(() => {
+            updateSlide((heroSlider.currentSlide + 1) % heroSlider.slides.length);
+        }, heroSlider.intervalDuration);
+    };
+
+    const resetSlideTimer = () => {
+        clearInterval(heroSlider.slideInterval);
+        startSlideTimer();
+    };
+
+    // Animate Slide Content
+    const animateSlideContent = (slide) => {
+        const content = slide.querySelector('.slide-content');
+        content.style.opacity = '0';
+        content.style.transform = 'translateY(20px)';
+
+        // Trigger reflow
+        void content.offsetWidth;
+
+        // Add animation
+        content.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        content.style.opacity = '1';
+        content.style.transform = 'translateY(0)';
+    };
+
+    // Floating Bubbles Animation
+    const animateBubbles = () => {
+        const bubbles = document.querySelectorAll('.bubble');
+        bubbles.forEach((bubble, index) => {
+            bubble.style.animation = `float ${20 + index * 5}s infinite linear`;
+        });
+    };
+
+    // Smooth Scroll Function
+    const initSmoothScroll = () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-        };
+        });
+    };
 
-        // Create initial bubbles
-        for (let i = 0; i < 15; i++) {
-            createBubble();
-        }
-
-        // Continue creating bubbles
-        setInterval(createBubble, 3000);
-    }
-
-    initScrollEffects() {
-        const header = document.querySelector('.glass-header');
+    // Navbar Scroll Effect
+    const initNavbarEffect = () => {
+        const navbar = document.querySelector('.main-nav');
         let lastScroll = 0;
 
         window.addEventListener('scroll', () => {
-            requestAnimationFrame(() => {
-                const currentScroll = window.pageYOffset;
+            const currentScroll = window.pageYOffset;
 
-                // Header transparency
-                if (currentScroll > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+            // Add/remove background blur based on scroll position
+            if (currentScroll > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.8)';
+            }
 
-                // Header hide/show on scroll
-                if (currentScroll > lastScroll && currentScroll > 500) {
-                    header.style.transform = 'translateY(-100%)';
-                } else {
-                    header.style.transform = 'translateY(0)';
-                }
+            // Hide/show navbar based on scroll direction
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
 
-                lastScroll = currentScroll;
-            });
+            lastScroll = currentScroll;
         });
-    }
+    };
 
-    goToSlide(index) {
-        if (this.isTransitioning || index === this.currentSlide) return;
+    // Back to Top Button
+    const initBackToTop = () => {
+        const backToTop = document.querySelector('.back-to-top');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 1000) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
 
-        this.isTransitioning = true;
-        
-        // Update slides
-        this.slides[this.currentSlide].classList.remove('active');
-        this.dots[this.currentSlide].classList.remove('active');
-        
-        this.slides[index].classList.add('active');
-        this.dots[index].classList.add('active');
-
-        // Update current slide index
-        this.currentSlide = index;
-
-        // Reset transition lock
-        setTimeout(() => {
-            this.isTransitioning = false;
-        }, 600);
-    }
-
-    nextSlide() {
-        const next = (this.currentSlide + 1) % this.slides.length;
-        this.goToSlide(next);
-    }
-
-    previousSlide() {
-        const prev = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-        this.goToSlide(prev);
-    }
-
-    startAutoPlay() {
-        if (!this.autoPlayInterval) {
-            this.autoPlayInterval = setInterval(() => this.nextSlide(), 5000);
-        }
-    }
-
-    stopAutoPlay() {
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-            this.autoPlayInterval = null;
-        }
-    }
-
-    handleResize() {
-        // Reset transformations on mobile
-        if (this.isMobile) {
-            document.querySelectorAll('.slide-image').forEach(slide => {
-                slide.style.transform = 'none';
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         }
+    };
 
-        // Adjust header menu
-        if (!this.isMobile && this.navMenu.classList.contains('active')) {
-            this.hamburger.classList.remove('active');
-            this.navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-    }
-}
+    // Initialize everything
+    const init = () => {
+        initHeroSlider();
+        animateBubbles();
+        initSmoothScroll();
+        initNavbarEffect();
+        initBackToTop();
+    };
 
-// Initialize the hero section
-document.addEventListener('DOMContentLoaded', () => {
-    const hero = new HeroController();
-});
-
-// Smooth scroll implementation
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Back to top button functionality
-const backToTop = document.querySelector('.back-to-top');
-if (backToTop) {
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 500) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// Handle loading state
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    const loader = document.querySelector('.loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    }
+    // Start the application
+    init();
 });
