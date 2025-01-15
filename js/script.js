@@ -1,12 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Preloader
     const preloader = document.querySelector('.preloader');
+    
+    // Function to hide preloader
+    const hidePreloader = () => {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        preloader.style.pointerEvents = 'none';
+    };
+
+    // If everything loads immediately
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            preloader.style.opacity = '0';
-            preloader.style.visibility = 'hidden';
-        }, 500);
+        hidePreloader();
     });
+
+    // Fallback timeout in case load event doesn't fire
+    setTimeout(hidePreloader, 3000);
+});
 
     // Floating Navigation
     const navLinks = document.querySelectorAll('.nav-link');
