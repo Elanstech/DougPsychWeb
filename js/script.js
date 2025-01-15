@@ -1,660 +1,168 @@
-// Wait for DOM to load before initializing
 document.addEventListener('DOMContentLoaded', () => {
-    const app = new WebsiteManager();
-});
+    // Preloader
+    const preloader = document.querySelector('.preloader');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+        }, 500);
+    });
 
-class WebsiteManager {
-    constructor() {
-        // Initialize all components
-        this.initNavigation();
-        this.initHeroSection();
-        this.initServices();
-        this.initTeamCarousel();
-        this.initPublicationSection();
-        this.initGoogleReviews();
-        this.initContactForm();
-        this.initAnimations();
-        this.initBackToTop();
-    }
+    // Floating Navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            // Add active class to clicked link
+            e.currentTarget.classList.add('active');
+        });
+    });
 
-    // Navigation Management
-    initNavigation() {
-        const navbar = document.querySelector('.navbar');
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const navLinks = document.querySelectorAll('.nav-links li a');
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navContainer = document.querySelector('.nav-container');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+        navContainer.classList.toggle('mobile-menu-open');
+        mobileMenuToggle.classList.toggle('active');
+    });
 
-        if (menuToggle && navMenu) {
-            menuToggle.addEventListener('click', () => {
-                menuToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                document.body.classList.toggle('menu-open');
-                menuToggle.setAttribute('aria-expanded', 
-                    menuToggle.classList.contains('active'));
-            });
-        }
-
-        // Active link highlighting
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                if (navMenu.classList.contains('active')) {
-                    menuToggle.click();
-                }
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
         });
+    });
 
-        // Scroll effect for navbar
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    }
+    // Number Counting Animation
+    const animateCounters = (elements) => {
+        elements.forEach(el => {
+            const target = parseInt(el.dataset.value);
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 16ms is roughly one frame
 
-    // Hero Section with Parallax
-    initHeroSection() {
-        const heroImages = document.querySelectorAll('.hero-image');
-        const heroText = document.querySelector('.hero-text');
-        
-        // Parallax effect for hero images
-        window.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const xAxis = (window.innerWidth / 2 - clientX) / 50;
-            const yAxis = (window.innerHeight / 2 - clientY) / 50;
-
-            heroImages.forEach((image, index) => {
-                const factor = (3 - index) * 0.2;
-                image.style.transform = `translate(${xAxis * factor}px, ${yAxis * factor}px)`;
-            });
-
-            if (heroText) {
-                heroText.style.transform = `translate(${xAxis * -0.1}px, ${yAxis * -0.1}px)`;
-            }
-        });
-
-        // Reset transforms when mouse leaves
-        document.addEventListener('mouseleave', () => {
-            heroImages.forEach(image => {
-                image.style.transform = 'translate(0, 0)';
-            });
-            if (heroText) {
-                heroText.style.transform = 'translate(0, 0)';
-            }
-        });
-    }
-
-    // Services Carousel
-    initServices() {
-        const track = document.querySelector('.carousel-track');
-        const prevButton = document.querySelector('.carousel-button.left');
-        const nextButton = document.querySelector('.carousel-button.right');
-        const cards = document.querySelectorAll('.service-card');
-        const indicators = document.querySelector('.service-indicators');
-
-        if (!track || !cards.length) return;
-
-        let currentPosition = 0;
-        const cardWidth = cards[0].offsetWidth + 32; // Including gap
-        const visibleCards = window.innerWidth > 768 ? 3 : 1;
-        const maxPosition = Math.max(0, cards.length - visibleCards);
-        let autoScrollInterval;
-
-        // Create indicator dots
-        if (indicators) {
-            indicators.innerHTML = '';
-            for (let i = 0; i <= maxPosition; i++) {
-                const dot = document.createElement('button');
-                dot.classList.add('indicator-dot');
-                dot.setAttribute('aria-label', `Service Slide ${i + 1}`);
-                indicators.appendChild(dot);
-            }
-        }
-
-        const updateCarousel = () => {
-            track.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
-            prevButton.disabled = currentPosition === 0;
-            nextButton.disabled = currentPosition >= maxPosition;
-
-            // Update indicator dots
-            if (indicators) {
-                const dots = document.querySelectorAll('.indicator-dot');
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentPosition);
-                });
-            }
-
-            // Update card visibility with smooth transitions
-            cards.forEach((card, index) => {
-                const isVisible = index >= currentPosition && 
-                                index < currentPosition + visibleCards;
-                card.style.opacity = isVisible ? '1' : '0.3';
-                card.style.transform = isVisible ? 'scale(1)' : 'scale(0.9)';
-            });
-        };
-
-        // Auto-scroll functionality
-        const startAutoScroll = () => {
-            stopAutoScroll();
-            autoScrollInterval = setInterval(() => {
-                if (currentPosition < maxPosition) {
-                    currentPosition++;
+            let current = 0;
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    el.textContent = Math.round(current);
+                    requestAnimationFrame(updateCounter);
                 } else {
-                    currentPosition = 0;
+                    el.textContent = target;
                 }
-                updateCarousel();
-            }, 5000);
-        };
+            };
 
-        const stopAutoScroll = () => {
-            if (autoScrollInterval) {
-                clearInterval(autoScrollInterval);
+            updateCounter();
+        });
+    };
+
+    // Animate counters in hero and social proof sections
+    const heroStats = document.querySelectorAll('.hero-stats .stat-number');
+    const socialProofStats = document.querySelectorAll('.social-proof .proof-number');
+    
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters([...heroStats, ...socialProofStats]);
+                statsObserver.disconnect();
             }
-        };
+        });
+    }, observerOptions);
 
-        // Event Listeners
-        prevButton?.addEventListener('click', () => {
-            if (currentPosition > 0) {
-                currentPosition--;
+    statsObserver.observe(document.querySelector('.hero-stats'));
+
+    // Team Carousel
+    const teamCarousel = document.querySelector('.team-carousel .carousel-track');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentIndex = 0;
+
+    const updateCarousel = () => {
+        const cardWidth = document.querySelector('.team-card').offsetWidth;
+        const gap = 30; // Should match CSS grid gap
+        teamCarousel.style.transform = `translateX(-${(cardWidth + gap) * currentIndex}px)`;
+    };
+
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
                 updateCarousel();
             }
         });
 
-        nextButton?.addEventListener('click', () => {
-            if (currentPosition < maxPosition) {
-                currentPosition++;
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = teamCarousel.children.length - 1;
+            if (currentIndex < maxIndex) {
+                currentIndex++;
                 updateCarousel();
             }
         });
+    }
 
-        // Touch events for mobile swipe
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            stopAutoScroll();
-        }, { passive: true });
-
-        track.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            const swipeDistance = touchStartX - touchEndX;
+    // Book 3D Effect
+    const book3d = document.querySelector('.book-3d');
+    if (book3d) {
+        book3d.addEventListener('mousemove', (e) => {
+            const { left, top, width, height } = book3d.getBoundingClientRect();
+            const x = (e.clientX - left) / width - 0.5;
+            const y = (e.clientY - top) / height - 0.5;
             
-            if (Math.abs(swipeDistance) > 50) {
-                if (swipeDistance > 0 && currentPosition < maxPosition) {
-                    currentPosition++;
-                } else if (swipeDistance < 0 && currentPosition > 0) {
-                    currentPosition--;
-                }
-                updateCarousel();
-            }
-            startAutoScroll();
+            book3d.style.transform = `
+                perspective(1000px) 
+                rotateX(${y * 15}deg) 
+                rotateY(${-x * 15}deg)
+            `;
         });
 
-        // Handle indicator clicks
-        if (indicators) {
-            indicators.addEventListener('click', (e) => {
-                if (e.target.classList.contains('indicator-dot')) {
-                    const dots = Array.from(indicators.children);
-                    currentPosition = dots.indexOf(e.target);
-                    updateCarousel();
-                }
-            });
-        }
-
-        // Initialize carousel
-        updateCarousel();
-        startAutoScroll();
-
-        // Pause auto-scroll on hover
-        track.addEventListener('mouseenter', stopAutoScroll);
-        track.addEventListener('mouseleave', startAutoScroll);
-    }
-
-    class TeamCarousel {
-    constructor() {
-        // Core elements
-        this.carousel = document.querySelector('.team-carousel');
-        this.prevBtn = document.querySelector('.prev-btn');
-        this.nextBtn = document.querySelector('.next-btn');
-        this.dotsContainer = document.querySelector('.carousel-dots');
-
-        // Configuration
-        this.currentSlide = 0;
-        this.autoPlayInterval = 5000; // 5 seconds between slides
-        this.slidesPerView = this.getSlidesPerView();
-        this.autoPlayTimer = null;
-        this.isDragging = false;
-        this.startPos = 0;
-        this.currentTranslate = 0;
-        this.prevTranslate = 0;
-
-        // Team members data
-        this.teamMembers = [
-            {
-                name: 'Angela Christina Ferri',
-                role: 'Clinical Psychologist',
-                image: 'images/team/angela.jpg',
-                specialties: ['Anxiety', 'Depression', 'Trauma'],
-                email: 'angela@douguhlig.com'
-            },
-            {
-                name: 'Jaqueline Galynsky',
-                role: 'Mental Health Counselor',
-                image: 'images/team/jaqueline.jpg',
-                specialties: ['CBT', 'Mindfulness', 'Stress'],
-                email: 'jaqueline@douguhlig.com'
-            },
-            {
-                name: 'Zbigniew Korczak',
-                role: 'Psychiatric Specialist',
-                image: 'images/team/zbigniew.jpg',
-                specialties: ['Psychiatry', 'Evaluation', 'Disorders'],
-                email: 'zbigniew@douguhlig.com'
-            },
-            {
-                name: 'Stephanie Palacios',
-                role: 'Family Therapist',
-                image: 'images/team/stephanie.jpg',
-                specialties: ['Family', 'Relationships', 'Parenting'],
-                email: 'stephanie@douguhlig.com'
-            },
-            {
-                name: 'Rashanda Allen',
-                role: 'Behavioral Therapist',
-                image: 'images/team/rashanda.jpg',
-                specialties: ['Behavioral', 'Cognitive', 'Therapy'],
-                email: 'rashanda@douguhlig.com'
-            },
-            {
-                name: 'Yunetta Baron',
-                role: 'Child Psychologist',
-                image: 'images/team/yunetta.jpg',
-                specialties: ['Children', 'Development', 'Play Therapy'],
-                email: 'yunetta@douguhlig.com'
-            },
-            {
-                name: 'Thomas Gerard Smith',
-                role: 'Trauma Specialist',
-                image: 'images/team/thomas.jpg',
-                specialties: ['Trauma', 'PTSD', 'Recovery'],
-                email: 'thomas@douguhlig.com'
-            }
-        ];
-
-        this.init();
-    }
-
-    init() {
-        this.renderSlides();
-        this.createDots();
-        this.updateCarousel();
-        this.bindEvents();
-        this.startAutoPlay();
-        this.setupTouchEvents();
-        this.setupResizeObserver();
-    }
-
-    getSlidesPerView() {
-        if (window.innerWidth <= 768) return 1;
-        if (window.innerWidth <= 1024) return 2;
-        return 3;
-    }
-
-    renderSlides() {
-        this.carousel.innerHTML = this.teamMembers.map((member, index) => `
-            <div class="team-slide" data-index="${index}">
-                <div class="card-inner">
-                    <div class="member-image">
-                        <img src="${member.image}" alt="${member.name}" loading="lazy">
-                        <div class="image-overlay"></div>
-                    </div>
-                    <div class="member-info">
-                        <h3>${member.name}</h3>
-                        <span class="role">${member.role}</span>
-                        <div class="specialties">
-                            ${member.specialties.map(specialty => 
-                                `<span>${specialty}</span>`
-                            ).join('')}
-                        </div>
-                        <a href="mailto:${member.email}" class="contact-btn">
-                            <i class="fas fa-envelope"></i> Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    createDots() {
-        const numberOfDots = Math.ceil(this.teamMembers.length / this.slidesPerView);
-        this.dotsContainer.innerHTML = Array.from({ length: numberOfDots }, (_, i) => `
-            <div class="dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>
-        `).join('');
-    }
-
-    updateCarousel() {
-        const slides = document.querySelectorAll('.team-slide');
-        const slideWidth = 100 / this.slidesPerView;
-        const translateValue = -this.currentSlide * slideWidth;
-        
-        slides.forEach((slide, index) => {
-            slide.style.transform = `translateX(${translateValue}%)`;
-            slide.classList.toggle('active', 
-                index >= this.currentSlide && 
-                index < this.currentSlide + this.slidesPerView
-            );
-        });
-
-        // Update dots
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === Math.floor(this.currentSlide / this.slidesPerView));
+        book3d.addEventListener('mouseleave', () => {
+            book3d.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
         });
     }
 
-    bindEvents() {
-        // Navigation buttons
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
-
-        // Dot navigation
-        this.dotsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('dot')) {
-                const index = parseInt(e.target.dataset.index);
-                this.goToSlide(index * this.slidesPerView);
-            }
-        });
-
-        // Pause autoplay on hover
-        this.carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
-        this.carousel.addEventListener('mouseleave', () => this.startAutoPlay());
-    }
-
-    setupTouchEvents() {
-        this.carousel.addEventListener('touchstart', (e) => this.touchStart(e));
-        this.carousel.addEventListener('touchmove', (e) => this.touchMove(e));
-        this.carousel.addEventListener('touchend', () => this.touchEnd());
-    }
-
-    touchStart(e) {
-        this.isDragging = true;
-        this.startPos = e.touches[0].clientX;
-        this.stopAutoPlay();
-    }
-
-    touchMove(e) {
-        if (!this.isDragging) return;
-        const currentPosition = e.touches[0].clientX;
-        const diff = currentPosition - this.startPos;
-        
-        if (Math.abs(diff) > 50) { // Minimum drag distance
-            this.currentTranslate = this.prevTranslate + diff;
-            requestAnimationFrame(() => this.updateSlidePosition());
-        }
-    }
-
-    touchEnd() {
-        this.isDragging = false;
-        const movedBy = this.currentTranslate - this.prevTranslate;
-        
-        if (Math.abs(movedBy) > 100) { // Minimum distance for slide change
-            if (movedBy < 0) this.nextSlide();
-            else this.prevSlide();
-        }
-        
-        this.startAutoPlay();
-    }
-
-    updateSlidePosition() {
-        this.carousel.style.transform = `translateX(${this.currentTranslate}px)`;
-    }
-
-    prevSlide() {
-        if (this.currentSlide > 0) {
-            this.currentSlide--;
-            this.updateCarousel();
-        }
-    }
-
-    nextSlide() {
-        if (this.currentSlide < this.teamMembers.length - this.slidesPerView) {
-            this.currentSlide++;
-            this.updateCarousel();
-        }
-    }
-
-    goToSlide(index) {
-        this.currentSlide = Math.min(
-            Math.max(0, index),
-            this.teamMembers.length - this.slidesPerView
-        );
-        this.updateCarousel();
-    }
-
-    startAutoPlay() {
-        this.stopAutoPlay();
-        this.autoPlayTimer = setInterval(() => this.nextSlide(), this.autoPlayInterval);
-    }
-
-    stopAutoPlay() {
-        if (this.autoPlayTimer) {
-            clearInterval(this.autoPlayTimer);
-            this.autoPlayTimer = null;
-        }
-    }
-
-    setupResizeObserver() {
-        window.addEventListener('resize', () => {
-            const newSlidesPerView = this.getSlidesPerView();
-            if (newSlidesPerView !== this.slidesPerView) {
-                this.slidesPerView = newSlidesPerView;
-                this.currentSlide = 0;
-                this.createDots();
-                this.updateCarousel();
-            }
-        });
-    }
-}
-
-// Initialize the carousel when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new TeamCarousel();
-});
-
-    // Publication Section
-    initPublicationSection() {
-        const bookCover = document.querySelector('.book-cover');
-        const floatingElements = document.querySelectorAll('.float-element');
-        
-        if (bookCover) {
-            // 3D effect on mouse move
-            document.addEventListener('mousemove', (e) => {
-                const { clientX, clientY } = e;
-                const xAxis = (window.innerWidth / 2 - clientX) / 25;
-                const yAxis = (window.innerHeight / 2 - clientY) / 25;
-                
-                bookCover.style.transform = `rotateY(${30 + xAxis}deg) rotateX(${yAxis}deg)`;
-            });
-
-            // Reset transform on mouse leave
-            document.addEventListener('mouseleave', () => {
-                bookCover.style.transform = 'rotateY(30deg) rotateX(0)';
-            });
-        }
-
-        // Floating elements animation
-        floatingElements.forEach((element, index) => {
-            element.style.animationDelay = `${index * 0.2}s`;
-            
-            element.addEventListener('mouseenter', () => {
-                element.style.transform = 'scale(1.1)';
-                element.style.zIndex = '10';
-            });
-
-            element.addEventListener('mouseleave', () => {
-                element.style.transform = '';
-                element.style.zIndex = '';
-            });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        const elements = document.querySelectorAll('.book-3d, .highlight-card, .feature-list li');
-        elements.forEach(el => observer.observe(el));
-    }
-
-    // Google Reviews Integration
-    initGoogleReviews() {
-        window.addEventListener('load', () => {
-            const reviewsContainer = document.querySelector('.reviews-widget-container');
-            if (!reviewsContainer) return;
-
-            reviewsContainer.classList.add('loading');
-
-            const checkWidget = setInterval(() => {
-                const widget = document.querySelector('.elfsight-app-345fc429-0347-4493-8043-afbb1cb52b6e iframe');
-                if (widget) {
-                    reviewsContainer.classList.remove('loading');
-                    clearInterval(checkWidget);
-                }
-            }, 500);
-        });
-    }
-
-    // Contact Form
-    initContactForm() {
-        const form = document.getElementById('contactForm');
-        
-        if (!form) return;
-
-        // Form submission
-        form.addEventListener('submit', (e) => {
+    // Form Submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+            // Collect form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
 
-            // Form validation
-            if (!this.validateForm(name, email, message)) {
-                return;
+            // Basic validation
+            const isValid = Object.values(data).every(value => value.trim() !== '');
+            
+            if (isValid) {
+                // TODO: Replace with actual form submission logic
+                alert('Message sent successfully!');
+                contactForm.reset();
+            } else {
+                alert('Please fill out all fields.');
             }
-
-            // Construct mailto URL
-            const mailtoUrl = `mailto:contact@douguhlig.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\n\n${message}`
-            )}`;
-
-            // Show success notification
-            this.showNotification('Thank you for your message! Opening your email client...', 'success');
-
-            // Open mailto link
-            window.location.href = mailtoUrl;
-        });
-
-        // Add floating label animation
-        const formGroups = document.querySelectorAll('.form-group');
-        formGroups.forEach(group => {
-            const input = group.querySelector('input, textarea');
-            if (!input) return;
-
-            input.addEventListener('focus', () => {
-                group.classList.add('focused');
-            });
-
-            input.addEventListener('blur', () => {
-                if (!input.value) {
-                    group.classList.remove('focused');
-                }
-            });
-
-            // Check initial state
-            if (input.value) {
-                group.classList.add('focused');
-            }
-        });
-    }
-
-    // Form validation helper
-    validateForm(name, email, message) {
-        if (!name.trim()) {
-            this.showNotification('Please enter your name', 'error');
-            return false;
-        }
-
-        if (!email.trim() || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            this.showNotification('Please enter a valid email address', 'error');
-            return false;
-        }
-
-        if (!message.trim()) {
-            this.showNotification('Please enter your message', 'error');
-            return false;
-        }
-
-        return true;
-    }
-
-    // Animations
-    initAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('[data-aos]').forEach(el => {
-            observer.observe(el);
         });
     }
 
     // Back to Top Button
-    initBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        if (!backToTop) return;
-
-        const scrollThreshold = 500;
-        let isScrolling = false;
-
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
         window.addEventListener('scroll', () => {
-            if (!isScrolling) {
-                window.requestAnimationFrame(() => {
-                    if (window.pageYOffset > scrollThreshold) {
-                        backToTop.classList.add('visible');
-                    } else {
-                        backToTop.classList.remove('visible');
-                    }
-                    isScrolling = false;
-                });
-                isScrolling = true;
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
             }
         });
 
-        backToTop.addEventListener('click', () => {
+        backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -662,51 +170,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Notification System
-    showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <span class="notification-message">${message}</span>
-                <button class="notification-close">&times;</button>
-            </div>
-        `;
+    // Floating Card Animations
+    const floatingCards = document.querySelectorAll('.floating-elements .float-card');
+    floatingCards.forEach(card => {
+        const speed = card.dataset.speed || 2;
+        card.style.transform = `translateY(${Math.random() * 50}px)`;
+        
+        const animate = () => {
+            const yPos = parseFloat(card.style.transform.replace('translateY(', ''));
+            const newYPos = yPos + Math.sin(Date.now() * 0.001) * speed;
+            card.style.transform = `translateY(${newYPos}px)`;
+            requestAnimationFrame(animate);
+        };
+        
+        animate();
+    });
 
-        document.body.appendChild(notification);
-        setTimeout(() => notification.classList.add('show'), 10);
-
-        const close = () => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
+    // Particle Network Background (simplified)
+    const particleNetwork = document.querySelector('.particle-network');
+    if (particleNetwork) {
+        const createParticle = () => {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            particleNetwork.appendChild(particle);
         };
 
-        // Close button event listener
-        notification.querySelector('.notification-close').addEventListener('click', close);
-
-        // Auto close after 5 seconds
-        setTimeout(close, 5000);
-    }
-
-    // Utility method for handling loading states
-    setLoadingState(element, isLoading) {
-        if (isLoading) {
-            element.classList.add('loading');
-            element.setAttribute('disabled', '');
-        } else {
-            element.classList.remove('loading');
-            element.removeAttribute('disabled');
+        for (let i = 0; i < 50; i++) {
+            createParticle();
         }
     }
+});
 
-    // Utility method for handling errors
-    handleError(error, fallbackMessage = 'Something went wrong') {
-        console.error('Error:', error);
-        this.showNotification(fallbackMessage, 'error');
-    }
+// Google Maps Initialization (placeholder)
+function initMap() {
+    const location = { lat: 40.5885, lng: -73.9538 }; // Brooklyn coordinates
+    const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: location,
+        styles: [
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    { "color": "#e9e9e9" },
+                    { "lightness": 17 }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [
+                    { "color": "#f5f5f5" },
+                    { "lightness": 20 }
+                ]
+            }
+        ]
+    });
+
+    new google.maps.Marker({
+        position: location,
+        map: map,
+        title: 'Dr. Doug Uhlig Psychology Office'
+    });
 }
 
-// Initialize the website manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const app = new WebsiteManager();
+// Error Handling
+window.addEventListener('error', (event) => {
+    console.error('Unhandled error:', event.error);
+    // Optional: Send error to a logging service
 });
