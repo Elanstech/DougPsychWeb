@@ -589,51 +589,6 @@ a {
     }
 }
 
-/* Interactive Cursor */
-.cursor {
-    display: none;
-}
-
-@media (min-width: 1024px) {
-    .cursor {
-        display: block;
-        position: fixed;
-        pointer-events: none;
-        z-index: var(--z-maximum);
-    }
-
-    .cursor-dot {
-        width: 8px;
-        height: 8px;
-        background: var(--accent);
-        border-radius: var(--radius-full);
-        position: fixed;
-        transform: translate(-50%, -50%);
-        transition: all var(--transition-fast);
-    }
-
-    .cursor-circle {
-        width: 40px;
-        height: 40px;
-        border: 2px solid var(--accent);
-        border-radius: var(--radius-full);
-        position: fixed;
-        transform: translate(-50%, -50%);
-        transition: all var(--transition-base);
-    }
-
-    /* Cursor hover effects */
-    .magnetic-hover .cursor-circle {
-        transform: translate(-50%, -50%) scale(1.5);
-        background: rgba(196, 164, 85, 0.1);
-    }
-
-    .magnetic-hover .cursor-dot {
-        transform: translate(-50%, -50%) scale(0.5);
-        background: var(--accent-light);
-    }
-}
-
 /* Smooth Scroll Indicator */
 .scroll-guide {
     position: absolute;
