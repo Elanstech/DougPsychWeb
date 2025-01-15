@@ -114,15 +114,15 @@ body {
 }
 
 .hero-slide:nth-child(1) .slide-bg {
-    background-image: url('path-to-your-image-1.jpg');
+    background-image: url('front1.jpg');
 }
 
 .hero-slide:nth-child(2) .slide-bg {
-    background-image: url('path-to-your-image-2.jpg');
+    background-image: url('front.jpg');
 }
 
 .hero-slide:nth-child(3) .slide-bg {
-    background-image: url('path-to-your-image-3.jpg');
+    background-image: url('backround1.jpeg');
 }
 
 .slide-content {
