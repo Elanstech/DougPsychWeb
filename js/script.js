@@ -10,7 +10,7 @@ class WebsiteManager {
         this.initLoader();
         this.initCursor();
         this.initNavigation();
-        this.initParallax();
+        this.HeroSlideshow();
         this.initAnimations();
         this.initCarousels();
         this.initBook3D();
@@ -132,32 +132,167 @@ class WebsiteManager {
         });
     }
 
-    // Parallax Effects
-    initParallax() {
-        const heroImages = document.querySelectorAll('.parallax-image');
-        
-        window.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const x = (window.innerWidth / 2 - clientX) / 50;
-            const y = (window.innerHeight / 2 - clientY) / 50;
+   class HeroSlideshow {
+    constructor() {
+        this.images = document.querySelectorAll('.hero-image');
+        this.currentIndex = 0;
+        this.interval = 3000; // 3 seconds per slide
+        this.isTransitioning = false;
+        this.slideInterval = null;
+        this.parallaxEnabled = window.innerWidth > 768;
+        this.mouseMoveThrottle = null;
+        this.init();
+    }
 
-            heroImages.forEach((image, index) => {
-                const speed = image.dataset.speed || (3 - index) * 0.2;
-                image.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-            });
+    init() {
+        if (!this.images.length) return;
+        
+        // Initialize parallax effect
+        this.initParallax();
+        
+        // Start slideshow
+        this.startSlideshow();
+
+        // Handle window resize
+        this.handleResize();
+
+        // Add event listeners
+        this.addEventListeners();
+    }
+
+    addEventListeners() {
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            this.handleResize();
         });
 
-        // Scroll parallax
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            heroImages.forEach((image, index) => {
-                const speed = image.dataset.speed || 0.5;
-                const yPos = -(scrolled * speed);
-                image.style.transform = `translateY(${yPos}px)`;
+        // Handle visibility change to pause/resume slideshow
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.pauseSlideshow();
+            } else {
+                this.startSlideshow();
+            }
+        });
+
+        // Handle page leave/return
+        window.addEventListener('blur', () => this.pauseSlideshow());
+        window.addEventListener('focus', () => this.startSlideshow());
+    }
+
+    handleResize() {
+        // Check if parallax should be enabled/disabled
+        const shouldEnableParallax = window.innerWidth > 768;
+        if (shouldEnableParallax !== this.parallaxEnabled) {
+            this.parallaxEnabled = shouldEnableParallax;
+            if (!this.parallaxEnabled) {
+                this.resetParallax();
+            }
+        }
+    }
+
+    initParallax() {
+        const handleMouseMove = (e) => {
+            if (!this.parallaxEnabled) return;
+
+            // Cancel any pending throttled calls
+            if (this.mouseMoveThrottle) {
+                cancelAnimationFrame(this.mouseMoveThrottle);
+            }
+
+            // Throttle mousemove with requestAnimationFrame
+            this.mouseMoveThrottle = requestAnimationFrame(() => {
+                const { clientX, clientY } = e;
+                const x = (window.innerWidth / 2 - clientX) / 50;
+                const y = (window.innerHeight / 2 - clientY) / 50;
+
+                this.images.forEach(image => {
+                    const img = image.querySelector('img');
+                    if (img) {
+                        img.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
+                    }
+                });
             });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    }
+
+    resetParallax() {
+        this.images.forEach(image => {
+            const img = image.querySelector('img');
+            if (img) {
+                img.style.transform = 'scale(1.1)';
+            }
         });
     }
 
+    startSlideshow() {
+        // Clear any existing interval
+        this.pauseSlideshow();
+
+        // Start new interval
+        this.slideInterval = setInterval(() => {
+            this.nextSlide();
+        }, this.interval);
+    }
+
+    pauseSlideshow() {
+        if (this.slideInterval) {
+            clearInterval(this.slideInterval);
+            this.slideInterval = null;
+        }
+    }
+
+    async nextSlide() {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+
+        const currentImage = this.images[this.currentIndex];
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        const nextImage = this.images[this.currentIndex];
+
+        // Prepare next image
+        nextImage.style.zIndex = 1;
+        currentImage.style.zIndex = 2;
+
+        // Add active class to next image
+        nextImage.classList.add('active');
+
+        // Wait for transition
+        await new Promise(resolve => {
+            setTimeout(resolve, 1000); // Match your CSS transition duration
+        });
+
+        // Remove active class from current image
+        currentImage.classList.remove('active');
+        
+        // Reset z-index
+        currentImage.style.zIndex = '';
+        nextImage.style.zIndex = '';
+
+        this.isTransitioning = false;
+    }
+
+    destroy() {
+        // Clean up
+        this.pauseSlideshow();
+        if (this.mouseMoveThrottle) {
+            cancelAnimationFrame(this.mouseMoveThrottle);
+        }
+        this.resetParallax();
+    }
+}
+
+// Initialize hero slideshow when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const heroSlideshow = new HeroSlideshow();
+
+    // Clean up on page unload
+    window.addEventListener('unload', () => {
+        heroSlideshow.destroy();
+    });
+});
     // Scroll Animations
     initAnimations() {
         // Initialize AOS
