@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+  
     <!-- Dynamic Loader -->
     <div class="loader">
         <div class="loader-inner">
@@ -23,7 +24,7 @@
         </div>
     </div>
 
-   <!-- Header with glassmorphism -->
+<!-- Modern Header with Glassmorphism -->
 <header class="glass-header">
     <nav class="nav-container">
         <a href="#" class="nav-logo">
@@ -47,15 +48,15 @@
     </nav>
 </header>
 
-<!-- Modern Hero Section with Carousel -->
+<!-- Modern Hero Section with Parallax -->
 <section class="hero" id="home">
     <div class="hero-container">
-        <div class="hero-content">
-            <div class="hero-slides">
-                <!-- Slide 1 -->
-                <div class="hero-slide active">
+        <div class="hero-slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide active" data-index="0">
+                <div class="slide-content">
                     <div class="slide-text">
-                        <div class="hero-subheading">Welcome to</div>
+                        <span class="welcome-text">Welcome to</span>
                         <h1 class="hero-title">
                             <span class="title-main">Doug Uhlig</span>
                             <span class="title-sub">Psychological Services</span>
@@ -64,16 +65,19 @@
                             Bridging Eastern wisdom and Western innovation for transformative psychological care.
                         </p>
                         <div class="hero-buttons">
-                            <button class="btn-primary">Get Started</button>
+                            <button class="btn-primary">Start Your Journey</button>
                             <button class="btn-secondary">Learn More</button>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Slide 2 -->
-                <div class="hero-slide">
+                <div class="slide-image" style="background-image: url('front1.jpg')"></div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide" data-index="1">
+                <div class="slide-content">
                     <div class="slide-text">
-                        <div class="hero-subheading">Discover</div>
+                        <span class="welcome-text">Discover</span>
                         <h1 class="hero-title">
                             <span class="title-main">Modern Approach</span>
                             <span class="title-sub">To Mental Wellness</span>
@@ -87,11 +91,14 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Slide 3 -->
-                <div class="hero-slide">
+                <div class="slide-image" style="background-image: url('front2.jpg')"></div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide" data-index="2">
+                <div class="slide-content">
                     <div class="slide-text">
-                        <div class="hero-subheading">Your Journey</div>
+                        <span class="welcome-text">Your Journey</span>
                         <h1 class="hero-title">
                             <span class="title-main">Personal Growth</span>
                             <span class="title-sub">Starts Here</span>
@@ -101,40 +108,32 @@
                         </p>
                         <div class="hero-buttons">
                             <button class="btn-primary">Join Now</button>
-                            <button class="btn-secondary">Learn More</button>
+                            <button class="btn-secondary">Contact Us</button>
                         </div>
                     </div>
                 </div>
+                <div class="slide-image" style="background-image: url('front3.jpg')"></div>
             </div>
         </div>
-        
-        <div class="hero-visual">
-            <div class="visual-container">
-                <div class="hero-image active">
-                    <img src="front1.jpg" alt="Feature Image 1">
-                </div>
-                <div class="hero-image">
-                    <img src="front.jpg" alt="Feature Image 2">
-                </div>
-                <div class="hero-image">
-                    <img src="Backround1.jpeg" alt="Feature Image 3">
-                </div>
-            </div>
-            <div class="slide-indicators">
-                <button class="indicator active"></button>
-                <button class="indicator"></button>
-                <button class="indicator"></button>
-            </div>
+
+        <!-- Slide Navigation -->
+        <div class="slide-nav">
+            <button class="nav-dot active" data-index="0"></button>
+            <button class="nav-dot" data-index="1"></button>
+            <button class="nav-dot" data-index="2"></button>
         </div>
     </div>
-    
-    <div class="floating-bubbles">
+
+    <!-- Decorative Bubbles -->
+    <div class="bubble-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
         <div class="bubble"></div>
         <div class="bubble"></div>
         <div class="bubble"></div>
     </div>
 </section>
-
+  
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-container">
