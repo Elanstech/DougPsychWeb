@@ -3,118 +3,614 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Doug Uhlig | Modern Psychological Services</title>
+    <title>Dr. Doug Uhlig | Innovative Psychological Services</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Transform your mind with innovative psychological care">
+    <meta name="theme-color" content="#1a365d">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- External CSS -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <!-- Modern Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="logo">Dr. Doug Uhlig</div>
-            <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#team">Team</a>
-                <a href="#publications">Publications</a>
-                <a href="#contact">Contact</a>
+    
+    <!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="logo">
+            <div class="logo-container">
+                <img src="logo.png" alt="Dr. Doug Uhlig Logo" class="logo-image">
             </div>
-            <button class="cta-button">Book Appointment</button>
-        </div>
-    </nav>
+        </a>
+        
+        <!-- Mobile Menu Button -->
+        <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
 
-    <!-- Hero Section with Dynamic Slides -->
-    <section class="hero">
-        <div class="hero-slider">
-            <!-- Slide 1 -->
-            <div class="hero-slide active" data-index="0">
-                <div class="slide-bg"></div>
-                <div class="slide-content">
-                    <div class="slide-header">
-                        <span class="badge">Welcome to Modern Care</span>
-                        <h1>Transform Your Life Through Understanding</h1>
-                        <p>Experience a revolutionary approach to mental wellness, combining proven methods with innovative techniques.</p>
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><span>Home</span></a></li>
+                <li><a href="#about"><span>About</span></a></li>
+                <li><a href="#services"><span>Services</span></a></li>
+                <li><a href="#team"><span>Team</span></a></li>
+                <li><a href="#contact"><span>Contact</span></a></li>
+            </ul>
+            <button class="cta-button magnetic">
+                Book Session
+                <span class="button-overlay"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <p class="hero-tagline">Welcome to</p>
+        <h1 class="hero-title">
+            Doug Uhlig
+            <span>Psychological Services</span>
+        </h1>
+        <p class="hero-description">
+            Bridging Eastern wisdom and Western innovation, we harmonize tradition and modernity to bring transformative psychological insights and solutions to life. Let us guide you on a journey of balanced growth and exceptional understanding.        </p>
+        <div class="hero-cta">
+            <a href="#" class="cta-button cta-primary">Get Started</a>
+            <a href="#" class="cta-button cta-secondary">Learn More</a>
+        </div>
+    </div>
+    
+    <div class="hero-images">
+        <div class="hero-image image-1">
+            <img src="front1.jpg" alt="Feature Image 1">
+        </div>
+        <div class="hero-image image-2">
+            <img src="front.jpg" alt="Feature Image 2">
+        </div>
+        <div class="hero-image image-3">
+            <img src="Backround1.jpeg" alt="Feature Image 3">
+        </div>
+    </div>
+</section>
+  
+    
+    <!-- Services Section -->
+
+<section class="services-section" id="services">
+    <!-- Section Header -->
+    <div class="section-header">
+        <h2 class="section-title">Our Services</h2>
+        <h3 class="section-subtitle">Professional Psychological Care</h3>
+        <p class="section-description">We offer a comprehensive range of psychological services tailored to meet your individual needs.</p>
+    </div>
+
+    <!-- Services Carousel -->
+    <div class="services-carousel">
+        <div class="carousel-track-container">
+            <div class="carousel-track">
+                <!-- Service Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-user-large"></i>
                     </div>
-                    <div class="slide-cta">
-                        <button class="primary-btn">Get Started</button>
-                        <button class="secondary-btn">Learn More</button>
+                    <h3>Individual Therapy</h3>
+                    <p>Personalized therapeutic approach tailored to your unique needs and goals.</p>
+                    <ul class="service-features">
+                        <li>Personal Growth & Development</li>
+                        <li>Stress Management</li>
+                        <li>Anxiety & Depression</li>
+                        <li>Trauma Recovery</li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+                    <h3>Group Therapy</h3>
+                    <p>Supportive group environment fostering connection and shared growth.</p>
+                    <ul class="service-features">
+                        <li>Peer Support</li>
+                        <li>Social Skills Development</li>
+                        <li>Shared Experiences</li>
+                        <li>Community Building</li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+                    <h3>Couples Counseling</h3>
+                    <p>Strengthen relationships through effective communication and understanding.</p>
+                    <ul class="service-features">
+                        <li>Relationship Building</li>
+                        <li>Conflict Resolution</li>
+                        <li>Communication Skills</li>
+                        <li>Trust Development</li>
+                    </ul>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-house-chimney-user"></i>
+                    </div>
+                    <h3>Family Therapy</h3>
+                    <p>Create stronger family bonds and improve household dynamics.</p>
+                    <ul class="service-features">
+                        <li>Family Dynamics</li>
+                        <li>Parenting Support</li>
+                        <li>Conflict Management</li>
+                        <li>Behavioral Issues</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Navigation Buttons -->
+        <button class="carousel-button left" aria-label="Previous slide">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="carousel-button right" aria-label="Next slide">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- View More Button -->
+    <div class="text-center">
+        <a href="#contact" class="view-more-btn">
+            Schedule a Consultation
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+ 
+    <!-- Certifications Section -->
+<section id="certifications" class="certifications-section">
+    <div class="certifications-container">
+        <h2 class="section-title">Professional Background</h2> <!-- Added section title -->
+        <div class="certifications-content">
+            <div class="founder-profile">
+                <div class="founder-image-container">
+                    <img src="doug.jpeg" alt="Dr. Doug - Founder & Clinical Psychologist" class="founder-image">
+                    <div class="founder-overlay">
+                        <h3>Dr. Doug</h3>
+                        <p>Founder & Clinical Psychologist</p>
+                        <span class="military-service">USAF Lt. Colonel (Ret.)</span>
+                    </div>
+                </div>
+                
+                <!-- Education Cards Grid -->
+                <div class="certification-grid">
+                    <div class="certification-card">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <h4>Ph.D.</h4>
+                        <p>Walden University</p>
+                        <span class="specialty">Mindfulness Meditation Research</span>
+                    </div>
+                    <div class="certification-card">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <h4>M.B.A.</h4>
+                        <p>New York University</p>
+                    </div>
+                    <div class="certification-card">
+                        <i class="fa-solid fa-book-open"></i>
+                        <h4>M.A. East Asian Studies</h4>
+                        <p>University of Michigan</p>
+                    </div>
+                    <div class="certification-card">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <h4>B.A.</h4>
+                        <p>University of Virginia</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Three Column Layout for Desktop -->
+            <div class="background-info-grid">
+                <!-- Professional Memberships -->
+                <div class="info-card memberships-section">
+                    <h3>Professional Memberships</h3>
+                    <div class="membership-list">
+                        <div class="membership-item">
+                            <i class="fa-solid fa-certificate"></i>
+                            <span>American Psychological Association (APA)</span>
+                        </div>
+                        <div class="membership-item">
+                            <i class="fa-solid fa-certificate"></i>
+                            <span>New York Psychology Association (NYSPA)</span>
+                        </div>
+                        <div class="membership-item">
+                            <i class="fa-solid fa-certificate"></i>
+                            <span>National Association of Cognitive Behavioral Therapists (NACBT)</span>
+                        </div>
+                        <div class="membership-item">
+                            <i class="fa-solid fa-certificate"></i>
+                            <span>American Society of Clinical Hypnosis (ASCH)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Military Service -->
+                <div class="info-card military-service-section">
+                    <h3>Military Service</h3>
+                    <div class="service-details">
+                        <i class="fa-solid fa-star"></i>
+                        <div class="service-text">
+                            <p>29 Years Active and Reserve Duty</p>
+                            <ul>
+                                <li>Intelligence Officer (Special Operations, Search and Rescue)</li>
+                                <li>Military Attaché to Japan</li>
+                                <li>Commander, Intelligence Unit - McGuire AFB</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clinical Expertise -->
+                <div class="info-card expertise-list">
+                    <h3>Clinical Expertise</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-check"></i> Cognitive Behavioral Therapy</li>
+                        <li><i class="fa-solid fa-check"></i> Mindfulness Meditation</li>
+                        <li><i class="fa-solid fa-check"></i> Dialectical Behavioral Therapy (DBT)</li>
+                        <li><i class="fa-solid fa-check"></i> Depression & Anxiety Treatment</li>
+                        <li><i class="fa-solid fa-check"></i> Substance Abuse Relapse Prevention</li>
+                        <li><i class="fa-solid fa-check"></i> Bi-polar & Borderline Personality Disorders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <div class="about-button-container">
+            <a href="about.html" class="about-button">
+                Learn More About Us
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+  </div>
+</section>
+    
+ <!-- Team Section with Carousel -->
+<section id="team" class="team-section">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            <span class="section-tag">Our Experts</span>
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">Dedicated professionals committed to your mental well-being</p>
+        </div>
+
+        <!-- Team Carousel Container -->
+        <div class="team-carousel-container">
+            <button class="carousel-btn prev-btn" aria-label="Previous">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="team-carousel">
+                <!-- Team Members will be dynamically loaded here -->
+            </div>
+
+            <button class="carousel-btn next-btn" aria-label="Next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Carousel Navigation Dots -->
+            <div class="carousel-dots"></div>
+        </div>
+    </div>
+</section>
+
+    
+
+
+    <!-- Book Section -->
+   <section class="publications-section" id="publications">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Featured Publication</span>
+            <h2 class="section-title">The Mind-Body Connection</h2>
+            <p class="section-subtitle">A Comprehensive Guide to Mental Well-being</p>
+        </div>
+
+        <div class="publication-showcase">
+            <div class="book-display">
+                <div class="book-3d">
+                    <div class="book-cover">
+                        <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
+                        <div class="book-effects">
+                            <div class="book-spine"></div>
+                            <div class="book-shadow"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="floating-elements">
-                    <div class="bubble bubble-1"></div>
-                    <div class="bubble bubble-2"></div>
-                    <div class="bubble bubble-3"></div>
+                    <div class="float-element element-1">
+                        <i class="fas fa-brain"></i>
+                        <span>Neuroscience</span>
+                    </div>
+                    <div class="float-element element-2">
+                        <i class="fas fa-heart"></i>
+                        <span>Wellness</span>
+                    </div>
+                    <div class="float-element element-3">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Balance</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Slide 2 -->
-            <div class="hero-slide" data-index="1">
-                <div class="slide-bg"></div>
-                <div class="slide-content">
-                    <div class="slide-header">
-                        <span class="badge">Expert Care</span>
-                        <h1>Professional Guidance for Your Journey</h1>
-                        <p>Our team of experienced professionals is here to support you every step of the way.</p>
+            <div class="publication-content">
+                <div class="publication-description">
+                    <p class="lead-text">
+                        Discover the profound connection between mind and body in this groundbreaking work that bridges Eastern wisdom with Western psychological science.
+                    </p>
+                    
+                    <div class="book-highlights">
+                        <div class="highlight-card">
+                            <i class="fas fa-brain"></i>
+                            <h3>Neural Integration</h3>
+                            <p>Understanding the brain-behavior connection</p>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-heart"></i>
+                            <h3>Emotional Wisdom</h3>
+                            <p>Mastering emotional intelligence</p>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-balance-scale"></i>
+                            <h3>Life Balance</h3>
+                            <p>Achieving harmony in daily life</p>
+                        </div>
                     </div>
-                    <div class="slide-cta">
-                        <button class="primary-btn">Meet Our Team</button>
-                        <button class="secondary-btn">Our Approach</button>
-                    </div>
-                </div>
-                <div class="floating-elements">
-                    <div class="bubble bubble-1"></div>
-                    <div class="bubble bubble-2"></div>
-                    <div class="bubble bubble-3"></div>
-                </div>
-            </div>
 
-            <!-- Slide 3 -->
-            <div class="hero-slide" data-index="2">
-                <div class="slide-bg"></div>
-                <div class="slide-content">
-                    <div class="slide-header">
-                        <span class="badge">Innovative Methods</span>
-                        <h1>Modern Solutions for Modern Life</h1>
-                        <p>Discover our cutting-edge therapeutic approaches designed for today's challenges.</p>
+                    <div class="book-features">
+                        <h4>What You'll Learn</h4>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i>Evidence-based therapeutic techniques</li>
+                            <li><i class="fas fa-check"></i>Practical meditation exercises</li>
+                            <li><i class="fas fa-check"></i>Real-world case studies</li>
+                            <li><i class="fas fa-check"></i>Daily mental health practices</li>
+                        </ul>
                     </div>
-                    <div class="slide-cta">
-                        <button class="primary-btn">Explore Services</button>
-                        <button class="secondary-btn">Book Session</button>
+
+                    <div class="book-cta">
+                        <a href="#" class="cta-button cta-primary">
+                            Purchase Book
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        <a href="#" class="cta-button cta-secondary">
+                            Read Preview
+                            <i class="fas fa-book-open"></i>
+                        </a>
                     </div>
-                </div>
-                <div class="floating-elements">
-                    <div class="bubble bubble-1"></div>
-                    <div class="bubble bubble-2"></div>
-                    <div class="bubble bubble-3"></div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+   
+    <!-- Google Reviews Section -->
+<section class="reviews-section">
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <span class="section-tag">Client Reviews</span>
+            <h2>What People Are Saying</h2>
+            <p>Real testimonials from our valued clients on Google</p>
+        </div>
+        
+        <div class="reviews-widget-container">
+            <!-- Elfsight Google Reviews Widget -->
+            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            <div class="elfsight-app-345fc429-0347-4493-8043-afbb1cb52b6e" data-elfsight-app-lazy></div>
+        </div>
+    </div>
+</section>
 
-        <!-- Hero Navigation -->
-        <div class="hero-nav">
-            <div class="nav-dots">
-                <button class="nav-dot active" data-slide="0"></button>
-                <button class="nav-dot" data-slide="1"></button>
-                <button class="nav-dot" data-slide="2"></button>
+    <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+        <!-- Contact Header -->
+        <div class="contact-header">
+            <span class="section-tag">Get In Touch</span>
+            <h2>Let's Start a Conversation</h2>
+            <p>Ready to take the first step towards positive change?</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Visit Us</h3>
+                        <p>1517 Voorhies Ave<br>Brooklyn, NY 11235</p>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Email Us</h3>
+                        <a href="mailto:contact@douguhlig.com" class="email-link">
+                            contact@douguhlig.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>Follow Us</h3>
+                        <a href="https://instagram.com/yourusername" target="_blank" class="instagram-link">
+                            @douguhlig
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="nav-progress">
-                <div class="progress-bar"></div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Full Name</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Email Address</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="subject" required>
+                        <label for="subject">Subject</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" rows="4" required></textarea>
+                        <label for="message">Your Message</label>
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        Send Message
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </div>
 
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <div class="scroll-arrow"></div>
+        <!-- Social Proof -->
+        <div class="social-proof">
+            <div class="social-stat">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Happy Clients</span>
+            </div>
+            <div class="social-stat">
+                <span class="stat-number">35+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="social-stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Support</span>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    [Rest of your existing sections with updated styling...]
+    <!-- Footer -->
+<footer class="footer">
+    <div class="footer-waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <div class="footer-content">
+        <div class="footer-info">
+            <div class="footer-logo">
+                <div class="logo-icon">DU</div>
+                <div class="logo-text">
+                    <span class="logo-title">Dr. Doug Uhlig</span>
+                    <span class="logo-subtitle">Psychological Services</span>
+                </div>
+            </div>
+            <p>Providing comprehensive psychological services and innovative therapeutic approaches for over 35 years.</p>
+            <div class="social-links">
+                <a href="#" aria-label="LinkedIn" class="magnetic">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" aria-label="Facebook" class="magnetic">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" aria-label="Instagram" class="magnetic">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#book">Book</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-locations">
+            <h4>Our Locations</h4>
+            <div class="location">
+                <h5>Brooklyn Office</h5>
+                <address>
+                    <i class="fas fa-map-marker-alt"></i>
+                    1517 Voorhies Ave<br>Brooklyn, NY 11235
+                </address>
+                <a href="tel:6464815080" class="phone">
+                    <i class="fas fa-phone"></i> (646) 481-5080
+                </a>
+            </div>
+            <div class="location">
+                <h5>Queens Office</h5>
+                <address>
+                    <i class="fas fa-map-marker-alt"></i>
+                    63-44 Saunders St, Suite 106<br>Rego Park, NY 11374
+                </address>
+                <a href="tel:6464815080" class="phone">
+                    <i class="fas fa-phone"></i> (646) 481-5080
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2024 Dr. Doug Uhlig Psychological Services PLLC. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#accessibility">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top magnetic" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="./js/script.js"></script>
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
