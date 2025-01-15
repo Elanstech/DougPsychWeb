@@ -41,44 +41,6 @@ class WebsiteManager {
         });
     }
 
-    // Custom Cursor
-    initCursor() {
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorCircle = document.querySelector('.cursor-circle');
-
-        if (!cursor || !cursorDot || !cursorCircle) return;
-
-        document.addEventListener('mousemove', (e) => {
-            const { clientX: x, clientY: y } = e;
-            cursorDot.style.transform = `translate(${x}px, ${y}px)`;
-            cursorCircle.style.transform = `translate(${x}px, ${y}px)`;
-        });
-
-        // Add magnetic effect to buttons
-        document.querySelectorAll('.magnetic').forEach(button => {
-            button.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = button.getBoundingClientRect();
-                const x = e.clientX - left;
-                const y = e.clientY - top;
-                
-                const centerX = width / 2;
-                const centerY = height / 2;
-                
-                const deltaX = x - centerX;
-                const deltaY = y - centerY;
-                
-                button.style.transform = `translate(${deltaX * 0.2}px, ${deltaY * 0.2}px)`;
-                cursorCircle.classList.add('magnetic-hover');
-            });
-
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = '';
-                cursorCircle.classList.remove('magnetic-hover');
-            });
-        });
-    }
-
     // Navigation
     initNavigation() {
         const navbar = document.querySelector('.navbar');
