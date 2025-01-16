@@ -12,6 +12,7 @@ function initializeAllComponents() {
     initAboutSection();
     initTeamSection();
     initBookSection();
+    initLocationsSection();
 }
 
 // Header Functionality
@@ -689,4 +690,117 @@ function initBookSection() {
     // Initialize
     showSlide(0);
     startPreviewAutoplay();
+}
+function initLocationsSection() {
+    // Location Cards Hover Effects
+    const locationCards = document.querySelectorAll('.location-card');
+    locationCards.forEach(card => {
+        const map = card.querySelector('.location-map');
+        
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            if (map) {
+                map.style.opacity = '0.9';
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            if (map) {
+                map.style.opacity = '1';
+            }
+        });
+    });
+
+    // Info Cards Animation
+    const infoCards = document.querySelectorAll('.info-card');
+    infoCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const icon = card.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1.2) rotate(5deg)';
+            }
+            card.style.transform = 'translateY(-5px)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const icon = card.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1) rotate(0)';
+            }
+            card.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Button Hover Effects
+    const buttons = document.querySelectorAll('.btn-directions, .btn-virtual-tour');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px)';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Virtual Tour Button Click Handler
+    const virtualTourButtons = document.querySelectorAll('.btn-virtual-tour');
+    virtualTourButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Here you can implement virtual tour functionality
+            alert('Virtual tour feature coming soon!');
+        });
+    });
+
+    // Floating Elements Animation
+    const floatItems = document.querySelectorAll('.float-item');
+    floatItems.forEach((item, index) => {
+        item.style.animationDelay = `${-index * 2}s`;
+    });
+
+    // Initialize Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.location-card, .info-card').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'all 0.5s ease';
+        observer.observe(element);
+    });
+
+    // Handle map loading
+    const maps = document.querySelectorAll('.location-map iframe');
+    maps.forEach(map => {
+        map.addEventListener('load', () => {
+            map.style.opacity = '1';
+        });
+    });
+
+    // Handle resize events
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Refresh AOS if available
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }, 250);
+    });
 }
