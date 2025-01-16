@@ -1,4 +1,4 @@
-/ Wait for DOM to be fully loaded
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeAllComponents();
 });
@@ -9,6 +9,11 @@ function initializeAllComponents() {
     initHeroSlider();
     initMobileNav();
     initServices();
+    initTeamCarousel();
+    initContactForm();
+    initBackToTop();
+    initAOS();
+    initSmoothScroll();
 }
 
 // Header Functionality
@@ -54,14 +59,17 @@ function initHeroSlider() {
         if (isTransitioning) return;
         isTransitioning = true;
 
+        // Hide all slides
         slides.forEach(slide => {
             slide.style.opacity = '0';
             slide.style.transform = 'scale(1.1)';
             slide.classList.remove('active');
         });
         
+        // Remove active class from all dots
         dots.forEach(dot => dot.classList.remove('active'));
 
+        // Show selected slide
         slides[index].classList.add('active');
         slides[index].style.opacity = '1';
         slides[index].style.transform = 'scale(1)';
@@ -69,6 +77,7 @@ function initHeroSlider() {
 
         currentSlide = index;
 
+        // Reset transition lock after animation completes
         setTimeout(() => {
             isTransitioning = false;
         }, 1000);
@@ -99,6 +108,7 @@ function initHeroSlider() {
         });
     });
 
+    // Handle visibility changes
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             stopSlideshow();
@@ -108,6 +118,7 @@ function initHeroSlider() {
         }
     });
 
+    // Handle window focus/blur
     window.addEventListener('focus', () => {
         showSlide(currentSlide);
         startSlideshow();
@@ -117,6 +128,7 @@ function initHeroSlider() {
         stopSlideshow();
     });
 
+    // Start the slideshow
     showSlide(0);
     startSlideshow();
 }
@@ -128,12 +140,14 @@ function initMobileNav() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (navToggle && navMenu) {
+        // Toggle menu on button click
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
 
+        // Close menu when clicking a link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
@@ -142,6 +156,7 @@ function initMobileNav() {
             });
         });
 
+        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
                 navToggle.classList.remove('active');
@@ -150,6 +165,7 @@ function initMobileNav() {
             }
         });
 
+        // Close menu on ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 navToggle.classList.remove('active');
@@ -190,38 +206,6 @@ function initServices() {
                 slidesPerView: 3,
                 spaceBetween: 30
             }
-        },
-        on: {
-            init: function () {
-                AOS.refresh();
-            }
         }
-    });
-
-    // Initialize AOS
-    AOS.init({
-        duration: 1000,
-        easing: 'ease',
-        once: true,
-        mirror: false
     });
 }
-
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = targetPosition - headerHeight;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
