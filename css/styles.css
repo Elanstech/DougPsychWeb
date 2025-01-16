@@ -155,42 +155,44 @@ body {
     width: 130px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid transparent;
-    border-image: var(--gold-gradient-metallic);
-    border-image-slice: 1;
-    background-color: var(--royal-blue);
-    padding: 4px;
-    box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
-    transition: all var(--transition-fast);
     position: absolute;
     bottom: -35px;
     left: 0;
+    padding: 4px;
+    background: var(--gold-gradient-metallic);
+    background-size: 200% 100%;
     animation: goldShimmer 8s linear infinite;
+    box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+    transition: all var(--transition-fast);
 }
 
-/* Logo Text Styles */
-.logo-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    margin-left: 145px;
-    margin-top: 1rem;
+.brand-logo::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background: var(--royal-blue);
+    border-radius: 50%;
+    z-index: -1;
 }
 
-.brand-name {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--royal-blue);
-    line-height: 1.2;
-    transition: color var(--transition-fast);
+/* Media queries for responsive sizes */
+@media (max-width: 768px) {
+    .brand-logo {
+        height: 110px;
+        width: 110px;
+        bottom: -30px;
+    }
 }
 
-.brand-title {
-    font-size: 1rem;
-    color: var(--text-medium);
-    font-weight: 500;
-    transition: color var(--transition-fast);
+@media (max-width: 480px) {
+    .brand-logo {
+        height: 100px;
+        width: 100px;
+        bottom: -25px;
+    }
 }
 
 /* Navigation Menu */
