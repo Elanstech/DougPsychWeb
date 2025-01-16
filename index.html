@@ -25,108 +25,69 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
+
 </head>
 <body>
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <a href="#" class="nav-logo">
-                    <div class="logo-container">
+    
+<header class="header">
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <div class="logo-container">
+                    <div class="logo-box">
                         <img src="logo.png" alt="Dr. Doug Uhlig Logo">
-                        <div class="logo-text">
-                            <span class="brand-name">Dr. Doug Uhlig</span>
-                            <span class="brand-title">Psychological Services</span>
-                        </div>
                     </div>
-                </a>
-                
-                <button class="nav-toggle" aria-label="Toggle navigation">
-                    <span></span><span></span><span></span>
-                </button>
-                
-                <div class="nav-menu">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#team" class="nav-link">Team</a>
-                    <a href="#book-section" class="nav-link">Book</a>
-                    <a href="#locations" class="nav-link">Locations</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <a href="#consultation" class="btn btn-primary">Book Consultation</a>
+                    <div class="logo-text">
+                        <span class="brand-name">Dr. Doug Uhlig</span>
+                        <span class="brand-title">Psychological Services</span>
+                    </div>
                 </div>
-                
-                <div class="nav-menu-mobile">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#team" class="nav-link">Team</a>
-                    <a href="#book-section" class="nav-link">Book</a>
-                    <a href="#locations" class="nav-link">Locations</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <a href="#consultation" class="btn btn-primary">Book Consultation</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Hero Section -->
-        <!-- Hero Section -->
-<section class="hero" id="home">
-    <div class="swiper hero-slider">
-        <div class="swiper-wrapper">
-            <!-- Slide 1 -->
-            <div class="swiper-slide">
-                <div class="slide-content">
-                    <h1>Doug Uhlig Psychological Services, PLLC</h1>
-                    <ul>
-                        <li>Depression & Mood Disorders</li>
-                        <li>Anxiety Disorders</li>
-                        <li>PTSD & Trauma Recovery</li>
-                        <li>Mindfulness & Meditation</li>
-                        <li>Cognitive Behavioral Therapy</li>
-                    </ul>
-                </div>
-                <div class="slide-bg" style="background-image: url('front1.jpg');"></div>
-            </div>
-            <!-- Slide 2 -->
-            <div class="swiper-slide">
-                <div class="slide-content">
-                    <h1>Doug Uhlig Psychological Services, PLLC</h1>
-                    <ul>
-                        <li>Depression & Mood Disorders</li>
-                        <li>Anxiety Disorders</li>
-                        <li>PTSD & Trauma Recovery</li>
-                        <li>Mindfulness & Meditation</li>
-                        <li>Cognitive Behavioral Therapy</li>
-                    </ul>
-                </div>
-                <div class="slide-bg" style="background-image: url('front.jpg');"></div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="swiper-slide">
-                <div class="slide-content">
-                    <h1>Doug Uhlig Psychological Services, PLLC</h1>
-                    <ul>
-                        <li>Depression & Mood Disorders</li>
-                        <li>Anxiety Disorders</li>
-                        <li>PTSD & Trauma Recovery</li>
-                        <li>Mindfulness & Meditation</li>
-                        <li>Cognitive Behavioral Therapy</li>
-                    </ul>
-                </div>
-                <div class="slide-bg" style="background-image: url('backround.jpeg');"></div>
+            </a>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#book-section" class="nav-link">Book</a>
+                <a href="#locations" class="nav-link">Locations</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#consultation" class="btn btn-consultation">Book Consultation</a>
             </div>
         </div>
-        <!-- Keep or remove the controls as needed -->
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Doug Uhlig Psychological Services, PLLC</h1>
+            <div class="hero-services">
+                <ul class="services-list">
+                    <li><i class="fas fa-check-circle"></i>Depression & Mood Disorders</li>
+                    <li><i class="fas fa-check-circle"></i>Anxiety Disorders</li>
+                    <li><i class="fas fa-check-circle"></i>PTSD & Trauma Recovery</li>
+                    <li><i class="fas fa-check-circle"></i>Mindfulness & Meditation</li>
+                    <li><i class="fas fa-check-circle"></i>Cognitive Behavioral Therapy</li>
+                </ul>
+            </div>
+            <a href="#contact" class="btn btn-hero">Contact Us Today</a>
+        </div>
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('front1.jpg')"></div>
+            <div class="slide" style="background-image: url('front.jpg')"></div>
+            <div class="slide" style="background-image: url('backround.jpeg')"></div>
+            <div class="slider-controls">
+                <button class="slider-dot active" data-slide="0"></button>
+                <button class="slider-dot" data-slide="1"></button>
+                <button class="slider-dot" data-slide="2"></button>
+            </div>
+        </div>
     </div>
 </section>
     
