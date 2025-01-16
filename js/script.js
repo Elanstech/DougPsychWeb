@@ -167,19 +167,44 @@ function initMobileNav() {
     }
 }
 
-// Services Carousel
+// Initialize Services Section Components
+function initServices() {
+    initServicesParallax();
+    initServicesCarousel();
+    enhanceCardInteractions();
+}
+
+// Parallax Effect for Background
+function initServicesParallax() {
+    const servicesSection = document.querySelector('.services');
+    const backgroundImage = document.querySelector('.background-image');
+    
+    window.addEventListener('scroll', () => {
+        if (isElementInViewport(servicesSection)) {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.3;
+            
+            backgroundImage.style.transform = `translate3d(0, ${rate}px, 0)`;
+        }
+    });
+}
+
+// Enhanced Services Carousel
 function initServicesCarousel() {
-    new Swiper('.services-carousel', {
+    const servicesSwiper = new Swiper('.services-carousel', {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
+        speed: 800,
         autoplay: {
             delay: 5000,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true
         },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
+            dynamicBullets: true
         },
         navigation: {
             nextEl: '.swiper-button-next',
@@ -188,45 +213,85 @@ function initServicesCarousel() {
         breakpoints: {
             640: {
                 slidesPerView: 2,
+                spaceBetween: 20
             },
             1024: {
                 slidesPerView: 3,
-            },
+                spaceBetween: 30
+            }
         },
         on: {
             init: function () {
                 AOS.refresh();
             },
-        },
-    });
-}
-
-// Initialize AOS (Animate on Scroll)
-function initAOS() {
-    AOS.init({
-        duration: 1000,
-        easing: 'ease',
-        once: true,
-        mirror: false,
-        offset: 50
-    });
-}
-
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = targetPosition - headerHeight;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+            slideChange: function () {
+                updateCardAnimations();
+            }
         }
     });
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            servicesSwiper.autoplay.stop();
+        } else {
+            servicesSwiper.autoplay.start();
+        }
+    });
+}
+
+// Enhanced Card Interactions
+function enhanceCardInteractions() {
+    const cards = document.querySelectorAll('.service-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const icon = card.querySelector('.service-icon');
+            if (icon) {
+                icon.style.transform = 'scale(1.1) rotate(5deg)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            const icon = card.querySelector('.service-icon');
+            if (icon) {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            }
+        });
+    });
+}
+
+// Update Card Animations
+function updateCardAnimations() {
+    const activeCards = document.querySelectorAll('.swiper-slide-active .service-card, .swiper-slide-next .service-card, .swiper-slide-prev .service-card');
+    
+    activeCards.forEach(card => {
+        card.style.transform = 'translateY(-5px)';
+        setTimeout(() => {
+            card.style.transform = 'translateY(0)';
+        }, 300);
+    });
+}
+
+// Utility: Check if Element is in Viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
+    );
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initServices();
+});
+
+// Handle resize events
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        updateCardAnimations();
+    }, 250);
 });
