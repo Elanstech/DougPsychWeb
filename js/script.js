@@ -13,6 +13,7 @@ function initializeAllComponents() {
     initTeamSection();
     initBookSection();
     initLocationsSection();
+    initContactSection();
 }
 
 // Header Functionality
@@ -802,5 +803,143 @@ function initLocationsSection() {
                 AOS.refresh();
             }
         }, 250);
+    });
+}
+function initContactSection() {
+    // Form Handling
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Add loading state to button
+            const submitBtn = contactForm.querySelector('.btn-submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission (replace with actual form submission)
+            try {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Show success message (replace with your preferred notification system)
+                alert('Message sent successfully! We will get back to you soon.');
+                contactForm.reset();
+            } catch (error) {
+                // Show error message
+                alert('An error occurred. Please try again.');
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Form Field Animations
+        const formGroups = contactForm.querySelectorAll('.form-group');
+        formGroups.forEach(group => {
+            const input = group.querySelector('input, select, textarea');
+            const label = group.querySelector('label');
+
+            if (input && label) {
+                // Handle initial state
+                if (input.value) {
+                    label.classList.add('active');
+                }
+
+                // Handle focus events
+                input.addEventListener('focus', () => {
+                    label.classList.add('active');
+                });
+
+                input.addEventListener('blur', () => {
+                    if (!input.value) {
+                        label.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll to top
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Initialize footer link hover effects
+    const footerLinks = document.querySelectorAll('.footer-links a, .footer-services a');
+    footerLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            const arrow = link.querySelector('.arrow');
+            if (arrow) {
+                arrow.style.transform = 'translateX(5px)';
+            }
+        });
+
+        link.addEventListener('mouseleave', () => {
+            const arrow = link.querySelector('.arrow');
+            if (arrow) {
+                arrow.style.transform = 'translateX(0)';
+            }
+        });
+    });
+
+    // Social Media Icons Hover Effect
+    const socialLinks = document.querySelectorAll('.footer-social a');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            const icon = link.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1.2)';
+            }
+        });
+
+        link.addEventListener('mouseleave', () => {
+            const icon = link.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1)';
+            }
+        });
+    });
+
+    // Handle intersection observer for animations
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.footer-info, .footer-links, .footer-services, .footer-contact').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'all 0.5s ease';
+        observer.observe(element);
     });
 }
