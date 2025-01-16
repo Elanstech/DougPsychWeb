@@ -16,53 +16,48 @@ function initHeroSlider() {
     const dots = document.querySelectorAll('.slider-dot');
     let currentSlide = 0;
     let slideInterval;
+    let isTransitioning = false;
 
-    // Show specific slide
+    // Show specific slide with forced transition
     function showSlide(index) {
-        // Remove active class and reset styles from all slides
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        // Hide all slides
         slides.forEach(slide => {
-            slide.classList.remove('active');
             slide.style.opacity = '0';
             slide.style.transform = 'scale(1.1)';
-            slide.style.transition = 'opacity 1s ease, transform 1.2s ease';
+            slide.classList.remove('active');
         });
         
         // Remove active class from all dots
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // Show current slide with animation
+        // Show current slide
         slides[index].classList.add('active');
         slides[index].style.opacity = '1';
         slides[index].style.transform = 'scale(1)';
         dots[index].classList.add('active');
 
+        // Update current slide index
         currentSlide = index;
+
+        // Reset transition lock after animation completes
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 1000);
     }
 
-    // Next slide function
+    // Force next slide
     function nextSlide() {
         let nextIndex = (currentSlide + 1) % slides.length;
         showSlide(nextIndex);
     }
 
-    // Previous slide function
-    function prevSlide() {
-        let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(prevIndex);
-    }
-
-    // Initialize slider controls
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopSlideshow();
-            showSlide(index);
-            startSlideshow();
-        });
-    });
-
-    // Start slideshow
+    // Initialize slideshow
     function startSlideshow() {
         if (slideInterval) clearInterval(slideInterval);
+        // Force immediate start of slideshow
         slideInterval = setInterval(nextSlide, 5000);
     }
 
@@ -74,39 +69,49 @@ function initHeroSlider() {
         }
     }
 
-    // Add keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
+    // Initialize dot controls
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
             stopSlideshow();
-            nextSlide();
+            showSlide(index);
             startSlideshow();
-        } else if (e.key === 'ArrowLeft') {
-            stopSlideshow();
-            prevSlide();
-            startSlideshow();
-        }
+        });
     });
-
-    // Add hover pause functionality
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.addEventListener('mouseenter', stopSlideshow);
-        heroSection.addEventListener('mouseleave', startSlideshow);
-    }
 
     // Handle visibility change
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             stopSlideshow();
         } else {
+            showSlide(currentSlide); // Force current slide to show
             startSlideshow();
         }
+    });
+
+    // Handle window focus
+    window.addEventListener('focus', () => {
+        showSlide(currentSlide);
+        startSlideshow();
+    });
+
+    window.addEventListener('blur', () => {
+        stopSlideshow();
     });
 
     // Initialize first slide and start slideshow
     showSlide(0);
     startSlideshow();
+
+    // Ensure slideshow restarts after any interruption
+    setInterval(() => {
+        if (!slideInterval) {
+            startSlideshow();
+        }
+    }, 1000);
 }
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initHeroSlider);
 
 // Mobile Navigation Function
 function initMobileNav() {
