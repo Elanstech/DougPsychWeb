@@ -84,9 +84,10 @@ body {
     transition: all var(--transition-fast);
 }
 
-.header.scrolled {
-    height: 85px;
-    background: var(--royal-blue);
+.header.scrolled .brand-logo {
+    height: 75px;
+    width: 75px;
+    bottom: -10px; /* Adjusted position for scrolled state */
 }
 
 /* Navbar Container */
