@@ -249,85 +249,184 @@ function initServices() {
     });
 }
 
-// About Section Implementation
 function initAboutSection() {
-    // Initialize card hover animations
-    const aboutCards = document.querySelectorAll('.about-card');
-    
-    aboutCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.background = 'white';
-            this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+    const contentBlocks = document.querySelectorAll('.content-block');
+    const navigationDots = document.querySelectorAll('.navigation-dots .dot');
+    let currentBlockIndex = 0;
+    let autoplayInterval;
+    let isHovered = false;
+
+    // Function to show specific content block
+    function showBlock(index) {
+        contentBlocks.forEach(block => {
+            block.classList.remove('active');
+        });
+        navigationDots.forEach(dot => {
+            dot.classList.remove('active');
         });
 
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.background = 'rgba(255, 255, 255, 0.5)';
-            this.style.boxShadow = 'none';
+        contentBlocks[index].classList.add('active');
+        navigationDots[index].classList.add('active');
+        currentBlockIndex = index;
+    }
+
+    // Function to show next block
+    function showNextBlock() {
+        if (!isHovered) {
+            const nextIndex = (currentBlockIndex + 1) % contentBlocks.length;
+            showBlock(nextIndex);
+        }
+    }
+
+    // Initialize autoplay
+    function startAutoplay() {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+        autoplayInterval = setInterval(showNextBlock, 5000);
+    }
+
+    // Add click event listeners to navigation dots
+    navigationDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showBlock(index);
+            startAutoplay(); // Reset autoplay timer when manually changing
         });
     });
 
-    // Initialize features animation
-    const features = document.querySelectorAll('.feature');
-    features.forEach(feature => {
-        feature.addEventListener('mouseenter', function() {
-            const icon = this.querySelector('i');
-            if (icon) {
-                icon.style.transform = 'scale(1.2)';
-                icon.style.transition = 'transform 0.3s ease';
-            }
+    // Handle hover states
+    const aboutContent = document.querySelector('.about-content-blocks');
+    if (aboutContent) {
+        aboutContent.addEventListener('mouseenter', () => {
+            isHovered = true;
         });
 
-        feature.addEventListener('mouseleave', function() {
-            const icon = this.querySelector('i');
-            if (icon) {
-                icon.style.transform = 'scale(1)';
-            }
+        aboutContent.addEventListener('mouseleave', () => {
+            isHovered = false;
+        });
+    }
+
+    // Initialize profile image hover effect
+    const profileFrame = document.querySelector('.profile-frame');
+    if (profileFrame) {
+        profileFrame.addEventListener('mouseenter', () => {
+            profileFrame.style.transform = 'perspective(1000px) rotateY(0deg)';
+        });
+
+        profileFrame.addEventListener('mouseleave', () => {
+            profileFrame.style.transform = 'perspective(1000px) rotateY(-5deg)';
+        });
+    }
+
+    // Initialize credential item hover effects
+    const credentials = document.querySelectorAll('.credential');
+    credentials.forEach(credential => {
+        credential.addEventListener('mouseenter', () => {
+            credential.style.transform = 'translateX(10px)';
+            credential.style.background = 'rgba(26, 35, 126, 0.05)';
+        });
+
+        credential.addEventListener('mouseleave', () => {
+            credential.style.transform = 'translateX(0)';
+            credential.style.background = 'transparent';
         });
     });
 
-    // Parallax effect for the background image
-    const aboutSection = document.querySelector('.about');
-    const backgroundImage = aboutSection?.querySelector('.background-image');
-    
-    if (aboutSection && backgroundImage) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const sectionTop = aboutSection.offsetTop;
-            const sectionHeight = aboutSection.offsetHeight;
-            
-            if (scrolled >= sectionTop - window.innerHeight && 
-                scrolled <= sectionTop + sectionHeight) {
-                const parallaxValue = (scrolled - sectionTop) * 0.4;
-                backgroundImage.style.transform = `translateY(${parallaxValue}px)`;
+    // Initialize feature item animations
+    const featureItems = document.querySelectorAll('.feature-item');
+    featureItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            const icon = item.querySelector('.feature-icon');
+            if (icon) {
+                icon.style.transform = 'scale(1.1) rotate(5deg)';
+            }
+            item.style.transform = 'translateY(-5px)';
+        });
+
+        item.addEventListener('mouseleave', () => {
+            const icon = item.querySelector('.feature-icon');
+            if (icon) {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            }
+            item.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Initialize experience marker animation
+    const experienceMarker = document.querySelector('.experience-marker');
+    if (experienceMarker) {
+        let isAnimating = false;
+
+        experienceMarker.addEventListener('mouseenter', () => {
+            if (!isAnimating) {
+                isAnimating = true;
+                experienceMarker.style.animation = 'none';
+                experienceMarker.offsetHeight; // Trigger reflow
+                experienceMarker.style.animation = 'float 6s ease-in-out infinite';
             }
         });
-    }
 
-    // Experience badge animation
-    const experienceBadge = document.querySelector('.experience-badge');
-    if (experienceBadge) {
-        // Add a subtle rotation animation
-        experienceBadge.style.animation = 'float 6s ease-in-out infinite';
-    }
-
-    // Ensure AOS is refreshed when needed
-    if (typeof AOS !== 'undefined') {
-        // Refresh AOS when all images are loaded
-        window.addEventListener('load', () => {
-            AOS.refresh();
+        experienceMarker.addEventListener('mouseleave', () => {
+            isAnimating = false;
         });
+    }
 
-        // Refresh AOS on window resize
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (autoplayInterval) clearInterval(autoplayInterval);
+        } else {
+            startAutoplay();
+        }
+    });
+
+    // Handle window focus/blur
+    window.addEventListener('focus', () => {
+        startAutoplay();
+    });
+
+    window.addEventListener('blur', () => {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+    });
+
+    // Initialize intersection observer for animations
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe elements for scroll animations
+    document.querySelectorAll('.feature-item, .credential').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'all 0.5s ease';
+        observer.observe(element);
+    });
+
+    // Start autoplay on init
+    showBlock(0);
+    startAutoplay();
+
+    // Handle resize events
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Refresh AOS
+            if (typeof AOS !== 'undefined') {
                 AOS.refresh();
-            }, 250);
-        });
-    }
+            }
+        }, 250);
+    });
 }
 
 // Team Section Implementation
