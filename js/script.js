@@ -1,31 +1,19 @@
-// Initialize all functionality when DOM is loaded
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS
+    // Initialize AOS animations
     AOS.init({
         duration: 800,
         once: true,
         offset: 100
     });
 
-    // Hero Slider Functionality
+    // Initialize all components
     initHeroSlider();
-
-    // Services Carousel
-    initServicesCarousel();
-
-    // Team Carousel
-    initTeamCarousel();
-
-    // Mobile Navigation
     initMobileNav();
-
-    // Header Scroll Effect
     initHeaderScroll();
-
-    // Form Handling
+    initServicesCarousel();
+    initTeamCarousel();
     initFormHandling();
-
-    // Back to Top Button
     initBackToTop();
 });
 
@@ -38,34 +26,42 @@ function initHeroSlider() {
 
     // Show specific slide
     function showSlide(index) {
-        // Remove active class from all slides and dots
+        // Hide all slides first
         slides.forEach(slide => {
+            slide.classList.remove('active');
             slide.style.opacity = '0';
             slide.style.transform = 'scale(1.1)';
-            slide.classList.remove('active');
         });
+        
+        // Remove active class from all dots
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // Add active class to current slide and dot
-        slides[index].style.opacity = '1';
-        slides[index].style.transform = 'scale(1)';
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
-        
+        // Show current slide
+        requestAnimationFrame(() => {
+            slides[index].classList.add('active');
+            slides[index].style.opacity = '1';
+            slides[index].style.transform = 'scale(1)';
+            dots[index].classList.add('active');
+        });
+
         currentSlide = index;
     }
 
     // Next slide function
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
+        let nextIndex = (currentSlide + 1) % slides.length;
+        showSlide(nextIndex);
+    }
+
+    // Previous slide function
+    function prevSlide() {
+        let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prevIndex);
     }
 
     // Start slideshow
     function startSlideshow() {
-        if (slideInterval) {
-            clearInterval(slideInterval);
-        }
+        if (slideInterval) clearInterval(slideInterval);
         slideInterval = setInterval(nextSlide, 5000);
     }
 
@@ -73,6 +69,7 @@ function initHeroSlider() {
     function stopSlideshow() {
         if (slideInterval) {
             clearInterval(slideInterval);
+            slideInterval = null;
         }
     }
 
@@ -85,6 +82,19 @@ function initHeroSlider() {
         });
     });
 
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            stopSlideshow();
+            nextSlide();
+            startSlideshow();
+        } else if (e.key === 'ArrowLeft') {
+            stopSlideshow();
+            prevSlide();
+            startSlideshow();
+        }
+    });
+
     // Add hover pause functionality
     const heroSection = document.querySelector('.hero');
     if (heroSection) {
@@ -92,14 +102,106 @@ function initHeroSlider() {
         heroSection.addEventListener('mouseleave', startSlideshow);
     }
 
+    // Handle visibility change
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopSlideshow();
+        } else {
+            startSlideshow();
+        }
+    });
+
     // Start the initial slideshow
     showSlide(0);
     startSlideshow();
 }
 
+// Mobile Navigation Function
+function initMobileNav() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const header = document.querySelector('.header');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (navToggle && navMenu) {
+        // Toggle menu
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Close menu when clicking links
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            
+            if (target) {
+                const headerHeight = header.offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - headerHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Header Scroll Function
+function initHeaderScroll() {
+    const header = document.querySelector('.header');
+    let lastScroll = 0;
+    const scrollThreshold = 50;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Add/remove scrolled class
+        if (currentScroll > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        // Hide/show header on scroll
+        if (!document.body.classList.contains('menu-open')) {
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
 // Services Carousel Function
 function initServicesCarousel() {
-    const servicesSwiper = new Swiper('.services-carousel', {
+    new Swiper('.services-carousel', {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
@@ -131,7 +233,7 @@ function initServicesCarousel() {
 
 // Team Carousel Function
 function initTeamCarousel() {
-    const teamSwiper = new Swiper('.team-carousel', {
+    new Swiper('.team-carousel', {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
@@ -158,80 +260,17 @@ function initTeamCarousel() {
     });
 }
 
-// Mobile Navigation Function
-function initMobileNav() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const header = document.querySelector('.header');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    if (navToggle && navMenu) {
-        // Toggle menu
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-
-        // Close menu on link click
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-}
-
-// Header Scroll Function
-function initHeaderScroll() {
-    const header = document.querySelector('.header');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        // Add/remove scrolled class
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Hide/show header on scroll
-        if (currentScroll > lastScroll && currentScroll > 500 && !document.body.classList.contains('menu-open')) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-        
-        lastScroll = currentScroll;
-    });
-}
-
 // Form Handling Function
 function initFormHandling() {
     const forms = document.querySelectorAll('form');
 
     forms.forEach(form => {
-        // Handle floating labels
         const inputs = form.querySelectorAll('input, textarea, select');
         
+        // Handle floating labels
         inputs.forEach(input => {
-            // Add placeholder for label animation
             input.setAttribute('placeholder', ' ');
             
-            // Handle focus and blur events
             input.addEventListener('focus', () => {
                 input.closest('.form-group').classList.add('focused');
             });
@@ -264,7 +303,6 @@ function initFormHandling() {
                     showNotification('Message sent successfully!', 'success');
                     form.reset();
                     
-                    // Reset form states
                     inputs.forEach(input => {
                         input.closest('.form-group').classList.remove('filled', 'focused');
                     });
@@ -282,7 +320,7 @@ function initFormHandling() {
 // Back to Top Function
 function initBackToTop() {
     const backToTopButton = document.getElementById('backToTop');
-
+    
     if (backToTopButton) {
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
@@ -301,14 +339,13 @@ function initBackToTop() {
     }
 }
 
-// Form Validation Function
+// Form Validation
 function validateForm(form) {
     let isValid = true;
     const inputs = form.querySelectorAll('[required]');
     
     inputs.forEach(input => {
         removeError(input);
-        
         if (!validateField(input)) {
             isValid = false;
         }
@@ -340,7 +377,7 @@ function validateField(field) {
     return true;
 }
 
-// Error Handling Functions
+// Error Handling
 function showError(parent, message) {
     parent.classList.add('error');
     const error = document.createElement('div');
@@ -358,7 +395,7 @@ function removeError(input) {
     }
 }
 
-// Validation Helper Functions
+// Validation Helpers
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -367,7 +404,7 @@ function isValidPhone(phone) {
     return /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone);
 }
 
-// Notification Function
+// Notification System
 function showNotification(message, type) {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -378,12 +415,10 @@ function showNotification(message, type) {
 
     document.body.appendChild(notification);
     
-    // Trigger animation
     requestAnimationFrame(() => {
         notification.classList.add('show');
     });
 
-    // Remove notification
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => notification.remove(), 300);
