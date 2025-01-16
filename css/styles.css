@@ -113,8 +113,11 @@ body {
     align-items: center;
     gap: 1.5rem;
     height: 100%;
+    position: relative;
+    padding-bottom: 1rem; /* Creates space for the logo to extend below */
 }
 
+/* Logo Styles */
 .brand-logo {
     height: 90px;
     width: 90px;
@@ -125,6 +128,9 @@ body {
     padding: 4px;
     box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
     transition: all var(--transition-fast);
+    position: absolute;
+    bottom: -15px; /* Pushes the logo down */
+    left: 0;
 }
 
 .header.scrolled .brand-logo {
