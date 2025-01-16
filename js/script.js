@@ -1,15 +1,18 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
-    initHeaderScroll();
-    initHeroSlider();
-    initMobileNav();
-    initServicesCarousel();
-    initAOS();
+    initializeAllComponents();
 });
 
-// Header Scroll Functionality
-function initHeaderScroll() {
+// Main initialization function
+function initializeAllComponents() {
+    initHeader();
+    initHeroSlider();
+    initMobileNav();
+    initServices();
+}
+
+// Header Functionality
+function initHeader() {
     const header = document.querySelector('.header');
     let lastScroll = 0;
     let isScrollingDown = false;
@@ -39,7 +42,7 @@ function initHeaderScroll() {
     });
 }
 
-// Hero Slider Functionality
+// Hero Slider Implementation
 function initHeroSlider() {
     const slides = document.querySelectorAll('.hero-slider .slide');
     const dots = document.querySelectorAll('.slider-dot');
@@ -119,12 +122,12 @@ function initHeroSlider() {
         stopSlideshow();
     });
 
-    // Initialize first slide and start slideshow
+    // Start the slideshow
     showSlide(0);
     startSlideshow();
 }
 
-// Mobile Navigation
+// Mobile Navigation Implementation
 function initMobileNav() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -167,14 +170,14 @@ function initMobileNav() {
     }
 }
 
-// Initialize Services Section Components
+// Services Section Implementation
 function initServices() {
     initServicesParallax();
     initServicesCarousel();
     enhanceCardInteractions();
 }
 
-// Parallax Effect for Background
+// Parallax Effect for Services Background
 function initServicesParallax() {
     const servicesSection = document.querySelector('.services');
     const backgroundImage = document.querySelector('.background-image');
@@ -184,12 +187,14 @@ function initServicesParallax() {
             const scrolled = window.pageYOffset;
             const rate = scrolled * 0.3;
             
-            backgroundImage.style.transform = `translate3d(0, ${rate}px, 0)`;
+            requestAnimationFrame(() => {
+                backgroundImage.style.transform = `translate3d(0, ${rate}px, 0)`;
+            });
         }
     });
 }
 
-// Enhanced Services Carousel
+// Services Carousel Implementation
 function initServicesCarousel() {
     const servicesSwiper = new Swiper('.services-carousel', {
         slidesPerView: 1,
@@ -282,12 +287,7 @@ function isElementInViewport(el) {
     );
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initServices();
-});
-
-// Handle resize events
+// Handle Window Resize
 let resizeTimer;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
