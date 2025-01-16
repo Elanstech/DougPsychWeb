@@ -708,6 +708,20 @@ body {
 @media (max-width: 768px) {
     .service-card {
         flex: 1 1 100%;
+        padding: 2rem 1rem; /* Reduce padding */
+        height: auto; /* Allow height to adjust */
+    }
+
+    .service-card h3 {
+        font-size: 1.5rem; /* Adjust font size */
+    }
+
+    .service-card p {
+        font-size: 1rem; /* Adjust font size */
+    }
+
+    .service-features li {
+        font-size: 0.9rem; /* Adjust font size */
     }
 }
 
