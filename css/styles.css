@@ -133,7 +133,7 @@ body {
 .brand-logo {
     border-radius: 50%;
     background-color: var(--royal-blue);
-    padding: 10px; /* Adjust padding as necessary */
+    padding: 5px; /* Adjust padding as necessary */
 }
 
 .brand-name {
