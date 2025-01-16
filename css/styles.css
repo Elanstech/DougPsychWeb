@@ -1,10 +1,9 @@
-/* Core Variables */
 :root {
     /* Brand Colors */
     --royal-blue: #1a237e;
     --royal-blue-light: #534bae;
     --royal-blue-dark: #000051;
-    
+
     /* Refined Metallic Gold Palette */
     --metallic-gold-light: #e6d5ac;
     --metallic-gold: #b49b57;
@@ -26,31 +25,31 @@
     --text-dark: #1a1a1a;
     --text-medium: #4a4a4a;
     --text-light: #767676;
-    
+
     /* Background */
     --background: #ffffff;
     --background-light: #f8f9fa;
-    
+
     /* Typography */
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
-    
+
     /* Spacing */
     --space-xs: 0.5rem;
     --space-sm: 1rem;
     --space-md: 2rem;
     --space-lg: 4rem;
     --space-xl: 8rem;
-    
+
     /* Shadows */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    
+
     /* Transitions */
     --transition-fast: 0.3s ease;
     --transition-medium: 0.5s ease;
-    
+
     /* Border Radius */
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -72,12 +71,13 @@ html {
 }
 
 body {
-    font-family: var(--font-body);
+    font-family: var(--font-body); /* Ensure this is using Plus Jakarta Sans */
     line-height: 1.6;
     color: var(--text-dark);
     background: var(--background);
     overflow-x: hidden;
 }
+
 /* Header Styles */
 .header {
     position: fixed;
@@ -664,6 +664,10 @@ body {
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
+}
+/* Services Section Base */
+.services .section-header h2 {
+    color: var(--royal-blue); /* Change title color to royal blue */
 }
 
 /* Services Carousel */
