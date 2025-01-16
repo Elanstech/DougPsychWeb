@@ -176,8 +176,8 @@ function initMobileNav() {
     }
 }
 
+// Services Section Implementation
 function initServices() {
-    // Initialize Swiper carousel
     const servicesSwiper = new Swiper('.services-carousel', {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -208,34 +208,6 @@ function initServices() {
             }
         }
     });
-
-    // Parallax effect for background
-    window.addEventListener('scroll', () => {
-        const parallaxBg = document.querySelector('.parallax-bg');
-        if (parallaxBg) {
-            const scrolled = window.pageYOffset;
-            parallaxBg.style.transform = `translateY(-${scrolled * 0.4}px)`;
-        }
-    });
-
-    // Smooth scroll for "View All Services" button
-    const viewAllBtn = document.querySelector('.btn-services');
-    if (viewAllBtn) {
-        viewAllBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = document.querySelector(viewAllBtn.getAttribute('href'));
-            if (target) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = targetPosition - headerHeight;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    }
 }
 
 // Team Carousel Implementation
