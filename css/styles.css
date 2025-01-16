@@ -393,7 +393,6 @@ body {
 .services {
     position: relative;
     padding: 8rem 0;
-    background-color: var(--royal-blue-dark);
     min-height: 100vh;
     overflow: hidden;
 }
@@ -416,7 +415,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    opacity: 0.15;
+    opacity: 0.3;  /* Adjusted opacity for better visibility */
     transform: translateY(-10%);
 }
 
@@ -436,7 +435,7 @@ body {
 
 .services .container {
     position: relative;
-    z-index: 3;
+    z-index: 2;  /* Updated z-index since we removed overlay */
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
@@ -445,7 +444,7 @@ body {
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
-    color: white;
+    color: var(--text-dark);  /* Changed to dark text */
 }
 
 .section-tag {
@@ -464,11 +463,11 @@ body {
     font-family: var(--font-heading);
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    color: white;
+    color: var(--royal-blue-dark);  /* Changed to dark blue */
 }
 
 .section-header p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-medium);  /* Adjusted for better contrast */
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
@@ -477,15 +476,17 @@ body {
 .services-carousel {
     padding: 2rem 0;
 }
+
 .service-card {
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(255, 255, 255, 0.95);  /* Slightly more opaque */
     border-radius: var(--radius-lg);
     padding: 3rem 2rem;
     height: 100%;
     transition: all 0.4s ease;
     text-align: center;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .service-card:hover {
