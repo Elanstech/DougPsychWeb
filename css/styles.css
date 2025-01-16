@@ -386,14 +386,12 @@ body {
         0 0 20px rgba(212, 175, 55, 0.6);
     filter: brightness(1.1);
 }
-
-/* Services Section */
 .services {
     position: relative;
-    padding: 6rem 0;
-    overflow: hidden;
+    padding: 8rem 0;
     background-color: var(--royal-blue-dark);
     min-height: 100vh;
+    overflow: hidden;
 }
 
 .services-background {
@@ -405,41 +403,42 @@ body {
     z-index: 1;
 }
 
-.background-image {
+.parallax-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-image: url('your-background-image.jpg');
+    height: 120%;
+    background-image: url('https://github.com/Elanstech/DougPsychWeb/blob/main/Backround3.jpeg?raw=true'); /* Ensure this URL is correct */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     opacity: 0.15;
+    transform: translateY(-10%);
 }
 
-.texture-overlay {
+.services-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(
-        45deg, 
-        rgba(26, 35, 126, 0.97), 
+        135deg,
+        rgba(26, 35, 126, 0.97),
         rgba(26, 35, 126, 0.93)
     );
+    z-index: 2;
 }
 
 .services .container {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Services Header */
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
@@ -448,124 +447,162 @@ body {
 
 .section-tag {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     background: var(--gold-gradient-metallic);
-    background-size: 200% 100%;
-    animation: goldShimmer 8s linear infinite;
     color: var(--metallic-gold-dark);
     border-radius: 50px;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .section-header h2 {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
     color: white;
 }
 
 .section-header p {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* Service Cards */
+.services-carousel {
+    padding: 2rem 0;
+}
+
 .service-card {
     background: rgba(255, 255, 255, 0.97);
     border-radius: var(--radius-lg);
-    padding: 2rem;
+    padding: 3rem 2rem;
     height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: var(--shadow-md);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    transition: all 0.4s ease;
+    text-align: center;
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    background: white;
 }
 
 .service-icon {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     background: var(--gold-gradient-metallic);
-    background-size: 200% 100%;
-    animation: goldShimmer 8s linear infinite;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    margin: 0 auto 2rem;
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.service-icon::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: var(--gold-gradient-metallic);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.5;
+    animation: pulse 2s infinite;
 }
 
 .service-icon i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--royal-blue);
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .service-card h3 {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: var(--royal-blue);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .service-card p {
     color: var(--text-medium);
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-    line-height: 1.6;
+    margin-bottom: 2rem;
+    line-height: 1.7;
 }
 
 .service-features {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    padding: 1rem;
+    gap: 1rem;
+    padding: 1.5rem;
     background: rgba(26, 35, 126, 0.03);
     border-radius: var(--radius-md);
+    margin: 0;
 }
 
 .service-features li {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     color: var(--text-medium);
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 .service-features i {
     color: var(--metallic-gold);
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
-/* Carousel Styles */
-.services-carousel-wrapper {
-    padding: 1rem;
-    margin: -1rem;
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-    color: white;
-    opacity: 0.8;
+    width: 50px;
+    height: 50px;
+    background: var(--gold-gradient-metallic);
+    border-radius: 50%;
+    color: var(--royal-blue);
     transition: all 0.3s ease;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-    opacity: 1;
     transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
     background: white;
     opacity: 0.6;
 }
@@ -573,6 +610,29 @@ body {
 .swiper-pagination-bullet-active {
     background: var(--metallic-gold);
     opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .services {
+        padding: 4rem 0;
+    }
+
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .service-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .service-icon i {
+        font-size: 2rem;
+    }
 }
 /* Animations */
 @keyframes fadeInUp {
