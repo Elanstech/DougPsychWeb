@@ -162,31 +162,6 @@ function initMobileNav() {
         });
     }
 }
-
-// Parallax Effect for Services Section
-function initParallax() {
-    let ticking = false;
-    const parallaxBg = document.querySelector('.parallax-bg');
-    
-    function updateParallax(scrollPos) {
-        if (parallaxBg) {
-            const rate = scrollPos * 0.3;
-            parallaxBg.style.transform = `translateY(-${rate}px)`;
-        }
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.pageYOffset;
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                updateParallax(scrollPos);
-            });
-            ticking = true;
-        }
-    });
-}
-
 // Services Carousel Implementation
 function initServices() {
     const servicesSwiper = new Swiper('.services-carousel', {
