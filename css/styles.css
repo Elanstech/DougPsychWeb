@@ -693,7 +693,7 @@ body {
 
 .services-carousel {
     display: flex;
-    overflow: visible;
+    overflow: hidden;
     padding: 20px 0;
 }
 
