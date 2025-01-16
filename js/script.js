@@ -1,4 +1,4 @@
-// Wait for DOM to be fully loaded
+/ Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeAllComponents();
 });
@@ -54,17 +54,14 @@ function initHeroSlider() {
         if (isTransitioning) return;
         isTransitioning = true;
 
-        // Hide all slides
         slides.forEach(slide => {
             slide.style.opacity = '0';
             slide.style.transform = 'scale(1.1)';
             slide.classList.remove('active');
         });
         
-        // Update dots
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // Show current slide
         slides[index].classList.add('active');
         slides[index].style.opacity = '1';
         slides[index].style.transform = 'scale(1)';
@@ -102,7 +99,6 @@ function initHeroSlider() {
         });
     });
 
-    // Handle visibility change
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             stopSlideshow();
@@ -112,7 +108,6 @@ function initHeroSlider() {
         }
     });
 
-    // Handle window focus
     window.addEventListener('focus', () => {
         showSlide(currentSlide);
         startSlideshow();
@@ -122,7 +117,6 @@ function initHeroSlider() {
         stopSlideshow();
     });
 
-    // Start the slideshow
     showSlide(0);
     startSlideshow();
 }
@@ -134,14 +128,12 @@ function initMobileNav() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (navToggle && navMenu) {
-        // Toggle menu
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
 
-        // Close menu when clicking links
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
@@ -150,7 +142,6 @@ function initMobileNav() {
             });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
                 navToggle.classList.remove('active');
@@ -159,7 +150,6 @@ function initMobileNav() {
             }
         });
 
-        // Handle escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 navToggle.classList.remove('active');
@@ -172,30 +162,6 @@ function initMobileNav() {
 
 // Services Section Implementation
 function initServices() {
-    initServicesParallax();
-    initServicesCarousel();
-    enhanceCardInteractions();
-}
-
-// Parallax Effect for Services Background
-function initServicesParallax() {
-    const servicesSection = document.querySelector('.services');
-    const backgroundImage = document.querySelector('.background-image');
-    
-    window.addEventListener('scroll', () => {
-        if (isElementInViewport(servicesSection)) {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * 0.3;
-            
-            requestAnimationFrame(() => {
-                backgroundImage.style.transform = `translate3d(0, ${rate}px, 0)`;
-            });
-        }
-    });
-}
-
-// Services Carousel Implementation
-function initServicesCarousel() {
     const servicesSwiper = new Swiper('.services-carousel', {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -228,70 +194,34 @@ function initServicesCarousel() {
         on: {
             init: function () {
                 AOS.refresh();
-            },
-            slideChange: function () {
-                updateCardAnimations();
             }
         }
     });
 
-    // Handle visibility changes
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            servicesSwiper.autoplay.stop();
-        } else {
-            servicesSwiper.autoplay.start();
-        }
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease',
+        once: true,
+        mirror: false
     });
 }
 
-// Enhanced Card Interactions
-function enhanceCardInteractions() {
-    const cards = document.querySelectorAll('.service-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            const icon = card.querySelector('.service-icon');
-            if (icon) {
-                icon.style.transform = 'scale(1.1) rotate(5deg)';
-            }
-        });
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
         
-        card.addEventListener('mouseleave', () => {
-            const icon = card.querySelector('.service-icon');
-            if (icon) {
-                icon.style.transform = 'scale(1) rotate(0deg)';
-            }
-        });
+        if (target) {
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = targetPosition - headerHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
     });
-}
-
-// Update Card Animations
-function updateCardAnimations() {
-    const activeCards = document.querySelectorAll('.swiper-slide-active .service-card, .swiper-slide-next .service-card, .swiper-slide-prev .service-card');
-    
-    activeCards.forEach(card => {
-        card.style.transform = 'translateY(-5px)';
-        setTimeout(() => {
-            card.style.transform = 'translateY(0)';
-        }, 300);
-    });
-}
-
-// Utility: Check if Element is in Viewport
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.bottom >= 0
-    );
-}
-
-// Handle Window Resize
-let resizeTimer;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        updateCardAnimations();
-    }, 250);
 });
