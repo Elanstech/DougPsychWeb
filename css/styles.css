@@ -924,6 +924,250 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
+/* About Section Styles */
+.about {
+    position: relative;
+    padding: 8rem 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: rgba(26, 35, 126, 0.1);
+}
+
+.about-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.about-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 2;
+}
+
+.about .container {
+    position: relative;
+    z-index: 3;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    margin-top: 4rem;
+}
+
+.about-image {
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: 30px;
+    right: -30px;
+    background: var(--gold-gradient-metallic);
+    padding: 1.5rem;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.experience-badge .years {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--royal-blue);
+    line-height: 1;
+}
+
+.experience-badge .text {
+    font-size: 0.8rem;
+    color: var(--royal-blue);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.about-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.leadership-intro {
+    margin-bottom: 3rem;
+}
+
+.leadership-intro h3 {
+    font-family: var(--font-heading);
+    color: var(--royal-blue);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.leadership-intro p {
+    color: var(--text-medium);
+    line-height: 1.8;
+}
+
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.about-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gold-gradient-metallic);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.card-icon i {
+    font-size: 1.5rem;
+    color: var(--royal-blue);
+}
+
+.about-card h4 {
+    color: var(--royal-blue);
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+}
+
+.about-card p {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature i {
+    color: var(--metallic-gold);
+    font-size: 1.2rem;
+}
+
+.feature span {
+    color: var(--text-medium);
+    font-weight: 500;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-image {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .about-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about {
+        padding: 4rem 0;
+    }
+
+    .about-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        padding: 2rem;
+    }
+
+    .leadership-intro h3 {
+        font-size: 1.75rem;
+    }
+
+    .experience-badge {
+        width: 100px;
+        height: 100px;
+        right: -20px;
+        bottom: 20px;
+    }
+
+    .experience-badge .years {
+        font-size: 1.75rem;
+    }
+
+    .experience-badge .text {
+        font-size: 0.7rem;
+    }
+}
+
+
+
+
+
 
 
 
