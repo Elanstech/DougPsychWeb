@@ -8,7 +8,7 @@ function initializeAllComponents() {
     initHeader();
     initHeroSlider();
     initMobileNav();
-    initParallax();  // Added for services parallax
+    initParallax();
     initServices();
     initTeamCarousel();
     initContactForm();
@@ -162,6 +162,36 @@ function initMobileNav() {
         });
     }
 }
+
+// Parallax Effect Implementation
+function initParallax() {
+    let ticking = false;
+    const parallaxBg = document.querySelector('.parallax-bg');
+    
+    function updateParallax(scrollPos) {
+        if (parallaxBg) {
+            // Only apply parallax on desktop
+            if (window.innerWidth > 768) {
+                const rate = scrollPos * 0.5; // Adjust this value to control parallax speed
+                parallaxBg.style.transform = `translateY(-${rate}px)`;
+            } else {
+                parallaxBg.style.transform = 'none';
+            }
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.pageYOffset;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateParallax(scrollPos);
+            });
+            ticking = true;
+        }
+    });
+}
+
 // Services Carousel Implementation
 function initServices() {
     const servicesSwiper = new Swiper('.services-carousel', {
@@ -196,8 +226,22 @@ function initServices() {
         on: {
             init: function() {
                 AOS.refresh();
+            },
+            slideChange: function() {
+                AOS.refresh();
             }
         }
+    });
+
+    // Handle window resize for parallax
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.parallax-bg').style.transform = 'none';
+            }
+        }, 250);
     });
 }
 
