@@ -129,7 +129,7 @@ body {
     box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
     transition: all var(--transition-fast);
     position: absolute;
-    bottom: 0px;
+    bottom: 10px;
     left: 0;
 }
 
