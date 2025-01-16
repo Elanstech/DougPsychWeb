@@ -5,33 +5,30 @@
     --royal-blue-light: #534bae;
     --royal-blue-dark: #000051;
     
-    /* Metallic Gold Palette */
-    --metallic-gold-light: #f4e5c3;
-    --metallic-gold: #d4af37;
-    --metallic-gold-medium: #c5a028;
-    --metallic-gold-dark: #996515;
-    --metallic-gold-shadow: #7a5427;
+    /* Refined Metallic Gold Palette */
+    --metallic-gold-light: #e6d5ac;
+    --metallic-gold: #b49b57;
+    --metallic-gold-medium: #9c834a;
+    --metallic-gold-dark: #826d3e;
+    --metallic-gold-shadow: #695a35;
 
     /* Metallic gradient variations */
     --gold-gradient-metallic: linear-gradient(
         45deg,
         var(--metallic-gold-dark) 0%,
-        var(--metallic-gold) 20%,
-        var(--metallic-gold-light) 40%,
-        var(--metallic-gold) 60%,
-        var(--metallic-gold-dark) 80%,
-        var(--metallic-gold) 100%
+        var(--metallic-gold) 25%,
+        var(--metallic-gold-light) 50%,
+        var(--metallic-gold) 75%,
+        var(--metallic-gold-dark) 100%
     );
 
     --gold-gradient-shimmer: linear-gradient(
         45deg,
         var(--metallic-gold-dark) 0%,
-        var(--metallic-gold) 15%,
-        var(--metallic-gold-light) 30%,
-        var(--metallic-gold) 45%,
-        var(--metallic-gold-light) 60%,
-        var(--metallic-gold) 75%,
-        var(--metallic-gold-dark) 90%,
+        var(--metallic-gold) 20%,
+        var(--metallic-gold-light) 40%,
+        var(--metallic-gold) 60%,
+        var(--metallic-gold-light) 80%,
         var(--metallic-gold) 100%
     );
     
