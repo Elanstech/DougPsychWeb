@@ -125,7 +125,7 @@ body {
     box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
     transition: all var(--transition-fast);
     position: absolute;
-    bottom: -28px;
+    bottom: -35px;
     left: 0;
 }
 
