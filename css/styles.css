@@ -676,6 +676,7 @@ body {
 }
 
 .services-carousel {
+    display: flex;
     overflow: visible;
     padding: 20px 0;
 }
@@ -694,12 +695,20 @@ body {
     visibility: visible;
     background: white;
     height: 100%;
+    flex: 1 1 calc(33.333% - 20px);
+    margin: 10px;
 }
 
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     background: white;
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        flex: 1 1 100%;
+    }
 }
 
 /* Card Icon */
