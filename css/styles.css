@@ -307,14 +307,13 @@ body {
 }
 
 .slide-content {
-    position: relative;
+    position: absolute;
     z-index: 2;
     max-width: 800px;
     text-align: center;
-    padding: var(--space-lg);
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    border-radius: var(--radius-lg);
     color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for readability */
+    padding: var(--space-lg);
 }
 
 .slide-bg {
@@ -329,7 +328,6 @@ body {
 }
 
 .hero h1 {
-    color: white;
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: var(--space-md);
 }
@@ -338,7 +336,6 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    color: white;
 }
 
 .hero ul li {
