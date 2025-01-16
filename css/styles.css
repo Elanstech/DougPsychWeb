@@ -800,25 +800,6 @@ body {
     font-size: 1.1rem;
 }
 
-.btn-view-services {
-    display: inline-block;
-    background: var(--gold-gradient-metallic);
-    color: var(--metallic-gold-dark);
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-top: 2rem;
-    text-align: center;
-}
-
-.btn-view-services:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(184, 134, 11, 0.4);
-}
-
 /* Carousel Navigation */
 .swiper-button-prev,
 .swiper-button-next {
@@ -893,6 +874,25 @@ body {
     .swiper-button-next {
         display: none;
     }
+}
+
+.btn-view-services {
+    display: inline-block;
+    background: var(--gold-gradient-metallic);
+    color: var(--metallic-gold-dark);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-view-services:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(184, 134, 11, 0.4);
 }
 /* Navigation Toggle Animations */
 .nav-toggle.active span:nth-child(1) {
