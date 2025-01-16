@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeroSlider();
     initMobileNav();
     initHeaderScroll();
+    initBackToTop();
+    initAOS();
+    initServicesSwiper();
+    initTeamSwiper();
 });
 
 // Hero Slider Function
@@ -15,23 +19,22 @@ function initHeroSlider() {
 
     // Show specific slide
     function showSlide(index) {
-        // Hide all slides first
+        // Remove active class and reset styles from all slides
         slides.forEach(slide => {
             slide.classList.remove('active');
             slide.style.opacity = '0';
             slide.style.transform = 'scale(1.1)';
+            slide.style.transition = 'opacity 1s ease, transform 1.2s ease';
         });
         
         // Remove active class from all dots
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // Show current slide
-        requestAnimationFrame(() => {
-            slides[index].classList.add('active');
-            slides[index].style.opacity = '1';
-            slides[index].style.transform = 'scale(1)';
-            dots[index].classList.add('active');
-        });
+        // Show current slide with animation
+        slides[index].classList.add('active');
+        slides[index].style.opacity = '1';
+        slides[index].style.transform = 'scale(1)';
+        dots[index].classList.add('active');
 
         currentSlide = index;
     }
@@ -48,6 +51,15 @@ function initHeroSlider() {
         showSlide(prevIndex);
     }
 
+    // Initialize slider controls
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopSlideshow();
+            showSlide(index);
+            startSlideshow();
+        });
+    });
+
     // Start slideshow
     function startSlideshow() {
         if (slideInterval) clearInterval(slideInterval);
@@ -61,15 +73,6 @@ function initHeroSlider() {
             slideInterval = null;
         }
     }
-
-    // Initialize dots controls
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopSlideshow();
-            showSlide(index);
-            startSlideshow();
-        });
-    });
 
     // Add keyboard navigation
     document.addEventListener('keydown', (e) => {
@@ -100,7 +103,7 @@ function initHeroSlider() {
         }
     });
 
-    // Start the initial slideshow
+    // Initialize first slide and start slideshow
     showSlide(0);
     startSlideshow();
 }
@@ -169,6 +172,97 @@ function initHeaderScroll() {
         }
         
         lastScroll = currentScroll;
+    });
+}
+
+// Initialize Back to Top button
+function initBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+    
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
+
+// Initialize AOS (Animate on Scroll)
+function initAOS() {
+    AOS.init({
+        duration: 1000,
+        easing: 'ease',
+        once: true,
+        mirror: false
+    });
+}
+
+// Initialize Services Swiper
+function initServicesSwiper() {
+    new Swiper('.services-carousel', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        }
+    });
+}
+
+// Initialize Team Swiper
+function initTeamSwiper() {
+    new Swiper('.team-carousel', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        }
     });
 }
 
