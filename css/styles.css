@@ -69,6 +69,7 @@ body {
     overflow-x: hidden;
 }
 /* Header Core Styles */
+/* Header Core Styles */
 .header {
     position: fixed;
     top: 0;
@@ -80,11 +81,6 @@ body {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     height: 140px;
     transition: all var(--transition-fast);
-}
-
-.header.scrolled {
-    height: 100px;
-    background: var(--royal-blue);
 }
 
 /* Navbar Container */
@@ -133,16 +129,6 @@ body {
     left: 0;
 }
 
-/* Hide logo when scrolled */
-.header.scrolled .brand-logo {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-}
-.header.scrolled .logo-text {
-    margin-left: 0;  /* Remove margin when logo is hidden */
-}
-
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .brand-logo {
@@ -177,11 +163,11 @@ body {
     transition: color var(--transition-fast);
 }
 
-.header.scrolled .brand-name {
+.header. .brand-name {
     color: white;
 }
 
-.header.scrolled .brand-title {
+.header. .brand-title {
     color: var(--gold-light);
 }
 
@@ -201,10 +187,6 @@ body {
     position: relative;
     padding: 0.5rem 0;
     transition: color var(--transition-fast);
-}
-
-.header.scrolled .nav-link {
-    color: white;
 }
 
 .nav-link::after {
@@ -259,10 +241,6 @@ body {
     height: 2px;
     background: var(--text-dark);
     transition: all 0.3s linear;
-}
-
-.header.scrolled .nav-toggle span {
-    background: white;
 }
 
 /* Hero Section */
@@ -464,10 +442,6 @@ body {
 @media (max-width: 768px) {
     .header {
         height: 120px;
-    }
-
-    .header.scrolled {
-        height: 90px;
     }
 
     .hero {
