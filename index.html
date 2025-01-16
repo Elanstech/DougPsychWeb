@@ -24,206 +24,205 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
-
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-<header class="header">
-    <nav class="navbar">
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="nav-logo">
+                    <div class="logo-container">
+                        <img src="logo.png" alt="Dr. Doug Uhlig Logo" class="brand-logo">
+                        <div class="logo-text">
+                        </div>
+                    </div>
+                </a>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+                
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#team" class="nav-link">Team</a>
+                    <a href="#book-section" class="nav-link">Book</a>
+                    <a href="#locations" class="nav-link">Locations</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="#consultation" class="btn btn-consultation">Book Consultation</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('front1.jpg')"></div>
+            <div class="slide" style="background-image: url('front.jpg')"></div>
+            <div class="slide" style="background-image: url('Backround3.jpeg')"></div>
+            <div class="slider-overlay"></div>
+            <div class="slider-controls">
+                <button class="slider-dot active" data-slide="0"></button>
+                <button class="slider-dot" data-slide="1"></button>
+                <button class="slider-dot" data-slide="2"></button>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="content-container">
+                <h1 class="hero-title">Doug Uhlig Psychological Services, PLLC</h1>
+                <div class="hero-services">
+                    <ul class="services-list">
+                        <li><i class="fas fa-check-circle"></i>Depression & Mood Disorders</li>
+                        <li><i class="fas fa-check-circle"></i>Anxiety Disorders</li>
+                        <li><i class="fas fa-check-circle"></i>PTSD & Trauma Recovery</li>
+                        <li><i class="fas fa-check-circle"></i>Mindfulness & Meditation</li>
+                        <li><i class="fas fa-check-circle"></i>Cognitive Behavioral Therapy</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-hero">Contact Us Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="services-background">
+            <div class="background-image"></div>
+            <div class="texture-overlay"></div>
+        </div>
         <div class="container">
-            <a href="#" class="nav-logo">
-                <div class="logo-container">
-                    <img src="logo.png" alt="Dr. Doug Uhlig Logo" class="brand-logo">
-                    <div class="logo-text">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Services</span>
+                <h2>Areas of Specialty</h2>
+                <p>Expert psychological care tailored to your unique needs</p>
+            </div>
+
+            <div class="services-carousel-wrapper" data-aos="fade-up">
+                <div class="swiper services-carousel">
+                    <div class="swiper-wrapper">
+                        <!-- Depression Card -->
+                        <div class="swiper-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-cloud-sun"></i>
+                                </div>
+                                <h3>Depression & Mood Disorders</h3>
+                                <p>Expert treatment for various forms of depression and mood management using evidence-based approaches.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i>Personalized Treatment Plans</li>
+                                    <li><i class="fas fa-check"></i>CBT & Mindfulness Integration</li>
+                                    <li><i class="fas fa-check"></i>Mood Regulation Techniques</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Anxiety Card -->
+                        <div class="swiper-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-wind"></i>
+                                </div>
+                                <h3>Anxiety Disorders</h3>
+                                <p>Comprehensive treatment combining therapeutic approaches with practical coping strategies.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i>Anxiety Management Tools</li>
+                                    <li><i class="fas fa-check"></i>Panic Attack Prevention</li>
+                                    <li><i class="fas fa-check"></i>Stress Reduction Methods</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Anger Management Card -->
+                        <div class="swiper-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <h3>Anger Management</h3>
+                                <p>Learn effective techniques to control and channel anger in healthy, productive ways.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i>Emotional Regulation</li>
+                                    <li><i class="fas fa-check"></i>Conflict Resolution</li>
+                                    <li><i class="fas fa-check"></i>Stress Management</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- PTSD Card -->
+                        <div class="swiper-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-heart-broken"></i>
+                                </div>
+                                <h3>PTSD Treatment</h3>
+                                <p>Specialized care for trauma recovery and post-traumatic stress management.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i>Trauma-Informed Therapy</li>
+                                    <li><i class="fas fa-check"></i>Coping Strategies</li>
+                                    <li><i class="fas fa-check"></i>Recovery Support</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Marital & Career Card -->
+                        <div class="swiper-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h3>Marital & Career Issues</h3>
+                                <p>Professional guidance for relationship enhancement and career development.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i>Relationship Counseling</li>
+                                    <li><i class="fas fa-check"></i>Career Planning</li>
+                                    <li><i class="fas fa-check"></i>Work-Life Balance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Meditation Card -->
+                        <div class="swiper-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-spa"></i>
+                                </div>
+                                <h3>Meditation Practice</h3>
+                                <p>Learn effective meditation techniques for stress reduction and mental clarity.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i>Stress Management</li>
+                                    <li><i class="fas fa-check"></i>Mindfulness Training</li>
+                                    <li><i class="fas fa-check"></i>Daily Practice Guide</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Hypnotherapy Card -->
+                        <div class="swiper-slide">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h3>Hypnotherapy</h3>
+                                <p>Professional hypnotherapy services for various psychological concerns.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i>Behavioral Change</li>
+                                    <li><i class="fas fa-check"></i>Anxiety Relief</li>
+                                    <li><i class="fas fa-check"></i>Habit Management</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
                 </div>
-            </a>
-            
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-            
-            <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#team" class="nav-link">Team</a>
-                <a href="#book-section" class="nav-link">Book</a>
-                <a href="#locations" class="nav-link">Locations</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#consultation" class="btn btn-consultation">Book Consultation</a>
             </div>
         </div>
-    </nav>
-</header>
-
-<!-- Hero Section -->
-<section class="hero" id="home">
-    <div class="hero-slider">
-        <div class="slide active" style="background-image: url('front1.jpg')"></div>
-        <div class="slide" style="background-image: url('front.jpg')"></div>
-        <div class="slide" style="background-image: url('Backround3.jpeg')"></div>
-        <div class="slider-overlay"></div>
-        <div class="slider-controls">
-            <button class="slider-dot active" data-slide="0"></button>
-            <button class="slider-dot" data-slide="1"></button>
-            <button class="slider-dot" data-slide="2"></button>
-        </div>
-    </div>
-    
-    <div class="hero-content">
-        <div class="content-container">
-            <h1 class="hero-title">Doug Uhlig Psychological Services, PLLC</h1>
-            <div class="hero-services">
-                <ul class="services-list">
-                    <li><i class="fas fa-check-circle"></i>Depression & Mood Disorders</li>
-                    <li><i class="fas fa-check-circle"></i>Anxiety Disorders</li>
-                    <li><i class="fas fa-check-circle"></i>PTSD & Trauma Recovery</li>
-                    <li><i class="fas fa-check-circle"></i>Mindfulness & Meditation</li>
-                    <li><i class="fas fa-check-circle"></i>Cognitive Behavioral Therapy</li>
-                </ul>
-            </div>
-            <a href="#contact" class="btn btn-hero">Contact Us Today</a>
-        </div>
-    </div>
-</section>
-
-   <!-- Services Section -->
-<section id="services" class="services">
-    <div class="services-background">
-        <div class="background-image"></div>
-        <div class="texture-overlay"></div>
-    </div>
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Our Services</span>
-            <h2>Areas of Specialty</h2>
-            <p>Expert psychological care tailored to your unique needs</p>
-        </div>
-
-        <div class="services-carousel-wrapper" data-aos="fade-up">
-            <div class="swiper services-carousel">
-                <div class="swiper-wrapper">
-                    <!-- Depression Card -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-cloud-sun"></i>
-                            </div>
-                            <h3>Depression & Mood Disorders</h3>
-                            <p>Expert treatment for various forms of depression and mood management using evidence-based approaches.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Personalized Treatment Plans</li>
-                                <li><i class="fas fa-check"></i>CBT & Mindfulness Integration</li>
-                                <li><i class="fas fa-check"></i>Mood Regulation Techniques</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Anxiety Card -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-wind"></i>
-                            </div>
-                            <h3>Anxiety Disorder</h3>
-                            <p>Comprehensive treatment combining therapeutic approaches with practical coping strategies.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Anxiety Management Tools</li>
-                                <li><i class="fas fa-check"></i>Panic Attack Prevention</li>
-                                <li><i class="fas fa-check"></i>Stress Reduction Methods</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Anger Management Card -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-fire"></i>
-                            </div>
-                            <h3>Anger Management</h3>
-                            <p>Learn effective techniques to control and channel anger in healthy, productive ways.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Emotional Regulation</li>
-                                <li><i class="fas fa-check"></i>Conflict Resolution</li>
-                                <li><i class="fas fa-check"></i>Stress Management</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- PTSD Card -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-heart-broken"></i>
-                            </div>
-                            <h3>PTSD Treatment</h3>
-                            <p>Specialized care for trauma recovery and post-traumatic stress management.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Trauma-Informed Therapy</li>
-                                <li><i class="fas fa-check"></i>Coping Strategies</li>
-                                <li><i class="fas fa-check"></i>Recovery Support</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Marital & Career Card -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <h3>Marital & Career Issues</h3>
-                            <p>Professional guidance for relationship enhancement and career development.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Relationship Counseling</li>
-                                <li><i class="fas fa-check"></i>Career Planning</li>
-                                <li><i class="fas fa-check"></i>Work-Life Balance</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Meditation Card -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-spa"></i>
-                            </div>
-                            <h3>Meditation Practice</h3>
-                            <p>Learn effective meditation techniques for stress reduction and mental clarity.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Stress Management</li>
-                                <li><i class="fas fa-check"></i>Mindfulness Training</li>
-                                <li><i class="fas fa-check"></i>Daily Practice Guide</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Hypnotherapy Card -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h3>Hypnotherapy</h3>
-                            <p>Professional hypnotherapy services for various psychological concerns.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Behavioral Change</li>
-                                <li><i class="fas fa-check"></i>Anxiety Relief</li>
-                                <li><i class="fas fa-check"></i>Habit Management</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
     
     <!-- About Dr. Doug Section -->
     <section id="about" class="about-founder">
