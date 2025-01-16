@@ -312,7 +312,7 @@ body {
     max-width: 800px;
     text-align: center;
     padding: var(--space-lg);
-    background: rgba(26, 35, 126, 0.7); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
     border-radius: var(--radius-lg);
     color: white;
 }
@@ -325,7 +325,6 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
-    filter: brightness(0.6);
     z-index: 1;
 }
 
