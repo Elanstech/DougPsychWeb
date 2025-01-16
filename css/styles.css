@@ -115,13 +115,14 @@ body {
 .brand-logo {
     height: 100px; /* Adjust to desired height */
     width: auto;
-    padding: 20px; /* Adjust padding to maintain the same circle size */
+    padding: 100px; /* Adjust padding to maintain the same circle size */
 }
 
 .brand-text {
     display: flex;
     flex-direction: column;
 }
+
 .brand-logo-container {
     background-color: var(--royal-blue);
     border-radius: 50%;
