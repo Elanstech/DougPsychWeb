@@ -133,11 +133,23 @@ body {
     left: 0;
 }
 
+/* Hide logo when scrolled */
 .header.scrolled .brand-logo {
-    height: 90px;
-    width: 90px;
-    bottom: -20px;
-    border-color: var(--gold-light);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+.header.scrolled .logo-text {
+    margin-left: 0;  /* Remove margin when logo is hidden */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .brand-logo {
+        height: 110px;
+        width: 110px;
+        bottom: -30px;
+    }
 }
 
 /* Logo Text Styles */
@@ -477,12 +489,6 @@ body {
         bottom: -30px;
     }
 
-    .header.scrolled .brand-logo {
-        height: 80px;
-        width: 80px;
-        bottom: -15px;
-    }
-
     .logo-text {
         margin-left: 125px;
     }
@@ -555,12 +561,6 @@ body {
         height: 100px;
         width: 100px;
         bottom: -25px;
-    }
-
-    .header.scrolled .brand-logo {
-        height: 75px;
-        width: 75px;
-        bottom: -12px;
     }
 
     .logo-text {
