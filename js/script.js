@@ -9,6 +9,7 @@ function initializeAllComponents() {
     initHeroSlider();
     initMobileNav();
     initServices();
+    initAboutSection();
     initTeamSection(); // Added team section initialization
 }
 
@@ -247,6 +248,88 @@ function initServices() {
         }, 250);
     });
 }
+
+// About Section Implementation
+function initAboutSection() {
+    // Initialize card hover animations
+    const aboutCards = document.querySelectorAll('.about-card');
+    
+    aboutCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.background = 'white';
+            this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.background = 'rgba(255, 255, 255, 0.5)';
+            this.style.boxShadow = 'none';
+        });
+    });
+
+    // Initialize features animation
+    const features = document.querySelectorAll('.feature');
+    features.forEach(feature => {
+        feature.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1.2)';
+                icon.style.transition = 'transform 0.3s ease';
+            }
+        });
+
+        feature.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1)';
+            }
+        });
+    });
+
+    // Parallax effect for the background image
+    const aboutSection = document.querySelector('.about');
+    const backgroundImage = aboutSection?.querySelector('.background-image');
+    
+    if (aboutSection && backgroundImage) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const sectionTop = aboutSection.offsetTop;
+            const sectionHeight = aboutSection.offsetHeight;
+            
+            if (scrolled >= sectionTop - window.innerHeight && 
+                scrolled <= sectionTop + sectionHeight) {
+                const parallaxValue = (scrolled - sectionTop) * 0.4;
+                backgroundImage.style.transform = `translateY(${parallaxValue}px)`;
+            }
+        });
+    }
+
+    // Experience badge animation
+    const experienceBadge = document.querySelector('.experience-badge');
+    if (experienceBadge) {
+        // Add a subtle rotation animation
+        experienceBadge.style.animation = 'float 6s ease-in-out infinite';
+    }
+
+    // Ensure AOS is refreshed when needed
+    if (typeof AOS !== 'undefined') {
+        // Refresh AOS when all images are loaded
+        window.addEventListener('load', () => {
+            AOS.refresh();
+        });
+
+        // Refresh AOS on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                AOS.refresh();
+            }, 250);
+        });
+    }
+}
+
 // Team Section Implementation
 function initTeamSection() {
     const teamSwiper = new Swiper('.team-carousel', {
