@@ -113,8 +113,9 @@ body {
 }
 
 .brand-logo {
-    height: 100px;
+    height: 100px; /* Adjust to desired height */
     width: auto;
+    padding: 20px; /* Adjust padding to maintain the same circle size */
 }
 
 .brand-text {
