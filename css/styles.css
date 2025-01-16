@@ -687,7 +687,7 @@ body {
     background: rgba(255, 255, 255, 0.95);
     border-radius: var(--radius-lg);
     padding: 3rem 2rem;
-    height: 300px; /* Set a fixed height */
+    height: 600px; /* Set a fixed height */
     transition: all 0.4s ease;
     text-align: center;
     backdrop-filter: blur(10px);
