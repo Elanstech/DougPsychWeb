@@ -9,6 +9,7 @@ function initializeAllComponents() {
     initHeroSlider();
     initMobileNav();
     initServices();
+    initTeamSection(); // Added team section initialization
 }
 
 // Header Functionality
@@ -243,6 +244,85 @@ function initServices() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             servicesSwiper.update();
+        }, 250);
+    });
+}
+// Team Section Implementation
+function initTeamSection() {
+    const teamSwiper = new Swiper('.team-carousel', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        speed: 800,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            }
+        },
+        on: {
+            init: function() {
+                AOS.refresh();
+            },
+            slideChange: function() {
+                AOS.refresh();
+            }
+        }
+    });
+
+    // Handle team card interactions
+    const teamCards = document.querySelectorAll('.team-card');
+    
+    teamCards.forEach(card => {
+        // Add hover effect for team cards
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+
+        // Handle social links click
+        const socialLinks = card.querySelectorAll('.team-social a');
+        socialLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.classList.contains('copy-email')) {
+                    e.preventDefault();
+                    const email = this.getAttribute('href').replace('mailto:', '');
+                    navigator.clipboard.writeText(email).then(() => {
+                        // Could add a toast notification here if desired
+                        console.log('Email copied to clipboard');
+                    });
+                }
+            });
+        });
+    });
+
+    // Handle window resize for team carousel
+    let teamResizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(teamResizeTimeout);
+        teamResizeTimeout = setTimeout(() => {
+            teamSwiper.update();
         }, 250);
     });
 }
