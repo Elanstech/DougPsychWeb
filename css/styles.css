@@ -924,3 +924,236 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Team Section Styles */
+.team {
+    padding: 8rem 0;
+    background: var(--background-light);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Team Section Header */
+.team .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.team .section-header h2 {
+    color: var(--royal-blue);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.team .section-tag {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--gold-gradient-metallic);
+    color: var(--metallic-gold-dark);
+    border-radius: 50px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.team .section-header p {
+    color: var(--text-medium);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Team Grid Layout */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Team Cards */
+.team-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Team Member Image Container */
+.team-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-image img {
+    transform: scale(1.1);
+}
+
+/* Social Links Overlay */
+.team-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 35, 126, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.team-card:hover .team-overlay {
+    opacity: 1;
+}
+
+.team-social {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.team-social a {
+    width: 45px;
+    height: 45px;
+    background: var(--gold-gradient-metallic);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--royal-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-social a:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(180, 155, 87, 0.3);
+}
+
+.team-social a i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.team-social a:hover i {
+    transform: scale(1.1);
+    color: var(--royal-blue-dark);
+}
+
+/* Add ripple effect on click */
+.team-social a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease-out;
+}
+
+.team-social a:active::after {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-social {
+        gap: 0.75rem;
+    }
+
+    .team-social a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .team-social a i {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-social {
+        gap: 0.5rem;
+    }
+
+    .team-social a {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Hover accessibility */
+@media (hover: hover) {
+    .team-social a:hover {
+        transform: translateY(-3px) scale(1.1);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .team-social a {
+        background: var(--royal-blue);
+        color: white;
+    }
+    
+    .team-social a:hover {
+        background: var(--royal-blue-dark);
+    }
+}
