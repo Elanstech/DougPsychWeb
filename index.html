@@ -241,88 +241,99 @@
     </div>
 </section>
 
-<!-- About Us Section -->
+<!-- About Section -->
 <section id="about" class="about">
-    <div class="about-background">
-        <img src="backround2.jpeg" alt="Background" class="background-image">
-        
-        <!-- Floating Elements -->
-        <div class="floating-elements">
-            <div class="float-item float-1"><i class="fas fa-brain"></i></div>
-            <div class="float-item float-2"><i class="fas fa-heart"></i></div>
-            <div class="float-item float-3"><i class="fas fa-smile"></i></div>
-            <div class="float-item float-4"><i class="fas fa-peace"></i></div>
-            <div class="float-item float-5"><i class="fas fa-spa"></i></div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">About Us</span>
-            <h2>Leadership & Vision</h2>
-            <p>Providing compassionate care and innovative solutions</p>
-        </div>
-
-        <div class="about-grid" data-aos="fade-up">
-            <div class="about-image">
-                <div class="image-container">
-                    <img src="doug.jpeg" alt="Dr. Doug Uhlig">
-                    <div class="experience-badge">
-                        <span class="years">20+</span>
-                        <span class="text">Years of Experience</span>
+    <div class="about-container">
+        <!-- Left Column -->
+        <div class="about-image-column" data-aos="fade-right">
+            <div class="profile-container">
+                <div class="profile-frame">
+                    <img src="/api/placeholder/800/1000" alt="Dr. Doug Uhlig" class="profile-image">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="experience-marker">
+                    <div class="marker-content">
+                        <span class="years">35+</span>
+                        <span class="text">Years of Excellence</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="about-content">
-                <div class="leadership-intro">
-                    <h3>Under the Leadership of Dr. Doug Uhlig</h3>
-                    <p>With over three decades of dedicated service in psychological care, Dr. Doug Uhlig has established a practice that combines traditional therapeutic approaches with innovative mental health solutions. His vision of comprehensive, accessible mental healthcare has shaped our practice into what it is today.</p>
+            <div class="credentials-box">
+                <div class="credential">
+                    <i class="fas fa-award"></i>
+                    <span>Licensed Clinical Psychologist</span>
                 </div>
-                
-                <div class="about-cards">
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h4>Who We Are</h4>
-                        <p>At Doug Uhlig Psychological Services, we are a team of highly qualified mental health professionals committed to helping individuals, couples, and families navigate life's challenges.</p>
-                    </div>
-                    
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>Our Philosophy</h4>
-                        <p>We believe that mental health is a vital component of overall well-being, combining the latest research with a deep understanding of the human experience.</p>
-                    </div>
-                    
-                    <div class="about-card">
-                        <div class="card-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h4>Our Commitment</h4>
-                        <p>We are more than just therapists—we are your partners in personal growth, guiding and supporting you toward a healthier, more fulfilling life.</p>
-                    </div>
+                <div class="credential">
+                    <i class="fas fa-university"></i>
+                    <span>Advanced Clinical Training</span>
+                </div>
+                <div class="credential">
+                    <i class="fas fa-book"></i>
+                    <span>Published Author</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="about-content-column" data-aos="fade-left">
+            <div class="section-header-custom">
+                <h2>About Dr. Uhlig</h2>
+                <div class="header-accent"></div>
+            </div>
+
+            <div class="vision-statement">
+                <p class="highlight-text">
+                    "Empowering individuals to overcome challenges and achieve lasting positive change through evidence-based therapeutic approaches."
+                </p>
+            </div>
+
+            <div class="about-content-blocks">
+                <div class="content-block active" data-block="leadership">
+                    <h3>Leadership & Vision</h3>
+                    <p>Under Dr. Doug Uhlig's leadership, our practice has evolved into a beacon of psychological excellence, combining traditional therapeutic wisdom with innovative approaches to mental health care. His dedication to comprehensive, accessible mental healthcare has transformed countless lives over three decades.</p>
                 </div>
 
-                <div class="about-features">
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Evidence-Based Treatment</span>
+                <div class="content-block" data-block="philosophy">
+                    <h3>Our Philosophy</h3>
+                    <p>We believe in treating the whole person, not just symptoms. Our approach integrates the latest psychological research with deep empathy and understanding, creating a supportive environment where healing and growth flourish naturally.</p>
+                </div>
+
+                <div class="content-block" data-block="commitment">
+                    <h3>Our Commitment</h3>
+                    <p>At Doug Uhlig Psychological Services, we're committed to providing exceptional care that's both professional and personal. Our team of experienced practitioners ensures every client receives the attention and support they need to thrive.</p>
+                </div>
+            </div>
+
+            <div class="navigation-dots">
+                <button class="dot active" data-target="leadership"></button>
+                <button class="dot" data-target="philosophy"></button>
+                <button class="dot" data-target="commitment"></button>
+            </div>
+
+            <div class="key-features">
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Personalized Care Plans</span>
+                    <span>Evidence-Based Treatment</span>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Experienced Team</span>
+                    <span>Compassionate Care</span>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Multiple Locations</span>
+                    <span>Individual Focus</span>
+                </div>
+                <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
                     </div>
+                    <span>Excellence in Practice</span>
                 </div>
             </div>
         </div>
