@@ -849,100 +849,156 @@
     </div>
 </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Get In Touch</span>
-                <h2>Contact Us</h2>
-                <p>Take the first step towards positive change</p>
-            </div>
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="contact-background">
+        <img src="Backround3.jpeg" alt="Background" class="background-image">
+        <div class="overlay"></div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="float-item float-1"><i class="fas fa-envelope"></i></div>
+            <div class="float-item float-2"><i class="fas fa-phone"></i></div>
+            <div class="float-item float-3"><i class="fas fa-message"></i></div>
+            <div class="float-item float-4"><i class="fas fa-headset"></i></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Get In Touch</span>
+            <h2>Contact Us</h2>
+            <p>Take the first step towards positive change</p>
+        </div>
+
         <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3>Contact Information</h3>
-                    <div class="info-list">
-                        <div class="info-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <a href="tel:6464815080">(646) 481-5080</a>
-                                <p>Mon-Fri: 9AM-7PM</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <a href="mailto:contact@douguhlig.com">contact@douguhlig.com</a>
-                                <p>We'll respond within 24 hours</p>
-                            </div>
+            <!-- Contact Information -->
+            <div class="contact-info" data-aos="fade-right">
+                <h3>Contact Information</h3>
+                <div class="info-list">
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="item-content">
+                            <h4>Phone</h4>
+                            <a href="tel:6464815080">(646) 481-5080</a>
+                            <p>Monday - Friday: 9AM - 7PM</p>
                         </div>
                     </div>
 
-                    <div class="emergency-info">
-                        <h4>Emergency Resources</h4>
-                        <p>If you're experiencing a mental health emergency:</p>
-                        <ul>
-                            <li>Call 911 for immediate assistance</li>
-                            <li>National Crisis Hotline: 988</li>
-                            <li>NYC Well: 1-888-NYC-WELL</li>
-                        </ul>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="item-content">
+                            <h4>Email</h4>
+                            <a href="mailto:contact@douguhlig.com">contact@douguhlig.com</a>
+                            <p>We'll respond within 24 hours</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="item-content">
+                            <h4>Locations</h4>
+                            <p>Brooklyn: 1517 Voorhies Ave</p>
+                            <p>Queens: 63-44 Saunders St, Suite 106</p>
+                        </div>
                     </div>
                 </div>
 
-                <form class="contact-form" data-aos="fade-left">
+                <div class="emergency-info">
+                    <h4>Emergency Resources</h4>
+                    <p>If you're experiencing a mental health emergency:</p>
+                    <ul>
+                        <li><i class="fas fa-phone"></i>Call 911 for immediate assistance</li>
+                        <li><i class="fas fa-phone"></i>National Crisis Hotline: 988</li>
+                        <li><i class="fas fa-phone"></i>NYC Well: 1-888-NYC-WELL</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container" data-aos="fade-left">
+                <form class="contact-form">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <input type="text" id="name" name="name" required>
                         <label for="name">Full Name</label>
+                        <div class="focus-border"></div>
                     </div>
+
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder=" " required>
+                            <input type="email" id="email" name="email" required>
                             <label for="email">Email Address</label>
+                            <div class="focus-border"></div>
                         </div>
+                        
                         <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder=" " required>
+                            <input type="tel" id="phone" name="phone" required>
                             <label for="phone">Phone Number</label>
+                            <div class="focus-border"></div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <select id="service" name="service" required>
-                            <option value="">Select Service</option>
+                            <option value="" selected disabled></option>
                             <option value="depression">Depression & Mood Disorders</option>
-                            <option value="anxiety">Anxiety Disorder</option>
-                            <option value="ptsd">PTSD Treatment</option>
-                            <option value="meditation">Meditation Practice</option>
+                            <option value="anxiety">Anxiety Disorders</option>
+                            <option value="ptsd">PTSD & Trauma Recovery</option>
+                            <option value="meditation">Mindfulness & Meditation</option>
                             <option value="other">Other Services</option>
                         </select>
                         <label for="service">Service Type</label>
+                        <div class="focus-border"></div>
                     </div>
+
                     <div class="form-group">
-                        <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+                        <textarea id="message" name="message" rows="4" required></textarea>
                         <label for="message">Your Message</label>
+                        <div class="focus-border"></div>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        Send Message
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn-submit">
+                            Send Message
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
+<!-- Footer -->
 <footer class="footer">
+    <!-- Footer Top -->
     <div class="footer-top">
         <div class="container">
             <div class="footer-grid">
+                <!-- Company Info -->
                 <div class="footer-info">
-                    <img src="logo.png" alt="Dr. Doug Uhlig" class="footer-logo">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Dr. Doug Uhlig">
+                        <div class="logo-text">
+                            <span class="logo-title">Dr. Doug Uhlig</span>
+                            <span class="logo-subtitle">Psychological Services</span>
+                        </div>
+                    </div>
                     <p>Providing comprehensive psychological services and innovative therapeutic approaches for over 35 years.</p>
                     <div class="footer-social">
-                        <a href="https://www.linkedin.com/in/drdouguhlig" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.facebook.com/drdouguhlig" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/drdouguhlig" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
+
+                <!-- Quick Links -->
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
@@ -950,25 +1006,45 @@
                         <li><a href="#about">About Dr. Doug</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#team">Our Team</a></li>
-                        <li><a href="#book-section">Book</a></li>
+                        <li><a href="#book">Book</a></li>
                         <li><a href="#locations">Locations</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-locations">
-                    <h4>Our Locations</h4>
-                    <div class="location">
-                        <h5>Brooklyn Office</h5>
-                        <address>1517 Voorhies Ave<br>Brooklyn, NY 11235</address>
+
+                <!-- Services -->
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#depression">Depression & Mood Disorders</a></li>
+                        <li><a href="#anxiety">Anxiety Disorders</a></li>
+                        <li><a href="#ptsd">PTSD Treatment</a></li>
+                        <li><a href="#meditation">Meditation Practice</a></li>
+                        <li><a href="#marriage">Marriage Counseling</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:6464815080">(646) 481-5080</a>
                     </div>
-                    <div class="location">
-                        <h5>Queens Office</h5>
-                        <address>63-44 Saunders St, Suite 106<br>Rego Park, NY 11374</address>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@douguhlig.com">contact@douguhlig.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 9AM-7PM</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="container">
             <p>&copy; 2024 Dr. Doug Uhlig Psychological Services PLLC. All rights reserved.</p>
@@ -978,13 +1054,13 @@
             </div>
         </div>
     </div>
-</footer>
-  
-        <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top">
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to Top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
+</footer>
+   
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
