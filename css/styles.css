@@ -4,9 +4,36 @@
     --royal-blue: #1a237e;
     --royal-blue-light: #534bae;
     --royal-blue-dark: #000051;
-    --gold: #b8860b;
-    --gold-light: #daa520;
-    --gold-dark: #8b6914;
+    
+    /* Metallic Gold Palette */
+    --metallic-gold-light: #f4e5c3;
+    --metallic-gold: #d4af37;
+    --metallic-gold-medium: #c5a028;
+    --metallic-gold-dark: #996515;
+    --metallic-gold-shadow: #7a5427;
+
+    /* Metallic gradient variations */
+    --gold-gradient-metallic: linear-gradient(
+        45deg,
+        var(--metallic-gold-dark) 0%,
+        var(--metallic-gold) 20%,
+        var(--metallic-gold-light) 40%,
+        var(--metallic-gold) 60%,
+        var(--metallic-gold-dark) 80%,
+        var(--metallic-gold) 100%
+    );
+
+    --gold-gradient-shimmer: linear-gradient(
+        45deg,
+        var(--metallic-gold-dark) 0%,
+        var(--metallic-gold) 15%,
+        var(--metallic-gold-light) 30%,
+        var(--metallic-gold) 45%,
+        var(--metallic-gold-light) 60%,
+        var(--metallic-gold) 75%,
+        var(--metallic-gold-dark) 90%,
+        var(--metallic-gold) 100%
+    );
     
     /* Text Colors */
     --text-dark: #1a1a1a;
@@ -19,7 +46,6 @@
     
     /* Gradients */
     --gradient-royal: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));
-    --gradient-gold: linear-gradient(135deg, var(--gold), var(--gold-light));
     
     /* Typography */
     --font-heading: 'Playfair Display', serif;
@@ -68,7 +94,17 @@ body {
     background: var(--background);
     overflow-x: hidden;
 }
-/* Header Core Styles */
+
+/* Shimmer Animation */
+@keyframes goldShimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
 /* Header Core Styles */
 .header {
     position: fixed;
@@ -119,23 +155,17 @@ body {
     width: 130px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--gold);
+    border: 3px solid transparent;
+    border-image: var(--gold-gradient-metallic);
+    border-image-slice: 1;
     background-color: var(--royal-blue);
     padding: 4px;
     box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
     transition: all var(--transition-fast);
     position: absolute;
-    bottom: -38px;
+    bottom: -35px;
     left: 0;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .brand-logo {
-        height: 110px;
-        width: 110px;
-        bottom: -30px;
-    }
+    animation: goldShimmer 8s linear infinite;
 }
 
 /* Logo Text Styles */
@@ -163,14 +193,6 @@ body {
     transition: color var(--transition-fast);
 }
 
-.header. .brand-name {
-    color: white;
-}
-
-.header. .brand-title {
-    color: var(--gold-light);
-}
-
 /* Navigation Menu */
 .nav-menu {
     display: flex;
@@ -196,7 +218,9 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--gold);
+    background: var(--gold-gradient-metallic);
+    background-size: 200% 100%;
+    animation: goldShimmer 8s linear infinite;
     transition: width var(--transition-fast);
 }
 
@@ -206,19 +230,26 @@ body {
 
 /* Consultation Button */
 .btn-consultation {
-    background: var(--gradient-gold);
-    color: white;
+    background: var(--gold-gradient-metallic);
+    background-size: 200% 100%;
+    animation: goldShimmer 8s linear infinite;
+    color: var(--metallic-gold-dark);
     padding: 0.8rem 1.5rem;
     border-radius: 30px;
     font-weight: 600;
     text-decoration: none;
     transition: all var(--transition-fast);
     box-shadow: 0 4px 15px rgba(184, 134, 11, 0.2);
+    text-shadow: 1px 1px 1px var(--metallic-gold-light);
+    border: 1px solid var(--metallic-gold-light);
 }
 
 .btn-consultation:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(184, 134, 11, 0.3);
+    box-shadow: 
+        0 6px 20px rgba(184, 134, 11, 0.3),
+        0 0 15px rgba(212, 175, 55, 0.5);
+    filter: brightness(1.1);
 }
 
 /* Mobile Navigation Toggle */
@@ -258,6 +289,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .slide {
@@ -293,16 +325,6 @@ body {
         rgba(0, 0, 0, 0.6) 100%
     );
     z-index: 3;
-}
-
-/* Ensure smooth transitions between slides */
-.hero-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
 }
 
 .hero-content {
@@ -367,14 +389,21 @@ body {
 }
 
 .services-list i {
-    color: var(--gold);
+    color: transparent;
+    background: var(--gold-gradient-metallic);
+    background-size: 200% 100%;
+    animation: goldShimmer 8s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
     font-size: 1.4rem;
 }
 
+/* Hero Button */
 .btn-hero {
-    display: inline-block;
-    background: var(--gradient-gold);
-    color: white;
+    background: var(--gold-gradient-metallic);
+    background-size: 200% 100%;
+    animation: goldShimmer 8s linear infinite;
+    color: var(--metallic-gold-dark);
     padding: 1.2rem 3rem;
     border-radius: 50px;
     font-size: 1.3rem;
@@ -382,6 +411,9 @@ body {
     text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+    text-shadow: 1px 1px 1px var(--metallic-gold-light);
+    border: 1px solid var(--metallic-gold-light);
+    display: inline-block;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s ease forwards;
@@ -390,9 +422,13 @@ body {
 
 .btn-hero:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(184, 134, 11, 0.4);
+    box-shadow: 
+        0 6px 25px rgba(184, 134, 11, 0.4),
+        0 0 20px rgba(212, 175, 55, 0.6);
+    filter: brightness(1.1);
 }
 
+/* Slider Controls */
 .slider-controls {
     position: absolute;
     bottom: 2rem;
@@ -401,6 +437,9 @@ body {
     display: flex;
     gap: 1rem;
     z-index: 4;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
 }
 
 .slider-dot {
@@ -414,16 +453,26 @@ body {
 }
 
 .slider-dot.active {
-    background: var(--gold);
-    border-color: var(--gold);
+    background: var(--gold-gradient-metallic);
+    background-size: 200% 100%;
+    animation: goldShimmer 8s linear infinite;
+    border-color: var(--metallic-gold);
     transform: scale(1.2);
 }
-
 /* Animations */
 @keyframes fadeInUp {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
@@ -499,37 +548,38 @@ body {
         padding: 2rem;
         transition: right 0.3s ease;
     }
-    /* Continuing Mobile Styles */
-.nav-menu.active {
-    right: 0;
-}
 
-.nav-link {
-    color: white;
-    font-size: 1.2rem;
-    text-align: center;
-}
+    .nav-menu.active {
+        right: 0;
+    }
 
-.btn-consultation {
-    margin-top: 2rem;
-}
+    .nav-link {
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+    }
 
-.hero-title {
-    font-size: 2.8rem;
-}
+    .btn-consultation {
+        margin-top: 2rem;
+    }
 
-.services-list li {
-    font-size: 1.1rem;
-    padding: 0.6rem 1.5rem;
-}
+    .hero-title {
+        font-size: 2.8rem;
+    }
 
-.btn-hero {
-    padding: 1rem 2.5rem;
-    font-size: 1.2rem;
-}
+    .services-list li {
+        font-size: 1.1rem;
+        padding: 0.6rem 1.5rem;
+    }
 
-.hero-content {
-    padding: 2rem 1rem;
+    .btn-hero {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
+    }
+
+    .hero-content {
+        padding: 2rem 1rem;
+    }
 }
 
 /* Extra Small Devices */
@@ -609,62 +659,3 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
-
-/* Smooth Transitions */
-.nav-menu {
-    transition: right 0.3s ease, background-color 0.3s ease;
-}
-
-.nav-link {
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.nav-link:hover {
-    transform: translateY(-2px);
-}
-
-/* Additional Hero Animations */
-.hero .slide {
-    will-change: opacity, transform;
-}
-
-.hero .slide.active {
-    z-index: 2;
-}
-
-.slider-controls {
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 1.2s;
-    opacity: 0;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Focus States */
-.nav-link:focus,
-.btn-consultation:focus,
-.btn-hero:focus,
-.slider-dot:focus {
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
-}
-
-/* High Contrast Mode */
-@media (forced-colors: active) {
-    .nav-link::after {
-        background: CanvasText;
-    }
-    
-    .btn-consultation,
-    .btn-hero {
-        border: 2px solid CanvasText;
-    }
-}
-    
