@@ -112,8 +112,8 @@ body {
 }
 
 .brand-logo {
-    max-width: 120px; /* Adjust to desired size */
-    max-height: 120px; /* Adjust to desired size */
+    max-width: 100px; /* Adjust to desired size */
+    max-height: 100px; /* Adjust to desired size */
 }
 
 .brand-text {
@@ -124,7 +124,7 @@ body {
 .brand-logo-container {
     background-color: var(--royal-blue);
     border-radius: 50%;
-    padding: 2px; /* Adjust padding as necessary */
+    padding: -10px; /* Adjust padding as necessary */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,7 +133,7 @@ body {
 .brand-logo {
     border-radius: 50%;
     background-color: var(--royal-blue);
-    padding: -4px; /* Adjust padding as necessary */
+    padding: -10px; /* Adjust padding as necessary */
 }
 
 .brand-name {
