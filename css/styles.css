@@ -415,36 +415,21 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    opacity: 0.3;  /* Adjusted opacity for better visibility */
     transform: translateY(-10%);
-}
-
-.texture-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(26, 35, 126, 0.97),
-        rgba(26, 35, 126, 0.93)
-    );
-    z-index: 2;
 }
 
 .services .container {
     position: relative;
-    z-index: 2;  /* Updated z-index since we removed overlay */
+    z-index: 2;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
+/* Section Header */
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
-    color: var(--text-dark);  /* Changed to dark text */
 }
 
 .section-tag {
@@ -463,36 +448,34 @@ body {
     font-family: var(--font-heading);
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    color: var(--royal-blue-dark);  /* Changed to dark blue */
+    color: var(--royal-blue);
 }
 
 .section-header p {
-    color: var(--text-medium);  /* Adjusted for better contrast */
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
 }
 
+/* Services Carousel */
 .services-carousel {
     padding: 2rem 0;
 }
 
+/* Service Cards */
 .service-card {
-    background: rgba(255, 255, 255, 0.95);  /* Slightly more opaque */
+    background: white;
     border-radius: var(--radius-lg);
     padding: 3rem 2rem;
     height: 100%;
     transition: all 0.4s ease;
     text-align: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    background: white;
 }
 
 .service-icon {
@@ -618,22 +601,6 @@ body {
     }
 }
 
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes goldShimmer {
-    0% {
-        background-position: -100% 0;
-    }
-    100% {
-        background-position: 200% 0;
-    }
-}
-
 /* Responsive Styles */
 @media (max-width: 1024px) {
     .section-header h2 {
@@ -660,7 +627,7 @@ body {
     }
 
     .parallax-bg {
-        background-attachment: scroll; /* Disable parallax on mobile */
+        background-attachment: scroll;
     }
 
     .section-header h2 {
