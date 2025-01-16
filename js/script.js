@@ -8,6 +8,7 @@ function initializeAllComponents() {
     initHeader();
     initHeroSlider();
     initMobileNav();
+    initParallax();  // Added for services parallax
     initServices();
     initTeamCarousel();
     initContactForm();
@@ -25,14 +26,12 @@ function initHeader() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
-        // Handle header transparency and size
         if (currentScroll > 100) {
             header.classList.add('header-scrolled');
         } else {
             header.classList.remove('header-scrolled');
         }
         
-        // Auto-hide header on scroll down, show on scroll up
         if (!document.body.classList.contains('menu-open')) {
             if (currentScroll > lastScroll && !isScrollingDown && currentScroll > 200) {
                 isScrollingDown = true;
@@ -59,17 +58,14 @@ function initHeroSlider() {
         if (isTransitioning) return;
         isTransitioning = true;
 
-        // Hide all slides
         slides.forEach(slide => {
             slide.style.opacity = '0';
             slide.style.transform = 'scale(1.1)';
             slide.classList.remove('active');
         });
         
-        // Remove active class from all dots
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // Show selected slide
         slides[index].classList.add('active');
         slides[index].style.opacity = '1';
         slides[index].style.transform = 'scale(1)';
@@ -77,7 +73,6 @@ function initHeroSlider() {
 
         currentSlide = index;
 
-        // Reset transition lock after animation completes
         setTimeout(() => {
             isTransitioning = false;
         }, 1000);
@@ -99,7 +94,6 @@ function initHeroSlider() {
         }
     }
 
-    // Initialize dot controls
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             stopSlideshow();
@@ -108,7 +102,6 @@ function initHeroSlider() {
         });
     });
 
-    // Handle visibility changes
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             stopSlideshow();
@@ -118,7 +111,6 @@ function initHeroSlider() {
         }
     });
 
-    // Handle window focus/blur
     window.addEventListener('focus', () => {
         showSlide(currentSlide);
         startSlideshow();
@@ -128,7 +120,6 @@ function initHeroSlider() {
         stopSlideshow();
     });
 
-    // Start the slideshow
     showSlide(0);
     startSlideshow();
 }
@@ -140,14 +131,12 @@ function initMobileNav() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (navToggle && navMenu) {
-        // Toggle menu on button click
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
 
-        // Close menu when clicking a link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
@@ -156,7 +145,6 @@ function initMobileNav() {
             });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
                 navToggle.classList.remove('active');
@@ -165,7 +153,6 @@ function initMobileNav() {
             }
         });
 
-        // Close menu on ESC key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMenu.classList.contains('active')) {
                 navToggle.classList.remove('active');
@@ -176,7 +163,31 @@ function initMobileNav() {
     }
 }
 
-// Services Section Implementation
+// Parallax Effect for Services Section
+function initParallax() {
+    let ticking = false;
+    const parallaxBg = document.querySelector('.parallax-bg');
+    
+    function updateParallax(scrollPos) {
+        if (parallaxBg) {
+            const rate = scrollPos * 0.3;
+            parallaxBg.style.transform = `translateY(-${rate}px)`;
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.pageYOffset;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateParallax(scrollPos);
+            });
+            ticking = true;
+        }
+    });
+}
+
+// Services Carousel Implementation
 function initServices() {
     const servicesSwiper = new Swiper('.services-carousel', {
         slidesPerView: 1,
@@ -205,6 +216,11 @@ function initServices() {
             1024: {
                 slidesPerView: 3,
                 spaceBetween: 30
+            }
+        },
+        on: {
+            init: function() {
+                AOS.refresh();
             }
         }
     });
@@ -255,7 +271,6 @@ function initContactForm() {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Basic form validation
             const requiredFields = form.querySelectorAll('[required]');
             let isValid = true;
             
@@ -273,7 +288,6 @@ function initContactForm() {
                 return;
             }
 
-            // Here you would typically send the form data to your backend
             try {
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
@@ -287,7 +301,6 @@ function initContactForm() {
                 //     body: JSON.stringify(data)
                 // });
 
-                // For now, just show success message
                 alert('Thank you for your message. We will contact you soon!');
                 form.reset();
             } catch (error) {
