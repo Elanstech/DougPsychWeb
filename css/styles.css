@@ -78,7 +78,6 @@ body {
     background: var(--background);
     overflow-x: hidden;
 }
-
 /* Header Styles */
 .header {
     position: fixed;
@@ -111,6 +110,7 @@ body {
     gap: 1rem;
     text-decoration: none;
 }
+
 .brand-logo {
     max-width: 120px; /* Adjust to desired size */
     max-height: 120px; /* Adjust to desired size */
