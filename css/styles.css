@@ -1,8 +1,8 @@
 :root {
-    /* Brand Colors */
-    --royal-blue: #1a237e;
-    --royal-blue-light: #534bae;
-    --royal-blue-dark: #000051;
+    /* Brand Colors - Updated to Turquoise Theme */
+    --royal-blue: #40E0D0;          /* Main Turquoise */
+    --royal-blue-light: #48D1CC;    /* Medium Turquoise */
+    --royal-blue-dark: #20B2AA;     /* Light Sea Green */
 
     /* Refined Metallic Gold Palette */
     --metallic-gold-light: #e6d5ac;
@@ -55,6 +55,43 @@
     --radius-md: 8px;
     --radius-lg: 16px;
     --radius-round: 50%;
+}
+
+/* Updated Background Overlays */
+.services-background::after,
+.team-background::after,
+.locations-background .overlay,
+.contact-background .overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(64, 224, 208, 0.85) 0%,
+        rgba(72, 209, 204, 0.75) 100%
+    );
+}
+
+/* Updated Hero Section Overlay */
+.slide::after {
+    background: linear-gradient(
+        to right,
+        rgba(64, 224, 208, 0.7) 0%,
+        rgba(72, 209, 204, 0.4) 100%
+    );
+}
+
+/* Updated Section Backgrounds */
+.services,
+.team,
+.contact {
+    background: rgba(64, 224, 208, 0.1);
+}
+
+/* Updated About Section Gradient */
+.about::before {
+    background: linear-gradient(
+        135deg,
+        rgba(64, 224, 208, 0.05) 0%,
+        rgba(64, 224, 208, 0.1) 100%
+    );
 }
 
 /* Reset & Base Styles */
