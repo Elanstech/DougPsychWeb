@@ -1015,6 +1015,7 @@ body {
 .marker-content {
     text-align: center;
     color: var(--royal-blue);
+    padding: 10px;
 }
 
 .marker-content .years {
@@ -1246,8 +1247,8 @@ body {
     .experience-marker {
         width: 120px;
         height: 120px;
-        right: -20px;
-        bottom: -20px;
+        right: -15px;
+        bottom: -15px;
     }
 
     .marker-content .years {
@@ -1255,7 +1256,8 @@ body {
     }
 
     .marker-content .text {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        white-space: nowrap; /* Prevent text wrapping */
     }
 
     .content-block h3 {
