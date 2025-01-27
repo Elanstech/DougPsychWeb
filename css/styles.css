@@ -307,8 +307,8 @@ body {
     height: 100%;
     background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.4) 100%
+        rgba(64, 224, 208, 0.3) 0%,
+        rgba(72, 209, 204, 0.1) 100%
     );
 }
 
@@ -552,8 +552,8 @@ body {
     height: 100%;
     background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.4) 100%
+        rgba(64, 224, 208, 0.3) 0%,
+        rgba(72, 209, 204, 0.1) 100%
     );
     z-index: 2;
 }
@@ -1281,38 +1281,6 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Team Section Base */
 .team {
     position: relative;
@@ -1341,8 +1309,8 @@ body {
     height: 100%;
     background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.4) 100%
+        rgba(64, 224, 208, 0.3) 0%,
+        rgba(72, 209, 204, 0.1) 100%
     );
     z-index: 2;
 }
@@ -2328,13 +2296,17 @@ body {
     position: absolute;
 }
 
-.overlay {
+.locations-background .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(26, 35, 126, 0.95) 0%, rgba(26, 35, 126, 0.85) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(64, 224, 208, 0.3) 0%,
+        rgba(72, 209, 204, 0.1) 100%
+    );
 }
 
 /* Floating Elements */
@@ -2823,9 +2795,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(26, 35, 126, 0.95) 0%, rgba(26, 35, 126, 0.85) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(64, 224, 208, 0.3) 0%,
+        rgba(72, 209, 204, 0.1) 100%
+    );
 }
-
 .contact .container {
     position: relative;
     z-index: 2;
