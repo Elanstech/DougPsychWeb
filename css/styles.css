@@ -1440,7 +1440,7 @@ body {
 
 /* Individual Team Member Image Adjustments */
 .team-image[alt="Angela Christina Ferri"] img {
-    object-position: center 15%;
+    object-position: center 30%;
     transform: scale(1.2);
 }
 
@@ -1455,17 +1455,17 @@ body {
 }
 
 .team-image[alt="Stephanie Palacios"] img {
-    object-position: center 30%;
+    object-position: center 15%;
     transform: scale(1.1);
 }
 
 .team-image[alt="Rashanda Allen"] img {
-    object-position: center 25%;
+    object-position: center 15%;
     transform: scale(1.2);
 }
 
 .team-image[alt="Yunetta Baron"] img {
-    object-position: center 20%;
+    object-position: center 30%;
     transform: scale(1.15);
 }
 
@@ -1475,7 +1475,7 @@ body {
 }
 
 .team-image[alt="Jenny Toussaint"] img {
-    object-position: center 20%;
+    object-position: center 10%;
     transform: scale(1.2);
 }
 
