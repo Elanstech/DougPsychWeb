@@ -251,29 +251,34 @@ function initServices() {
         }, 250);
     });
 }
-
+// About Section Initialization
 function initAboutSection() {
+    // Content Block Rotation
     const contentBlocks = document.querySelectorAll('.content-block');
     const navigationDots = document.querySelectorAll('.navigation-dots .dot');
     let currentBlockIndex = 0;
     let autoplayInterval;
     let isHovered = false;
 
-    // Function to show specific content block
+    // Show specific content block
     function showBlock(index) {
         contentBlocks.forEach(block => {
             block.classList.remove('active');
+            block.style.opacity = '0';
+            block.style.visibility = 'hidden';
         });
         navigationDots.forEach(dot => {
             dot.classList.remove('active');
         });
 
         contentBlocks[index].classList.add('active');
+        contentBlocks[index].style.opacity = '1';
+        contentBlocks[index].style.visibility = 'visible';
         navigationDots[index].classList.add('active');
         currentBlockIndex = index;
     }
 
-    // Function to show next block
+    // Automatically advance to next block
     function showNextBlock() {
         if (!isHovered) {
             const nextIndex = (currentBlockIndex + 1) % contentBlocks.length;
@@ -281,114 +286,106 @@ function initAboutSection() {
         }
     }
 
-    // Initialize autoplay
+    // Start autoplay functionality
     function startAutoplay() {
         if (autoplayInterval) clearInterval(autoplayInterval);
-        autoplayInterval = setInterval(showNextBlock, 5000);
+        autoplayInterval = setInterval(showNextBlock, 5000); // Change block every 5 seconds
     }
 
-    // Add click event listeners to navigation dots
+    // Stop autoplay functionality
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+        }
+    }
+
+    // Initialize click events for navigation dots
     navigationDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             showBlock(index);
-            startAutoplay(); // Reset autoplay timer when manually changing
+            stopAutoplay();
+            startAutoplay(); // Reset the timer when manually changing
         });
     });
 
-    // Handle hover states
+    // Handle hover states for content area
     const aboutContent = document.querySelector('.about-content-blocks');
     if (aboutContent) {
         aboutContent.addEventListener('mouseenter', () => {
             isHovered = true;
+            stopAutoplay();
         });
 
         aboutContent.addEventListener('mouseleave', () => {
             isHovered = false;
+            startAutoplay();
         });
     }
 
-    // Initialize profile image hover effect
-    const profileFrame = document.querySelector('.profile-frame');
-    if (profileFrame) {
-        profileFrame.addEventListener('mouseenter', () => {
-            profileFrame.style.transform = 'perspective(1000px) rotateY(0deg)';
-        });
-
-        profileFrame.addEventListener('mouseleave', () => {
-            profileFrame.style.transform = 'perspective(1000px) rotateY(-5deg)';
-        });
-    }
-
-    // Initialize credential item hover effects
+    // Initialize credential items
     const credentials = document.querySelectorAll('.credential');
     credentials.forEach(credential => {
         credential.addEventListener('mouseenter', () => {
+            credential.style.backgroundColor = 'rgba(26, 35, 126, 0.05)';
             credential.style.transform = 'translateX(10px)';
-            credential.style.background = 'rgba(26, 35, 126, 0.05)';
         });
 
         credential.addEventListener('mouseleave', () => {
+            credential.style.backgroundColor = 'transparent';
             credential.style.transform = 'translateX(0)';
-            credential.style.background = 'transparent';
         });
     });
 
-    // Initialize feature item animations
+    // Initialize feature items
     const featureItems = document.querySelectorAll('.feature-item');
     featureItems.forEach(item => {
         item.addEventListener('mouseenter', () => {
-            const icon = item.querySelector('.feature-icon');
+            const icon = item.querySelector('.feature-icon i');
             if (icon) {
-                icon.style.transform = 'scale(1.1) rotate(5deg)';
+                icon.style.transform = 'scale(1.2)';
             }
             item.style.transform = 'translateY(-5px)';
         });
 
         item.addEventListener('mouseleave', () => {
-            const icon = item.querySelector('.feature-icon');
+            const icon = item.querySelector('.feature-icon i');
             if (icon) {
-                icon.style.transform = 'scale(1) rotate(0deg)';
+                icon.style.transform = 'scale(1)';
             }
             item.style.transform = 'translateY(0)';
         });
     });
 
-    // Initialize experience marker animation
-    const experienceMarker = document.querySelector('.experience-marker');
-    if (experienceMarker) {
-        let isAnimating = false;
-
-        experienceMarker.addEventListener('mouseenter', () => {
-            if (!isAnimating) {
-                isAnimating = true;
-                experienceMarker.style.animation = 'none';
-                experienceMarker.offsetHeight; // Trigger reflow
-                experienceMarker.style.animation = 'float 6s ease-in-out infinite';
+    // View More Button Functionality
+    const viewMoreBtn = document.querySelector('.btn-view-more');
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetSection = document.querySelector(viewMoreBtn.getAttribute('href'));
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
 
-        experienceMarker.addEventListener('mouseleave', () => {
-            isAnimating = false;
+        // Hover animation for the button arrow
+        viewMoreBtn.addEventListener('mouseenter', () => {
+            const arrow = viewMoreBtn.querySelector('i');
+            if (arrow) {
+                arrow.style.transform = 'translateX(5px)';
+            }
+        });
+
+        viewMoreBtn.addEventListener('mouseleave', () => {
+            const arrow = viewMoreBtn.querySelector('i');
+            if (arrow) {
+                arrow.style.transform = 'translateX(0)';
+            }
         });
     }
-
-    // Handle visibility changes
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            if (autoplayInterval) clearInterval(autoplayInterval);
-        } else {
-            startAutoplay();
-        }
-    });
-
-    // Handle window focus/blur
-    window.addEventListener('focus', () => {
-        startAutoplay();
-    });
-
-    window.addEventListener('blur', () => {
-        if (autoplayInterval) clearInterval(autoplayInterval);
-    });
 
     // Initialize intersection observer for animations
     const observerOptions = {
@@ -415,22 +412,45 @@ function initAboutSection() {
         observer.observe(element);
     });
 
-    // Start autoplay on init
-    showBlock(0);
-    startAutoplay();
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+
+    // Handle window focus/blur
+    window.addEventListener('focus', () => {
+        startAutoplay();
+    });
+
+    window.addEventListener('blur', () => {
+        stopAutoplay();
+    });
 
     // Handle resize events
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            // Refresh AOS
+            // Refresh AOS animations if available
             if (typeof AOS !== 'undefined') {
                 AOS.refresh();
             }
         }, 250);
     });
+
+    // Initialize the section
+    showBlock(0);
+    startAutoplay();
 }
+
+// Call the initialization function when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initAboutSection();
+});
 
 // Team Section Implementation
 function initTeamSection() {
