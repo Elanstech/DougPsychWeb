@@ -877,7 +877,7 @@ body {
 }
 
 .btn-view-services {
-    display: inline-block;
+    display: block;
     background: var(--gold-gradient-metallic);
     color: var(--metallic-gold-dark);
     padding: 1rem 2.5rem;
