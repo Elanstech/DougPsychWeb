@@ -28,36 +28,60 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <!-- Header -->
-   <header class="header">
-    <nav class="navbar">
-        <div class="container">
-         <a href="#" class="nav-brand">
-            <div class="brand-logo-container">
-                <img src="logo.png" alt="Dr. Doug Uhlig" class="brand-logo">
+    
+    <!-- Header with Mobile Menu -->
+<header class="header">
+    <div class="header-container">
+        <!-- Logo Section -->
+        <a href="/" class="logo-wrapper">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <div class="logo-ring"></div>
+                <div class="logo-image">
+                    <img src="logo.png" alt="Dr. Doug Uhlig Logo">
+                </div>
             </div>
-            <div class="brand-text">
+            <div class="logo-text">
                 <span class="brand-name">Dr. Doug Uhlig</span>
                 <span class="brand-title">Psychological Services</span>
             </div>
         </a>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#team" class="nav-link">Team</a>
-                <a href="#locations" class="nav-link">Locations</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#consultation" class="btn-consultation">Book Consultation</a>
-            </div>
 
-            <button class="nav-toggle" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#locations" class="nav-link">Locations</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Action Button -->
+            <div class="mobile-action">
+                <a href="#consultation" class="btn-consultation">
+                    <span>Book Consultation</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Desktop Action Button -->
+        <div class="header-action desktop-only">
+            <a href="#consultation" class="btn-consultation">
+                <span>Book Consultation</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
-    </nav>
+    </div>
 </header>
 
     <!-- Hero Section -->
