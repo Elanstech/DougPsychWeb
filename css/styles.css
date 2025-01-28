@@ -78,8 +78,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Header Styles */
-/* Header Base Styles */
+/* Header Base */
 .header {
     position: fixed;
     top: 0;
@@ -101,10 +100,11 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
-    height: 90px;
+    height: 100px; /* Increased height */
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 2rem;
 }
 
 /* Logo Styles */
@@ -116,19 +116,16 @@ body {
     padding: 0.5rem;
     position: relative;
     transition: transform 0.3s ease;
-}
-
-.logo-wrapper:hover {
-    transform: translateY(-2px);
+    min-width: 280px; /* Ensure consistent width */
 }
 
 .logo-container {
     position: relative;
-    width: 60px;
-    height: 60px;
+    width: 80px;  /* Increased size */
+    height: 80px; /* Increased size */
+    flex-shrink: 0;
 }
 
-/* Logo Glow Effect */
 .logo-glow {
     position: absolute;
     top: 50%;
@@ -140,7 +137,6 @@ body {
     animation: glow 2s ease-in-out infinite alternate;
 }
 
-/* Logo Ring Effect */
 .logo-ring {
     position: absolute;
     top: 50%;
@@ -166,36 +162,36 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
 /* Logo Text */
 .logo-text {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .brand-name {
     font-family: var(--font-heading);
     color: var(--royal-blue);
-    font-size: 1.25rem;
+    font-size: 1.5rem; /* Increased size */
     font-weight: 600;
     line-height: 1.2;
-    background: var(--gold-gradient-metallic);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.2rem;
 }
 
 .brand-title {
     color: var(--text-medium);
-    font-size: 0.875rem;
+    font-size: 1rem; /* Increased size */
     font-weight: 500;
 }
 
 /* Navigation */
 .main-nav {
     flex-grow: 1;
-    margin: 0 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-list {
@@ -210,7 +206,7 @@ body {
 .nav-link {
     color: var(--text-dark);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     padding: 0.5rem 0;
     position: relative;
@@ -238,6 +234,19 @@ body {
     width: 100%;
 }
 
+/* Desktop Action Button */
+.header-action {
+    min-width: 180px; /* Ensure consistent width */
+}
+
+.header-action.desktop-only {
+    display: block;
+}
+
+.mobile-action {
+    display: none;
+}
+
 /* Consultation Button */
 .btn-consultation {
     background: var(--gold-gradient-metallic);
@@ -251,7 +260,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.15);
+    white-space: nowrap;
 }
 
 .btn-consultation i {
@@ -287,19 +296,6 @@ body {
     transform-origin: center;
 }
 
-/* Mobile Menu Animation States */
-.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
-
 /* Animations */
 @keyframes glow {
     0% {
@@ -330,19 +326,33 @@ body {
 /* Mobile Styles */
 @media (max-width: 1024px) {
     .header-container {
-        height: 80px;
+        height: 90px;
+        padding: 0 1.5rem;
     }
 
-    .main-nav {
-        margin: 0 2rem;
+    .logo-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    .brand-name {
+        font-size: 1.3rem;
+    }
+
+    .brand-title {
+        font-size: 0.9rem;
     }
 
     .nav-list {
-        gap: 1.5rem;
+        gap: 2rem;
     }
 }
 
 @media (max-width: 768px) {
+    .header-container {
+        height: 80px;
+    }
+
     .mobile-menu-toggle {
         display: block;
     }
@@ -367,7 +377,7 @@ body {
 
     .nav-list {
         flex-direction: column;
-        gap: 0;
+        gap: 0.5rem;
     }
 
     .nav-link {
@@ -382,14 +392,9 @@ body {
     }
 
     .mobile-action {
+        display: block;
         margin-top: 2rem;
         text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-container {
-        padding: 0 1rem;
     }
 
     .logo-text {
@@ -424,11 +429,11 @@ body {
         transition: none;
     }
 
-    .btn-consultation,
-    .logo-wrapper {
-        transform: none;
+    .btn-consultation {
+        transform: none !important;
     }
 }
+
 /* Hero Section CSS */
 .hero {
     height: 100vh;
