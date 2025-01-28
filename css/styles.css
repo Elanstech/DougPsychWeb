@@ -1182,22 +1182,29 @@ body {
     font-weight: 500;
     font-size: 0.9rem;
 }
+.btn-container {
+    text-align: center;
+    margin-top: 4rem;  /* Increased top margin */
+    padding: 1rem 0;   /* Added padding */
+}
 
 /* View More Button */
 .btn-view-more {
-    display: inline-block;
+    display: inline-flex;          /* Changed to inline-flex */
+    align-items: center;           /* Center align content */
+    justify-content: center;       /* Center align content */
     background: var(--gold-gradient-metallic);
     color: var(--royal-blue);
-    padding: 1rem 2.5rem;
+    padding: 1.2rem 3rem;         /* Increased padding */
     border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
-    margin-top: 3rem;
     transition: all 0.3s ease;
-    text-align: center;
     border: none;
     cursor: pointer;
+    gap: 1rem;                    /* Added space between text and icon */
+    min-width: 200px;             /* Added minimum width */
     box-shadow: 0 4px 15px rgba(184, 134, 11, 0.2);
 }
 
@@ -1207,7 +1214,7 @@ body {
 }
 
 .btn-view-more i {
-    margin-left: 0.5rem;
+    font-size: 1.1rem;            /* Matched icon size to text */
     transition: transform 0.3s ease;
 }
 
@@ -1268,6 +1275,15 @@ body {
 
     .content-block h3 {
         font-size: 1.5rem;
+    }
+     .btn-container {
+        margin-top: 3rem;
+        padding: 0.5rem 0;
+    }
+    .btn-view-more {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+        min-width: 180px;
     }
 }
 
