@@ -561,119 +561,70 @@
     </div>
 </section>
 
-<!-- Book Section -->
 <section id="book-section" class="book-section">
-    <div class="book-container">
-        <!-- Left Column - 3D Book Display -->
-        <div class="book-showcase" data-aos="fade-right">
-            <div class="book-3d">
-                <div class="book-wrapper">
-                    <div class="book">
-                        <div class="book-front">
-                            <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
-                        </div>
-                        <div class="book-back"></div>
-                        <div class="book-side"></div>
-                    </div>
-                </div>
-                
-            <div class="book-platforms">
-                <div class="platform">
-                    <i class="fas fa-book"></i>
-                    <span>Hardcover</span>
-                </div>
-                <div class="platform">
-                    <i class="fas fa-tablet-alt"></i>
-                    <span>E-Book</span>
-                </div>
-                <div class="platform">
-                    <i class="fas fa-headphones"></i>
-                    <span>Audiobook</span>
-                </div>
-            </div>
+    <div class="book-background">
+        <img src="Backround3.jpeg" alt="Background" class="background-image">
+        <div class="overlay"></div>
+        
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="float-item float-1"><i class="fas fa-book"></i></div>
+            <div class="float-item float-2"><i class="fas fa-brain"></i></div>
+            <div class="float-item float-3"><i class="fas fa-heart"></i></div>
+            <div class="float-item float-4"><i class="fas fa-star"></i></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">New Release</span>
+            <h2>The Mind-Body Connection</h2>
+            <p>A Comprehensive Guide to Mental Well-being</p>
         </div>
 
-        <!-- Right Column - Book Info -->
-        <div class="book-content" data-aos="fade-left">
-            <div class="book-header">
-                <div class="book-tag">New Release</div>
-                <h2>The Mind-Body Connection</h2>
-                <h3>A Comprehensive Guide to Mental Well-being</h3>
-                <div class="author-info">
-                    <div class="author-image">
-                        <img src="doug.jpeg" alt="Dr. Doug Uhlig">
-                    </div>
-                    <div class="author-details">
-                        <span class="author-name">Dr. Doug Uhlig</span>
-                        <span class="author-credentials">PhD, Clinical Psychology</span>
-                    </div>
+        <div class="book-card" data-aos="fade-up">
+            <div class="book-content">
+                <div class="book-image">
+                    <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
                 </div>
-            </div>
+                
+                <div class="book-info">
+                    <div class="author-info">
+                        <img src="doug.jpeg" alt="Dr. Doug Uhlig" class="author-image">
+                        <div class="author-details">
+                            <span class="author-name">Dr. Doug Uhlig</span>
+                            <span class="author-credentials">PhD, Clinical Psychology</span>
+                        </div>
+                    </div>
 
-            <div class="book-preview">
-                <div class="preview-carousel">
-                    <div class="preview-slide active">
-                        <h4>About the Book</h4>
+                    <div class="book-description">
                         <p>In this groundbreaking work, Dr. Uhlig combines decades of clinical experience with cutting-edge research to provide a comprehensive approach to mental health and well-being. Discover practical insights and proven strategies for achieving lasting psychological harmony.</p>
                     </div>
-                    <div class="preview-slide">
-                        <h4>What You'll Learn</h4>
-                        <ul class="book-features">
+
+                    <div class="book-features">
+                        <h3>What You'll Learn</h3>
+                        <ul>
                             <li><i class="fas fa-check"></i>Evidence-based therapeutic techniques</li>
                             <li><i class="fas fa-check"></i>Practical meditation exercises</li>
                             <li><i class="fas fa-check"></i>Real case studies and success stories</li>
                             <li><i class="fas fa-check"></i>Daily mental wellness practices</li>
                         </ul>
                     </div>
-                    <div class="preview-slide">
-                        <h4>Reader Reviews</h4>
-                        <div class="review-quote">
-                            "A transformative guide that bridges the gap between scientific research and practical application. Dr. Uhlig's approach is both innovative and accessible."
-                            <span class="reviewer">- Dr. Sarah Chen, Clinical Psychologist</span>
+
+                    <div class="book-purchase">
+                        <div class="price-tag">
+                            <span class="price">$29.99</span>
+                            <span class="label">Best Seller</span>
+                        </div>
+                        <div class="purchase-button">
+                            <!-- Stripe Button Integration -->
+                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                            <stripe-buy-button
+                                buy-button-id="buy_btn_1QmMEjAS8CoG2CHCEM9uwFf0"
+                                publishable-key="pk_test_51QmM74AS8CoG2CHC4CS6nDtRLuryp4d0rdYjcOjsmpheugVvgawSPmRKxy8ayFGv9dZN5WgQh8HrqPp8XXrtgs1P00KVJTksnt">
+                            </stripe-buy-button>
                         </div>
                     </div>
-                </div>
-                <div class="preview-nav">
-                    <button class="nav-dot active" data-slide="0"></button>
-                    <button class="nav-dot" data-slide="1"></button>
-                    <button class="nav-dot" data-slide="2"></button>
-                </div>
-            </div>
-
-            <div class="book-purchase">
-                <div class="price-box">
-                    <div class="price">
-                        <span class="currency">$</span>
-                        <span class="amount">29</span>
-                        <span class="cents">.99</span>
-                    </div>
-                    <div class="price-tag">Best Seller</div>
-                </div>
-                
-                <div class="purchase-options">
-                    <button class="btn-primary">
-                        <i class="fas fa-shopping-cart"></i>
-                        Purchase Now
-                    </button>
-                    <button class="btn-secondary">
-                        <i class="fas fa-book-open"></i>
-                        Read Preview
-                    </button>
-                </div>
-            </div>
-
-            <div class="book-badges">
-                <div class="badge">
-                    <i class="fas fa-truck"></i>
-                    <span>Free Shipping</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-undo"></i>
-                    <span>30-Day Returns</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-lock"></i>
-                    <span>Secure Payment</span>
                 </div>
             </div>
         </div>
