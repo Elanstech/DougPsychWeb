@@ -531,187 +531,166 @@ function initTeamSection() {
         }, 250);
     });
 }
+
+// Book Section JavaScript Implementation
 function initBookSection() {
-    // Book Preview Carousel
-    const previewSlides = document.querySelectorAll('.preview-slide');
-    const navigationDots = document.querySelectorAll('.preview-nav .nav-dot');
-    let currentSlide = 0;
-    let previewInterval;
-    let isPreviewHovered = false;
-
-    function showSlide(index) {
-        previewSlides.forEach(slide => slide.classList.remove('active'));
-        navigationDots.forEach(dot => dot.classList.remove('active'));
-        
-        previewSlides[index].classList.add('active');
-        navigationDots[index].classList.add('active');
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        if (!isPreviewHovered) {
-            showSlide((currentSlide + 1) % previewSlides.length);
-        }
-    }
-
-    // Initialize preview carousel autoplay
-    function startPreviewAutoplay() {
-        if (previewInterval) clearInterval(previewInterval);
-        previewInterval = setInterval(nextSlide, 5000);
-    }
-
-    // Add click events to navigation dots
-    navigationDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            showSlide(index);
-            startPreviewAutoplay();
-        });
+    // Initialize AOS animations
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-out',
+        once: true,
+        mirror: false
     });
 
-    // Handle preview hover states
-    const previewCarousel = document.querySelector('.preview-carousel');
-    if (previewCarousel) {
-        previewCarousel.addEventListener('mouseenter', () => {
-            isPreviewHovered = true;
-        });
-
-        previewCarousel.addEventListener('mouseleave', () => {
-            isPreviewHovered = false;
-        });
-    }
-
-    // 3D Book Interaction
-    const book = document.querySelector('.book');
-    const bookWrapper = document.querySelector('.book-wrapper');
-    let isBookHovered = false;
-
-    if (book && bookWrapper) {
-        book.addEventListener('mouseenter', () => {
-            isBookHovered = true;
-            bookWrapper.style.animationPlayState = 'paused';
-            book.style.transform = 'rotateY(-15deg)';
-        });
-
-        book.addEventListener('mouseleave', () => {
-            isBookHovered = false;
-            bookWrapper.style.animationPlayState = 'running';
-            book.style.transform = 'rotateY(-30deg)';
-        });
-
-        // Add touch interaction for mobile
-        book.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            isBookHovered = true;
-            bookWrapper.style.animationPlayState = 'paused';
-            book.style.transform = 'rotateY(-15deg)';
-        });
-
-        book.addEventListener('touchend', () => {
-            isBookHovered = false;
-            bookWrapper.style.animationPlayState = 'running';
-            book.style.transform = 'rotateY(-30deg)';
-        });
-    }
-
-    // Platform Buttons Animation
-    const platforms = document.querySelectorAll('.platform');
-    platforms.forEach(platform => {
-        platform.addEventListener('mouseenter', () => {
-            platform.style.transform = 'translateY(-5px)';
-            const icon = platform.querySelector('i');
-            if (icon) {
-                icon.style.transform = 'scale(1.1)';
-            }
-        });
-
-        platform.addEventListener('mouseleave', () => {
-            platform.style.transform = 'translateY(0)';
-            const icon = platform.querySelector('i');
-            if (icon) {
-                icon.style.transform = 'scale(1)';
-            }
-        });
-    });
-
-    // Purchase Buttons Animation
-    const purchaseButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
-    purchaseButtons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            button.style.transform = 'translateY(-3px)';
-        });
-
-        button.addEventListener('mouseleave', () => {
-            button.style.transform = 'translateY(0)';
-        });
-    });
-
-    // Badges Animation
-    const badges = document.querySelectorAll('.badge');
-    badges.forEach(badge => {
-        badge.addEventListener('mouseenter', () => {
-            badge.style.transform = 'translateY(-3px)';
-        });
-
-        badge.addEventListener('mouseleave', () => {
-            badge.style.transform = 'translateY(0)';
-        });
-    });
-
-    // Floating Badges Animation
-    const floatBadges = document.querySelectorAll('.float-badge');
-    floatBadges.forEach((badge, index) => {
-        badge.style.animationDelay = `${-index * 2}s`;
-    });
-
-    // Handle scroll-based animations
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+    // Handle floating elements
+    const initFloatingElements = () => {
+        const floatItems = document.querySelectorAll('.float-item');
+        floatItems.forEach((item, index) => {
+            // Add staggered animation delays
+            item.style.animationDelay = `${index * 0.5}s`;
         });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    // Handle scroll animations
+    const initScrollAnimations = () => {
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px'
+        };
 
-    // Observe elements for scroll animations
-    document.querySelectorAll('.platform, .badge, .preview-slide').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'all 0.5s ease';
-        observer.observe(element);
-    });
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        };
 
-    // Handle visibility changes
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            if (previewInterval) clearInterval(previewInterval);
-        } else {
-            startPreviewAutoplay();
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.book-card, .section-header').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.5s ease';
+            observer.observe(element);
+        });
+    };
+
+    // Handle image loading
+    const handleImageLoading = () => {
+        const images = document.querySelectorAll('.book-image img, .author-image');
+        images.forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            
+            // Add loading state
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+    };
+
+    // Handle Stripe button customization
+    const customizeStripeButton = () => {
+        const stripeButton = document.querySelector('stripe-buy-button');
+        if (stripeButton) {
+            // Wait for Stripe button to be fully loaded
+            const checkStripeButton = setInterval(() => {
+                const shadowRoot = stripeButton.shadowRoot;
+                if (shadowRoot) {
+                    clearInterval(checkStripeButton);
+                    
+                    // Add custom styles to Stripe button
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        .buy-button-container {
+                            width: 100% !important;
+                            max-width: 300px !important;
+                        }
+                        .buy-button {
+                            border-radius: 50px !important;
+                            height: 48px !important;
+                            font-family: var(--font-body) !important;
+                            font-weight: 600 !important;
+                        }
+                    `;
+                    shadowRoot.appendChild(style);
+                }
+            }, 100);
         }
-    });
+    };
 
-    // Handle resize events
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            if (typeof AOS !== 'undefined') {
-                AOS.refresh();
-            }
-        }, 250);
-    });
+    // Handle responsive behavior
+    const handleResponsive = () => {
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Refresh AOS
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }, 250);
+        });
+    };
 
-    // Initialize
-    showSlide(0);
-    startPreviewAutoplay();
+    // Handle book card hover effects
+    const initBookCardEffects = () => {
+        const bookCard = document.querySelector('.book-card');
+        if (bookCard) {
+            bookCard.addEventListener('mouseenter', () => {
+                if (window.matchMedia('(min-width: 768px)').matches) {
+                    bookCard.style.transform = 'translateY(-5px)';
+                    bookCard.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.25)';
+                }
+            });
+
+            bookCard.addEventListener('mouseleave', () => {
+                if (window.matchMedia('(min-width: 768px)').matches) {
+                    bookCard.style.transform = 'translateY(0)';
+                    bookCard.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
+                }
+            });
+        }
+    };
+
+    // Handle reduced motion preference
+    const handleReducedMotion = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const floatItems = document.querySelectorAll('.float-item');
+            floatItems.forEach(item => {
+                item.style.animation = 'none';
+            });
+        }
+    };
+
+    // Initialize all components
+    const init = () => {
+        initFloatingElements();
+        initScrollAnimations();
+        handleImageLoading();
+        customizeStripeButton();
+        handleResponsive();
+        initBookCardEffects();
+        handleReducedMotion();
+    };
+
+    // Run initialization
+    init();
 }
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initBookSection);
+
+// Handle visibility changes
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        AOS.refresh();
+    }
+});
+
 function initLocationsSection() {
     // Location Cards Hover Effects
     const locationCards = document.querySelectorAll('.location-card');
