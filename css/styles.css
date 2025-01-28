@@ -133,7 +133,7 @@ body {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(218, 165, 32, 0.2) 0%, rgba(218, 165, 32, 0) 70%);
+    background: radial-gradient(circle, rgba(218, 165, 32, 0.2) 0%, var(--royal-blue) 70%);
     animation: glow 2s ease-in-out infinite alternate;
 }
 
@@ -144,7 +144,7 @@ body {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    border: 2px solid var(--metallic-gold);
+    border: 2px solid var(--royal-blue);
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -155,7 +155,7 @@ body {
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    background: var(--gold-gradient-metallic);
+    background: var(--royal-blue);
 }
 
 .logo-image img {
