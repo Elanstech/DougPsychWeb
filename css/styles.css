@@ -1472,8 +1472,8 @@ body {
 
 /* Individual Team Member Image Adjustments */
 .team-image[alt="Angela Christina Ferri"] img {
-    object-position: center 10%;
-    transform: scale(0.3);
+    object-position: center 2%;
+    transform: scale(1.0);
 }
 
 .team-image[alt="Jaqueline Galynsky"] img {
