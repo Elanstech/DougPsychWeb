@@ -2253,7 +2253,7 @@ stripe-buy-button {
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
-    color: #1a237e;
+    color: var(--royal-blue);
 }
 
 .section-tag {
