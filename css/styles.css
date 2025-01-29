@@ -1341,16 +1341,13 @@ body {
         padding: 1rem;
     }
 }
-/* Team Section Base */
-.team {
+.team-section {
     position: relative;
-    padding: 8rem 0;
+    padding: 120px 0;
     min-height: 100vh;
-    overflow: visible;
-    background: rgba(26, 35, 126, 0.1);
+    overflow: hidden;
 }
 
-/* Background Setup */
 .team-background {
     position: absolute;
     top: 0;
@@ -1360,190 +1357,139 @@ body {
     z-index: 1;
 }
 
-.team-background::after {
-    content: '';
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.background-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(
-        to right,
-        rgba(64, 224, 208, 0.3) 0%,
-        rgba(72, 209, 204, 0.1) 100%
+        135deg,
+        rgba(26, 35, 126, 0.85) 0%,
+        rgba(26, 35, 126, 0.95) 100%
     );
     z-index: 2;
 }
 
-.team .background-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Content Container */
-.team .container {
+.container {
     position: relative;
-    z-index: 4;
+    z-index: 3;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Section Header */
-.team .section-header {
+.section-header {
     text-align: center;
     margin-bottom: 4rem;
     color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.team .section-tag {
+.section-tag {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
+    padding: 0.75rem 2rem;
     background: var(--gold-gradient-metallic);
-    color: var(--metallic-gold-dark);
+    color: var(--royal-blue);
     border-radius: 50px;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.team .section-header h2 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
+    letter-spacing: 2px;
     margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(180, 155, 87, 0.3);
 }
 
-.team .section-header p {
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: var(--gold-gradient-metallic);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
     font-size: 1.2rem;
+    opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
+    color: white;
 }
 
-/* Team Carousel */
-.team-carousel-wrapper {
+.team-carousel-container {
     padding: 2rem 0;
-    position: relative;
-    z-index: 4;
 }
 
-.team-carousel {
-    padding: 20px 0;
-}
-
-/* Team Cards */
-.team-carousel .team-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: var(--radius-lg);
+.team-member-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     overflow: hidden;
     transition: all 0.4s ease;
     height: 100%;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.team-carousel .team-card:hover {
+.team-member-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    background: white;
+    background: rgba(255, 255, 255, 0.15);
 }
 
-/* Team Image Container */
-.team-image {
+.member-image-wrapper {
     position: relative;
-    width: 100%;
-    height: 300px;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
     overflow: hidden;
-    background-color: #f8f9fa;
 }
 
-.team-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    transition: transform 0.4s ease;
-}
-
-/* Individual Team Member Image Adjustments */
-.team-image[alt="Angela Christina Ferri"] img {
-    object-position: center 25%;
-    transform: scale(1.1);
-}
-
-.team-image[alt="Jaqueline Galynsky"] img {
-    object-position: center 25%;
-    transform: scale(1.0);
-}
-
-.team-image[alt="Zbigniew Korczak"] img {
-    object-position: center 20%;
-    transform: scale(1.15);
-}
-
-.team-image[alt="Stephanie Palacios"] img {
-    object-position: center 25%;
-    transform: scale(1.0);
-}
-
-.team-image[alt="Rashanda Allen"] img {
-    object-position: center 25%;
-    transform: scale(1.2);
-}
-
-.team-image[alt="Yunetta Baron"] img {
-    object-position: center 25%;
-    transform: scale(1.2);
-}
-
-.team-image[alt="Krystal Ortiz"] img {
-    object-position: center 25%;
-    transform: scale(1.1);
-}
-
-.team-image[alt="Jenny Toussaint"] img {
-    object-position: center 20%;
-    transform: scale(1.2);
-}
-
-.team-image[alt="Thomas Gerard Smith"] img {
-    object-position: center 25%;
-    transform: scale(1.15);
-}
-
-/* Team Overlay */
-.team-overlay {
+.member-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(26, 35, 126, 0.85);
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: all 0.4s ease;
+}
+
+.team-member-card:hover .member-image img {
+    transform: scale(1.1);
+}
+
+.member-social {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.team-card:hover .team-overlay {
-    opacity: 1;
-}
-
-/* Team Social Links */
-.team-social {
-    display: flex;
     gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    transition: all 0.4s ease;
 }
 
-.team-social a {
-    width: 45px;
-    height: 45px;
+.team-member-card:hover .member-social {
+    bottom: 0;
+}
+.social-link {
+    width: 40px;
+    height: 40px;
     background: var(--gold-gradient-metallic);
     border-radius: 50%;
     display: flex;
@@ -1552,49 +1498,58 @@ body {
     color: var(--royal-blue);
     text-decoration: none;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
-.team-social a:hover {
+.social-link:hover {
     transform: translateY(-3px) scale(1.1);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
 }
 
-.team-social a i {
+.social-link i {
     font-size: 1.2rem;
     transition: all 0.3s ease;
 }
 
-/* Team Info */
-.team-info {
+.member-info {
     padding: 2rem;
     text-align: center;
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.team-info h3 {
+.member-info h3 {
     font-family: var(--font-heading);
-    color: var(--royal-blue);
-    font-size: 1.75rem;
+    color: white;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
-.team-info .position {
-    color: var(--text-medium);
+.member-position {
+    display: block;
+    color: var(--metallic-gold);
     font-weight: 500;
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
 }
 
-.team-info .specialty {
-    color: var(--metallic-gold);
+.member-specialty {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
     font-style: italic;
 }
 
-/* Carousel Navigation */
-.team-carousel .swiper-button-prev,
-.team-carousel .swiper-button-next {
+/* Swiper Customization */
+.team-carousel {
+    padding: 20px 0 60px;
+}
+
+.swiper-slide {
+    height: auto;
+    padding: 1rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
     width: 50px;
     height: 50px;
     background: var(--gold-gradient-metallic);
@@ -1603,111 +1558,165 @@ body {
     transition: all 0.3s ease;
 }
 
-.team-carousel .swiper-button-prev:after,
-.team-carousel .swiper-button-next:after {
+.swiper-button-prev:after,
+.swiper-button-next:after {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.team-carousel .swiper-button-prev:hover,
-.team-carousel .swiper-button-next:hover {
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
     transform: scale(1.1);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
 }
 
-/* Pagination */
-.team-carousel .swiper-pagination {
-    bottom: -10px;
+.swiper-pagination {
+    bottom: 0;
 }
 
-.team-carousel .swiper-pagination-bullet {
+.swiper-pagination-bullet {
     width: 12px;
     height: 12px;
-    background: white;
-    opacity: 0.6;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
     transition: all 0.3s ease;
 }
 
-.team-carousel .swiper-pagination-bullet-active {
+.swiper-pagination-bullet-active {
     background: var(--metallic-gold);
-    opacity: 1;
     transform: scale(1.2);
 }
 
 /* Responsive Styles */
-@media (max-width: 1024px) {
-    .team .section-header h2 {
+@media (max-width: 1200px) {
+    .section-header h2 {
+        font-size: 3rem;
+    }
+
+    .member-info {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-header h2 {
         font-size: 2.5rem;
     }
 
-    .team-info h3 {
-        font-size: 1.5rem;
+    .team-carousel {
+        padding: 10px 0 50px;
     }
 }
 
 @media (max-width: 768px) {
-    .team {
-        padding: 4rem 0;
+    .team-section {
+        padding: 80px 0;
     }
 
-    .team .section-header h2 {
+    .section-header h2 {
         font-size: 2rem;
     }
 
-    .team-image {
-        height: 250px;
+    .section-header p {
+        font-size: 1rem;
     }
 
-    .team-info {
-        padding: 1.5rem;
+    .member-image-wrapper {
+        padding-top: 80%; /* Slightly shorter aspect ratio for mobile */
     }
 
-    .team-info h3 {
+    .member-info {
+        padding: 1.2rem;
+    }
+
+    .member-info h3 {
         font-size: 1.3rem;
     }
 
-    .team-info .position {
+    .member-position {
         font-size: 1rem;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
-    .team {
-        padding: 3rem 0;
+    .team-section {
+        padding: 60px 0;
     }
 
-    .team-carousel .swiper-button-prev,
-    .team-carousel .swiper-button-next {
-        display: none;
+    .section-tag {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.8rem;
     }
 
-    .team-image {
-        height: 200px;
+    .member-image-wrapper {
+        padding-top: 75%; /* Even shorter aspect ratio for small mobile */
     }
 
-    .team-info {
-        padding: 1rem;
+    .social-link {
+        width: 35px;
+        height: 35px;
+    }
+
+    .social-link i {
+        font-size: 1rem;
     }
 }
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {
-    .team-overlay {
-        background: rgba(0, 0, 0, 0.9);
+    .team-member-card {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid white;
     }
 
-    .team-social a {
-        background: var(--royal-blue);
-        color: white;
+    .social-link {
+        border: 2px solid var(--royal-blue);
+    }
+
+    .member-info {
+        border-top: 2px solid white;
     }
 }
 
-/* Reduced Motion Preference */
+/* Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
-    .team-card,
-    .team-social a,
-    .team-image img {
+    .team-member-card,
+    .member-image img,
+    .social-link,
+    .swiper-button-prev,
+    .swiper-button-next {
         transition: none;
+    }
+
+    .team-member-card:hover .member-image img {
+        transform: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .team-section {
+        background: white !important;
+        padding: 20px 0;
+    }
+
+    .team-member-card {
+        break-inside: avoid;
+        background: white;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .member-social,
+    .swiper-pagination,
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none;
     }
 }
 /* Book Section Base */
