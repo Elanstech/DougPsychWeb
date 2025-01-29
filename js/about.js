@@ -1,34 +1,103 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initializeScrollEffects();
-    initializePhilosophyCards();
-    initializeExperienceCarousel();
-    initializeParallax();
-    initializeSmoothScroll();
-    initializeAnimations();
+    initAboutPage();
 });
 
-// Parallax Effect for Hero Section
-function initializeParallax() {
-    const heroSection = document.querySelector('.about-hero');
-    
-    window.addEventListener('scroll', () => {
-        if (heroSection) {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * 0.5;
-            
-            heroSection.style.backgroundPosition = `center ${-rate}px`;
-        }
+function initAboutPage() {
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 1000,
+        easing: 'ease',
+        once: true,
+        mirror: false
     });
+
+    // Initialize all components
+    initHeader();
+    initHeroParallax();
+    initSmoothScrolling();
+    initContentAnimations();
 }
 
-// Smooth Scrolling for Navigation Links
-function initializeSmoothScroll() {
+// Header Functionality
+function initHeader() {
+    const header = document.querySelector('.header');
+    let lastScroll = 0;
+    let isScrollingDown = false;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Add/remove header background on scroll
+        if (currentScroll > 100) {
+            header.classList.add('header-scrolled');
+        } else {
+            header.classList.remove('header-scrolled');
+        }
+        
+        // Hide/show header on scroll direction
+        if (!document.body.classList.contains('menu-open')) {
+            if (currentScroll > lastScroll && !isScrollingDown && currentScroll > 200) {
+                isScrollingDown = true;
+                header.style.transform = 'translateY(-100%)';
+            } else if (currentScroll < lastScroll && isScrollingDown) {
+                isScrollingDown = false;
+                header.style.transform = 'translateY(0)';
+            }
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // Mobile menu functionality
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        // Close menu on menu item click
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    }
+}
+
+// Parallax Effect for Hero Section
+function initHeroParallax() {
+    const heroSection = document.querySelector('.about-hero');
+    if (heroSection) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            heroSection.style.backgroundPositionY = `${scrolled * 0.5}px`;
+        });
+    }
+}
+
+// Smooth Scrolling for Anchor Links
+function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -39,193 +108,122 @@ function initializeSmoothScroll() {
     });
 }
 
-// Initialize Philosophy Cards
-function initializePhilosophyCards() {
-    const cards = document.querySelectorAll('.philosophy-card');
-    let activeIndex = 0;
-    
-    function activateCard(index) {
-        cards.forEach(card => card.classList.remove('active'));
-        cards[index].classList.add('active');
-    }
+// Content Animations
+function initContentAnimations() {
+    // Animate sections on scroll
+    const sections = document.querySelectorAll('section');
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px'
+    };
 
-    // Auto-rotate cards
-    function rotateCards() {
-        activeIndex = (activeIndex + 1) % cards.length;
-        activateCard(activeIndex);
-    }
-
-    let cardInterval = setInterval(rotateCards, 4000);
-
-    // Pause rotation on hover
-    cards.forEach((card, index) => {
-        card.addEventListener('mouseenter', () => {
-            clearInterval(cardInterval);
-            activateCard(index);
-        });
-
-        card.addEventListener('mouseleave', () => {
-            activeIndex = index;
-            cardInterval = setInterval(rotateCards, 4000);
-        });
-    });
-}
-
-// Experience Carousel
-function initializeExperienceCarousel() {
-    const slides = document.querySelectorAll('.experience-slide');
-    let currentSlide = 0;
-    
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    // Auto-advance slides
-    let slideInterval = setInterval(nextSlide, 5000);
-
-    // Pause on hover
-    slides.forEach(slide => {
-        slide.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
-
-        slide.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(nextSlide, 5000);
-        });
-    });
-}
-
-// Scroll Effects
-function initializeScrollEffects() {
-    const header = document.querySelector('.header');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        // Header transformation
-        if (currentScroll > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Show/hide header based on scroll direction
-        if (currentScroll > lastScroll && currentScroll > 500) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-
-        lastScroll = currentScroll;
-    });
-}
-
-// Initialize Animations
-function initializeAnimations() {
-    // Education cards animation
-    const educationCards = document.querySelectorAll('.education-card');
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.transform = 'translateY(0)';
-                entry.target.style.opacity = '1';
+                entry.target.classList.add('section-visible');
+                sectionObserver.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1
+    }, observerOptions);
+
+    sections.forEach(section => {
+        section.classList.add('section-hidden');
+        sectionObserver.observe(section);
     });
 
-    educationCards.forEach(card => {
-        card.style.transform = 'translateY(20px)';
-        card.style.opacity = '0';
-        card.style.transition = 'all 0.6s ease';
-        observer.observe(card);
-    });
+    // Animate hero quote
+    const heroQuote = document.querySelector('.hero-quote');
+    if (heroQuote) {
+        setTimeout(() => {
+            heroQuote.style.opacity = '1';
+            heroQuote.style.transform = 'translateY(0)';
+        }, 500);
+    }
 
-    // Military service list animation
-    const serviceItems = document.querySelectorAll('.service-list li');
-    serviceItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-20px)';
-        item.style.transition = 'all 0.3s ease';
-        item.style.transitionDelay = `${index * 0.1}s`;
-
-        observer.observe(item);
-    });
-
-    // Membership cards stagger animation
-    const membershipCards = document.querySelectorAll('.membership-card');
-    membershipCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'all 0.6s ease';
-        card.style.transitionDelay = `${index * 0.2}s`;
-
-        observer.observe(card);
-    });
+    // Initialize hover effects for content boxes
+    initHoverEffects();
 }
 
-// Number counter animation
-function animateNumbers() {
-    const numberElements = document.querySelectorAll('.number-animate');
+// Hover Effects for Content Boxes
+function initHoverEffects() {
+    const contentBoxes = document.querySelectorAll('.philosophy-text, .uniqueness-content, .biography-content');
     
-    numberElements.forEach(element => {
-        const target = parseInt(element.getAttribute('data-target'));
-        const duration = 2000; // 2 seconds
-        const step = target / (duration / 16); // 60fps
-        let current = 0;
-        
-        const updateNumber = () => {
-            current += step;
-            if (current < target) {
-                element.textContent = Math.floor(current);
-                requestAnimationFrame(updateNumber);
-            } else {
-                element.textContent = target;
-            }
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                updateNumber();
-                observer.unobserve(element);
-            }
+    contentBoxes.forEach(box => {
+        box.addEventListener('mouseenter', () => {
+            box.style.transform = 'translateY(-5px)';
+            box.style.boxShadow = 'var(--shadow-lg)';
         });
-        
-        observer.observe(element);
+
+        box.addEventListener('mouseleave', () => {
+            box.style.transform = 'translateY(0)';
+            box.style.boxShadow = 'var(--shadow-md)';
+        });
+    });
+
+    // CTA Buttons hover effect
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    ctaButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px)';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0)';
+        });
     });
 }
 
-// Handle visibility changes
+// Handle page visibility changes
 document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // Pause all animations when tab is not visible
-        document.querySelectorAll('*').forEach(element => {
-            element.style.animationPlayState = 'paused';
-        });
-    } else {
-        // Resume animations when tab becomes visible
-        document.querySelectorAll('*').forEach(element => {
-            element.style.animationPlayState = 'running';
-        });
+    if (!document.hidden) {
+        // Refresh AOS animations when page becomes visible
+        AOS.refresh();
     }
 });
 
-// Handle reduced motion preference
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (prefersReducedMotion.matches) {
-    document.documentElement.style.setProperty('--transition-speed', '0s');
-    // Disable animations that might be problematic
-    const animatedElements = document.querySelectorAll('.animate, .fade, .slide');
-    animatedElements.forEach(element => {
-        element.style.animation = 'none';
-        element.style.transition = 'none';
+// Handle window resize
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        // Refresh animations and layout on resize
+        AOS.refresh();
+        adjustMobileLayout();
+    }, 250);
+});
+
+// Adjust layout for mobile devices
+function adjustMobileLayout() {
+    const isMobile = window.innerWidth <= 768;
+    const heroQuote = document.querySelector('.hero-quote');
+    
+    if (heroQuote) {
+        heroQuote.style.fontSize = isMobile ? '1.75rem' : '2.5rem';
+    }
+}
+
+// Add loading state for images
+function handleImageLoading() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('load', () => {
+            img.classList.add('loaded');
+        });
+
+        if (img.complete) {
+            img.classList.add('loaded');
+        }
     });
 }
+
+// Initialize image loading handling
+handleImageLoading();
+
+// Export functions for potential use in other scripts
+export {
+    initAboutPage,
+    initHeader,
+    initHeroParallax,
+    initSmoothScrolling,
+    initContentAnimations
+};
