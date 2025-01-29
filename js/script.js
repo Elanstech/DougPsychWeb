@@ -451,9 +451,9 @@ function initAboutSection() {
 document.addEventListener('DOMContentLoaded', function() {
     initAboutSection();
 });
+
 // Team Section Implementation
 function initTeamSection() {
-    // Initialize Swiper for team carousel
     const teamSwiper = new Swiper('.team-carousel', {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -481,239 +481,56 @@ function initTeamSection() {
             1024: {
                 slidesPerView: 3,
                 spaceBetween: 30
-            },
-            1400: {
-                slidesPerView: 4,
-                spaceBetween: 30
             }
         },
         on: {
             init: function() {
-                if (typeof AOS !== 'undefined') {
-                    AOS.refresh();
-                }
-                initTeamCardsAnimation();
+                AOS.refresh();
             },
             slideChange: function() {
-                if (typeof AOS !== 'undefined') {
-                    AOS.refresh();
-                }
-            }
-        }
-    });
-
-    // Team Cards Animation
-    function initTeamCardsAnimation() {
-        const cards = document.querySelectorAll('.team-member-card');
-        cards.forEach((card, index) => {
-            // Set initial state
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            
-            // Add animation with delay based on index
-            setTimeout(() => {
-                card.style.transition = 'all 0.6s ease';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, index * 100);
-        });
-    }
-
-    // Image Loading Optimization
-    const teamImages = document.querySelectorAll('.member-image img');
-    teamImages.forEach(img => {
-        // Add loading="lazy" attribute for native lazy loading
-        img.loading = 'lazy';
-        
-        // Handle image load events
-        if (img.complete) {
-            handleImageLoad(img);
-        } else {
-            img.addEventListener('load', () => handleImageLoad(img));
-        }
-
-        img.addEventListener('error', handleImageError);
-    });
-
-    function handleImageLoad(img) {
-        img.style.opacity = '1';
-        const card = img.closest('.team-member-card');
-        if (card) {
-            card.classList.add('image-loaded');
-        }
-    }
-
-    function handleImageError(e) {
-        const img = e.target;
-        img.src = 'placeholder.jpg'; // Fallback image
-        console.error('Error loading team member image:', e);
-    }
-
-    // Social Links Interaction
-    const socialLinks = document.querySelectorAll('.social-link');
-    socialLinks.forEach(link => {
-        // Hover effects
-        link.addEventListener('mouseenter', () => {
-            const icon = link.querySelector('i');
-            if (icon) {
-                icon.style.transform = 'scale(1.2)';
-            }
-        });
-
-        link.addEventListener('mouseleave', () => {
-            const icon = link.querySelector('i');
-            if (icon) {
-                icon.style.transform = 'scale(1)';
-            }
-        });
-
-        // Email copy functionality
-        if (link.href.includes('mailto:')) {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const email = link.href.replace('mailto:', '');
-                navigator.clipboard.writeText(email)
-                    .then(() => showToast('Email copied to clipboard!'))
-                    .catch(err => console.error('Failed to copy email:', err));
-            });
-        }
-    });
-
-    // Toast notification function
-    function showToast(message) {
-        const toast = document.createElement('div');
-        toast.className = 'toast-notification';
-        toast.textContent = message;
-        document.body.appendChild(toast);
-
-        // Trigger animation
-        setTimeout(() => toast.classList.add('show'), 100);
-
-        // Remove after delay
-        setTimeout(() => {
-            toast.classList.remove('show');
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
-    }
-
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Observe team cards for scroll animations
-    document.querySelectorAll('.team-member-card').forEach(card => {
-        observer.observe(card);
-    });
-
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            teamSwiper.update();
-            if (typeof AOS !== 'undefined') {
                 AOS.refresh();
             }
+        }
+    });
+
+    // Handle team card interactions
+    const teamCards = document.querySelectorAll('.team-card');
+    
+    teamCards.forEach(card => {
+        // Add hover effect for team cards
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+
+        // Handle social links click
+        const socialLinks = card.querySelectorAll('.team-social a');
+        socialLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.classList.contains('copy-email')) {
+                    e.preventDefault();
+                    const email = this.getAttribute('href').replace('mailto:', '');
+                    navigator.clipboard.writeText(email).then(() => {
+                        // Could add a toast notification here if desired
+                        console.log('Email copied to clipboard');
+                    });
+                }
+            });
+        });
+    });
+
+    // Handle window resize for team carousel
+    let teamResizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(teamResizeTimeout);
+        teamResizeTimeout = setTimeout(() => {
+            teamSwiper.update();
         }, 250);
     });
-
-    // Handle reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function handleReducedMotion() {
-        if (prefersReducedMotion.matches) {
-            teamSwiper.params.speed = 0;
-            if (teamSwiper.autoplay.running) {
-                teamSwiper.autoplay.stop();
-            }
-            document.querySelectorAll('.team-member-card').forEach(card => {
-                card.style.transition = 'none';
-            });
-        } else {
-            teamSwiper.params.speed = 800;
-            teamSwiper.autoplay.start();
-            document.querySelectorAll('.team-member-card').forEach(card => {
-                card.style.transition = 'all 0.6s ease';
-            });
-        }
-    }
-
-    // Initial check for reduced motion preference
-    handleReducedMotion();
-    prefersReducedMotion.addEventListener('change', handleReducedMotion);
-
-    // Handle visibility changes
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            teamSwiper.autoplay.stop();
-        } else {
-            if (!prefersReducedMotion.matches) {
-                teamSwiper.autoplay.start();
-            }
-        }
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.target.closest('.team-section')) {
-            if (e.key === 'ArrowLeft') {
-                teamSwiper.slidePrev();
-            } else if (e.key === 'ArrowRight') {
-                teamSwiper.slideNext();
-            }
-        }
-    });
-
-    // Touch Events for Mobile
-    document.querySelectorAll('.team-member-card').forEach(card => {
-        let touchStartY;
-        
-        card.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-            card.style.transform = 'scale(0.98)';
-        });
-
-        card.addEventListener('touchend', () => {
-            card.style.transform = 'scale(1)';
-        });
-
-        card.addEventListener('touchmove', (e) => {
-            const touchCurrentY = e.touches[0].clientY;
-            const diff = touchStartY - touchCurrentY;
-
-            // Prevent scroll if user is interacting with card
-            if (Math.abs(diff) > 5) {
-                e.preventDefault();
-            }
-        });
-    });
-
-    return teamSwiper;
 }
-// Handle dynamic loading of team member images
-window.addEventListener('load', () => {
-    document.querySelectorAll('.member-image img').forEach(img => {
-        if (!img.complete) {
-            img.style.opacity = '0';
-            img.addEventListener('load', () => {
-                img.style.opacity = '1';
-            });
-        }
-    });
-});
-
 function initBookSection() {
     // Book Preview Carousel
     const previewSlides = document.querySelectorAll('.preview-slide');
