@@ -2288,10 +2288,9 @@ stripe-buy-button {
     gap: 2rem;
     margin-bottom: 4rem;
 }
-
 /* Location Card */
 .location-card {
-    background: white;
+    background: var(--royal-blue);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
