@@ -1477,8 +1477,8 @@ body {
 }
 
 .team-image[alt="Jaqueline Galynsky"] img {
-    object-position: center 25%;
-    transform: scale(1.1);
+    object-position: center 30%;
+    transform: scale(1.2);
 }
 
 .team-image[alt="Zbigniew Korczak"] img {
@@ -1487,8 +1487,8 @@ body {
 }
 
 .team-image[alt="Stephanie Palacios"] img {
-    object-position: center 30%;
-    transform: scale(1.1);
+    object-position: center 25%;
+    transform: scale(1.0);
 }
 
 .team-image[alt="Rashanda Allen"] img {
@@ -1497,8 +1497,8 @@ body {
 }
 
 .team-image[alt="Yunetta Baron"] img {
-    object-position: center 20%;
-    transform: scale(1.15);
+    object-position: center 25%;
+    transform: scale(1.2);
 }
 
 .team-image[alt="Krystal Ortiz"] img {
