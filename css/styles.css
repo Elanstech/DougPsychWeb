@@ -1341,7 +1341,6 @@ body {
         padding: 1rem;
     }
 }
-/* Team Section Base Styles */
 .team-section {
     position: relative;
     padding: 120px 0;
@@ -1373,8 +1372,8 @@ body {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(64, 224, 208, 0.85) 0%, /* Light turquoise */
-        rgba(72, 209, 204, 0.95) 100% /* Slightly darker turquoise for depth */
+        rgba(26, 35, 126, 0.85) 0%,
+        rgba(26, 35, 126, 0.95) 100%
     );
     z-index: 2;
 }
@@ -1417,7 +1416,6 @@ body {
 }
 
 .section-header p {
-    color: rgba(255, 255, 255, 0.95);
     font-size: 1.2rem;
     opacity: 0.9;
     max-width: 600px;
@@ -2188,8 +2186,8 @@ stripe-buy-button {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(64, 224, 208, 0.85) 0%, /* Light turquoise */
-        rgba(72, 209, 204, 0.95) 100% /* Slightly darker turquoise for depth */
+        rgba(26, 35, 126, 0.85) 0%,
+        rgba(26, 35, 126, 0.95) 100%
     );
     z-index: 2;
 }
