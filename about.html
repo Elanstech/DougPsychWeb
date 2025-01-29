@@ -4,97 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Dr. Doug Uhlig - Psychological Services</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/about.css">
 </head>
 <body>
-    <!-- Navigation will be imported from main site -->
+    <!-- Header Section (copied from main page) -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="nav-brand">
+                    <div class="brand-logo-container">
+                        <img src="logo.png" alt="Dr. Doug Uhlig" class="brand-logo">
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">Dr. Doug Uhlig</span>
+                        <span class="brand-title">Psychological Services</span>
+                    </div>
+                </a>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#team" class="nav-link">Team</a>
+                    <a href="#locations" class="nav-link">Locations</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="#consultation" class="btn-consultation">Book Consultation</a>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="about-hero">
         <div class="hero-overlay"></div>
         <div class="container">
-            <div class="hero-content" data-aos="fade-up">
-                <span class="section-tag">About Dr. Doug Uhlig</span>
-                <h1>Integrating Life & Inner Wisdom</h1>
-                <div class="hero-quote">
-                    <i class="fas fa-quote-left"></i>
+            <div class="hero-content">
+                <div class="hero-quote" data-aos="fade-up">
                     <p>"Most of my life has been devoted to integrating my external life with my inner life."</p>
-                    <i class="fas fa-quote-right"></i>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
-            <span>Scroll to Discover</span>
-        </div>
-    </section>
-
-    <!-- Journey Section -->
-    <section class="journey-section">
-        <div class="container">
-            <div class="journey-content">
-                <div class="journey-text" data-aos="fade-right">
-                    <h2>A Diverse Journey</h2>
-                    <div class="experience-carousel">
-                        <div class="experience-slide active">
-                            <h3>Professional Experience</h3>
-                            <ul class="experience-list">
-                                <li>Business Entrepreneur</li>
-                                <li>Military Officer & Intelligence Specialist</li>
-                                <li>Graphics Production Artist</li>
-                                <li>Project Manager & Programmer</li>
-                                <li>Human Resources Consultant</li>
-                            </ul>
-                        </div>
-                        <div class="experience-slide">
-                            <h3>Eastern Philosophy</h3>
-                            <ul class="experience-list">
-                                <li>Japanese Language & Culture Studies</li>
-                                <li>Zen Buddhism Practitioner</li>
-                                <li>Aikido Martial Arts Training</li>
-                                <li>Transcendental Meditation Teacher</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="journey-image" data-aos="fade-left">
-                    <img src="doug-portrait.jpg" alt="Dr. Doug Uhlig">
-                    <div class="experience-badge">
-                        <span class="years">35+</span>
-                        <span class="text">Years of Excellence</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section class="education-section">
-        <div class="container">
-            <h2 class="section-title">Academic Excellence</h2>
-            <div class="education-grid">
-                <div class="education-card" data-aos="fade-up">
-                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>Ph.D.</h3>
-                    <p>Walden University</p>
-                    <span class="focus">Mindfulness Meditation for Substance Abuse Prevention</span>
-                </div>
-                <div class="education-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>M.B.A.</h3>
-                    <p>New York University</p>
-                </div>
-                <div class="education-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>M.A.</h3>
-                    <p>University of Michigan</p>
-                    <span class="focus">East Asian Studies</span>
-                </div>
-                <div class="education-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>B.A.</h3>
-                    <p>University of Virginia</p>
                 </div>
             </div>
         </div>
@@ -103,88 +64,49 @@
     <!-- Philosophy Section -->
     <section class="philosophy-section">
         <div class="container">
-            <div class="philosophy-header" data-aos="fade-up">
-                <span class="section-tag">Our Approach</span>
-                <h2>Philosophy & Practice</h2>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Philosophy</span>
+                <h2>PHILOSOPHY AND APPROACH</h2>
             </div>
             <div class="philosophy-content">
-                <div class="philosophy-text" data-aos="fade-right">
-                    <div class="philosophy-card active">
-                        <h3>Positive Psychology</h3>
-                        <p>As a Positive Psychologist and Teacher of Transcendental Meditation, I focus on the "Psyche" or soul, addressing trauma, relationships, and personal growth while helping clients discover their true potential.</p>
-                    </div>
-                    <div class="philosophy-card">
-                        <h3>Holistic Treatment</h3>
-                        <p>I combine Cognitive Behavioral Therapy with mindfulness meditation, creating a unique approach that addresses both psychological and physiological aspects of healing.</p>
-                    </div>
-                    <div class="philosophy-card">
-                        <h3>Client-Centered Care</h3>
-                        <p>Creating a warm, accepting environment where clients feel listened to and respected, fostering deep awareness and positive change.</p>
-                    </div>
-                </div>
-                <div class="philosophy-visual" data-aos="fade-left">
-                    <div class="approach-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-heart"></i>
-                            <span>Unconditional Acceptance</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-brain"></i>
-                            <span>Evidence-Based Methods</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-balance-scale"></i>
-                            <span>Balanced Approach</span>
-                        </div>
-                    </div>
+                <div class="philosophy-text" data-aos="fade-up">
+                    <p>I am a Positive Psychologist and Teacher of Transcendental Meditation. It is from this philosophic perspective of the "Psyche" or soul that I focus on issues related to family and individual problems of trauma, abandonment, addiction, career, and relationships. I address feelings of emptiness, difficulties in managing emotions, relationships, anger, anxiety, and depression in order to increase your self-awareness or consciousness about the impact of your behavior on creating change in the world.</p>
+                    <p>What I enjoy most about my work is that it changes people at a very deep existential level. As a result of putting you in touch with this deep awareness, you can alleviate depression and anxiety naturally, prevent addiction, and come into contact with your real passion and purpose in life.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Military Service Section -->
-    <section class="military-section">
+    <!-- Uniqueness Section -->
+    <section class="uniqueness-section">
         <div class="container">
-            <div class="military-content">
-                <div class="military-text" data-aos="fade-right">
-                    <h2>Military Service</h2>
-                    <div class="service-details">
-                        <h3>Lieutenant Colonel, USAF (Retired)</h3>
-                        <ul class="service-list">
-                            <li>29 Years Active and Reserve Duty</li>
-                            <li>Intelligence Officer (Special Operations)</li>
-                            <li>Military Attaché to Japan</li>
-                            <li>Commander, Intelligence Unit</li>
-                        </ul>
-                    </div>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">My Approach</span>
+                <h2>HOW I AM DIFFERENT</h2>
+            </div>
+            <div class="uniqueness-content" data-aos="fade-up">
+                <p>My uniqueness as a psychologist comes with life experience. I am both a psychotherapist and a life and business coach. I help people heal from psychological problems, but also provide support for finding happiness, the right career and right mate. I provide marital evaluations for people having issues within their marriages to help them achieve success in relationships. I have been happily married for over 35 years which helps me in my family and couples/marriage therapy work.</p>
+                
+                <div class="office-description">
+                    <p>My office is in Rego Park, Queens, NY in a relatively urban area. Clients can expect to feel comfortable and at ease with me. My office is decorated with warm colorful paintings as well as Chinese and Japanese artifacts. My practice style is goal-oriented. I use a combination of Positive Psychology, Cognitive Behavioral Therapy, Gestalt, and family therapy based on mindfulness and meditation as a holistic device to improve mood, awareness and behavior.</p>
                 </div>
-                <div class="military-image" data-aos="fade-left">
-                    <img src="military-service.jpg" alt="Military Service">
-                </div>
+
+                <p>In the therapy session, I reflect back to my clients a feeling of caring and unconditional acceptance. I create rapport and ease and exhibit a gentle curiosity about their lives in a way that makes them feel listened to and respected. This greater awareness improves how they feel about themselves and enhances their decision-making ability, providing a better perspective on issues which may be causing them pain. I also help motivate my clients to express themselves fully and become happier and more resilient in the face of daily challenges at work, at home, or in relationships. My specialties include couples and marriage counseling, substance abuse, hypnotherapy and pain management.</p>
             </div>
         </div>
     </section>
 
-    <!-- Professional Memberships -->
-    <section class="memberships-section">
+    <!-- Biography Section -->
+    <section class="biography-section">
         <div class="container">
-            <h2>Professional Affiliations</h2>
-            <div class="memberships-grid">
-                <div class="membership-card" data-aos="fade-up">
-                    <i class="fas fa-certificate"></i>
-                    <h3>APA</h3>
-                    <p>American Psychological Association</p>
-                </div>
-                <div class="membership-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-certificate"></i>
-                    <h3>NACBT</h3>
-                    <p>National Association of Cognitive Behavioral Therapists</p>
-                </div>
-                <div class="membership-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-certificate"></i>
-                    <h3>ASCH</h3>
-                    <p>American Society of Clinical Hypnosis</p>
-                </div>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">My Story</span>
+                <h2>BIOGRAPHY AND MISSION</h2>
+            </div>
+            <div class="biography-content" data-aos="fade-up">
+                <!-- Biography content paragraphs -->
+                <p>Most of my life has been devoted to integrating my external life with my inner life...</p>
+                <!-- Add all biography paragraphs here -->
             </div>
         </div>
     </section>
@@ -192,14 +114,14 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-content" data-aos="fade-up">
-                <h2>Begin Your Journey to Wellness</h2>
-                <p>Experience a unique blend of Eastern wisdom and modern psychological practice.</p>
-                <a href="#consultation" class="cta-button">Schedule a Consultation</a>
+            <div class="cta-buttons" data-aos="fade-up">
+                <a href="#services" class="cta-button">View Our Services</a>
+                <a href="#team" class="cta-button">Meet Our Team</a>
             </div>
         </div>
     </section>
 
-    <script src="./js/about.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
