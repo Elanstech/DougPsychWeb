@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Dr. Doug Uhlig - Psychological Services</title>
+    <title>About Us - Dr. Doug Uhlig | Psychological Services</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Learn about Dr. Doug Uhlig's unique approach to psychological care combining Eastern philosophy, meditation, and modern therapeutic techniques">
+    <meta name="keywords" content="psychology, therapy, meditation, mindfulness, positive psychology, CBT, about us">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,15 +17,18 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/about.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <!-- Header Section (copied from main page) -->
+    <!-- Header (Same as index.html) -->
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="#" class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <div class="brand-logo-container">
                         <img src="logo.png" alt="Dr. Doug Uhlig" class="brand-logo">
                     </div>
@@ -49,13 +56,11 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="about-hero">
-        <div class="hero-overlay"></div>
+    <section class="about-hero" style="background-image: url('about-hero.jpg');">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-quote" data-aos="fade-up">
-                    <p>"Most of my life has been devoted to integrating my external life with my inner life."</p>
-                </div>
+            <div class="hero-content" data-aos="fade-up">
+                <h1>About Dr. Doug Uhlig</h1>
+                <p class="hero-subtitle">A Unique Approach to Psychological Wellness</p>
             </div>
         </div>
     </section>
@@ -63,34 +68,47 @@
     <!-- Philosophy Section -->
     <section class="philosophy-section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Philosophy</span>
-                <h2>PHILOSOPHY AND APPROACH</h2>
-            </div>
-            <div class="philosophy-content">
-                <div class="philosophy-text" data-aos="fade-up">
-                    <p>I am a Positive Psychologist and Teacher of Transcendental Meditation. It is from this philosophic perspective of the "Psyche" or soul that I focus on issues related to family and individual problems of trauma, abandonment, addiction, career, and relationships. I address feelings of emptiness, difficulties in managing emotions, relationships, anger, anxiety, and depression in order to increase your self-awareness or consciousness about the impact of your behavior on creating change in the world.</p>
-                    <p>What I enjoy most about my work is that it changes people at a very deep existential level. As a result of putting you in touch with this deep awareness, you can alleviate depression and anxiety naturally, prevent addiction, and come into contact with your real passion and purpose in life.</p>
+            <div class="two-column-grid">
+                <div class="content-column" data-aos="fade-right">
+                    <div class="section-header">
+                        <span class="section-tag">Our Philosophy</span>
+                        <h2>Philosophy and Approach</h2>
+                    </div>
+                    <div class="content-block">
+                        <p class="highlight-text">As a Positive Psychologist and Teacher of Transcendental Meditation, I focus on the "Psyche" or soul in addressing family and individual challenges.</p>
+                        <p>I address issues related to trauma, abandonment, addiction, career, and relationships. My approach helps individuals manage emotions, anxiety, and depression while increasing self-awareness and consciousness about behavioral impact on creating change.</p>
+                        <p>What I enjoy most about my work is witnessing profound existential transformations. Through deep awareness work, my clients can naturally alleviate depression and anxiety, prevent addiction, and discover their true passion and purpose in life.</p>
+                    </div>
+                </div>
+                <div class="image-column" data-aos="fade-left">
+                    <div class="image-frame">
+                        <img src="philosophy.jpg" alt="Meditation and Mindfulness Practice">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Uniqueness Section -->
-    <section class="uniqueness-section">
+    <!-- Unique Approach Section -->
+    <section class="approach-section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">My Approach</span>
-                <h2>HOW I AM DIFFERENT</h2>
-            </div>
-            <div class="uniqueness-content" data-aos="fade-up">
-                <p>My uniqueness as a psychologist comes with life experience. I am both a psychotherapist and a life and business coach. I help people heal from psychological problems, but also provide support for finding happiness, the right career and right mate. I provide marital evaluations for people having issues within their marriages to help them achieve success in relationships. I have been happily married for over 35 years which helps me in my family and couples/marriage therapy work.</p>
-                
-                <div class="office-description">
-                    <p>My office is in Rego Park, Queens, NY in a relatively urban area. Clients can expect to feel comfortable and at ease with me. My office is decorated with warm colorful paintings as well as Chinese and Japanese artifacts. My practice style is goal-oriented. I use a combination of Positive Psychology, Cognitive Behavioral Therapy, Gestalt, and family therapy based on mindfulness and meditation as a holistic device to improve mood, awareness and behavior.</p>
+            <div class="two-column-grid reverse">
+                <div class="image-column" data-aos="fade-right">
+                    <div class="image-frame">
+                        <img src="approach.jpg" alt="Therapeutic Session">
+                    </div>
                 </div>
-
-                <p>In the therapy session, I reflect back to my clients a feeling of caring and unconditional acceptance. I create rapport and ease and exhibit a gentle curiosity about their lives in a way that makes them feel listened to and respected. This greater awareness improves how they feel about themselves and enhances their decision-making ability, providing a better perspective on issues which may be causing them pain. I also help motivate my clients to express themselves fully and become happier and more resilient in the face of daily challenges at work, at home, or in relationships. My specialties include couples and marriage counseling, substance abuse, hypnotherapy and pain management.</p>
+                <div class="content-column" data-aos="fade-left">
+                    <div class="section-header">
+                        <span class="section-tag">Our Approach</span>
+                        <h2>How We're Different</h2>
+                    </div>
+                    <div class="content-block">
+                        <p>My uniqueness as a psychologist stems from diverse life experience. As both a psychotherapist and life/business coach, I offer comprehensive support for psychological healing, happiness, career guidance, and relationship success.</p>
+                        <p>My practice style is goal-oriented, combining Positive Psychology, Cognitive Behavioral Therapy, Gestalt, and family therapy with mindfulness and meditation. This holistic approach improves mood, awareness, and behavior.</p>
+                        <p>In therapy sessions, I create an environment of caring and unconditional acceptance. My gentle curiosity and respectful approach help clients feel heard and understood, leading to enhanced self-awareness and decision-making abilities.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -98,29 +116,165 @@
     <!-- Biography Section -->
     <section class="biography-section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">My Story</span>
-                <h2>BIOGRAPHY AND MISSION</h2>
+            <div class="section-header center" data-aos="fade-up">
+                <span class="section-tag">Our Story</span>
+                <h2>Biography and Mission</h2>
             </div>
-            <div class="biography-content" data-aos="fade-up">
-                <!-- Biography content paragraphs -->
-                <p>Most of my life has been devoted to integrating my external life with my inner life...</p>
-                <!-- Add all biography paragraphs here -->
+            <div class="timeline" data-aos="fade-up">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Early Journey</h3>
+                        <p>After military service in Southeast Asia, I lived in Tokyo, studying Japanese, Zen Buddhism, and Aikido. This led to becoming a teacher of Transcendental Meditation in Switzerland under Maharishi Mahesh Yogi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Professional Development</h3>
+                        <p>My journey includes roles as a business entrepreneur, military officer, artist, and human resources consultant. This diverse experience enriches my psychological practice and understanding of human nature.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Education & Expertise</h3>
+                        <p>Holding degrees from prestigious institutions including a Ph.D. from Walden University, my research focused on Mindfulness Meditation for substance abuse prevention.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action -->
+    <!-- Call to Action Section -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-buttons" data-aos="fade-up">
-                <a href="#services" class="cta-button">View Our Services</a>
-                <a href="#team" class="cta-button">Meet Our Team</a>
+            <div class="cta-grid">
+                <div class="cta-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cta-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Explore Our Services</h3>
+                    <p>Discover our comprehensive range of psychological services and therapeutic approaches.</p>
+                    <a href="services.html" class="btn-cta">View Services</a>
+                </div>
+                <div class="cta-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cta-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Meet Our Team</h3>
+                    <p>Get to know our dedicated team of mental health professionals.</p>
+                    <a href="team.html" class="btn-cta">Meet the Team</a>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer (Same as index.html) -->
+   <!-- Footer -->
+<footer class="footer">
+    <!-- Footer Top -->
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="Dr. Doug Uhlig">
+                        <div class="logo-text">
+                            <span class="logo-title">Dr. Doug Uhlig</span>
+                            <span class="logo-subtitle">Psychological Services</span>
+                        </div>
+                    </div>
+                    <p>Providing comprehensive psychological services and innovative therapeutic approaches for over 35 years.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Dr. Doug</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#book">Book</a></li>
+                        <li><a href="#locations">Locations</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#depression">Depression & Mood Disorders</a></li>
+                        <li><a href="#anxiety">Anxiety Disorders</a></li>
+                        <li><a href="#ptsd">PTSD Treatment</a></li>
+                        <li><a href="#meditation">Meditation Practice</a></li>
+                        <li><a href="#marriage">Marriage Counseling</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:6464815080">(646) 481-5080</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@douguhlig.com">contact@douguhlig.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Fri: 9AM-7PM</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Brooklyn & Queens Locations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2024 Dr. Doug Uhlig Psychological Services PLLC. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</footer>
+
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="./js/about.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
