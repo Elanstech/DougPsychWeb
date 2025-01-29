@@ -1222,27 +1222,27 @@ body {
 
 /* View More Button */
 .btn-view-more {
-    display: inline-flex;          /* Changed to inline-flex */
-    align-items: center;           /* Center align content */
-    justify-content: center;       /* Center align content */
+    display: inline-block;
     background: var(--gold-gradient-metallic);
-    color: var(--royal-blue);
-    padding: 1.2rem 3rem;         /* Increased padding */
+    color: var(--metallic-gold-dark);
+    padding: 1rem 3rem;  /* Increased horizontal padding */
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    gap: 1rem;                    /* Added space between text and icon */
-    min-width: 200px;             /* Added minimum width */
-    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.2);
+    margin-top: 2rem;
+    text-align: center;
+    width: 300px; /* Set fixed width for desktop */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 15px rgba(180, 155, 87, 0.2);
 }
 
 .btn-view-more:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(184, 134, 11, 0.3);
+    box-shadow: 0 6px 25px rgba(180, 155, 87, 0.3);
+    background: var(--gold-gradient-metallic);
 }
 
 .btn-view-more i {
