@@ -90,6 +90,57 @@
     }
 }
 
+/* Animations */
+@keyframes wave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .video-background,
+    .parallax-background,
+    .cta-background-waves {
+        display: none;
+    }
+    
+    .value-card {
+        page-break-inside: avoid;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .card-overlay {
+        background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .experience-content {
+        background: var(--royal-blue);
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .philosophy-card,
+    .card-image img,
+    .value-card .card-front,
+    .value-card .card-back,
+    .cta-background-waves {
+        transition: none;
+        animation: none;
+    }
+    
+    .value-card:hover .card-front,
+    .value-card:hover .card-back {
+        transform: none;
+    }
+}
+
 /* Philosophy Cards Section */
 .philosophy-cards {
     padding: 120px 0;
