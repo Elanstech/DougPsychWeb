@@ -12,7 +12,7 @@ function initializeAllComponents() {
     initAboutSection();
     initTeamSection();
     initBookSection();
-    initLocationsSection();
+    initLocationsNew();
     initContactSection();
 }
 
@@ -712,32 +712,43 @@ function initBookSection() {
     showSlide(0);
     startPreviewAutoplay();
 }
-function initLocationsSection() {
-    // Location Cards Hover Effects
-    const locationCards = document.querySelectorAll('.location-card');
+// Locations Section Implementation
+function initLocationsNew() {
+    // Location Cards Animation
+    const locationCards = document.querySelectorAll('.location-card-new');
     locationCards.forEach(card => {
-        const map = card.querySelector('.location-map');
-        
+        // Add hover effects
         card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px)';
-            if (map) {
-                map.style.opacity = '0.9';
+            const image = card.querySelector('.location-image img');
+            if (image) {
+                image.style.transform = 'scale(1.1)';
             }
+            card.style.transform = 'translateY(-10px)';
         });
 
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-            if (map) {
-                map.style.opacity = '1';
+            const image = card.querySelector('.location-image img');
+            if (image) {
+                image.style.transform = 'scale(1.0)';
             }
+            card.style.transform = 'translateY(0)';
+        });
+
+        // Handle touch events for mobile
+        card.addEventListener('touchstart', () => {
+            card.style.transform = 'translateY(-5px)';
+        });
+
+        card.addEventListener('touchend', () => {
+            card.style.transform = 'translateY(0)';
         });
     });
 
-    // Info Cards Animation
-    const infoCards = document.querySelectorAll('.info-card');
-    infoCards.forEach(card => {
+    // Feature Cards Animation
+    const featureCards = document.querySelectorAll('.feature-card');
+    featureCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-            const icon = card.querySelector('i');
+            const icon = card.querySelector('.feature-icon-new i');
             if (icon) {
                 icon.style.transform = 'scale(1.2) rotate(5deg)';
             }
@@ -745,7 +756,7 @@ function initLocationsSection() {
         });
 
         card.addEventListener('mouseleave', () => {
-            const icon = card.querySelector('i');
+            const icon = card.querySelector('.feature-icon-new i');
             if (icon) {
                 icon.style.transform = 'scale(1) rotate(0)';
             }
@@ -753,9 +764,15 @@ function initLocationsSection() {
         });
     });
 
-    // Button Hover Effects
-    const buttons = document.querySelectorAll('.btn-directions, .btn-virtual-tour');
-    buttons.forEach(button => {
+    // Virtual Tour Button Functionality
+    const tourButtons = document.querySelectorAll('.btn-tour-new');
+    tourButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Placeholder for virtual tour functionality
+            alert('Virtual tour feature coming soon!');
+        });
+
+        // Add hover effects
         button.addEventListener('mouseenter', () => {
             button.style.transform = 'translateY(-3px)';
         });
@@ -765,22 +782,67 @@ function initLocationsSection() {
         });
     });
 
-    // Virtual Tour Button Click Handler
-    const virtualTourButtons = document.querySelectorAll('.btn-virtual-tour');
-    virtualTourButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Here you can implement virtual tour functionality
-            alert('Virtual tour feature coming soon!');
+    // Direction Button Hover Effects
+    const directionButtons = document.querySelectorAll('.btn-directions-new');
+    directionButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px)';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0)';
         });
     });
 
-    // Floating Elements Animation
-    const floatItems = document.querySelectorAll('.float-item');
-    floatItems.forEach((item, index) => {
-        item.style.animationDelay = `${-index * 2}s`;
+    // Initialize AOS animations if AOS is available
+    if (typeof AOS !== 'undefined') {
+        // Location cards animation
+        locationCards.forEach((card, index) => {
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', (index * 100).toString());
+        });
+
+        // Feature cards animation
+        featureCards.forEach((card, index) => {
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', (index * 100).toString());
+        });
+
+        // Refresh AOS
+        AOS.refresh();
+    }
+
+    // Handle Responsive Layout
+    function handleResponsiveLayout() {
+        const windowWidth = window.innerWidth;
+        const locationCards = document.querySelectorAll('.location-card-new');
+        
+        locationCards.forEach(card => {
+            const content = card.querySelector('.location-content-new');
+            if (windowWidth <= 768) {
+                content.style.padding = '1.5rem';
+            } else {
+                content.style.padding = '2rem';
+            }
+        });
+    }
+
+    // Initialize responsive layout
+    handleResponsiveLayout();
+
+    // Update on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            handleResponsiveLayout();
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }, 250);
     });
 
-    // Initialize Intersection Observer for scroll animations
+    // Add intersection observer for scroll animations
     const observerOptions = {
         threshold: 0.2,
         rootMargin: '0px'
@@ -798,31 +860,24 @@ function initLocationsSection() {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // Observe elements for scroll animations
-    document.querySelectorAll('.location-card, .info-card').forEach(element => {
+    document.querySelectorAll('.location-card-new, .feature-card').forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
-        element.style.transition = 'all 0.5s ease';
+        element.style.transition = 'all 0.6s ease';
         observer.observe(element);
     });
 
-    // Handle map loading
-    const maps = document.querySelectorAll('.location-map iframe');
-    maps.forEach(map => {
-        map.addEventListener('load', () => {
-            map.style.opacity = '1';
-        });
-    });
-
-    // Handle resize events
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            // Refresh AOS if available
-            if (typeof AOS !== 'undefined') {
-                AOS.refresh();
-            }
-        }, 250);
+    // Handle image loading
+    const locationImages = document.querySelectorAll('.location-image img');
+    locationImages.forEach(img => {
+        if (img.complete) {
+            img.style.opacity = '1';
+        } else {
+            img.style.opacity = '0';
+            img.addEventListener('load', () => {
+                img.style.opacity = '1';
+            });
+        }
     });
 }
 function initContactSection() {
