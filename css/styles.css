@@ -2290,6 +2290,7 @@ stripe-buy-button {
 }
 /* Location Card */
 .location-card {
+    color: white;
     background: var(--royal-blue);
     border-radius: 20px;
     overflow: hidden;
