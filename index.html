@@ -615,46 +615,69 @@
 </section>
 
 <!-- Book Section -->
+<!-- Book Section with Advanced 3D Effects -->
 <section id="book-section" class="book-section">
+    <div class="glass-morphism-background"></div>
+    <div class="animated-gradient"></div>
+    
     <div class="container">
         <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Featured Book</span>
+            <span class="section-tag">Featured Publication</span>
             <h2>The Mind-Body Connection</h2>
-            <p>A comprehensive guide to understanding psychological well-being</p>
+            <p>Transform Your Understanding of Psychological Well-being</p>
         </div>
 
-        <div class="book-content">
-            <!-- Book Image with 3D Effect -->
-            <div class="book-image" data-aos="fade-right">
-                <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
+        <div class="book-showcase">
+            <!-- Advanced 3D Book -->
+            <div class="book-wrapper" data-aos="fade-right">
+                <div class="book-3d">
+                    <div class="book-cover">
+                        <img src="frontbook.jpeg" alt="Book Cover">
+                        <div class="shine-effect"></div>
+                    </div>
+                    <div class="book-spine">
+                        <h3>The Mind-Body Connection</h3>
+                    </div>
+                    <div class="book-back"></div>
+                    <div class="book-pages"></div>
+                </div>
+                <div class="book-shadow"></div>
             </div>
 
-            <!-- Book Info -->
-            <div class="book-info" data-aos="fade-left">
-                <div class="author-info">
-                    <img src="doug.jpeg" alt="Dr. Doug Uhlig" class="author-image">
-                    <div class="author-details">
-                        <span class="author-name">Dr. Doug Uhlig</span>
-                        <span class="author-credentials">PhD, Clinical Psychology</span>
+            <!-- Book Content -->
+            <div class="book-content" data-aos="fade-left">
+                <div class="author-card">
+                    <div class="author-image-wrapper">
+                        <img src="doug.jpeg" alt="Dr. Doug Uhlig">
+                        <div class="author-badge">
+                            <i class="fas fa-award"></i>
+                        </div>
+                    </div>
+                    <div class="author-info">
+                        <h3>Dr. Doug Uhlig</h3>
+                        <span>PhD, Clinical Psychology</span>
                     </div>
                 </div>
 
-                <div class="book-description">
-                    <p>Explore the intricate connection between mind and body in this groundbreaking work. Dr. Uhlig combines decades of clinical experience with cutting-edge research to provide a comprehensive approach to mental health and well-being.</p>
+                <div class="book-highlights">
+                    <div class="highlight-card">
+                        <i class="fas fa-brain"></i>
+                        <h4>Evidence-Based</h4>
+                        <p>Research-backed therapeutic approaches</p>
+                    </div>
+                    <div class="highlight-card">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <h4>Practical Tools</h4>
+                        <p>Actionable strategies and exercises</p>
+                    </div>
+                    <div class="highlight-card">
+                        <i class="fas fa-users"></i>
+                        <h4>Real Cases</h4>
+                        <p>Authentic success stories</p>
+                    </div>
                 </div>
 
-                <div class="book-features">
-                    <h3>What You'll Learn</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i>Evidence-based therapeutic techniques</li>
-                        <li><i class="fas fa-check"></i>Practical meditation exercises</li>
-                        <li><i class="fas fa-check"></i>Real case studies and success stories</li>
-                        <li><i class="fas fa-check"></i>Daily mental wellness practices</li>
-                    </ul>
-                </div>
-
-                <!-- Stripe Integration -->
-                <div class="purchase-button">
+                <div class="purchase-section">
                     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
                     <stripe-buy-button
                         buy-button-id="buy_btn_1QmMEjAS8CoG2CHCEM9uwFf0"
@@ -665,12 +688,8 @@
         </div>
     </div>
 
-    <!-- Floating Elements -->
-    <div class="floating-elements">
-        <div class="float-item float-1"><i class="fas fa-brain"></i></div>
-        <div class="float-item float-2"><i class="fas fa-heart"></i></div>
-        <div class="float-item float-3"><i class="fas fa-book"></i></div>
-    </div>
+    <!-- Particle Effects -->
+    <div id="particles-js"></div>
 </section>
     
      
@@ -1064,6 +1083,7 @@
 </div>
    
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./js/script.js"></script>
