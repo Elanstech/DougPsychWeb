@@ -1262,7 +1262,7 @@ body {
     text-align: center;
     background: var(--gold-gradient-metallic);
     color: var(--metallic-gold-dark);
-    padding: 1.2rem 8rem; /* Wider padding */
+    padding: 2rem 8rem; /* Wider padding */
     border-radius: 50px;
     font-size: 1.3rem;
     font-weight: 600;
