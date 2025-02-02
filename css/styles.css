@@ -1021,6 +1021,19 @@ body {
     margin: 0 auto;
 }
 
+.about .section-header p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
 /* Profile/Image Column */
 .about-image-column {
     position: relative;
