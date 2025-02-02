@@ -661,45 +661,80 @@ window.addEventListener('load', () => {
     });
 });
 
-function initBookSection() {
-    const bookImage = document.querySelector('.book-image img');
-    let initialX;
-    let initialY;
+   function initBookSection() {
+    const book = document.querySelector('.book-3d');
+    const wrapper = document.querySelector('.book-wrapper');
+    let isHovered = false;
 
-    // Add parallax effect to book on mouse move
-    if (bookImage) {
-        bookImage.parentElement.addEventListener('mousemove', (e) => {
-            const rect = bookImage.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
+    if (book && wrapper) {
+        wrapper.addEventListener('mousemove', (e) => {
+            if (!isHovered) return;
+            const rect = wrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
-            const angleY = (e.clientX - centerX) / 30;
-            const angleX = (e.clientY - centerY) / 30;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
             
-            bookImage.style.transform = `rotateY(${-30 - angleY}deg) rotateX(${-angleX}deg)`;
+            const angleX = (y - centerY) / 20;
+            const angleY = (x - centerX) / 20;
+
+            book.style.transform = `
+                rotateY(${-30 + angleY}deg)
+                rotateX(${-angleX}deg)
+                translateZ(50px)
+            `;
         });
 
-        // Reset book position when mouse leaves
-        bookImage.parentElement.addEventListener('mouseleave', () => {
-            bookImage.style.transform = 'rotateY(-30deg) rotateX(0deg)';
+        wrapper.addEventListener('mouseenter', () => {
+            isHovered = true;
+            book.style.transition = 'transform 0.3s ease';
         });
 
-        // Handle touch events for mobile
-        bookImage.parentElement.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const rect = bookImage.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            const angleY = (touch.clientX - centerX) / 30;
-            const angleX = (touch.clientY - centerY) / 30;
-            
-            bookImage.style.transform = `rotateY(${-30 - angleY}deg) rotateX(${-angleX}deg)`;
+        wrapper.addEventListener('mouseleave', () => {
+            isHovered = false;
+            book.style.transition = 'transform 0.8s ease';
+            book.style.transform = 'rotateY(-30deg) rotateX(5deg)';
+        });
+
+        // Add parallax effect to highlights
+        const highlights = document.querySelectorAll('.highlight-card');
+        window.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            highlights.forEach((card) => {
+                const offsetX = (mouseX - 0.5) * 20;
+                const offsetY = (mouseY - 0.5) * 20;
+                card.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
         });
     }
 }
 
+// Initialize particles.js for background effects
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 800 } },
+                color: { value: '#b49b57' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: true,
+                    out_mode: 'out'
+                }
+            }
+        });
+    }
+    initBookSection();
+});
+    
 // Locations Section Implementation
 function initLocationsNew() {
     // Location Cards Animation
