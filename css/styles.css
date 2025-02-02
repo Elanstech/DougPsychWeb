@@ -1478,34 +1478,15 @@ body {
 }
 
 /* Social Links */
-.member-social {
-    position: absolute;
-    bottom: 0; /* Change from -50px to 0 */
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.8) 0%,
-        rgba(0, 0, 0, 0) 100%
-    );
+ display: none
+
 }
 
 .social-link {
-    width: 40px;
-    height: 40px;
-    background: var(--gold-gradient-metallic);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--royal-blue);
-    text-decoration: none;
-    transition: all 0.3s ease;
+display: none;
+
 }
+
 
 .social-link i {
     font-size: 1.2rem;
