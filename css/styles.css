@@ -1480,7 +1480,7 @@ body {
 /* Social Links */
 .member-social {
     position: absolute;
-    bottom: -50px;
+    bottom: 0; /* Change from -50px to 0 */
     left: 0;
     width: 100%;
     display: flex;
@@ -1492,11 +1492,6 @@ body {
         rgba(0, 0, 0, 0.8) 0%,
         rgba(0, 0, 0, 0) 100%
     );
-    transition: all 0.4s ease;
-}
-
-.team-member-card:hover .member-social {
-    bottom: 0;
 }
 
 .social-link {
@@ -1510,11 +1505,6 @@ body {
     color: var(--royal-blue);
     text-decoration: none;
     transition: all 0.3s ease;
-}
-
-.social-link:hover {
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
 }
 
 .social-link i {
