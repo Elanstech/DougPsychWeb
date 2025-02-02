@@ -414,7 +414,9 @@ body {
 }
 
 .btn-hero {
-    display: inline-block;
+    display: block;
+    margin: 0 auto; /* Centers the button horizontally */
+    text-align: center;
     background: var(--gold-gradient-metallic);
     color: var(--metallic-gold-dark);
     padding: 1.2rem 3rem;
