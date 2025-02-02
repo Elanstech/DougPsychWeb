@@ -1246,7 +1246,7 @@ body {
     text-align: center;
     background: var(--gold-gradient-metallic);
     color: var(--metallic-gold-dark);
-    padding: 1.2rem 3rem;
+    padding: 1.2rem 4rem; /* Increase padding to make the button wider */
     border-radius: 50px;
     font-size: 1.3rem;
     font-weight: 600;
@@ -1260,7 +1260,7 @@ body {
 
 .btn-view-more:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(180, 155, 87, 0.3);
+    box-shadow: 0 6px 25px rgba(184, 134, 11, 0.4);
     background: var(--gold-gradient-metallic);
 }
 
