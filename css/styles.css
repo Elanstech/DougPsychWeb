@@ -990,19 +990,35 @@ body {
     position: relative;
 }
 
-.about-section-header {
+.about .section-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    background: rgba(26, 35, 126, 0.1); /* Add a slight blue hue */
-    border-radius: var(--radius-md);
+    margin-bottom: 4rem;
+    color: var(--royal-blue);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.about-section-header h2 {
+.about .section-tag {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--gold-gradient-metallic);
+    color: var(--metallic-gold-dark);
+    border-radius: 50px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about .section-header h2 {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    color: var(--royal-blue);
-    margin: 0;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.about .section-header p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* Profile/Image Column */
@@ -1246,7 +1262,7 @@ body {
     text-align: center;
     background: var(--gold-gradient-metallic);
     color: var(--metallic-gold-dark);
-    padding: 1.2rem 4rem; /* Increase padding to make the button wider */
+    padding: 1.2rem 8rem; /* Wider padding */
     border-radius: 50px;
     font-size: 1.3rem;
     font-weight: 600;
