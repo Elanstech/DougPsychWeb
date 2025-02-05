@@ -1287,6 +1287,54 @@ body {
     transform: scale(1.1);
 }
 
+.team-card .card-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Creates a 1:1 aspect ratio */
+    overflow: hidden;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.team-card .card-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    object-position: center top; /* Aligns image to the top center, focusing on faces */
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-card .card-image {
+        padding-top: 120%; /* Taller aspect ratio on mobile */
+    }
+
+    .team-card .card-image img {
+        object-position: top; /* Ensures focus on faces on mobile */
+    }
+}
+
+/* Card content adjustments for mobile */
+@media (max-width: 480px) {
+    .team-card {
+        margin: 0 auto;
+        max-width: 320px; /* Limits maximum width on very small screens */
+    }
+
+    .team-card .card-info {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Swiper slider adjustments for mobile */
+@media (max-width: 768px) {
+    .team-carousel .swiper-slide {
+        padding: 0 10px; /* Adds spacing between slides */
+    }
+}
+
 .card-info {
     padding: 2rem;
     text-align: center;
