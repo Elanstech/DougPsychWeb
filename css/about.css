@@ -67,20 +67,39 @@
     z-index: 3;
     width: 100%;
     max-width: 1200px;
-    padding: 4rem 2rem; /* Increased padding */
+    padding: 4rem 2rem;
     margin: 0 auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6rem; /* Increased gap between title and features */
+    gap: 6rem;
 }
 
 /* Title Container */
 .title-container {
-    margin-top: 2rem; /* Added top margin */
+    margin-top: 2rem;
     margin-bottom: 2rem;
+    position: relative;
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+@keyframes gradientBG {
+    0% {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 }
 
 .accent-line {
@@ -89,6 +108,7 @@
     background: linear-gradient(90deg, #FFD700, #DAA520);
     margin: 1.5rem auto;
     border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 .hero-title {
@@ -105,7 +125,9 @@
     letter-spacing: 3px;
     color: #ffffff;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .title-main {
@@ -113,8 +135,12 @@
     font-weight: 700;
     line-height: 1.2;
     font-family: 'Playfair Display', serif;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .title-sub {
@@ -122,7 +148,9 @@
     font-weight: 400;
     color: #ffffff;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 /* Hero Features */
@@ -136,7 +164,7 @@
 }
 
 .feature-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
@@ -144,12 +172,13 @@
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 .feature-icon-wrapper {
@@ -231,9 +260,11 @@
     }
 
     .title-container {
-        margin-top: 3rem; /* Increased top margin for mobile */
+        padding: 1.5rem;
+        margin-top: 3rem;
+        background: rgba(0, 0, 0, 0.5);
     }
-
+   
     .title-main {
         font-size: 2.8rem;
     }
