@@ -591,101 +591,239 @@
 }
 
 /* ======================================
-   EXPERIENCE SECTION
+   HOW WE ARE DIFF
 ====================================== */
-.experience-section {
+/* How Are We Different Section Styles */
+.difference-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
 }
 
-.parallax-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+/* Header Styles */
+.difference-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #2d3436;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+}
+
+.title-accent {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #FFD700, #DAA520);
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+/* Grid Layout */
+.difference-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Card Styles */
+.difference-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
-.experience-content {
-    position: relative;
-    width: 100%;
-    padding: var(--section-padding);
-    color: white;
-    background: rgba(26, 35, 126, 0.85);
-    backdrop-filter: blur(10px);
+.difference-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
-.content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 4rem;
+.card-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #FFD700, #DAA520);
+    border-radius: 50%;
+    display: flex;
     align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: var(--container-padding);
+    justify-content: center;
+    margin-bottom: 1.5rem;
 }
 
-.text-column {
-    max-width: 600px;
+.card-icon i {
+    font-size: 2rem;
+    color: white;
 }
 
-.text-column h2 {
-    font-size: clamp(2rem, 3vw, 3rem);
-    margin-bottom: 2rem;
-    color: var(--metallic-gold);
+.difference-card h3 {
+    font-size: 1.5rem;
+    color: #2d3436;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
 }
 
-.highlight-text {
-    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-.experience-list {
+/* Experience Card */
+.expertise-list {
     list-style: none;
-    display: grid;
-    gap: 1rem;
+    padding: 0;
+    margin: 1.5rem 0;
 }
 
-.experience-list li {
+.expertise-list li {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 10px;
 }
 
-.experience-list i {
-    color: var(--metallic-gold);
-    font-size: 1.2em;
+.expertise-list i {
+    color: #DAA520;
+    font-size: 1.25rem;
 }
 
-.floating-image-grid {
+/* Environment Card */
+.office-details {
+    margin-top: 1rem;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #DAA520;
+}
+
+.ambiance-items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.floating-image-grid img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
+.ambiance-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.ambiance-item i {
+    color: #DAA520;
+}
+
+/* Approach Card */
+.approach-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.method-item {
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.method-item i {
+    color: #DAA520;
+}
+
+.specialties {
+    margin-top: 2rem;
+}
+
+.specialties h4 {
+    margin-bottom: 1rem;
+    color: #2d3436;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.specialty-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.specialty-tag {
+    background: linear-gradient(135deg, #FFD700, #DAA520);
+    color: white;
+    padding: 0.5rem 1rem;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
-.floating-image-grid img:nth-child(odd) {
-    transform: translateY(-30px);
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .difference-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.floating-image-grid img:last-child {
-    grid-column: span 2;
+@media (max-width: 768px) {
+    .difference-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .difference-card {
+        padding: 1.5rem;
+    }
+
+    .approach-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .ambiance-items {
+        grid-template-columns: 1fr;
+    }
+
+    .specialty-tags {
+        justify-content: center;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.difference-card {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .difference-card {
+        animation: none;
+    }
+    
+    .difference-card:hover {
+        transform: none;
+    }
 }
 
 /* ======================================
