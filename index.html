@@ -499,72 +499,144 @@
     </div>
 </section>
 
+ <!-- Book Showcase -->
 <section id="book-section" class="book-section">
-    <div class="book-background">
-        <img src="bookbackground.jpg" alt="Background" class="background-image">
-        <div class="overlay"></div>
-        
-        <!-- Floating Elements -->
-        <div class="floating-elements">
-            <div class="float-item float-1"><i class="fas fa-book"></i></div>
-            <div class="float-item float-2"><i class="fas fa-brain"></i></div>
-            <div class="float-item float-3"><i class="fas fa-heart"></i></div>
-            <div class="float-item float-4"><i class="fas fa-star"></i></div>
-        </div>
-    </div>
-
     <div class="container">
+        <!-- Section Header -->
         <div class="section-header" data-aos="fade-up">
             <span class="section-tag">New Release</span>
             <h2>The Mind-Body Connection</h2>
             <p>A Comprehensive Guide to Mental Well-being</p>
         </div>
 
-        <div class="book-card" data-aos="fade-up">
-            <div class="book-content">
-                <div class="book-image">
-                    <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
-                </div>
-                
-                <div class="book-info">
-                    <div class="author-info">
-                        <img src="doug.jpeg" alt="Dr. Doug Uhlig" class="author-image">
-                        <div class="author-details">
-                            <span class="author-name">Dr. Doug Uhlig</span>
-                            <span class="author-credentials">PhD, Clinical Psychology</span>
-                        </div>
+        <div class="book-showcase">
+            <!-- 3D Book -->
+            <div class="book-3d" data-aos="fade-right">
+                <div class="book-wrapper">
+                    <div class="book-cover">
+                        <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
                     </div>
-
-                    <div class="book-description">
-                        <p>In this groundbreaking work, Dr. Uhlig combines decades of clinical experience with cutting-edge research to provide a comprehensive approach to mental health and well-being. Discover practical insights and proven strategies for achieving lasting psychological harmony.</p>
+                    <div class="book-pages">
+                        <!-- Dynamic Pages Effect -->
+                        <div class="page page-1"></div>
+                        <div class="page page-2"></div>
+                        <div class="page page-3"></div>
                     </div>
-
-                    <div class="book-features">
-                        <h3>What You'll Learn</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i>Evidence-based therapeutic techniques</li>
-                            <li><i class="fas fa-check"></i>Practical meditation exercises</li>
-                            <li><i class="fas fa-check"></i>Real case studies and success stories</li>
-                            <li><i class="fas fa-check"></i>Daily mental wellness practices</li>
-                        </ul>
-                    </div>
-
-                    <div class="book-purchase">
-                        <div class="price-tag">
-                            <span class="price">$29.99</span>
-                            <span class="label">Best Seller</span>
-                        </div>
-                        <div class="purchase-button">
-                            <!-- Stripe Button Integration -->
-                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                            <stripe-buy-button
-                                buy-button-id="buy_btn_1QmMEjAS8CoG2CHCEM9uwFf0"
-                                publishable-key="pk_test_51QmM74AS8CoG2CHC4CS6nDtRLuryp4d0rdYjcOjsmpheugVvgawSPmRKxy8ayFGv9dZN5WgQh8HrqPp8XXrtgs1P00KVJTksnt">
-                            </stripe-buy-button>
-                        </div>
+                    <div class="book-back"></div>
+                    <!-- Spine Effect -->
+                    <div class="book-spine">
+                        <span class="spine-title">The Mind-Body Connection</span>
+                        <span class="spine-author">Dr. Doug Uhlig</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Book Information -->
+            <div class="book-info" data-aos="fade-left">
+                <h1 class="book-title">The Mind-Body Connection</h1>
+                <p class="book-subtitle">Unlock the Power of Mental and Physical Harmony</p>
+
+                <!-- Author Info -->
+                <div class="author-info">
+                    <img src="doug.jpeg" alt="Dr. Doug Uhlig" class="author-image">
+                    <div class="author-details">
+                        <h3 class="author-name">Dr. Doug Uhlig</h3>
+                        <span class="author-credentials">PhD, Clinical Psychology</span>
+                        <p class="author-bio">Leading expert in psychological well-being with over 20 years of experience.</p>
+                    </div>
+                </div>
+
+                <!-- Book Features -->
+                <div class="book-features">
+                    <h3>What You'll Learn</h3>
+                    <div class="feature-list">
+                        <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Evidence-Based Techniques</h4>
+                                <span class="feature-text">Scientifically proven therapeutic approaches</span>
+                            </div>
+                        </div>
+
+                        <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="feature-icon">
+                                <i class="fas fa-meditation"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Meditation Practices</h4>
+                                <span class="feature-text">Step-by-step mindfulness exercises</span>
+                            </div>
+                        </div>
+
+                        <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="feature-icon">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Real Case Studies</h4>
+                                <span class="feature-text">Authentic success stories and insights</span>
+                            </div>
+                        </div>
+
+                        <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Growth Strategies</h4>
+                                <span class="feature-text">Personal development techniques</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reviews Section -->
+                <div class="book-reviews">
+                    <div class="review-slider">
+                        <div class="review-item">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="review-text">"A groundbreaking approach to understanding the mind-body connection."</p>
+                            <span class="reviewer">- Psychology Today</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Purchase Section -->
+                <div class="purchase-section" data-aos="fade-up">
+                    <!-- Stripe Integration -->
+                    <div class="stripe-button-container">
+                        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                        <stripe-buy-button
+                            buy-button-id="buy_btn_1QmMEjAS8CoG2CHCEM9uwFf0"
+                            publishable-key="pk_test_51QmM74AS8CoG2CHC4CS6nDtRLuryp4d0rdYjcOjsmpheugVvgawSPmRKxy8ayFGv9dZN5WgQh8HrqPp8XXrtgs1P00KVJTksnt">
+                        </stripe-buy-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="float-item float-1">
+            <i class="fas fa-brain"></i>
+        </div>
+        <div class="float-item float-2">
+            <i class="fas fa-heart"></i>
+        </div>
+        <div class="float-item float-3">
+            <i class="fas fa-spa"></i>
+        </div>
+        <div class="float-item float-4">
+            <i class="fas fa-star"></i>
         </div>
     </div>
 </section>
