@@ -215,6 +215,393 @@ function initServices() {
         }, 250);
     });
 }
+// About Section Implementation
+function initAboutSection() {
+    // Content Block Rotation
+    const contentBlocks = document.querySelectorAll('.content-block');
+    const navigationDots = document.querySelectorAll('.navigation-dots .dot');
+    let currentBlockIndex = 0;
+    let autoplayInterval;
+    let isHovered = false;
+
+    // Show specific content block
+    function showBlock(index) {
+        contentBlocks.forEach(block => {
+            block.classList.remove('active');
+            block.style.opacity = '0';
+            block.style.visibility = 'hidden';
+        });
+        navigationDots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+
+        contentBlocks[index].classList.add('active');
+        contentBlocks[index].style.opacity = '1';
+        contentBlocks[index].style.visibility = 'visible';
+        navigationDots[index].classList.add('active');
+        currentBlockIndex = index;
+    }
+
+    // Automatically advance to next block
+    function showNextBlock() {
+        if (!isHovered) {
+            const nextIndex = (currentBlockIndex + 1) % contentBlocks.length;
+            showBlock(nextIndex);
+        }
+    }
+
+    // Start autoplay functionality
+    function startAutoplay() {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+        autoplayInterval = setInterval(showNextBlock, 5000);
+    }
+
+    // Stop autoplay functionality
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+        }
+    }
+
+    // Initialize navigation dots
+    navigationDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showBlock(index);
+            stopAutoplay();
+            startAutoplay();
+        });
+    });
+
+    // Handle hover states
+    const aboutContent = document.querySelector('.about-content-blocks');
+    if (aboutContent) {
+        aboutContent.addEventListener('mouseenter', () => {
+            isHovered = true;
+            stopAutoplay();
+        });
+
+        aboutContent.addEventListener('mouseleave', () => {
+            isHovered = false;
+            startAutoplay();
+        });
+    }
+
+    // Initialize credential hover effects
+    initCredentials();
+
+    // Initialize feature items
+    initFeatureItems();
+
+    // Start the rotation
+    showBlock(0);
+    startAutoplay();
+}
+
+function initCredentials() {
+    const credentials = document.querySelectorAll('.credential');
+    credentials.forEach(credential => {
+        credential.addEventListener('mouseenter', () => {
+            credential.style.transform = 'translateX(10px)';
+            credential.style.backgroundColor = 'rgba(26, 35, 126, 0.05)';
+        });
+
+        credential.addEventListener('mouseleave', () => {
+            credential.style.transform = 'translateX(0)';
+            credential.style.backgroundColor = 'transparent';
+        });
+    });
+}
+
+function initFeatureItems() {
+    const featureItems = document.querySelectorAll('.feature-item');
+    featureItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            const icon = item.querySelector('.feature-icon i');
+            if (icon) icon.style.transform = 'scale(1.2) rotate(10deg)';
+            item.style.transform = 'translateY(-5px)';
+        });
+
+        item.addEventListener('mouseleave', () => {
+            const icon = item.querySelector('.feature-icon i');
+            if (icon) icon.style.transform = 'scale(1) rotate(0)';
+            item.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Team Section Implementation
+function initTeamSection() {
+    const teamSwiper = new Swiper('.team-carousel', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        speed: 800,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            1400: {
+                slidesPerView: 4,
+                spaceBetween: 30
+            }
+        }
+    });
+
+    // Team member card animations
+    const teamCards = document.querySelectorAll('.team-member-card');
+    teamCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.6s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+
+    // Team stats counter animation
+    const stats = document.querySelectorAll('.stat-number');
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent);
+        let current = 0;
+        const increment = target / 50;
+        const updateCount = () => {
+            if (current < target) {
+                current += increment;
+                stat.textContent = Math.ceil(current);
+                requestAnimationFrame(updateCount);
+            } else {
+                stat.textContent = target;
+            }
+        };
+        updateCount();
+    });
+
+    // Social links interaction
+    initSocialLinks();
+
+    return teamSwiper;
+}
+
+function initSocialLinks() {
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            const icon = link.querySelector('i');
+            if (icon) icon.style.transform = 'scale(1.2)';
+        });
+
+        link.addEventListener('mouseleave', () => {
+            const icon = link.querySelector('i');
+            if (icon) icon.style.transform = 'scale(1)';
+        });
+
+        if (link.href.includes('mailto:')) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = link.href.replace('mailto:', '');
+                navigator.clipboard.writeText(email)
+                    .then(() => showToast('Email copied to clipboard!'))
+                    .catch(err => console.error('Failed to copy email:', err));
+            });
+        }
+    });
+}
+
+// Book Section Implementation
+[Previous book section code remains the same...]
+
+// Locations Section Implementation
+function initLocationsNew() {
+    const locationCards = document.querySelectorAll('.location-card-new');
+    locationCards.forEach(card => {
+        // Card hover effects
+        card.addEventListener('mouseenter', () => {
+            const image = card.querySelector('.location-image img');
+            if (image) {
+                image.style.transform = 'scale(1.1)';
+            }
+            card.style.transform = 'translateY(-10px)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const image = card.querySelector('.location-image img');
+            if (image) {
+                image.style.transform = 'scale(1.0)';
+            }
+            card.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Feature cards animation
+    const featureCards = document.querySelectorAll('.feature-card');
+    featureCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const icon = card.querySelector('.feature-icon-new i');
+            if (icon) {
+                icon.style.transform = 'scale(1.2) rotate(5deg)';
+            }
+            card.style.transform = 'translateY(-5px)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const icon = card.querySelector('.feature-icon-new i');
+            if (icon) {
+                icon.style.transform = 'scale(1) rotate(0)';
+            }
+            card.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Virtual tour functionality
+    const tourButtons = document.querySelectorAll('.btn-tour-new');
+    tourButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            alert('Virtual tour feature coming soon!');
+        });
+    });
+
+    // Direction buttons
+    initDirectionButtons();
+}
+
+function initDirectionButtons() {
+    const directionButtons = document.querySelectorAll('.btn-directions-new');
+    directionButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px)';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Contact Section Implementation
+function initContactSection() {
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleFormSubmit);
+        initFormFields();
+    }
+
+    initEmergencyInfo();
+    initSocialIcons();
+}
+
+async function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    const submitBtn = e.target.querySelector('.btn-submit');
+    const originalText = submitBtn.innerHTML;
+    
+    try {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+
+        // Simulate form submission
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        showToast('Message sent successfully! We will get back to you soon.');
+        e.target.reset();
+    } catch (error) {
+        showToast('An error occurred. Please try again.');
+        console.error('Form submission error:', error);
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+function initFormFields() {
+    const formGroups = document.querySelectorAll('.form-group');
+    formGroups.forEach(group => {
+        const input = group.querySelector('input, select, textarea');
+        const label = group.querySelector('label');
+
+        if (input && label) {
+            if (input.value) {
+                label.classList.add('active');
+            }
+
+            input.addEventListener('focus', () => {
+                label.classList.add('active');
+            });
+
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    label.classList.remove('active');
+                }
+            });
+        }
+    });
+}
+
+function initEmergencyInfo() {
+    const emergencyNumbers = document.querySelectorAll('.emergency-info a');
+    emergencyNumbers.forEach(number => {
+        number.addEventListener('click', (e) => {
+            if (!confirm('This will initiate a phone call. Continue?')) {
+                e.preventDefault();
+            }
+        });
+    });
+}
+
+function initSocialIcons() {
+    const socialLinks = document.querySelectorAll('.footer-social a');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            const icon = link.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1.2)';
+            }
+        });
+
+        link.addEventListener('mouseleave', () => {
+            const icon = link.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'scale(1)';
+            }
+        });
+    });
+}
+
+// Utility Functions
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.classList.add('show'), 100);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
 
 // Book Section Implementation
 function initBookSection() {
