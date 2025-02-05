@@ -434,145 +434,275 @@ function initAboutSection() {
 /* ======================================
    TEAM SECTION
 ====================================== */
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initTeamSection();
+});
+
 function initTeamSection() {
-  // Initialize Swiper for the team carousel
-  const teamSwiper = new Swiper('.team-carousel', {
-    slidesPerView: 2, // Default: 2 slides (so more than one practitioner shows)
-    spaceBetween: 30,
-    loop: true,
-    speed: 800,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 30
-      },
-      1400: {
-        slidesPerView: 4,
-        spaceBetween: 30
-      }
+    // Initialize Swiper
+    const teamSwiper = new Swiper('.team-carousel', {
+        // Enable lazy loading
+        lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 3
+        },
+        
+        // Basic settings
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        speed: 800,
+        
+        // Autoplay configuration
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        
+        // Responsive breakpoints
+        breakpoints: {
+            // >= 640px
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            // >= 768px
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            // >= 1024px
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 30
+            }
+        },
+        
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        
+        // Pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true
+        },
+        
+        // Enable keyboard control
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true
+        },
+        
+        // Add smooth effects
+        effect: 'slide',
+        
+        // Handle events
+        on: {
+            init: function() {
+                handleTeamCardsAnimation();
+                initializeTeamCardInteractions();
+            },
+            slideChangeTransitionStart: function() {
+                handleTeamCardsAnimation();
+            }
+        }
+    });
+
+    // Handle card animations
+    function handleTeamCardsAnimation() {
+        const cards = document.querySelectorAll('.team-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
     }
-  });
 
-  // Initialize additional team-related animations and image loading
-  initTeamCardsAnimation();
-  initTeamImages();
-  initTeamStatsAnimation();
-  initTeamSocialLinks();
+    // Initialize card interactions
+    function initializeTeamCardInteractions() {
+        const cards = document.querySelectorAll('.team-card');
+        
+        cards.forEach(card => {
+            // Add hover animations
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+                const image = card.querySelector('.card-image img');
+                if (image) {
+                    image.style.transform = 'scale(1.1)';
+                }
+            });
 
-  // Autoplay pause/resume on visibility change
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      teamSwiper.autoplay.stop();
-    } else {
-      teamSwiper.autoplay.start();
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                const image = card.querySelector('.card-image img');
+                if (image) {
+                    image.style.transform = 'scale(1)';
+                }
+            });
+
+            // Add touch interactions for mobile
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'translateY(-5px)';
+            });
+
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
     }
-  });
 
-  return teamSwiper;
-}
-
-function initTeamCardsAnimation() {
-  const cards = document.querySelectorAll('.team-member-card');
-  cards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    setTimeout(() => {
-      card.style.transition = 'all 0.6s ease';
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    }, index * 100);
-  });
-}
-
-function initTeamImages() {
-  const teamImages = document.querySelectorAll('.member-image img');
-  teamImages.forEach(img => {
-    img.loading = 'lazy';
-    if (img.complete) {
-      handleImageLoad(img);
-    } else {
-      img.addEventListener('load', () => handleImageLoad(img));
+    // Handle image loading states
+    function handleImageLoad(img) {
+        const card = img.closest('.team-card');
+        if (card) {
+            card.classList.remove('loading');
+            img.style.opacity = '1';
+            
+            // Add fade-in animation
+            img.style.animation = 'fadeIn 0.5s ease forwards';
+        }
     }
-    img.addEventListener('error', handleImageError);
-  });
+
+    // Initialize image loading
+    function initializeImageLoading() {
+        const teamImages = document.querySelectorAll('.card-image img');
+        teamImages.forEach(img => {
+            const card = img.closest('.team-card');
+            if (card) {
+                card.classList.add('loading');
+            }
+            
+            if (img.complete) {
+                handleImageLoad(img);
+            } else {
+                img.addEventListener('load', () => handleImageLoad(img));
+            }
+
+            // Handle loading errors
+            img.addEventListener('error', (e) => {
+                console.error('Error loading team member image:', e);
+                img.src = 'placeholder.jpg'; // Fallback image
+            });
+        });
+    }
+
+    // Handle section transitions
+    function initializeSectionTransitions() {
+        const teamSection = document.getElementById('team');
+        const nextSection = teamSection.nextElementSibling;
+        
+        if (nextSection) {
+            // Add transition observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        nextSection.style.opacity = '1';
+                        nextSection.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            observer.observe(nextSection);
+
+            // Prepare next section for transition
+            nextSection.style.opacity = '0';
+            nextSection.style.transform = 'translateY(30px)';
+            nextSection.style.transition = 'all 0.8s ease';
+        }
+    }
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            teamSwiper.update();
+            updateCardHeights();
+        }, 250);
+    });
+
+    // Update card heights to maintain consistency
+    function updateCardHeights() {
+        const cards = document.querySelectorAll('.team-card');
+        let maxHeight = 0;
+
+        // Reset heights
+        cards.forEach(card => {
+            card.style.height = 'auto';
+            const height = card.offsetHeight;
+            maxHeight = Math.max(maxHeight, height);
+        });
+
+        // Apply max height to all cards
+        cards.forEach(card => {
+            card.style.height = `${maxHeight}px`;
+        });
+    }
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            teamSwiper.autoplay.stop();
+        } else {
+            teamSwiper.autoplay.start();
+        }
+    });
+
+    // Initialize all components
+    function initializeAll() {
+        initializeImageLoading();
+        initializeSectionTransitions();
+        updateCardHeights();
+        
+        // Initialize AOS if available
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    }
+
+    // Run initialization
+    initializeAll();
+
+    // Return the swiper instance for external access if needed
+    return teamSwiper;
 }
 
-function handleImageLoad(img) {
-  img.style.opacity = '1';
-  const card = img.closest('.team-member-card');
-  if (card) {
-    card.classList.add('image-loaded');
-  }
+// Add smooth scroll functionality
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 }
 
-function handleImageError(e) {
-  const img = e.target;
-  img.src = 'placeholder.jpg'; // Fallback image
-  console.error('Error loading team member image:', e);
-}
+// Initialize smooth scroll
+initSmoothScroll();
 
-function initTeamStatsAnimation() {
-  const stats = document.querySelectorAll('.stat-number');
-  stats.forEach(stat => {
-    const target = parseInt(stat.textContent);
-    let current = 0;
-    const increment = target / 50;
-    const updateCount = () => {
-      if (current < target) {
-        current += increment;
-        stat.textContent = Math.ceil(current);
-        requestAnimationFrame(updateCount);
-      } else {
-        stat.textContent = target;
-      }
+// Export the initialization function if using modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initTeamSection
     };
-    updateCount();
-  });
-}
-
-function initTeamSocialLinks() {
-  const socialLinks = document.querySelectorAll('.social-link');
-  socialLinks.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      const icon = link.querySelector('i');
-      if (icon) {
-        icon.style.transform = 'scale(1.2)';
-      }
-    });
-    link.addEventListener('mouseleave', () => {
-      const icon = link.querySelector('i');
-      if (icon) {
-        icon.style.transform = 'scale(1)';
-      }
-    });
-    if (link.href.includes('mailto:')) {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const email = link.href.replace('mailto:', '');
-        navigator.clipboard.writeText(email)
-          .then(() => showToast('Email copied to clipboard!'))
-          .catch(err => console.error('Failed to copy email:', err));
-      });
-    }
-  });
 }
 
 /* ======================================
