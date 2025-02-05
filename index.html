@@ -765,9 +765,11 @@
 </section>
 
 <!-- Contact Section -->
+<!-- Contact Section -->
 <section id="contact" class="contact">
+    <!-- Background with Overlay -->
     <div class="contact-background">
-        <img src="contactt.jpg" alt="Background" class="background-image">
+        <div class="background-pattern"></div>
         <div class="overlay"></div>
         
         <!-- Floating Elements -->
@@ -789,101 +791,105 @@
         <div class="contact-grid">
             <!-- Contact Information -->
             <div class="contact-info" data-aos="fade-right">
-                <h3>Contact Information</h3>
-                <div class="info-list">
-                    <div class="info-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div class="item-content">
-                            <h4>Phone</h4>
-                            <a href="tel:6464815080">(646) 481-5080</a>
-                            <p>Monday - Friday: 9AM - 7PM</p>
+                <div class="info-card">
+                    <h3>Contact Information</h3>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="item-content">
+                                <h4>Phone</h4>
+                                <a href="tel:6464815080">(646) 481-5080</a>
+                                <p>Monday - Friday: 9AM - 7PM</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="item-content">
+                                <h4>Email</h4>
+                                <a href="mailto:contact@douguhlig.com">contact@douguhlig.com</a>
+                                <p>We'll respond within 24 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="item-content">
+                                <h4>Locations</h4>
+                                <p>Brooklyn: 1517 Voorhies Ave</p>
+                                <p>Queens: 63-44 Saunders St, Suite 106</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div class="item-content">
-                            <h4>Email</h4>
-                            <a href="mailto:contact@douguhlig.com">contact@douguhlig.com</a>
-                            <p>We'll respond within 24 hours</p>
-                        </div>
+                    <div class="emergency-info">
+                        <h4>Emergency Resources</h4>
+                        <p>If you're experiencing a mental health emergency:</p>
+                        <ul>
+                            <li><i class="fas fa-phone"></i>Call 911 for immediate assistance</li>
+                            <li><i class="fas fa-phone"></i>National Crisis Hotline: 988</li>
+                            <li><i class="fas fa-phone"></i>NYC Well: 1-888-NYC-WELL</li>
+                        </ul>
                     </div>
-
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="item-content">
-                            <h4>Locations</h4>
-                            <p>Brooklyn: 1517 Voorhies Ave</p>
-                            <p>Queens: 63-44 Saunders St, Suite 106</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="emergency-info">
-                    <h4>Emergency Resources</h4>
-                    <p>If you're experiencing a mental health emergency:</p>
-                    <ul>
-                        <li><i class="fas fa-phone"></i>Call 911 for immediate assistance</li>
-                        <li><i class="fas fa-phone"></i>National Crisis Hotline: 988</li>
-                        <li><i class="fas fa-phone"></i>NYC Well: 1-888-NYC-WELL</li>
-                    </ul>
                 </div>
             </div>
 
             <!-- Contact Form -->
             <div class="contact-form-container" data-aos="fade-left">
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Full Name</label>
-                        <div class="focus-border"></div>
-                    </div>
-
-                    <div class="form-row">
+                <div class="form-card">
+                    <form class="contact-form">
                         <div class="form-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email">Email Address</label>
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Full Name</label>
                             <div class="focus-border"></div>
                         </div>
-                        
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Email Address</label>
+                                <div class="focus-border"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" required>
+                                <label for="phone">Phone Number</label>
+                                <div class="focus-border"></div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
-                            <input type="tel" id="phone" name="phone" required>
-                            <label for="phone">Phone Number</label>
+                            <select id="service" name="service" required>
+                                <option value="" selected disabled></option>
+                                <option value="depression">Depression & Mood Disorders</option>
+                                <option value="anxiety">Anxiety Disorders</option>
+                                <option value="ptsd">PTSD & Trauma Recovery</option>
+                                <option value="meditation">Mindfulness & Meditation</option>
+                                <option value="other">Other Services</option>
+                            </select>
+                            <label for="service">Service Type</label>
                             <div class="focus-border"></div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <select id="service" name="service" required>
-                            <option value="" selected disabled></option>
-                            <option value="depression">Depression & Mood Disorders</option>
-                            <option value="anxiety">Anxiety Disorders</option>
-                            <option value="ptsd">PTSD & Trauma Recovery</option>
-                            <option value="meditation">Mindfulness & Meditation</option>
-                            <option value="other">Other Services</option>
-                        </select>
-                        <label for="service">Service Type</label>
-                        <div class="focus-border"></div>
-                    </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <label for="message">Your Message</label>
+                            <div class="focus-border"></div>
+                        </div>
 
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                        <label for="message">Your Message</label>
-                        <div class="focus-border"></div>
-                    </div>
-
-                    <div class="form-submit">
-                        <button type="submit" class="btn-submit">
-                            Send Message
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </form>
+                        <div class="form-submit">
+                            <button type="submit" class="btn-submit">
+                                Send Message
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
+    
 <!-- Footer -->
 <footer class="footer">
     <!-- Footer Top -->
