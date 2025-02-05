@@ -617,70 +617,93 @@
     </div>
 </section>
 
+<!-- Book Section -->
 <section id="book-section" class="book-section">
-    <div class="book-background">
-        <img src="bookbackground.jpg" alt="Background" class="background-image">
-        <div class="overlay"></div>
-        
-        <!-- Floating Elements -->
-        <div class="floating-elements">
-            <div class="float-item float-1"><i class="fas fa-book"></i></div>
-            <div class="float-item float-2"><i class="fas fa-brain"></i></div>
-            <div class="float-item float-3"><i class="fas fa-heart"></i></div>
-            <div class="float-item float-4"><i class="fas fa-star"></i></div>
-        </div>
+    <!-- Section Header -->
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">New Release</span>
+        <h2>The Mind-Body Connection</h2>
+        <p>A Comprehensive Guide to Mental Well-being</p>
     </div>
 
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">New Release</span>
-            <h2>The Mind-Body Connection</h2>
-            <p>A Comprehensive Guide to Mental Well-being</p>
+    <div class="book-container">
+        <!-- Left Column - 3D Book -->
+        <div class="book-3d-column" data-aos="fade-right">
+            <div class="book-wrapper">
+                <div class="book">
+                    <div class="book-front">
+                        <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
+                    </div>
+                    <div class="book-back"></div>
+                    <div class="book-side"></div>
+                </div>
+            </div>
+            <div class="book-shadow"></div>
+            
+            <div class="price-tag">
+                <span class="price">$29.99</span>
+                <span class="label">Best Seller</span>
+            </div>
         </div>
 
-        <div class="book-card" data-aos="fade-up">
-            <div class="book-content">
-                <div class="book-image">
-                    <img src="frontbook.jpeg" alt="The Mind-Body Connection Book Cover">
+        <!-- Right Column - Content -->
+        <div class="book-content-column" data-aos="fade-left">
+            <div class="author-info">
+                <img src="doug.jpeg" alt="Dr. Doug Uhlig" class="author-image">
+                <div class="author-details">
+                    <span class="author-name">Dr. Doug Uhlig</span>
+                    <span class="author-credentials">PhD, Clinical Psychology</span>
                 </div>
-                
-                <div class="book-info">
-                    <div class="author-info">
-                        <img src="doug.jpeg" alt="Dr. Doug Uhlig" class="author-image">
-                        <div class="author-details">
-                            <span class="author-name">Dr. Doug Uhlig</span>
-                            <span class="author-credentials">PhD, Clinical Psychology</span>
-                        </div>
-                    </div>
+            </div>
 
-                    <div class="book-description">
-                        <p>In this groundbreaking work, Dr. Uhlig combines decades of clinical experience with cutting-edge research to provide a comprehensive approach to mental health and well-being. Discover practical insights and proven strategies for achieving lasting psychological harmony.</p>
-                    </div>
+            <div class="book-description">
+                <p>In this groundbreaking work, Dr. Uhlig combines decades of clinical experience with cutting-edge research to provide a comprehensive approach to mental health and well-being. Discover practical insights and proven strategies for achieving lasting psychological harmony.</p>
+            </div>
 
-                    <div class="book-features">
-                        <h3>What You'll Learn</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i>Evidence-based therapeutic techniques</li>
-                            <li><i class="fas fa-check"></i>Practical meditation exercises</li>
-                            <li><i class="fas fa-check"></i>Real case studies and success stories</li>
-                            <li><i class="fas fa-check"></i>Daily mental wellness practices</li>
-                        </ul>
-                    </div>
+            <div class="book-features">
+                <h3>What You'll Learn</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i>Evidence-based therapeutic techniques</li>
+                    <li><i class="fas fa-check"></i>Practical meditation exercises</li>
+                    <li><i class="fas fa-check"></i>Real case studies and success stories</li>
+                    <li><i class="fas fa-check"></i>Daily mental wellness practices</li>
+                </ul>
+            </div>
 
-                    <div class="book-purchase">
-                        <div class="price-tag">
-                            <span class="price">$29.99</span>
-                            <span class="label">Best Seller</span>
-                        </div>
-                        <div class="purchase-button">
-                            <!-- Stripe Button Integration -->
-                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                            <stripe-buy-button
-                                buy-button-id="buy_btn_1QmMEjAS8CoG2CHCEM9uwFf0"
-                                publishable-key="pk_test_51QmM74AS8CoG2CHC4CS6nDtRLuryp4d0rdYjcOjsmpheugVvgawSPmRKxy8ayFGv9dZN5WgQh8HrqPp8XXrtgs1P00KVJTksnt">
-                            </stripe-buy-button>
-                        </div>
+            <div class="book-highlights">
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-brain"></i>
                     </div>
+                    <span>Scientific Research</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <span>Personal Growth</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span>Expert Guidance</span>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Real Stories</span>
+                </div>
+            </div>
+
+            <div class="purchase-actions">
+                <div class="purchase-button">
+                    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                    <stripe-buy-button
+                        buy-button-id="buy_btn_1QmMEjAS8CoG2CHCEM9uwFf0"
+                        publishable-key="pk_test_51QmM74AS8CoG2CHC4CS6nDtRLuryp4d0rdYjcOjsmpheugVvgawSPmRKxy8ayFGv9dZN5WgQh8HrqPp8XXrtgs1P00KVJTksnt">
+                    </stripe-buy-button>
                 </div>
             </div>
         </div>
