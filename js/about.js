@@ -10,9 +10,15 @@ function initializeAboutPage() {
     initScrollAnimations();
     initParallax();
     initBackToTop();
+    initTimelineScrollEffect();
+    initContentBlockAnimations();
+    initValueCards();
+    initVideoBackground();
 }
 
-// Header Functionality
+/* ======================================
+   HEADER FUNCTIONALITY
+====================================== */
 function initHeader() {
     const header = document.querySelector('.header');
     let lastScroll = 0;
@@ -41,7 +47,9 @@ function initHeader() {
     });
 }
 
-// Mobile Navigation Implementation
+/* ======================================
+   MOBILE NAVIGATION
+====================================== */
 function initMobileNav() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -72,19 +80,12 @@ function initMobileNav() {
                 document.body.classList.remove('menu-open');
             }
         });
-
-        // Close menu on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
     }
 }
 
-// Scroll Animations with Intersection Observer
+/* ======================================
+   SCROLL ANIMATIONS
+====================================== */
 function initScrollAnimations() {
     // Initialize AOS
     AOS.init({
@@ -121,19 +122,26 @@ function initScrollAnimations() {
     });
 }
 
-// Parallax Effect for Hero Section
+/* ======================================
+   PARALLAX EFFECT
+====================================== */
 function initParallax() {
-    const heroSection = document.querySelector('.about-hero');
-    if (!heroSection || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    window.addEventListener('scroll', () => {
-        const scroll = window.pageYOffset;
-        const moveAmount = scroll * 0.5;
-        heroSection.style.backgroundPositionY = `${moveAmount}px`;
-    });
+    const parallaxSections = document.querySelectorAll('.parallax-background');
+    
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.addEventListener('scroll', () => {
+            parallaxSections.forEach(section => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * 0.5;
+                section.style.transform = `translateY(${rate}px)`;
+            });
+        });
+    }
 }
 
-// Back to Top Button
+/* ======================================
+   BACK TO TOP BUTTON
+====================================== */
 function initBackToTop() {
     const backToTop = document.getElementById('backToTop');
     if (!backToTop) return;
@@ -155,115 +163,14 @@ function initBackToTop() {
     });
 }
 
-// Handle window resize events
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        // Refresh AOS animations
-        if (typeof AOS !== 'undefined') {
-            AOS.refresh();
-        }
-    }, 250);
-});
-
-// Handle image loading
-document.querySelectorAll('.image-frame img').forEach(img => {
-    if (img.complete) {
-        handleImageLoad(img);
-    } else {
-        img.addEventListener('load', () => handleImageLoad(img));
-    }
-    img.addEventListener('error', handleImageError);
-});
-
-function handleImageLoad(img) {
-    img.style.opacity = '1';
-    const frame = img.closest('.image-frame');
-    if (frame) {
-        frame.classList.add('image-loaded');
-    }
-}
-
-function handleImageError(e) {
-    const img = e.target;
-    img.src = 'placeholder.jpg'; // Fallback image
-    console.error('Error loading image:', e);
-}
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            const headerOffset = 100;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Handle visibility changes
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // Pause any animations or timers if needed
-    } else {
-        // Resume animations or refresh timers if needed
-    }
-});
-
-// Handle reduced motion preference
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-prefersReducedMotion.addEventListener('change', () => {
-    if (prefersReducedMotion.matches) {
-        // Disable animations
-        if (typeof AOS !== 'undefined') {
-            AOS.init({ disable: true });
-        }
-        
-        // Remove parallax effect
-        const heroSection = document.querySelector('.about-hero');
-        if (heroSection) {
-            heroSection.style.backgroundPositionY = '0';
-        }
-        
-        // Disable custom animations
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            item.style.transition = 'none';
-            item.style.transform = 'none';
-            item.style.opacity = '1';
-        });
-    } else {
-        // Re-enable animations
-        if (typeof AOS !== 'undefined') {
-            AOS.init({ 
-                disable: false,
-                duration: 1000,
-                easing: 'ease-out',
-                once: true,
-                offset: 100
-            });
-        }
-        initScrollAnimations();
-        initParallax();
-    }
-});
-
-// Initialize Timeline Scroll Effect
+/* ======================================
+   TIMELINE SCROLL EFFECT
+====================================== */
 function initTimelineScrollEffect() {
-    const timeline = document.querySelector('.timeline');
+    const timeline = document.querySelector('.journey-timeline');
     if (!timeline) return;
 
-    const items = timeline.querySelectorAll('.timeline-item');
+    const entries = timeline.querySelectorAll('.timeline-entry');
     
     const options = {
         root: null,
@@ -280,14 +187,16 @@ function initTimelineScrollEffect() {
         });
     }, options);
 
-    items.forEach(item => {
-        observer.observe(item);
+    entries.forEach(entry => {
+        observer.observe(entry);
     });
 }
 
-// Handle Content Block Animations
+/* ======================================
+   CONTENT BLOCK ANIMATIONS
+====================================== */
 function initContentBlockAnimations() {
-    const blocks = document.querySelectorAll('.content-block');
+    const blocks = document.querySelectorAll('.philosophy-card, .value-card');
     
     const options = {
         threshold: 0.2,
@@ -308,31 +217,145 @@ function initContentBlockAnimations() {
     });
 }
 
-// CTA Cards Hover Effect
-function initCTACards() {
-    const cards = document.querySelectorAll('.cta-card');
+/* ======================================
+   VALUE CARDS INTERACTION
+====================================== */
+function initValueCards() {
+    const cards = document.querySelectorAll('.value-card');
     
     cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            if (!prefersReducedMotion.matches) {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-10px)';
-            }
-        });
+            });
 
-        card.addEventListener('mouseleave', () => {
-            if (!prefersReducedMotion.matches) {
+            card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0)';
-            }
-        });
+            });
+
+            // Touch support for mobile
+            card.addEventListener('touchstart', () => {
+                card.classList.toggle('flipped');
+            });
+        }
     });
 }
 
-// Initialize all about page specific features
-function initAboutPageFeatures() {
-    initTimelineScrollEffect();
-    initContentBlockAnimations();
-    initCTACards();
+/* ======================================
+   VIDEO BACKGROUND HANDLING
+====================================== */
+function initVideoBackground() {
+    const video = document.querySelector('.video-background video');
+    if (!video) return;
+
+    // Handle loading states
+    video.addEventListener('loadeddata', () => {
+        video.play().catch(() => {
+            // Handle autoplay failure
+            const heroSection = document.querySelector('.about-hero');
+            if (heroSection) {
+                heroSection.classList.add('fallback-bg');
+            }
+        });
+    });
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            video.pause();
+        } else {
+            video.play().catch(() => {});
+        }
+    });
+
+    // Optimize performance on mobile
+    function checkMobile() {
+        if (window.innerWidth <= 768) {
+            video.pause();
+            video.style.display = 'none';
+        } else {
+            video.style.display = 'block';
+            video.play().catch(() => {});
+        }
+    }
+
+    // Check on load and resize
+    checkMobile();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(checkMobile, 250);
+    });
 }
 
-// Call initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', initAboutPageFeatures);
+/* ======================================
+   IMAGE LOADING OPTIMIZATION
+====================================== */
+function handleImageLoad(img) {
+    img.style.opacity = '1';
+    const frame = img.closest('.image-frame');
+    if (frame) {
+        frame.classList.add('image-loaded');
+    }
+}
+
+document.querySelectorAll('img').forEach(img => {
+    if (img.complete) {
+        handleImageLoad(img);
+    } else {
+        img.addEventListener('load', () => handleImageLoad(img));
+    }
+    img.addEventListener('error', () => {
+        img.src = 'placeholder.jpg'; // Fallback image
+        console.error('Error loading image:', img.src);
+    });
+});
+
+/* ======================================
+   PERFORMANCE OPTIMIZATION
+====================================== */
+// Handle window resize events
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    }, 250);
+});
+
+// Handle reduced motion preference
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+prefersReducedMotion.addEventListener('change', () => {
+    if (prefersReducedMotion.matches) {
+        // Disable animations
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ disable: true });
+        }
+        
+        // Remove parallax effect
+        const parallaxSections = document.querySelectorAll('.parallax-background');
+        parallaxSections.forEach(section => {
+            section.style.transform = 'none';
+        });
+    } else {
+        // Re-enable animations
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                disable: false,
+                duration: 1000,
+                easing: 'ease-out',
+                once: true,
+                offset: 100
+            });
+        }
+    }
+});
+
+// Export if using modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initializeAboutPage
+    };
+}
