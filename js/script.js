@@ -868,139 +868,249 @@ function initBookSection() {
 /* ======================================
    LOCATIONS SECTION
 ====================================== */
-function initLocationsNew() {
-  const locationCards = document.querySelectorAll('.location-card-new');
-  locationCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      const image = card.querySelector('.location-image img');
-      if (image) {
-        image.style.transform = 'scale(1.1)';
-      }
-      card.style.transform = 'translateY(-10px)';
-    });
-    card.addEventListener('mouseleave', () => {
-      const image = card.querySelector('.location-image img');
-      if (image) {
-        image.style.transform = 'scale(1)';
-      }
-      card.style.transform = 'translateY(0)';
-    });
-    card.addEventListener('touchstart', () => {
-      card.style.transform = 'translateY(-5px)';
-    });
-    card.addEventListener('touchend', () => {
-      card.style.transform = 'translateY(0)';
-    });
-  });
-
-  const featureCards = document.querySelectorAll('.feature-card');
-  featureCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      const icon = card.querySelector('.feature-icon-new i');
-      if (icon) {
-        icon.style.transform = 'scale(1.2) rotate(5deg)';
-      }
-      card.style.transform = 'translateY(-5px)';
-    });
-    card.addEventListener('mouseleave', () => {
-      const icon = card.querySelector('.feature-icon-new i');
-      if (icon) {
-        icon.style.transform = 'scale(1) rotate(0)';
-      }
-      card.style.transform = 'translateY(0)';
-    });
-  });
-
-  const tourButtons = document.querySelectorAll('.btn-tour-new');
-  tourButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      alert('Virtual tour feature coming soon!');
-    });
-    button.addEventListener('mouseenter', () => {
-      button.style.transform = 'translateY(-3px)';
-    });
-    button.addEventListener('mouseleave', () => {
-      button.style.transform = 'translateY(0)';
-    });
-  });
-
-  const directionButtons = document.querySelectorAll('.btn-directions-new');
-  directionButtons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-      button.style.transform = 'translateY(-3px)';
-    });
-    button.addEventListener('mouseleave', () => {
-      button.style.transform = 'translateY(0)';
-    });
-  });
-
-  if (typeof AOS !== 'undefined') {
-    locationCards.forEach((card, index) => {
-      card.setAttribute('data-aos', 'fade-up');
-      card.setAttribute('data-aos-delay', (index * 100).toString());
-    });
-    featureCards.forEach((card, index) => {
-      card.setAttribute('data-aos', 'fade-up');
-      card.setAttribute('data-aos-delay', (index * 100).toString());
-    });
-    AOS.refresh();
-  }
-
-  function handleResponsiveLayout() {
-    const windowWidth = window.innerWidth;
-    const locationCards = document.querySelectorAll('.location-card-new');
-    locationCards.forEach(card => {
-      const content = card.querySelector('.location-content-new');
-      if (windowWidth <= 768) {
-        content.style.padding = '1.5rem';
-      } else {
-        content.style.padding = '2rem';
-      }
-    });
-  }
-  handleResponsiveLayout();
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      handleResponsiveLayout();
-      if (typeof AOS !== 'undefined') {
-        AOS.refresh();
-      }
-    }, 250);
-  });
-
-  const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px'
-  };
-  const observerCallback = (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  };
-  const observer = new IntersectionObserver(observerCallback, observerOptions);
-  document.querySelectorAll('.location-card-new, .feature-card').forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(20px)';
-    element.style.transition = 'all 0.6s ease';
-    observer.observe(element);
-  });
-
-  const locationImages = document.querySelectorAll('.location-image img');
-  locationImages.forEach(img => {
-    if (img.complete) {
-      img.style.opacity = '1';
-    } else {
-      img.style.opacity = '0';
-      img.addEventListener('load', () => {
-        img.style.opacity = '1';
-      });
+// Initialize Locations Section functionality
+function initLocationsSection() {
+    // Initialize AOS animations if available
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease',
+            once: true
+        });
     }
-  });
+
+    // Handle Virtual Tour buttons
+    const virtualTourButtons = document.querySelectorAll('.btn-virtual-tour');
+    virtualTourButtons.forEach(button => {
+        button.addEventListener('click', handleVirtualTour);
+    });
+
+    // Handle location card interactions
+    initLocationCards();
+
+    // Initialize image lazy loading
+    initImageLoading();
+
+    // Handle direction buttons
+    initDirectionButtons();
+}
+
+// Handle Virtual Tour functionality
+function handleVirtualTour(e) {
+    e.preventDefault();
+    // You can replace this with actual virtual tour implementation
+    const modal = createModal(`
+        <div class="virtual-tour-modal">
+            <h3>Virtual Tour Coming Soon!</h3>
+            <p>We're currently preparing an immersive virtual tour experience of our facilities.</p>
+            <p>Please check back soon or contact us for more information.</p>
+        </div>
+    `);
+    
+    document.body.appendChild(modal);
+}
+
+// Initialize Location Cards
+function initLocationCards() {
+    const locationCards = document.querySelectorAll('.location-card');
+    
+    locationCards.forEach(card => {
+        // Add hover animations
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            const image = card.querySelector('.location-image img');
+            if (image) {
+                image.style.transform = 'scale(1.1)';
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            const image = card.querySelector('.location-image img');
+            if (image) {
+                image.style.transform = 'scale(1)';
+            }
+        });
+
+        // Add touch interactions for mobile
+        card.addEventListener('touchstart', () => {
+            card.style.transform = 'translateY(-5px)';
+        });
+
+        card.addEventListener('touchend', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Initialize Image Loading
+function initImageLoading() {
+    const images = document.querySelectorAll('.location-image img');
+    
+    images.forEach(img => {
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadImage(img);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            imageObserver.observe(img);
+        } else {
+            loadImage(img);
+        }
+    });
+}
+
+// Load image function
+function loadImage(img) {
+    const parent = img.closest('.location-image');
+    
+    img.onload = () => {
+        if (parent) {
+            parent.classList.add('image-loaded');
+        }
+        img.style.opacity = '1';
+    };
+
+    img.onerror = () => {
+        img.src = 'placeholder.jpg'; // Fallback image
+        console.error('Error loading location image');
+    };
+
+    if (img.dataset.src) {
+        img.src = img.dataset.src;
+    }
+}
+
+// Initialize Direction Buttons
+function initDirectionButtons() {
+    const directionButtons = document.querySelectorAll('.btn-directions');
+    
+    directionButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Add click animation
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 200);
+
+            // Track direction request (if analytics available)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'get_directions', {
+                    'location': button.closest('.location-card').querySelector('h3').textContent
+                });
+            }
+        });
+    });
+}
+
+// Create Modal helper function
+function createModal(content) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            ${content}
+        </div>
+    `;
+
+    // Add modal styles
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+
+    // Add modal content styles
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.style.cssText = `
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        position: relative;
+        max-width: 500px;
+        width: 90%;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+    `;
+
+    // Add close button styles
+    const closeButton = modal.querySelector('.modal-close');
+    closeButton.style.cssText = `
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: none;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+        line-height: 1;
+    `;
+
+    // Show modal with animation
+    setTimeout(() => {
+        modal.style.opacity = '1';
+        modalContent.style.transform = 'translateY(0)';
+    }, 10);
+
+    // Handle close button click
+    closeButton.addEventListener('click', () => {
+        modal.style.opacity = '0';
+        modalContent.style.transform = 'translateY(20px)';
+        setTimeout(() => modal.remove(), 300);
+    });
+
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeButton.click();
+        }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeButton.click();
+        }
+    });
+
+    return modal;
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initLocationsSection);
+
+// Handle window resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+    }, 250);
+});
+
+// Export if using modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initLocationsSection
+    };
 }
 
 /* ======================================
