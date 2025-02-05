@@ -608,7 +608,7 @@
 
 .section-title {
     font-size: 2.5rem;
-    color: #2d3436;
+    color: var(--royal-blue);
     font-family: 'Playfair Display', serif;
     margin-bottom: 1rem;
 }
@@ -616,7 +616,8 @@
 .title-accent {
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #FFD700, #DAA520);
+    background: linear-gradient(90deg, var(--metallic-gold-light), var(--metallic-gold));
+    box-shadow: 0 0 10px var(--metallic-gold-shadow);
     margin: 1rem auto;
     border-radius: 2px;
 }
@@ -649,7 +650,7 @@
 .card-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, #FFD700, #DAA520);
+    background: linear-gradient(135deg, var(--metallic-gold), var(--metallic-gold-dark));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -687,7 +688,7 @@
 }
 
 .expertise-list i {
-    color: #DAA520;
+    color: var(--metallic-gold);
     font-size: 1.25rem;
 }
 
@@ -701,7 +702,7 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
-    color: #DAA520;
+    color: var(--metallic-gold);
 }
 
 .ambiance-items {
@@ -716,7 +717,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem;
-    background: #f8f9fa;
+    color: var(--metallic-gold);
     border-radius: 10px;
 }
 
@@ -742,7 +743,7 @@
 }
 
 .method-item i {
-    color: #DAA520;
+    color: var(--metallic-gold);
 }
 
 .specialties {
