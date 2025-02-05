@@ -37,6 +37,7 @@
     position: relative;
     height: 100vh;
     min-height: 600px;
+    width: 100%;
     overflow: hidden;
     margin-top: 85px;
     display: flex;
@@ -45,6 +46,7 @@
     color: white;
 }
 
+/* Video Background */
 .video-background {
     position: absolute;
     top: 0;
@@ -60,7 +62,7 @@
     object-fit: cover;
 }
 
-.hero-overlay {
+.video-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -74,21 +76,28 @@
     z-index: 2;
 }
 
+/* Hero Content */
 .hero-content {
     position: relative;
     z-index: 3;
-    text-align: center;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
+/* Title Container */
 .title-container {
+    margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 3rem;
 }
 
 .accent-line {
@@ -119,6 +128,7 @@
     right: -4px;
 }
 
+/* Hero Title */
 .hero-title {
     display: flex;
     flex-direction: column;
@@ -127,7 +137,7 @@
 }
 
 .title-small {
-    font-family: var(--font-body);
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     font-weight: 400;
     letter-spacing: 4px;
@@ -137,7 +147,7 @@
 }
 
 .title-main {
-    font-family: var(--font-heading);
+    font-family: 'Playfair Display', serif;
     font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 700;
     line-height: 1.1;
@@ -150,7 +160,7 @@
 }
 
 .title-sub {
-    font-family: var(--font-body);
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(1.2rem, 2vw, 1.5rem);
     font-weight: 300;
     letter-spacing: 2px;
@@ -158,84 +168,127 @@
     opacity: 0.9;
 }
 
+/* Hero Features */
 .hero-features {
     display: flex;
     justify-content: center;
     gap: clamp(2rem, 4vw, 4rem);
-    margin-top: 3rem;
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .feature {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.feature i {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
-    color: var(--metallic-gold);
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
     background: rgba(255, 255, 255, 0.1);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(5px);
-    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
-.feature:hover i {
+.feature-icon i {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: var(--metallic-gold);
+    position: relative;
+    z-index: 2;
+}
+
+.feature-icon::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--gold-gradient-metallic);
+    opacity: 0;
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+}
+
+.feature:hover .feature-icon {
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature:hover .feature-icon::after {
+    opacity: 0.1;
+    transform: rotate(45deg) translateY(-50%);
 }
 
 .feature span {
     font-size: clamp(0.9rem, 1.2vw, 1.1rem);
     font-weight: 500;
-    white-space: nowrap;
+    letter-spacing: 1px;
+    color: var(--metallic-gold-light);
+    text-transform: uppercase;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    .about-hero {
+        margin-top: 70px;
+    }
+
+    .hero-content {
+        padding: 2rem;
+    }
+
     .hero-features {
         flex-direction: column;
-        gap: 2rem;
+        gap: 2.5rem;
     }
 
     .feature {
         flex-direction: row;
         gap: 1.5rem;
+        justify-content: center;
     }
 
-    .feature i {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
+    .feature-icon {
+        width: 60px;
+        height: 60px;
     }
 
-    .accent-line {
-        width: 80px;
+    .feature-icon i {
+        font-size: 1.5rem;
+    }
+
+    .title-container {
+        margin-bottom: 2.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .hero-content {
-        padding: 0 1rem;
+        padding: 1.5rem;
     }
 
-    .title-container {
-        gap: 1.5rem;
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .feature-icon i {
+        font-size: 1.2rem;
     }
 
     .accent-line {
-        width: 60px;
-    }
-
-    .feature i {
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
+        width: 80px;
     }
 }
 
