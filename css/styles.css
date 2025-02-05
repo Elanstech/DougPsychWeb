@@ -1960,14 +1960,14 @@ body {
 }
 
 /* Locations Section Base */
-.locations-section {
+.location-section {
     position: relative;
-    padding: 120px 0;
+    width: 100%;
     overflow: hidden;
 }
 
 /* Background Setup */
-.locations-background {
+.location-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -2070,11 +2070,11 @@ body {
     overflow: hidden;
 }
 
-.location-image img {
+.location-background img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    /* Removed opacity property to show full image */
 }
 
 .location-card:hover .location-image img {
@@ -2503,7 +2503,8 @@ body {
 
 /* Location Content */
 .location-content {
-    padding: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .location-header {
