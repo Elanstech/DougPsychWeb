@@ -1223,15 +1223,16 @@ body {
 .team-section .section-header h2 {
     font-family: var(--font-heading);
     font-size: 3rem;
-    color: var(--text-dark); /* Changed from white to dark text */
+    color: var(--royal-blue); /* Changed from white to royal blue */
     margin-bottom: 1rem;
 }
 
 .team-section .section-header p {
     font-size: 1.2rem;
-    color: var(--text-medium); /* Changed from white to medium text */
+    color: var(--royal-blue); /* Changed from white/rgba to royal blue */
     max-width: 600px;
     margin: 0 auto;
+    opacity: 0.8; /* Added slight opacity for subtle distinction from title */
 }
 
 /* Team Carousel */
