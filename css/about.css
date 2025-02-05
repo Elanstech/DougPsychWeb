@@ -1,4 +1,37 @@
-/* Hero Section */
+/* ======================================
+   GLOBAL VARIABLES AND RESET
+====================================== */
+:root {
+    /* Brand Colors */
+    --royal-blue: #1a237e;
+    --royal-blue-light: #534bae;
+    --royal-blue-dark: #000051;
+
+    /* Refined Metallic Gold Palette */
+    --metallic-gold-light: #e6d5ac;
+    --metallic-gold: #b49b57;
+    --metallic-gold-medium: #9c834a;
+    --metallic-gold-dark: #826d3e;
+    --metallic-gold-shadow: #695a35;
+
+    /* Gradients */
+    --gold-gradient-metallic: linear-gradient(
+        45deg,
+        var(--metallic-gold-dark) 0%,
+        var(--metallic-gold) 25%,
+        var(--metallic-gold-light) 50%,
+        var(--metallic-gold) 75%,
+        var(--metallic-gold-dark) 100%
+    );
+
+    /* Spacing */
+    --section-padding: 120px 0;
+    --container-padding: 0 2rem;
+}
+
+/* ======================================
+   HERO SECTION
+====================================== */
 .about-hero {
     position: relative;
     height: 100vh;
@@ -35,9 +68,10 @@
     height: 100%;
     background: linear-gradient(
         to right,
-        rgba(64, 224, 208, 0.3) 0%,
-        rgba(72, 209, 204, 0.1) 100%
-    );    z-index: 2;
+        rgba(26, 35, 126, 0.6) 0%,
+        rgba(26, 35, 126, 0.4) 100%
+    );
+    z-index: 2;
 }
 
 .hero-content {
@@ -45,138 +79,60 @@
     z-index: 3;
     max-width: 800px;
     margin: 0 auto;
-    padding: 8rem 2rem;
+    padding: 2rem;
 }
 
 .hero-content h1 {
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 1.5rem;
     line-height: 1.2;
     color: var(--metallic-gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
     opacity: 0.9;
     margin-bottom: 3rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
-    .hero-content h1 {
-        font-size: 3.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-content {
-        padding: 6rem 1.5rem;
-    }
-    .hero-content h1 {
-        font-size: 3rem;
-    }
-    .hero-subtitle {
-        font-size: 1.3rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content {
-        padding: 4rem 1rem;
-    }
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-}
-
-/* Animations */
-@keyframes wave {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/* Print Styles */
-@media print {
-    .video-background,
-    .parallax-background,
-    .cta-background-waves {
-        display: none;
-    }
-    
-    .value-card {
-        page-break-inside: avoid;
-    }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-    .card-overlay {
-        background: rgba(0, 0, 0, 0.8);
-    }
-    
-    .experience-content {
-        background: var(--royal-blue);
-    }
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    .philosophy-card,
-    .card-image img,
-    .value-card .card-front,
-    .value-card .card-back,
-    .cta-background-waves {
-        transition: none;
-        animation: none;
-    }
-    
-    .value-card:hover .card-front,
-    .value-card:hover .card-back {
-        transform: none;
-    }
-}
-
-/* Philosophy Cards Section */
+/* ======================================
+   PHILOSOPHY CARDS SECTION
+====================================== */
 .philosophy-cards {
-    padding: 120px 0;
-    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-    text-align: center;
+    padding: var(--section-padding);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
 }
 
 .section-header {
+    text-align: center;
     margin-bottom: 4rem;
 }
 
 .section-title {
-    font-size: 2.5rem;
-    font-family: 'Playfair Display', serif;
-    color: #1a237e;
-    margin-bottom: 1rem;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-family: var(--font-heading);
+    color: var(--royal-blue);
+    margin-bottom: 1.5rem;
 }
 
 .section-description {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
     max-width: 800px;
     margin: 0 auto;
-    line-height: 1.6;
-    color: #333;
-    background: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+    color: var(--text-medium);
+    padding: 0 1rem;
 }
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 2rem 0;
 }
@@ -187,6 +143,7 @@
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    background: white;
 }
 
 .philosophy-card:hover {
@@ -196,7 +153,7 @@
 
 .card-image {
     position: relative;
-    height: 300px;
+    height: 250px;
     overflow: hidden;
 }
 
@@ -204,7 +161,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 .philosophy-card:hover .card-image img {
@@ -217,51 +174,42 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 .card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    position: relative;
     padding: 2rem;
-    color: white;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 0 0 20px 20px;
+    text-align: center;
 }
 
 .card-content i {
     font-size: 2.5rem;
-    color: #ffeb3b;
+    color: var(--metallic-gold);
     margin-bottom: 1rem;
 }
 
 .card-content h3 {
-    font-size: 1.8rem;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
     margin-bottom: 1rem;
+    color: var(--royal-blue);
 }
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.card-content p {
+    color: var(--text-medium);
+    line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Experience Section */
+/* ======================================
+   EXPERIENCE SECTION
+====================================== */
 .experience-section {
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .parallax-background {
@@ -278,21 +226,20 @@
 .experience-content {
     position: relative;
     width: 100%;
-    padding: 120px 0;
+    padding: var(--section-padding);
     color: white;
-    background: linear-gradient(
-        to right,
-        rgba(64, 224, 208, 0.3) 0%,
-        rgba(72, 209, 204, 0.1) 100%
-    );    z-index: 2;
-
+    background: rgba(26, 35, 126, 0.85);
+    backdrop-filter: blur(10px);
 }
 
 .content-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 4rem;
     align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--container-padding);
 }
 
 .text-column {
@@ -300,32 +247,34 @@
 }
 
 .text-column h2 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    font-family: var(--font-heading);
-}
-
-.highlight-text {
-    font-size: 1.4rem;
-    line-height: 1.6;
+    font-size: clamp(2rem, 3vw, 3rem);
     margin-bottom: 2rem;
     color: var(--metallic-gold);
 }
 
+.highlight-text {
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
 .experience-list {
     list-style: none;
+    display: grid;
+    gap: 1rem;
 }
 
 .experience-list li {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
 }
 
 .experience-list i {
     color: var(--metallic-gold);
+    font-size: 1.2em;
 }
 
 .floating-image-grid {
@@ -350,9 +299,11 @@
     grid-column: span 2;
 }
 
-/* Journey Timeline */
+/* ======================================
+   JOURNEY TIMELINE SECTION
+====================================== */
 .journey-section {
-    padding: 120px 0;
+    padding: var(--section-padding);
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 }
 
@@ -424,15 +375,17 @@
     margin-top: 1rem;
 }
 
-/* Values Section */
+/* ======================================
+   VALUES SECTION
+====================================== */
 .values-section {
-    padding: 120px 0;
+    padding: var(--section-padding);
     background: linear-gradient(135deg, rgba(26, 35, 126, 0.05) 0%, rgba(26, 35, 126, 0.1) 100%);
 }
 
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -480,36 +433,21 @@
     transform: rotateY(360deg);
 }
 
-.card-front i {
-    font-size: 3rem;
-    color: var(--metallic-gold);
-    margin-bottom: 1rem;
-}
-
-/* CTA Section */
+/* ======================================
+   CTA SECTION
+====================================== */
 .cta-section {
     position: relative;
-    padding: 120px 0;
+    padding: var(--section-padding);
     background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-dark) 100%);
     overflow: hidden;
-}
-
-.cta-background-waves {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,...') repeat-x;
-    animation: wave 20s linear infinite;
-    opacity: 0.1;
+    color: white;
+    text-align: center;
 }
 
 .cta-content {
     position: relative;
     z-index: 2;
-    text-align: center;
-    color: white;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -540,16 +478,19 @@
     color: var(--metallic-gold);
 }
 
-/* Responsive Styles */
+/* ======================================
+   RESPONSIVE STYLES
+====================================== */
 @media (max-width: 1200px) {
+    :root {
+        --section-padding: 100px 0;
+    }
+
     .hero-content h1 {
         font-size: 3.5rem;
     }
     
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
+    .cards-grid,
     .values-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -583,19 +524,15 @@
 }
 
 @media (max-width: 768px) {
+    :root {
+        --section-padding: 80px 0;
+    }
+
     .hero-content h1 {
         font-size: 3rem;
     }
     
-    .hero-stats {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
-    
+    .cards-grid,
     .values-grid {
         grid-template-columns: 1fr;
     }
@@ -604,69 +541,18 @@
         flex-direction: column;
         gap: 1rem;
     }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
+    
+    .floating-image-grid {
+        grid-template-columns: 1fr;
     }
     
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .entry-content {
-        padding: 1.5rem;
-    }
-}
-
-/* Animations */
-@keyframes wave {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/* Print Styles */
-@media print {
-    .video-background,
-    .parallax-background,
-    .cta-background-waves {
-        display: none;
-    }
-    
-    .value-card {
-        page-break-inside: avoid;
-    }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-    .card-overlay {
-        background: rgba(0, 0, 0, 0.8);
-    }
-    
-    .experience-content {
-        background: var(--royal-blue);
-    }
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    .philosophy-card,
-    .card-image img,
-    .value-card .card-front,
-    .value-card .card-back,
-    .cta-background-waves {
-        transition: none;
-        animation: none;
-    }
-    
-    .value-card:hover .card-front,
-    .value-card:hover .card-back {
+    .floating-image-grid img:nth-child(odd) {
         transform: none;
     }
+    
+    .floating-image-grid img:last-child {
+        grid-column: 1;
+    }
 }
+
+@
