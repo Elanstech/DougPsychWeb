@@ -245,48 +245,91 @@ function initValueCards() {
    VIDEO BACKGROUND HANDLING
 ====================================== */
 function initVideoBackground() {
-    const video = document.querySelector('.video-background video');
-    if (!video) return;
+    const videoWrapper = document.querySelector('.video-background');
+    const video = videoWrapper?.querySelector('video');
+    
+    if (!video || !videoWrapper) return;
 
-    // Handle loading states
-    video.addEventListener('loadeddata', () => {
-        video.play().catch(() => {
-            // Handle autoplay failure
-            const heroSection = document.querySelector('.about-hero');
-            if (heroSection) {
-                heroSection.classList.add('fallback-bg');
+    function handleMobileVideo() {
+        if (window.innerWidth <= 768) {
+            // On mobile, use poster image instead of video
+            if (video) {
+                video.pause();
+                video.style.display = 'none';
             }
-        });
+            videoWrapper.classList.add('mobile-fallback');
+        } else {
+            // On desktop, play video
+            videoWrapper.classList.remove('mobile-fallback');
+            if (video) {
+                video.style.display = 'block';
+                video.play().catch(() => {
+                    videoWrapper.classList.add('mobile-fallback');
+                });
+            }
+        }
+    }
+
+    // Handle video loading
+    video.addEventListener('loadeddata', () => {
+        handleMobileVideo();
     });
 
     // Handle visibility changes
     document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            video.pause();
-        } else {
+        if (!document.hidden && window.innerWidth > 768) {
             video.play().catch(() => {});
+        } else {
+            video.pause();
         }
     });
 
-    // Optimize performance on mobile
-    function checkMobile() {
-        if (window.innerWidth <= 768) {
-            video.pause();
-            video.style.display = 'none';
-        } else {
-            video.style.display = 'block';
-            video.play().catch(() => {});
-        }
-    }
-
-    // Check on load and resize
-    checkMobile();
+    // Handle resize events with debounce
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(checkMobile, 250);
+        resizeTimer = setTimeout(handleMobileVideo, 250);
+    });
+
+    // Initial check
+    handleMobileVideo();
+}
+function initHeroAnimations() {
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-out',
+        once: true,
+        offset: 100,
+        disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    });
+
+    // Add smooth reveal for features
+    const features = document.querySelectorAll('.feature');
+    features.forEach((feature, index) => {
+        feature.style.transitionDelay = `${index * 0.1}s`;
     });
 }
+
+// Handle reduced motion preference
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+prefersReducedMotion.addEventListener('change', () => {
+    if (prefersReducedMotion.matches) {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({ disable: true });
+        }
+    } else {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                disable: false,
+                duration: 1000,
+                easing: 'ease-out',
+                once: true,
+                offset: 100
+            });
+        }
+    }
+});
 
 /* ======================================
    IMAGE LOADING OPTIMIZATION
