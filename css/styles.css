@@ -1241,7 +1241,7 @@ body {
 }
 
 .team-section .section-header p {
-    color: var(--text-medium);
+    color: var(--gold-gradient-metallic);
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
