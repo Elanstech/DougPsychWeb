@@ -1192,21 +1192,6 @@ body {
     object-fit: cover;
 }
 
-.background-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Changed from blue overlay to a lighter, neutral overlay */
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(249, 249, 249, 0.85) 100%
-    );
-    z-index: 2;
-}
-
 .team-section .container {
     position: relative;
     z-index: 3;
