@@ -848,7 +848,7 @@
 
 .section-title {
     font-size: 2.5rem;
-    color: #2d3436;
+    color: var(--royal-blue);
     font-family: 'Playfair Display', serif;
     margin-bottom: 1rem;
     position: relative;
@@ -867,10 +867,11 @@
 .title-accent {
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #FFD700, #DAA520);
+    background: linear-gradient(90deg, var(--metallic-gold-light), var(--metallic-gold));
     margin: 1rem auto;
     border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(218, 165, 32, 0.2);
+    box-shadow: 0 0 10px var(--metallic-gold-shadow);
+
 }
 
 /* Testimonials Grid */
@@ -931,7 +932,8 @@
 
 .quote-icon i {
     font-size: 4rem;
-    color: #DAA520;
+    color: var(--metallic-gold); /* Update icon color */
+
 }
 
 /* Testimonial Content */
@@ -964,7 +966,7 @@
 
 .therapy-type {
     font-size: 0.9rem;
-    color: #DAA520;
+    color: var(--metallic-gold);
     padding: 0.5rem 1rem;
     background: rgba(218, 165, 32, 0.1);
     border-radius: 20px;
@@ -973,7 +975,7 @@
 }
 
 .testimonial-card:hover .therapy-type {
-    background: rgba(218, 165, 32, 0.15);
+    background: linear-gradient(90deg, var(--metallic-gold-light), var(--metallic-gold));
 }
 
 /* Background Pattern */
