@@ -456,9 +456,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function initTeamSection() {
-  // Initialize Swiper for the team carousel
   const teamSwiper = new Swiper('.team-carousel', {
-    slidesPerView: 1,
+    slidesPerView: 2,  // Changed default to 2
     spaceBetween: 30,
     loop: true,
     speed: 800,
@@ -489,21 +488,11 @@ function initTeamSection() {
         slidesPerView: 4,
         spaceBetween: 30
       }
-    },
-    on: {
-      init: function() {
-        if (typeof AOS !== 'undefined') {
-          AOS.refresh();
-        }
-        initTeamCardsAnimation();
-      },
-      slideChange: function() {
-        if (typeof AOS !== 'undefined') {
-          AOS.refresh();
-        }
-      }
     }
   });
+  return teamSwiper;
+}
+
 
   // --- Team Cards Animation ---
   function initTeamCardsAnimation() {
