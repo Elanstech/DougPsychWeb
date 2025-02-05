@@ -1993,110 +1993,82 @@ stripe-buy-button {
         transform: none;
     }
 }
-.locations-new {
-    position: relative;
+
+/* Locations Section Base Styles */
+.locations-section {
     padding: 120px 0;
-    min-height: 100vh;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
     overflow: hidden;
 }
 
-.locations-background-new {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.background-image-new {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-}
-
-.locations-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to right,
-        rgba(64, 224, 208, 0.3) 0%,
-        rgba(72, 209, 204, 0.1) 100%
-    );
-    z-index: 2;
-}
-
-.locations-container {
-    position: relative;
-    z-index: 3;
+.locations-section .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.locations-header {
+/* Section Header Styles */
+.locations-section .section-header {
     text-align: center;
     margin-bottom: 4rem;
-    color: white;
 }
 
-.locations-tag {
+.locations-section .section-tag {
     display: inline-block;
     padding: 0.75rem 2rem;
     background: var(--gold-gradient-metallic);
     color: var(--royal-blue);
     border-radius: 50px;
     font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 1rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 15px rgba(180, 155, 87, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.locations-header h2 {
+.locations-section .section-header h2 {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: 3rem;
+    color: var(--text-dark);
     margin-bottom: 1rem;
-    background: var(--gold-gradient-metallic);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
-.locations-subheader {
+.locations-section .section-header p {
     font-size: 1.2rem;
-    opacity: 0.9;
+    color: var(--text-medium);
     max-width: 600px;
     margin: 0 auto;
 }
 
-.locations-cards {
+/* Locations Grid */
+.locations-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-bottom: 4rem;
 }
 
-.location-card-new {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
+/* Location Card Styles */
+.location-card {
+    background: white;
+    border-radius: var(--radius-lg);
     overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease;
+    position: relative;
 }
 
-.location-card-new:hover {
+.location-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+/* Location Image Container */
 .location-image {
     position: relative;
-    height: 250px;
+    width: 100%;
+    height: 300px;
     overflow: hidden;
 }
 
@@ -2104,95 +2076,155 @@ stripe-buy-button {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.4s ease;
+    transition: transform 0.6s ease;
 }
 
-.location-card-new:hover .location-image img {
+.location-card:hover .location-image img {
     transform: scale(1.1);
 }
 
-.location-content-new {
-    padding: 2rem;
-    color: white;
+.location-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
 }
 
-.location-title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.location-icon-new {
-    width: 50px;
-    height: 50px;
+/* Location Badge */
+.location-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     background: var(--gold-gradient-metallic);
-    border-radius: 50%;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 0.5rem;
+    z-index: 2;
 }
 
-.location-icon-new i {
-    font-size: 1.5rem;
+.location-badge i {
     color: var(--royal-blue);
 }
 
-.location-title h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    margin: 0;
+.location-badge span {
+    color: var(--royal-blue);
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.location-info {
+.location-badge.secondary {
+    background: white;
+}
+
+/* Location Content */
+.location-content {
+    padding: 2rem;
+}
+
+.location-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.location-header h3 {
+    font-family: var(--font-heading);
+    color: var(--royal-blue);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.location-type {
+    color: var(--metallic-gold);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Location Details */
+.location-details {
     display: grid;
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
-.info-item-new {
+.detail-item {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
 }
 
-.info-item-new i {
+.detail-item i {
     color: var(--metallic-gold);
     font-size: 1.2rem;
-    margin-top: 0.25rem;
+    padding-top: 0.25rem;
 }
 
-.info-text {
-    flex: 1;
+.detail-content h4 {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
 }
 
-.info-text h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: var(--metallic-gold);
+.detail-content p {
+    color: var(--text-medium);
+    line-height: 1.5;
+    margin: 0;
 }
 
-.info-text p, 
-.info-text a {
-    color: rgba(255, 255, 255, 0.9);
+.detail-content a {
+    color: var(--royal-blue);
     text-decoration: none;
-    line-height: 1.6;
     transition: color 0.3s ease;
 }
 
-.info-text a:hover {
+.detail-content a:hover {
     color: var(--metallic-gold);
 }
 
-.location-actions-new {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+/* Location Features */
+.location-features {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: rgba(26, 35, 126, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feature i {
+    color: var(--metallic-gold);
+}
+
+.feature span {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+}
+
+/* Location Actions */
+.location-actions {
+    display: flex;
     gap: 1rem;
 }
 
-.action-btn {
+.btn-directions,
+.btn-virtual-tour {
+    flex: 1;
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2200,141 +2232,150 @@ stripe-buy-button {
     font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;
-    text-decoration: none;
-}
-
-.btn-directions-new {
-    background: var(--gold-gradient-metallic);
-    color: var(--royal-blue);
     border: none;
 }
 
-.btn-tour-new {
-    background: transparent;
-    border: 2px solid var(--metallic-gold);
-    color: var(--metallic-gold);
-}
-
-.action-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.btn-tour-new:hover {
-    background: var(--metallic-gold);
+.btn-directions {
+    background: var(--gold-gradient-metallic);
     color: var(--royal-blue);
+    text-decoration: none;
 }
 
-.location-features {
+.btn-virtual-tour {
+    background: rgba(26, 35, 126, 0.05);
+    color: var(--text-dark);
+}
+
+.btn-directions:hover,
+.btn-virtual-tour:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Amenities Section */
+.location-amenities {
+    text-align: center;
+    padding-top: 4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.location-amenities h3 {
+    font-family: var(--font-heading);
+    color: var(--text-dark);
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.amenities-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
-    margin-top: 4rem;
 }
 
-.feature-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 2rem;
+.amenity-item {
     text-align: center;
-    transition: all 0.3s ease;
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
+.amenity-item i {
+    font-size: 2rem;
+    color: var(--metallic-gold);
+    margin-bottom: 1rem;
 }
 
-.feature-icon-new {
-    width: 60px;
-    height: 60px;
-    background: var(--gold-gradient-metallic);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-}
-
-.feature-icon-new i {
-    font-size: 1.5rem;
-    color: var(--royal-blue);
-}
-
-.feature-card h4 {
-    color: white;
-    font-size: 1.2rem;
+.amenity-item h4 {
+    color: var(--text-dark);
     margin-bottom: 0.5rem;
 }
 
-.feature-card p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    line-height: 1.6;
+.amenity-item p {
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
+/* Responsive Styles */
 @media (max-width: 1200px) {
-    .locations-cards {
-        grid-template-columns: 1fr;
-        max-width: 800px;
-        margin: 0 auto 4rem;
+    .locations-grid {
+        gap: 1.5rem;
     }
     
-    .location-features {
+    .location-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    .locations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .amenities-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+        gap: 3rem;
     }
 }
 
 @media (max-width: 768px) {
-    .locations-new {
+    .locations-section {
         padding: 80px 0;
     }
     
-    .locations-header h2 {
+    .section-header h2 {
         font-size: 2.5rem;
     }
     
-    .location-image {
-        height: 200px;
-    }
-    
-    .location-content-new {
+    .location-content {
         padding: 1.5rem;
     }
     
-    .location-actions-new {
-        grid-template-columns: 1fr;
+    .location-features {
+        gap: 0.5rem;
     }
     
-    .location-features {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+    .location-actions {
+        flex-direction: column;
     }
 }
 
-@media (max-width: 480px) {
-    .locations-header h2 {
+@media (max-width: 576px) {
+    .locations-section {
+        padding: 60px 0;
+    }
+    
+    .section-header h2 {
         font-size: 2rem;
     }
     
-    .locations-tag {
-        padding: 0.5rem 1.5rem;
+    .amenities-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .location-badge {
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .location-badge span {
         font-size: 0.8rem;
     }
-    
-    .location-title {
-        flex-direction: column;
-        text-align: center;
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
-    .info-item-new {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
 /* Contact Section Styles */
 .contact {
     position: relative;
