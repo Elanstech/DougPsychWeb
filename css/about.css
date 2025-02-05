@@ -32,6 +32,7 @@
 /* ======================================
    HERO SECTION
 ====================================== */
+/* Hero Section Styles */
 .about-hero {
     position: relative;
     height: 100vh;
@@ -42,7 +43,6 @@
     align-items: center;
     justify-content: center;
     color: white;
-    text-align: center;
 }
 
 .video-background {
@@ -68,8 +68,8 @@
     height: 100%;
     background: linear-gradient(
         to right,
-        rgba(26, 35, 126, 0.6) 0%,
-        rgba(26, 35, 126, 0.4) 100%
+        rgba(26, 35, 126, 0.85) 0%,
+        rgba(26, 35, 126, 0.75) 100%
     );
     z-index: 2;
 }
@@ -77,26 +77,166 @@
 .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 800px;
+    text-align: center;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0 2rem;
 }
 
-.hero-content h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    color: var(--metallic-gold);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.hero-subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    opacity: 0.9;
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
     margin-bottom: 3rem;
-    max-width: 600px;
-    margin: 0 auto;
+}
+
+.accent-line {
+    width: 120px;
+    height: 3px;
+    background: var(--gold-gradient-metallic);
+    border-radius: 2px;
+    position: relative;
+}
+
+.accent-line::before,
+.accent-line::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--metallic-gold);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.accent-line::before {
+    left: -4px;
+}
+
+.accent-line::after {
+    right: -4px;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title-small {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--metallic-gold);
+    opacity: 0.9;
+}
+
+.title-main {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: capitalize;
+    background: var(--gold-gradient-metallic);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.title-sub {
+    font-family: var(--font-body);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: white;
+    opacity: 0.9;
+}
+
+.hero-features {
+    display: flex;
+    justify-content: center;
+    gap: clamp(2rem, 4vw, 4rem);
+    margin-top: 3rem;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature i {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: var(--metallic-gold);
+    background: rgba(255, 255, 255, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.feature:hover i {
+    transform: translateY(-5px);
+}
+
+.feature span {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero-features {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .feature {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    .feature i {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .accent-line {
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .title-container {
+        gap: 1.5rem;
+    }
+
+    .accent-line {
+        width: 60px;
+    }
+
+    .feature i {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
 }
 
 /* ======================================
