@@ -1015,6 +1015,13 @@ body {
   max-width: 600px;
   margin: 0 auto;
 }
+.about-section .section-header h2,
+.about-section h2 {
+    font-family: var(--font-heading);
+    color: var(--royal-blue); /* Changed to royal blue */
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
 
 /* About Content Layout */
 .about-content {
