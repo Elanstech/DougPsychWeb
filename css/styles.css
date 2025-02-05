@@ -2189,7 +2189,6 @@ stripe-buy-button {
 /* Location Actions */
 .location-actions {
     display: flex;
-    gap: 1rem;
 }
 
 .btn-directions,
@@ -2208,6 +2207,7 @@ stripe-buy-button {
 }
 
 .btn-directions {
+    width: 100%;
     background: var(--gold-gradient-metallic);
     color: var(--royal-blue);
     text-decoration: none;
