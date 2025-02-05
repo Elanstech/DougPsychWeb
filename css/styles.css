@@ -1184,11 +1184,11 @@ body {
 .team-section {
     position: relative;
     padding: 120px 0;
+    background: #fff;
     overflow: hidden;
-    /* Changed from blue gradient to a clean white/light gray gradient */
-    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
 }
 
+/* Team Background */
 .team-background {
     position: absolute;
     top: 0;
@@ -1202,6 +1202,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.1;
 }
 
 .team-section .container {
@@ -1256,36 +1257,39 @@ body {
 
 /* Team Cards */
 .team-card {
-    background: white;
+    background: #fff;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s ease;
-    height: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .team-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .card-image {
     position: relative;
     width: 100%;
-    height: 300px;
+    padding-top: 100%; /* Creates a 1:1 aspect ratio */
     overflow: hidden;
 }
 
 .card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.3s ease;
 }
 
 .team-card:hover .card-image img {
-    transform: scale(1.1);
+    transform: scale(1.05); /* Slight zoom on hover */
 }
+
 
 .team-card .card-image {
     position: relative;
@@ -1336,29 +1340,84 @@ body {
 }
 
 .card-info {
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
-    background: white;
+    background: #fff;
 }
 
 .card-info h3 {
-    font-family: var(--font-heading);
     color: var(--royal-blue);
-    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
 
-.position {
+.card-info .position {
     color: var(--metallic-gold);
     font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
-.specialty {
+.card-info .specialty {
     color: var(--text-medium);
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+}
+.team-carousel .swiper-button-next,
+.team-carousel .swiper-button-prev {
+    color: var(--royal-blue);
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-carousel .swiper-button-next:after,
+.team-carousel .swiper-button-prev:after {
+    font-size: 1.2rem;
+}
+
+/* Swiper Pagination */
+.team-carousel .swiper-pagination-bullet {
+    background: var(--royal-blue);
+    opacity: 0.5;
+}
+
+.team-carousel .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: var(--metallic-gold);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .card-info h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-section {
+        padding: 80px 0;
+    }
+    
+    .team-card {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .card-info {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-section {
+        padding: 60px 0;
+    }
+    
+    .card-info h3 {
+        font-size: 1.1rem;
+    }
 }
 
 /* Swiper Navigation */
