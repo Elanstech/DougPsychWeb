@@ -189,8 +189,8 @@
 
 .feature-icon-wrapper i {
     font-size: 3rem;
-    color: #FFD700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    color: var(--metallic-gold); /* Update icon color */
+    text-shadow: 0 0 15px var(--metallic-gold-shadow); /* Update text shadow color */
     transition: all 0.3s ease;
     position: relative;
     z-index: 2;
@@ -198,7 +198,7 @@
 
 .feature-card:hover .feature-icon-wrapper i {
     transform: scale(1.1);
-    color: #DAA520;
+    color: var(--metallic-gold-dark); /* Update hover color */
 }
 
 .feature-card h3 {
