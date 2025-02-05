@@ -55,15 +55,15 @@
         </nav>
     </header>
 
-   <!-- Hero Section -->
-<section class="about-hero">
-    <div class="video-background">
-        <video autoplay muted loop playsinline>
-            <source src="aboutvid.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="container">
+     <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="video-background">
+            <video autoplay muted loop playsinline poster="./images/hero-fallback.jpg">
+                <source src="./videos/about-hero.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
         <div class="hero-content">
             <div class="title-container" data-aos="fade-up">
                 <div class="accent-line"></div>
@@ -74,23 +74,29 @@
                 </h1>
                 <div class="accent-line"></div>
             </div>
+            
             <div class="hero-features" data-aos="fade-up" data-aos-delay="200">
                 <div class="feature">
-                    <i class="fas fa-brain"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
                     <span>Expert Care</span>
                 </div>
                 <div class="feature">
-                    <i class="fas fa-heart"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
                     <span>Compassionate Service</span>
                 </div>
                 <div class="feature">
-                    <i class="fas fa-star"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
                     <span>Professional Excellence</span>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
     
     <!-- Philosophy Section -->
     <section class="philosophy-cards">
