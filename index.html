@@ -568,67 +568,84 @@
     
      
   <!-- Locations Section -->
-<section id="locations" class="locations-new">
-    <div class="locations-background-new">
-        <img src="Backround3.jpeg" alt="Background" class="background-image-new">
-        <div class="locations-overlay"></div>
-    </div>
-
-    <div class="locations-container">
-        <div class="locations-header">
-            <span class="locations-tag">Our Locations</span>
+<section id="locations" class="locations-section">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Our Locations</span>
             <h2>Where to Find Us</h2>
-            <p class="locations-subheader">Two convenient locations serving Brooklyn and Queens</p>
+            <p>Two convenient locations serving Brooklyn and Queens</p>
         </div>
 
-        <div class="locations-cards">
+        <div class="locations-grid">
             <!-- Brooklyn Location -->
-            <div class="location-card-new">
+            <div class="location-card" data-aos="fade-up">
                 <div class="location-image">
-                    <img src="brooklyn-office.jpg" alt="Brooklyn Office">
+                    <img src="brooklyn-office.jpg" alt="Brooklyn Office" loading="lazy">
+                    <div class="location-overlay"></div>
+                    <div class="location-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Main Office</span>
+                    </div>
                 </div>
-                <div class="location-content-new">
-                    <div class="location-title">
-                        <div class="location-icon-new">
-                            <i class="fas fa-building"></i>
-                        </div>
+                
+                <div class="location-content">
+                    <div class="location-header">
                         <h3>Brooklyn Office</h3>
+                        <span class="location-type">Primary Location</span>
                     </div>
 
-                    <div class="location-info">
-                        <div class="info-item-new">
+                    <div class="location-details">
+                        <div class="detail-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <div class="info-text">
+                            <div class="detail-content">
                                 <h4>Address</h4>
-                                <p>1517 Voorhies Ave<br>Brooklyn, NY 11235</p>
+                                <p>1517 Voorhies Ave</p>
+                                <p>Brooklyn, NY 11235</p>
                             </div>
                         </div>
 
-                        <div class="info-item-new">
+                        <div class="detail-item">
                             <i class="fas fa-clock"></i>
-                            <div class="info-text">
+                            <div class="detail-content">
                                 <h4>Hours</h4>
-                                <p>Monday - Friday: 9AM - 7PM</p>
+                                <p>Monday - Friday</p>
+                                <p>9:00 AM - 7:00 PM</p>
                             </div>
                         </div>
 
-                        <div class="info-item-new">
-                            <i class="fas fa-phone"></i>
-                            <div class="info-text">
+                        <div class="detail-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="detail-content">
                                 <h4>Contact</h4>
                                 <a href="tel:6464815080">(646) 481-5080</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="location-actions-new">
+                    <div class="location-features">
+                        <div class="feature">
+                            <i class="fas fa-parking"></i>
+                            <span>Easy Parking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-wheelchair"></i>
+                            <span>Accessible</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-wifi"></i>
+                            <span>Free WiFi</span>
+                        </div>
+                    </div>
+
+                    <div class="location-actions">
                         <a href="https://maps.google.com/?q=1517+Voorhies+Ave,+Brooklyn,+NY+11235" 
-                           class="action-btn btn-directions-new" 
+                           class="btn-directions" 
                            target="_blank">
                             <i class="fas fa-directions"></i>
                             Get Directions
                         </a>
-                        <button class="action-btn btn-tour-new">
+                        <button class="btn-virtual-tour">
                             <i class="fas fa-vr-cardboard"></i>
                             Virtual Tour
                         </button>
@@ -637,52 +654,73 @@
             </div>
 
             <!-- Queens Location -->
-            <div class="location-card-new">
+            <div class="location-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="location-image">
-                    <img src="queens-office.jpg" alt="Queens Office">
+                    <img src="queens-office.jpg" alt="Queens Office" loading="lazy">
+                    <div class="location-overlay"></div>
+                    <div class="location-badge secondary">
+                        <i class="fas fa-building"></i>
+                        <span>Branch Office</span>
+                    </div>
                 </div>
-                <div class="location-content-new">
-                    <div class="location-title">
-                        <div class="location-icon-new">
-                            <i class="fas fa-building"></i>
-                        </div>
+                
+                <div class="location-content">
+                    <div class="location-header">
                         <h3>Queens Office</h3>
+                        <span class="location-type">Secondary Location</span>
                     </div>
 
-                    <div class="location-info">
-                        <div class="info-item-new">
+                    <div class="location-details">
+                        <div class="detail-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <div class="info-text">
+                            <div class="detail-content">
                                 <h4>Address</h4>
-                                <p>63-44 Saunders St, Suite 106<br>Rego Park, NY 11374</p>
+                                <p>63-44 Saunders St, Suite 106</p>
+                                <p>Rego Park, NY 11374</p>
                             </div>
                         </div>
 
-                        <div class="info-item-new">
+                        <div class="detail-item">
                             <i class="fas fa-clock"></i>
-                            <div class="info-text">
+                            <div class="detail-content">
                                 <h4>Hours</h4>
-                                <p>Monday - Friday: 9AM - 7PM</p>
+                                <p>Monday - Friday</p>
+                                <p>9:00 AM - 7:00 PM</p>
                             </div>
                         </div>
 
-                        <div class="info-item-new">
-                            <i class="fas fa-phone"></i>
-                            <div class="info-text">
+                        <div class="detail-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="detail-content">
                                 <h4>Contact</h4>
                                 <a href="tel:6464815080">(646) 481-5080</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="location-actions-new">
+                    <div class="location-features">
+                        <div class="feature">
+                            <i class="fas fa-parking"></i>
+                            <span>Easy Parking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-wheelchair"></i>
+                            <span>Accessible</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-wifi"></i>
+                            <span>Free WiFi</span>
+                        </div>
+                    </div>
+
+                    <div class="location-actions">
                         <a href="https://maps.google.com/?q=63-44+Saunders+St,+Suite+106,+Rego+Park,+NY+11374" 
-                           class="action-btn btn-directions-new" 
+                           class="btn-directions" 
                            target="_blank">
                             <i class="fas fa-directions"></i>
                             Get Directions
                         </a>
-                        <button class="action-btn btn-tour-new">
+                        <button class="btn-virtual-tour">
                             <i class="fas fa-vr-cardboard"></i>
                             Virtual Tour
                         </button>
@@ -691,37 +729,30 @@
             </div>
         </div>
 
-        <div class="location-features">
-            <div class="feature-card">
-                <div class="feature-icon-new">
-                    <i class="fas fa-parking"></i>
+        <!-- Additional Features Section -->
+        <div class="location-amenities" data-aos="fade-up">
+            <h3>Available at Both Locations</h3>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-subway"></i>
+                    <h4>Public Transit</h4>
+                    <p>Easily accessible by subway and local bus routes</p>
                 </div>
-                <h4>Easy Parking</h4>
-                <p>Convenient street parking available at both locations</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon-new">
-                    <i class="fas fa-wheelchair"></i>
+                <div class="amenity-item">
+                    <i class="fas fa-coffee"></i>
+                    <h4>Comfort</h4>
+                    <p>Comfortable waiting areas with refreshments</p>
                 </div>
-                <h4>Accessibility</h4>
-                <p>Fully accessible facilities with ADA compliance</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon-new">
-                    <i class="fas fa-train"></i>
+                <div class="amenity-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Safety</h4>
+                    <p>Enhanced cleaning and safety protocols</p>
                 </div>
-                <h4>Public Transit</h4>
-                <p>Easily accessible by subway and local bus routes</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon-new">
-                    <i class="fas fa-wifi"></i>
+                <div class="amenity-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Support</h4>
+                    <p>Friendly staff ready to assist you</p>
                 </div>
-                <h4>Modern Amenities</h4>
-                <p>Free WiFi and comfortable waiting areas</p>
             </div>
         </div>
     </div>
