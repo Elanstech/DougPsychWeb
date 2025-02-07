@@ -320,57 +320,129 @@ function initHeroSlider() {
 // ===============================
 // SERVICES SECTION
 // ===============================
+// ===============================
+// SERVICES SECTION
+// ===============================
 function initServices() {
-    const servicesSwiper = new Swiper('.services-carousel', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        speed: 800,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            dynamicBullets: true
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20
+    // Wait for DOM elements to be ready
+    const servicesCarousel = document.querySelector('.services-carousel');
+    if (!servicesCarousel) return;
+
+    try {
+        const servicesSwiper = new Swiper('.services-carousel', {
+            // Enable lazy loading for better performance
+            lazy: {
+                loadPrevNext: true,
+                loadPrevNextAmount: 2
             },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 30
-            }
-        },
-        on: {
-            init: function() {
-                if (typeof AOS !== 'undefined') AOS.refresh();
+            
+            // Basic settings
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            speed: 800,
+            
+            // Enable touch for mobile
+            touchEventsTarget: 'container',
+            
+            // Autoplay configuration
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
             },
-            slideChange: function() {
-                if (typeof AOS !== 'undefined') AOS.refresh();
+            
+            // Pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '"></span>';
+                }
+            },
+            
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            
+            // Responsive breakpoints
+            breakpoints: {
+                // when window width is >= 320px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                // when window width is >= 640px
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                // when window width is >= 1024px
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                }
+            },
+            
+            // Events
+            on: {
+                init: function() {
+                    // Show initial slide
+                    const slides = document.querySelectorAll('.service-card');
+                    slides.forEach(slide => {
+                        slide.style.opacity = 1;
+                    });
+                    if (typeof AOS !== 'undefined') AOS.refresh();
+                },
+                slideChange: function() {
+                    if (typeof AOS !== 'undefined') AOS.refresh();
+                }
             }
-        }
-    });
+        });
 
-    // Handle window resize
-    const handleResize = debounce(() => {
-        servicesSwiper.update();
-        if (typeof AOS !== 'undefined') {
-            AOS.refresh();
-        }
-    }, 250);
+        // Add hover effects to service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
 
-    window.addEventListener('resize', handleResize);
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                servicesSwiper.update();
+            }, 250);
+        });
 
-    return servicesSwiper;
+        // Handle visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                servicesSwiper.autoplay.stop();
+            } else {
+                servicesSwiper.autoplay.start();
+            }
+        });
+
+        return servicesSwiper;
+        
+    } catch (error) {
+        console.error('Error initializing services slider:', error);
+        // Fallback to static display if Swiper fails
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.style.opacity = 1;
+            card.style.display = 'block';
+        });
+    }
 }
 // ===============================
 // ABOUT SECTION
