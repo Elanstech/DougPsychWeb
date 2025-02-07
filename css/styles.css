@@ -2156,6 +2156,40 @@ body {
     height: 100%;
     z-index: 1;
 }
+/* Background Overlay */
+.locations-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(64, 224, 208, 0.95) 0%, /* Turquoise start */
+        rgba(64, 224, 208, 0.8) 25%,
+        rgba(0, 0, 0, 0.6) 100% /* Dark fade */
+    );
+    z-index: 2;
+}
+
+/* Pattern Overlay (optional) */
+.locations-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+                      linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%),
+                      linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    opacity: 0.1;
+    z-index: 3;
+}
 
 .background-image {
     width: 100%;
