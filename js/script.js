@@ -756,74 +756,162 @@ function initBookSection() {
 }
 
 // ===============================
-// LOCATIONS SECTION
+// Locations Section JavaScript
 // ===============================
-function initLocationsSection() {
-    const state = {
-        locationCards: document.querySelectorAll('.location-card'),
-        images: document.querySelectorAll('.location-image img'),
-        directionButtons: document.querySelectorAll('.btn-directions')
-    };
 
-    function initLocationCards() {
-        state.locationCards.forEach(card => {
-            const handleHover = (isHovered) => {
-                card.style.transform = isHovered ? 'translateY(-10px)' : 'translateY(0)';
-                const image = card.querySelector('.location-image img');
-                if (image) {
-                    image.style.transform = isHovered ? 'scale(1.1)' : 'scale(1)';
-                }
-            };
+document.addEventListener('DOMContentLoaded', function() {
+    initializeLocations();
+});
 
-            card.addEventListener('mouseenter', () => handleHover(true));
-            card.addEventListener('mouseleave', () => handleHover(false));
-            card.addEventListener('touchstart', () => handleHover(true));
-            card.addEventListener('touchend', () => handleHover(false));
+function initializeLocations() {
+    // Initialize AOS animations
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
         });
     }
 
-    function initDirectionButtons() {
-        state.directionButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                button.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    button.style.transform = 'scale(1)';
-                }, 200);
-
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'get_directions', {
-                        'location': button.closest('.location-card').querySelector('h3').textContent
-                    });
-                }
-            });
+    // Add hover effects to location cards
+    const locationCards = document.querySelectorAll('.location-card');
+    locationCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
         });
-    }
 
-    function initLazyLoading() {
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.onload = () => {
-                                img.classList.add('loaded');
-                                observer.unobserve(img);
-                            };
-                        }
-                    }
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Add click animation to direction buttons
+    const directionButtons = document.querySelectorAll('.btn-directions');
+    directionButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+
+            // Track click if analytics is available
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'get_directions', {
+                    'location': this.closest('.location-card').querySelector('h3').textContent
                 });
+            }
+        });
+    });
+
+    // Floating elements animation
+    const floatingElements = document.querySelectorAll('.float-item');
+    floatingElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * -1}s`;
+    });
+
+    // Lazy load maps when they come into view
+    const mapObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const iframe = entry.target;
+                if (iframe.dataset.src) {
+                    iframe.src = iframe.dataset.src;
+                    iframe.removeAttribute('data-src');
+                }
+                observer.unobserve(iframe);
+            }
+        });
+    }, {
+        rootMargin: '50px',
+        threshold: 0.1
+    });
+
+    // Observe map iframes
+    document.querySelectorAll('.location-image iframe').forEach(iframe => {
+        mapObserver.observe(iframe);
+    });
+
+    // Add scroll reveal for amenities
+    const amenityItems = document.querySelectorAll('.amenity-item');
+    amenityItems.forEach((item, index) => {
+        item.setAttribute('data-aos', 'fade-up');
+        item.setAttribute('data-aos-delay', `${index * 100}`);
+    });
+
+    // Handle mobile touch interactions
+    if ('ontouchstart' in window) {
+        locationCards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'translateY(-5px)';
             });
 
-            state.images.forEach(img => imageObserver.observe(img));
-        }
+            card.addEventListener('touchend', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
     }
 
-    // Initialize components
-    initLocationCards();
-    initDirectionButtons();
-    initLazyLoading();
+    // Add smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Update map size on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const maps = document.querySelectorAll('.location-image iframe');
+            maps.forEach(map => {
+                // Force map refresh on resize
+                map.style.height = map.offsetHeight + 'px';
+            });
+        }, 250);
+    });
+
+    // Add error handling for maps
+    document.querySelectorAll('.location-image iframe').forEach(iframe => {
+        iframe.addEventListener('error', function() {
+            this.style.display = 'none';
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'map-error';
+            errorMessage.innerHTML = `
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Map loading error. Please try again later.</p>
+            `;
+            this.parentElement.appendChild(errorMessage);
+        });
+    });
+
+    // Initialize contact buttons
+    const contactButtons = document.querySelectorAll('.detail-item a[href^="tel:"]');
+    contactButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'contact', {
+                    'method': 'phone',
+                    'location': this.closest('.location-card').querySelector('h3').textContent
+                });
+            }
+        });
+    });
+}
+
+// Export if using modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initializeLocations
+    };
 }
 
 // ===============================
