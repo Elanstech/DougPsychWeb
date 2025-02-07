@@ -302,14 +302,16 @@ body {
     }
 }
 
-/* Hero Section CSS */
+/* Hero Section Base Styles */
 .hero {
     height: 100vh;
     position: relative;
     overflow: hidden;
     margin-top: 80px;
+    background-color: var(--royal-blue-dark);
 }
 
+/* Hero Slider Styles */
 .hero-slider {
     position: absolute;
     top: 0;
@@ -338,22 +340,21 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(
-        to right,
-        rgba(64, 224, 208, 0.3) 0%,
-        rgba(72, 209, 204, 0.1) 100%
+        135deg,
+        rgba(26, 35, 126, 0.8) 0%,
+        rgba(0, 0, 0, 0.6) 100%
     );
+    z-index: 1;
 }
 
 .slide.active {
     opacity: 1;
+    z-index: 2;
 }
 
-/* Hero Content */
+/* Hero Content Styles */
 .hero-content {
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -362,8 +363,10 @@ body {
 
 .content-container {
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
 }
 
 .hero-title {
@@ -373,70 +376,99 @@ body {
     line-height: 1.2;
     color: white;
     margin-bottom: 3rem;
-    opacity: 1;
-    transform: none;
-    animation: fadeInUp 1s ease forwards;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Services List Styles */
+.hero-services {
+    margin-bottom: 3rem;
 }
 
 .services-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    opacity: 1;
-    transform: none;
-    animation: fadeInUp 1s ease forwards 0.3s;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
 }
 
 .services-list li {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fadeInRight 0.5s ease forwards;
+}
+
+.services-list li:nth-child(1) { animation-delay: 0.2s; }
+.services-list li:nth-child(2) { animation-delay: 0.4s; }
+.services-list li:nth-child(3) { animation-delay: 0.6s; }
+.services-list li:nth-child(4) { animation-delay: 0.8s; }
+.services-list li:nth-child(5) { animation-delay: 1s; }
+
+.service-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-    font-size: 1.3rem;
-    color: white;
-    padding: 0.7rem 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    padding: 1rem 1.8rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-item:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.25);
+    border-color: var(--metallic-gold);
+}
+
+.service-item i {
+    color: var(--metallic-gold);
+    font-size: 1.4rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     transition: all 0.3s ease;
 }
 
-.services-list i {
-    color: var(--metallic-gold);
-    font-size: 1.4rem;
+.service-item:hover i {
+    transform: scale(1.1);
 }
 
-.services-list li:hover {
-    transform: translateX(10px);
-    background: rgba(255, 255, 255, 0.2);
+.service-item span {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* Hero Button Styles */
 .btn-hero {
-    display: block;
-    margin: 0 auto; /* Centers the button horizontally */
-    text-align: center;
-    background: var(--gold-gradient-metallic);
-    color: var(--metallic-gold-dark);
+    display: inline-block;
     padding: 1.2rem 3rem;
-    border-radius: 50px;
+    background: var(--gold-gradient-metallic);
+    color: var(--royal-blue-dark);
     font-size: 1.3rem;
     font-weight: 600;
     text-decoration: none;
+    border-radius: 50px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(180, 155, 87, 0.3);
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 1s ease forwards 0.6s;
-    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+    animation: fadeInUp 1s ease forwards 1.2s;
 }
 
 .btn-hero:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(184, 134, 11, 0.4);
+    box-shadow: 0 6px 25px rgba(180, 155, 87, 0.4);
 }
 
-/* Navigation Dots */
+/* Navigation Dots Styles */
 .slider-navigation {
     position: absolute;
     right: 2rem;
@@ -478,7 +510,7 @@ body {
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* Progress Bar */
+/* Progress Bar Styles */
 .progress-bar {
     width: 2px;
     height: 100px;
@@ -497,20 +529,50 @@ body {
     transition: height 0.3s linear;
 }
 
+/* Animations */
 @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* Responsive Styles */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+    .content-container {
+        padding: 0 3rem;
+    }
+    
     .hero-title {
         font-size: 3.5rem;
     }
+}
 
-    .services-list li {
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .service-item {
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .service-item span {
         font-size: 1.2rem;
     }
 }
@@ -518,11 +580,24 @@ body {
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.8rem;
+        margin-bottom: 2rem;
     }
 
-    .services-list li {
+    .service-item {
+        padding: 0.7rem 1.2rem;
+    }
+
+    .service-item span {
         font-size: 1.1rem;
-        padding: 0.6rem 1.5rem;
+    }
+
+    .service-item i {
+        font-size: 1.2rem;
+    }
+
+    .btn-hero {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
     }
 
     .slider-navigation {
@@ -536,25 +611,42 @@ body {
     .progress-bar {
         display: none;
     }
-
-    .btn-hero {
-        padding: 1rem 2.5rem;
-        font-size: 1.2rem;
-    }
 }
 
 @media (max-width: 480px) {
+    .content-container {
+        padding: 0 1.5rem;
+    }
+
     .hero-title {
         font-size: 2.2rem;
+        margin-bottom: 1.5rem;
     }
 
-    .services-list li {
+    .service-item {
+        padding: 0.6rem 1rem;
+    }
+
+    .service-item span {
         font-size: 1rem;
-        padding: 0.5rem 1rem;
     }
 
-    .content-container {
-        padding: 0 1rem;
+    .service-item i {
+        font-size: 1.1rem;
+    }
+
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Fallback Styles for Older Browsers */
+@supports not (backdrop-filter: blur(8px)) {
+    .service-item {
+        background: rgba(255, 255, 255, 0.25);
     }
 }
 
