@@ -308,7 +308,7 @@ body {
     position: relative;
     overflow: hidden;
     margin-top: 80px;
-    background-color: var(--royal-blue-dark);
+    background-color: #40E0D0; /* Turquoise base color */
 }
 
 /* Hero Slider Styles */
@@ -341,8 +341,8 @@ body {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(26, 35, 126, 0.8) 0%,
-        rgba(0, 0, 0, 0.6) 100%
+        rgba(64, 224, 208, 0.8) 0%, /* Turquoise with opacity */
+        rgba(72, 209, 204, 0.6) 100% /* Slightly darker turquoise with opacity */
     );
     z-index: 1;
 }
