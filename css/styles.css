@@ -897,8 +897,8 @@ body {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(64, 224, 208, 0.8) 0%, /* Turquoise start */
-        rgba(0, 0, 0, 0.6) 100% /* Dark fade */
+        rgba(64, 224, 208, 0.4) 0%, /* Reduced opacity for turquoise */
+        rgba(0, 0, 0, 0.3) 100% /* Reduced opacity for dark fade */
     );
     z-index: 2;
 }
