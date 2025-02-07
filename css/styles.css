@@ -2145,7 +2145,7 @@ body {
     position: relative;
     padding: 80px 0;
     overflow: hidden;
-    background-color: #40E0D0; /* Turquoise base like hero */
+    background-color: #40E0D0; /* Turquoise base */
 }
 
 /* Background with Hero-like Overlay */
@@ -2167,8 +2167,8 @@ body {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(64, 224, 208, 0.8) 0%, /* Turquoise start */
-        rgba(0, 0, 0, 0.6) 100% /* Dark fade */
+        rgba(64, 224, 208, 0.8) 0%,
+        rgba(0, 0, 0, 0.6) 100%
     );
     z-index: 2;
 }
