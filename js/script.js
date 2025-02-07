@@ -528,61 +528,149 @@ function initViewMoreButton() {
 // ===============================
 // TEAM SECTION
 // ===============================
+// ===============================
+// TEAM SECTION
+// ===============================
 function initTeamSection() {
+    // Initialize Swiper
     const teamSwiper = new Swiper('.team-carousel', {
-        lazy: {
-            loadPrevNext: true,
-            loadPrevNextAmount: 3
-        },
+        // Basic settings
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
         speed: 800,
+        
+        // Enable lazy loading
+        lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 2
+        },
+        
+        // Autoplay configuration
         autoplay: {
             delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true
         },
+        
+        // Responsive breakpoints
         breakpoints: {
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 3, spaceBetween: 30 },
-            1024: { slidesPerView: 4, spaceBetween: 30 }
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 30
+            }
         },
+        
+        // Navigation arrows
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
+        
+        // Pagination
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
             dynamicBullets: true
         },
+        
+        // Enable keyboard control
         keyboard: {
             enabled: true,
             onlyInViewport: true
-        },
-        on: {
-            init: function() {
-                handleTeamCardsAnimation();
-                initializeTeamCardInteractions();
-            },
-            slideChangeTransitionStart: function() {
-                handleTeamCardsAnimation();
-            }
         }
     });
 
-    initTeamComponents();
-    
+    // Handle team card animations and interactions
+    const cards = document.querySelectorAll('.team-card');
+    cards.forEach((card, index) => {
+        // Initial animation
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+
+        // Hover effects
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            const image = card.querySelector('.card-image img');
+            if (image) {
+                image.style.transform = 'scale(1.1)';
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            const image = card.querySelector('.card-image img');
+            if (image) {
+                image.style.transform = 'scale(1)';
+            }
+        });
+    });
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            teamSwiper.update();
+            updateCardHeights();
+        }, 250);
+    });
+
+    // Update card heights for consistency
+    function updateCardHeights() {
+        const cards = document.querySelectorAll('.team-card');
+        let maxHeight = 0;
+
+        // Reset heights
+        cards.forEach(card => {
+            card.style.height = 'auto';
+            const height = card.offsetHeight;
+            maxHeight = Math.max(maxHeight, height);
+        });
+
+        // Apply max height to all cards
+        cards.forEach(card => {
+            card.style.height = `${maxHeight}px`;
+        });
+    }
+
+    // Initialize card heights
+    updateCardHeights();
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            teamSwiper.autoplay.stop();
+        } else {
+            teamSwiper.autoplay.start();
+        }
+    });
+
     return teamSwiper;
 }
 
-function initTeamComponents() {
-    initializeImageLoading();
-    initializeSectionTransitions();
-    handleWindowResize();
-    setupVisibilityHandlers();
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initTeamSection();
+});
+
+// Export if using modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initTeamSection
+    };
 }
+
 // ===============================
 // BOOK SECTION
 // ===============================
