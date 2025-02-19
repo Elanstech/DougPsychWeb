@@ -503,151 +503,228 @@ function initServices() {
 // ===============================
 // ABOUT SECTION
 // ===============================
+// About Section Initialization
 function initAboutSection() {
+    // State management
     const state = {
-        contentBlocks: document.querySelectorAll('.content-block'),
-        navigationDots: document.querySelectorAll('.navigation-dots .dot'),
-        currentBlockIndex: 0,
-        autoplayInterval: null,
-        isHovered: false,
-        autoplayDuration: 5000
+        isIntersecting: false,
+        isAnimated: false,
+        observer: null,
+        elements: {
+            section: document.querySelector('.about'),
+            profileCard: document.querySelector('.profile-card'),
+            visionCard: document.querySelector('.vision-card'),
+            serviceHighlights: document.querySelectorAll('.service-highlight'),
+            credentialItems: document.querySelectorAll('.credential-item'),
+            profileImage: document.querySelector('.profile-image'),
+            experienceBadge: document.querySelector('.experience-badge')
+        }
     };
 
-    function showBlock(index) {
-        state.contentBlocks.forEach(block => {
-            block.classList.remove('active');
-            block.style.opacity = '0';
-            block.style.visibility = 'hidden';
-        });
-        state.navigationDots.forEach(dot => dot.classList.remove('active'));
-
-        state.contentBlocks[index].classList.add('active');
-        state.contentBlocks[index].style.opacity = '1';
-        state.contentBlocks[index].style.visibility = 'visible';
-        state.navigationDots[index].classList.add('active');
-
-        state.currentBlockIndex = index;
-    }
-
-    function autoplayControls() {
-        function showNextBlock() {
-            if (!state.isHovered) {
-                const nextIndex = (state.currentBlockIndex + 1) % state.contentBlocks.length;
-                showBlock(nextIndex);
-            }
-        }
-
-        function startAutoplay() {
-            if (state.autoplayInterval) clearInterval(state.autoplayInterval);
-            state.autoplayInterval = setInterval(showNextBlock, state.autoplayDuration);
-        }
-
-        function stopAutoplay() {
-            if (state.autoplayInterval) {
-                clearInterval(state.autoplayInterval);
-                state.autoplayInterval = null;
-            }
-        }
-
-        return { showNextBlock, startAutoplay, stopAutoplay };
-    }
-
-    // Initialize navigation dots
-    state.navigationDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            const { startAutoplay } = autoplayControls();
-            showBlock(index);
-            startAutoplay();
-        });
-    });
-
-    // Initialize hover effects
-    const aboutContent = document.querySelector('.about-content-blocks');
-    if (aboutContent) {
-        aboutContent.addEventListener('mouseenter', () => {
-            state.isHovered = true;
-            autoplayControls().stopAutoplay();
-        });
-        aboutContent.addEventListener('mouseleave', () => {
-            state.isHovered = false;
-            autoplayControls().startAutoplay();
-        });
-    }
-
-    // Initialize credential effects
-    initCredentialEffects();
-
-    // Initialize feature item effects
-    initFeatureItemEffects();
-
-    // Initialize "View More" button
-    initViewMoreButton();
-
-    // Start autoplay
-    showBlock(0);
-    autoplayControls().startAutoplay();
-}
-
-function initCredentialEffects() {
-    const credentials = document.querySelectorAll('.credential');
-    credentials.forEach(credential => {
-        credential.addEventListener('mouseenter', () => {
-            credential.style.backgroundColor = 'rgba(26, 35, 126, 0.05)';
-            credential.style.transform = 'translateX(10px)';
-        });
-        credential.addEventListener('mouseleave', () => {
-            credential.style.backgroundColor = 'transparent';
-            credential.style.transform = 'translateX(0)';
-        });
-    });
-}
-
-function initFeatureItemEffects() {
-    const featureItems = document.querySelectorAll('.feature-item');
-    featureItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            const icon = item.querySelector('.feature-icon i');
-            if (icon) icon.style.transform = 'scale(1.2)';
-            item.style.transform = 'translateY(-5px)';
-        });
-        item.addEventListener('mouseleave', () => {
-            const icon = item.querySelector('.feature-icon i');
-            if (icon) icon.style.transform = 'scale(1)';
-            item.style.transform = 'translateY(0)';
-        });
-    });
-}
-
-function initViewMoreButton() {
-    const viewMoreBtn = document.querySelector('.btn-view-more');
-    if (viewMoreBtn) {
-        viewMoreBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetSection = document.querySelector(viewMoreBtn.getAttribute('href'));
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-
-        const handleArrowAnimation = (e) => {
-            const arrow = viewMoreBtn.querySelector('i');
-            if (arrow) {
-                arrow.style.transform = e.type === 'mouseenter' ? 
-                    'translateX(5px)' : 'translateX(0)';
-            }
+    // Initialize Intersection Observer for scroll animations
+    function initIntersectionObserver() {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
         };
 
-        viewMoreBtn.addEventListener('mouseenter', handleArrowAnimation);
-        viewMoreBtn.addEventListener('mouseleave', handleArrowAnimation);
+        state.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !state.isAnimated) {
+                    state.isIntersecting = true;
+                    animateElements();
+                    state.isAnimated = true;
+                }
+            });
+        }, options);
+
+        if (state.elements.section) {
+            state.observer.observe(state.elements.section);
+        }
     }
+
+    // Animate elements sequentially
+    function animateElements() {
+        // Profile card animation
+        if (state.elements.profileCard) {
+            animateElement(state.elements.profileCard, 0);
+        }
+
+        // Vision card animation
+        if (state.elements.visionCard) {
+            animateElement(state.elements.visionCard, 200);
+        }
+
+        // Service highlights animation
+        state.elements.serviceHighlights.forEach((highlight, index) => {
+            animateElement(highlight, 400 + (index * 200));
+        });
+
+        // Credential items animation
+        state.elements.credentialItems.forEach((item, index) => {
+            animateElement(item, 1000 + (index * 100));
+        });
+
+        // Experience badge animation
+        if (state.elements.experienceBadge) {
+            animateElement(state.elements.experienceBadge, 300);
+        }
+    }
+
+    // Animate single element
+    function animateElement(element, delay) {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, delay);
+    }
+
+    // Initialize hover effects
+    function initHoverEffects() {
+        // Profile card hover effect
+        if (state.elements.profileCard) {
+            const card = state.elements.profileCard;
+            const image = state.elements.profileImage;
+            const badge = state.elements.experienceBadge;
+
+            card.addEventListener('mouseenter', () => {
+                if (window.innerWidth >= 1024) {
+                    if (image) image.style.transform = 'scale(1.05)';
+                    if (badge) badge.style.transform = 'translateY(-5px)';
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (window.innerWidth >= 1024) {
+                    if (image) image.style.transform = 'scale(1)';
+                    if (badge) badge.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Service highlights hover effects
+        state.elements.serviceHighlights.forEach(highlight => {
+            highlight.addEventListener('mouseenter', () => {
+                if (window.innerWidth >= 1024) {
+                    highlight.style.transform = 'translateY(-10px)';
+                }
+            });
+
+            highlight.addEventListener('mouseleave', () => {
+                if (window.innerWidth >= 1024) {
+                    highlight.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Credential items hover effects
+        state.elements.credentialItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                if (window.innerWidth >= 1024) {
+                    item.style.transform = 'translateY(-5px)';
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                if (window.innerWidth >= 1024) {
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    }
+
+    // Handle window resize
+    function handleResize() {
+        const resizeDebounce = debounce(() => {
+            if (window.innerWidth < 1024) {
+                // Reset all transforms on mobile
+                resetTransforms();
+            }
+        }, 250);
+
+        window.addEventListener('resize', resizeDebounce);
+    }
+
+    // Reset transforms for mobile
+    function resetTransforms() {
+        if (state.elements.profileImage) {
+            state.elements.profileImage.style.transform = '';
+        }
+        if (state.elements.experienceBadge) {
+            state.elements.experienceBadge.style.transform = '';
+        }
+        state.elements.serviceHighlights.forEach(highlight => {
+            highlight.style.transform = '';
+        });
+        state.elements.credentialItems.forEach(item => {
+            item.style.transform = '';
+        });
+    }
+
+    // Debounce utility function
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Handle visibility changes
+    function handleVisibilityChange() {
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                resetTransforms();
+            }
+        });
+    }
+
+    // Initialize AOS if available
+    function initAOS() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                mirror: false,
+                offset: 50
+            });
+        }
+    }
+
+    // Initialize everything
+    function init() {
+        initIntersectionObserver();
+        initHoverEffects();
+        handleResize();
+        handleVisibilityChange();
+        initAOS();
+    }
+
+    // Cleanup function
+    function cleanup() {
+        if (state.observer) {
+            state.observer.disconnect();
+        }
+        window.removeEventListener('resize', handleResize);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }
+
+    // Initialize
+    init();
+
+    // Return cleanup function
+    return cleanup;
 }
 
-// ===============================
-// TEAM SECTION
-// ===============================
 // ===============================
 // TEAM SECTION
 // ===============================
