@@ -321,45 +321,170 @@ function initHeroSlider() {
 // SERVICES SECTION
 // ===============================
 function initServices() {
+    // Initialize Swiper
     const servicesSwiper = new Swiper('.services-carousel', {
+        // Basic settings
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
         speed: 800,
+        grabCursor: true,
+        centeredSlides: true,
+        
+        // Autoplay settings
         autoplay: {
             delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true
         },
+        
+        // Pagination
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
-            dynamicBullets: true
+            dynamicBullets: true,
+            renderBullet: function (index, className) {
+                return '<span class="' + className + '"></span>';
+            }
         },
+        
+        // Navigation
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
         },
+        
+        // Responsive breakpoints
         breakpoints: {
             640: {
                 slidesPerView: 2,
-                spaceBetween: 20
+                spaceBetween: 20,
+                centeredSlides: false
             },
             1024: {
                 slidesPerView: 3,
-                spaceBetween: 30
+                spaceBetween: 30,
+                centeredSlides: false
             }
         },
+
+        // Accessibility
+        a11y: {
+            prevSlideMessage: 'Previous service',
+            nextSlideMessage: 'Next service',
+            firstSlideMessage: 'This is the first service',
+            lastSlideMessage: 'This is the last service',
+            paginationBulletMessage: 'Go to service {{index}}'
+        },
+
+        // Callbacks
         on: {
             init: function() {
-                if (typeof AOS !== 'undefined') AOS.refresh();
+                initCardAnimations();
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
             },
             slideChange: function() {
-                if (typeof AOS !== 'undefined') AOS.refresh();
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
             }
         }
     });
 
+    // Initialize card animations
+    function initCardAnimations() {
+        const cards = document.querySelectorAll('.service-card');
+        
+        cards.forEach(card => {
+            // Add hover effects for desktop
+            card.addEventListener('mouseenter', () => {
+                if (window.innerWidth >= 1024) {
+                    card.style.transform = 'translateY(-10px)';
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (window.innerWidth >= 1024) {
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+
+            // Add touch effects for mobile
+            card.addEventListener('touchstart', () => {
+                if (window.innerWidth < 1024) {
+                    card.style.transform = 'translateY(-5px)';
+                }
+            });
+
+            card.addEventListener('touchend', () => {
+                if (window.innerWidth < 1024) {
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+
+            // Animate features list
+            const features = card.querySelectorAll('.service-features li');
+            features.forEach((feature, index) => {
+                feature.style.transitionDelay = `${index * 100}ms`;
+            });
+        });
+    }
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            servicesSwiper.update();
+            updateCardHeights();
+        }, 250);
+    });
+
+    // Update card heights for consistency
+    function updateCardHeights() {
+        const cards = document.querySelectorAll('.service-card');
+        let maxHeight = 0;
+
+        // Reset heights
+        cards.forEach(card => {
+            card.style.height = 'auto';
+            const height = card.offsetHeight;
+            maxHeight = Math.max(maxHeight, height);
+        });
+
+        // Apply max height to all cards
+        cards.forEach(card => {
+            card.style.height = `${maxHeight}px`;
+        });
+    }
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            servicesSwiper.autoplay.stop();
+        } else {
+            servicesSwiper.autoplay.start();
+        }
+    });
+
+    // Initialize "View All Services" button
+    const viewAllButton = document.querySelector('.btn-view-services');
+    if (viewAllButton) {
+        viewAllButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetSection = document.querySelector(viewAllButton.getAttribute('href'));
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+
+    // Initialize AOS animations if available
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 1000,
@@ -369,13 +494,8 @@ function initServices() {
         });
     }
 
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            servicesSwiper.update();
-        }, 250);
-    });
+    // Initial card height update
+    updateCardHeights();
 
     return servicesSwiper;
 }
