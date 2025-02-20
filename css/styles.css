@@ -1129,17 +1129,17 @@ body {
 }
 
 .section-header h2 {
-    color: var(--royal-blue);
+    color: var(--royal-blue); /* Changed from white to royal blue */
     font-family: var(--font-heading);
     font-size: 3rem;
     margin-bottom: 1.5rem;
     line-height: 1.2;
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: none; /* Removed text shadow since it's no longer on white */
 }
 
 .section-header p {
-    color: var(--text-medium);
+    color: var(--text-medium); /* Changed to medium text color for better readability */
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
