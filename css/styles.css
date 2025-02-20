@@ -761,10 +761,6 @@ body {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.profile-card:hover .profile-image {
-    transform: translate(-50%, -50%) scale(0.9);
-}
-
 /* Experience Badge Styles */
 .experience-badge {
     position: absolute;
