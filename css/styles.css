@@ -1620,10 +1620,10 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Removed opacity property to show full image */
+    opacity: 0.1;
 }
 
-/* Team Container */
+/* Container */
 .team-section .container {
     position: relative;
     z-index: 2;
@@ -1632,7 +1632,7 @@ body {
     padding: 0 2rem;
 }
 
-/* Section Header */
+/* Updated Section Header to match services */
 .team-section .section-header {
     text-align: center;
     margin-bottom: 4rem;
@@ -1640,41 +1640,47 @@ body {
 
 .team-section .section-tag {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
+    padding: 0.75rem 2rem;
     background: var(--gold-gradient-metallic);
     color: var(--royal-blue);
     border-radius: 50px;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(180, 155, 87, 0.2);
 }
 
 .team-section .section-header h2 {
-    color: var(--gold-gradient-metallic);
+    color: var(--royal-blue);
     font-family: var(--font-heading);
     font-size: 3rem;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
 }
 
 .team-section .section-header p {
-    color: var(--gold-gradient-metallic);
+    color: var(--text-medium);
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 /* Team Carousel */
 .team-carousel {
     padding: 20px 0;
     margin: 0 -10px;
+    overflow: hidden;
 }
 
 /* Team Cards */
 .team-card {
     background: #fff;
-    border-radius: var(--radius-lg);
+    border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -1687,34 +1693,43 @@ body {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Card Image Container */
-.card-image {
+/* Image Styles */
+.team-image-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 100%;
+    padding-top: 120%;
     overflow: hidden;
-    background: var(--background-light);
+    background: #f8f9fa;
+    border-radius: 16px 16px 0 0;
 }
 
-.card-image img {
+.image-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    transition: transform 0.5s ease;
-    transform-origin: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.team-card:hover .card-image img {
+.team-member-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-member-image {
     transform: scale(1.05);
 }
 
 /* Card Info */
 .card-info {
-    padding: 2rem;
+    padding: 1.5rem;
     text-align: center;
     background: #fff;
 }
@@ -1723,7 +1738,7 @@ body {
     color: var(--royal-blue);
     font-family: var(--font-heading);
     font-size: 1.4rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     line-height: 1.2;
 }
 
@@ -1802,8 +1817,6 @@ body {
     border-radius: 50px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(180, 155, 87, 0.2);
-    position: relative;
-    overflow: hidden;
 }
 
 .view-more-team:hover {
@@ -1826,6 +1839,10 @@ body {
         font-size: 2.5rem;
     }
 
+    .team-image-wrapper {
+        padding-top: 130%;
+    }
+
     .card-info {
         padding: 1.75rem;
     }
@@ -1838,6 +1855,10 @@ body {
 @media (max-width: 991px) {
     .team-section {
         padding: 100px 0;
+    }
+
+    .team-image-wrapper {
+        padding-top: 140%;
     }
 
     .card-info {
@@ -1871,10 +1892,6 @@ body {
         margin: 10px auto;
     }
 
-    .card-image {
-        padding-top: 100%; /* Maintain square aspect ratio */
-    }
-
     .swiper-button-next,
     .swiper-button-prev {
         display: none;
@@ -1897,6 +1914,10 @@ body {
 
     .team-section .container {
         padding: 0 1rem;
+    }
+
+    .team-image-wrapper {
+        padding-top: 150%;
     }
 
     .card-info {
