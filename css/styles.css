@@ -1972,7 +1972,7 @@ body {
     margin-bottom: 4rem;
 }
 
-.section-tag {
+.book-section .section-tag {
     display: inline-block;
     padding: 0.75rem 2rem;
     background: var(--gold-gradient-metallic);
@@ -1986,20 +1986,22 @@ body {
     box-shadow: 0 4px 15px rgba(180, 155, 87, 0.2);
 }
 
-.section-header h2 {
-    color: var(--royal-blue);
+.book-section .section-header h2 {
+    color: var(--royal-blue); /* Updated to match services section */
     font-family: var(--font-heading);
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
     font-weight: 700;
 }
 
-.section-header p {
-    color: var(--text-medium);
+.book-section .section-header p {
+    color: var(--text-medium); /* Updated to match services section */
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 /* Content Layout */
