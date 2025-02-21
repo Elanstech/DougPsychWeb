@@ -644,7 +644,6 @@ body {
 }
 
 /* About Section Base Styles */
-/* About Section Base Styles */
 .about {
     position: relative;
     padding: 120px 0;
@@ -675,10 +674,10 @@ body {
 }
 
 /* Section Header Styles */
-.section-header {
+.about .section-header {
     text-align: center;
-    margin-bottom: 5rem;
-    position: relative;
+    margin-bottom: 4rem;
+    color: var(--royal-blue); /* Changed from default color */
 }
 
 .section-tag {
@@ -701,17 +700,18 @@ body {
     box-shadow: 0 6px 20px rgba(180, 155, 87, 0.3);
 }
 
-.section-header h2 {
-    color: var(--metallic-gold-dark);
+.about .section-header h2 {
+    color: var(--royal-blue); /* Changed from metallic-gold-dark to royal blue */
     font-family: var(--font-heading);
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    font-weight: 700;
     line-height: 1.2;
+    font-weight: 700;
+    text-shadow: none;
 }
 
-.section-header p {
-    color: var(--text-medium);
+.about .section-header p {
+    color: var(--text-medium); /* Changed to match services section */
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
