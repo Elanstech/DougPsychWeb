@@ -1651,21 +1651,19 @@ body {
 }
 
 .team-section .section-header h2 {
-    color: var(--royal-blue);
+    /* Change from: color: var(--metallic-gold-dark); */
+    color: #fff;
     font-family: var(--font-heading);
     font-size: 3rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .team-section .section-header p {
-    color: var(--text-medium);
+    /* Change from: color: var(--text-medium); */
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
-    line-height: 1.6;
-    font-weight: 400;
 }
 
 /* Team Carousel */
