@@ -1937,7 +1937,7 @@ body {
     }
 }
 
-/* Book Section Base Styles */
+/* Book Section Base */
 .book-section {
     position: relative;
     padding: 120px 0;
@@ -1945,6 +1945,7 @@ body {
     overflow: hidden;
 }
 
+/* Background Pattern */
 .book-section-bg {
     position: absolute;
     top: 0;
@@ -1952,10 +1953,11 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, rgba(26,35,126,0.05) 0%, rgba(26,35,126,0.1) 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 70% 0);
     z-index: 1;
 }
 
+/* Container */
 .book-section .container {
     position: relative;
     z-index: 2;
@@ -1970,7 +1972,7 @@ body {
     margin-bottom: 4rem;
 }
 
-.book-section .section-tag {
+.section-tag {
     display: inline-block;
     padding: 0.75rem 2rem;
     background: var(--gold-gradient-metallic);
@@ -1984,7 +1986,7 @@ body {
     box-shadow: 0 4px 15px rgba(180, 155, 87, 0.2);
 }
 
-.book-section .section-header h2 {
+.section-header h2 {
     color: var(--royal-blue);
     font-family: var(--font-heading);
     font-size: 3rem;
@@ -1993,7 +1995,7 @@ body {
     font-weight: 700;
 }
 
-.book-section .section-header p {
+.section-header p {
     color: var(--text-medium);
     font-size: 1.2rem;
     max-width: 600px;
@@ -2026,13 +2028,13 @@ body {
 .book-cover {
     position: relative;
     padding-bottom: 140%;
-    transform: rotateY(-30deg);
+    transform: rotateY(-20deg) rotateX(5deg);
     transform-style: preserve-3d;
     transition: transform 0.5s ease;
 }
 
 .book-cover:hover {
-    transform: rotateY(-15deg);
+    transform: rotateY(-10deg) rotateX(5deg);
 }
 
 .book-cover img {
@@ -2043,18 +2045,9 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.book-spine {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 40px;
-    height: 100%;
-    background: var(--royal-blue);
-    transform: rotateY(90deg) translateZ(-20px);
-    transform-origin: left;
+    box-shadow: 
+        -10px 10px 20px rgba(0, 0, 0, 0.2),
+        -20px 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .book-shadow {
@@ -2066,6 +2059,7 @@ body {
     background: rgba(0,0,0,0.2);
     filter: blur(10px);
     transform: rotateX(80deg);
+    opacity: 0.6;
 }
 
 /* Book Stats */
@@ -2237,13 +2231,32 @@ body {
 /* Stripe Button Container */
 .stripe-button-container {
     width: 100%;
-    margin-top: 1.5rem;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Animation */
+@keyframes floatBook {
+    0%, 100% {
+        transform: translateY(0) rotateY(-20deg) rotateX(5deg);
+    }
+    50% {
+        transform: translateY(-15px) rotateY(-20deg) rotateX(5deg);
+    }
+}
+
+.book-cover {
+    animation: floatBook 6s ease-in-out infinite;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
     .book-content-wrapper {
         gap: 3rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.5rem;
     }
     
     .book-details {
@@ -2264,8 +2277,12 @@ body {
         margin: 0 auto;
     }
 
-    .feature {
-        padding: 1.25rem;
+    .book-cover {
+        transform: rotateY(-15deg) rotateX(5deg);
+    }
+
+    .book-cover:hover {
+        transform: rotateY(-5deg) rotateX(5deg);
     }
 }
 
@@ -2275,7 +2292,7 @@ body {
     }
 
     .section-header h2 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .book-stats {
@@ -2284,9 +2301,12 @@ body {
         gap: 1rem;
     }
 
-    .author-info {
-        flex-direction: column;
-        text-align: center;
+    .feature {
+        padding: 1.25rem;
+    }
+
+    .book-cover-container {
+        max-width: 300px;
     }
 }
 
@@ -2303,10 +2323,27 @@ body {
         padding: 1.5rem;
     }
 
+    .author-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
     .feature {
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+
+    .book-cover-container {
+        max-width: 250px;
+    }
+
+    .review blockquote {
+        font-size: 1rem;
+    }
+
+    .price {
+        font-size: 2rem;
     }
 }
 
