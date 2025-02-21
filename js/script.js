@@ -871,64 +871,131 @@ if (typeof module !== 'undefined' && module.exports) {
 // ===============================
 // BOOK SECTION
 // ===============================
-// Book Section Initialization
 function initBookSection() {
     const bookCover = document.querySelector('.book-cover');
     const features = document.querySelectorAll('.feature');
+    const bookPreview = document.querySelector('.book-preview');
+    
+    // Initialize AOS if available
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    }
 
-    // Handle mouse movement on book cover for 3D effect
+    // Handle book cover hover effects
     if (bookCover) {
         bookCover.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 991) return; // Disable on mobile
+            
             const { left, top, width, height } = bookCover.getBoundingClientRect();
             const x = (e.clientX - left) / width;
             const y = (e.clientY - top) / height;
             
-            const rotateY = -30 + (x * 15);
+            const rotateY = -20 + (x * 10); // Limit rotation range
             const rotateX = 5 - (y * 10);
             
             bookCover.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
         });
 
         bookCover.addEventListener('mouseleave', () => {
-            bookCover.style.transform = 'rotateY(-30deg) rotateX(0deg)';
+            if (window.innerWidth <= 991) return;
+            bookCover.style.transform = 'rotateY(-20deg) rotateX(5deg)';
         });
     }
 
-    // Initialize AOS animations if available
-    if (typeof AOS !== 'undefined') {
-        AOS.refresh();
-    }
-
-    // Handle scroll animations
+    // Handle scroll animations for book preview
     function handleScroll() {
-        const scrollPosition = window.scrollY;
-        const bookPreview = document.querySelector('.book-preview');
+        if (!bookPreview || window.innerWidth <= 991) return;
         
-        if (bookPreview) {
-            const bookRect = bookPreview.getBoundingClientRect();
-            if (bookRect.top < 120 && bookRect.bottom > window.innerHeight) {
-                bookPreview.style.transform = `translateY(${Math.min(scrollPosition * 0.1, 100)}px)`;
-            }
+        const scroll = window.pageYOffset;
+        const bookRect = bookPreview.getBoundingClientRect();
+        const maxScroll = 50; // Maximum pixels to move
+
+        if (bookRect.top <= 120) {
+            const scrolled = Math.min(scroll * 0.1, maxScroll);
+            bookPreview.style.transform = `translateY(${scrolled}px)`;
         }
     }
 
-    // Add scroll listener with debounce
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        if (scrollTimeout) {
-            window.cancelAnimationFrame(scrollTimeout);
-        }
-        scrollTimeout = window.requestAnimationFrame(handleScroll);
-    });
-
-    // Handle feature animations
+    // Feature hover effects
     features.forEach(feature => {
         feature.addEventListener('mouseenter', () => {
+            if (window.innerWidth <= 768) return;
             feature.style.transform = 'translateX(10px)';
         });
 
         feature.addEventListener('mouseleave', () => {
+            if (window.innerWidth <= 768) return;
             feature.style.transform = 'translateX(0)';
+        });
+    });
+
+    // Handle scroll events with requestAnimationFrame
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Reset transformations on mobile
+            if (window.innerWidth <= 991) {
+                if (bookCover) bookCover.style.transform = '';
+                if (bookPreview) bookPreview.style.transform = '';
+            }
+        }, 250);
+    });
+
+    // Initialize price format if needed
+    const priceElement = document.querySelector('.price');
+    if (priceElement) {
+        const formatPrice = (price) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(price);
+        };
+        
+        // Example: format price if it's not already formatted
+        const rawPrice = priceElement.textContent.replace('$', '');
+        if (!isNaN(rawPrice)) {
+            priceElement.textContent = formatPrice(parseFloat(rawPrice));
+        }
+    }
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Reset animations when tab is not visible
+            if (bookCover) bookCover.style.animationPlayState = 'paused';
+        } else {
+            if (bookCover) bookCover.style.animationPlayState = 'running';
+        }
+    });
+
+    // Add smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
     });
 }
