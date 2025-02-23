@@ -322,10 +322,12 @@ body {
 /* Hero Section Styles */
 .services-hero {
     position: relative;
-    min-height: 90vh;
-    padding: 120px 0 80px;
+    min-height: 100vh;
+    padding: 120px 0 40px; /* Reduced bottom padding */
     background-color: var(--royal-blue);
     overflow: hidden;
+    display: flex;
+    align-items: center; /* Center content vertically */
 }
 
 /* Sophisticated Background */
@@ -365,15 +367,16 @@ body {
 .hero-content {
     position: relative;
     z-index: 3;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px; /* Added padding for mobile */
 }
 
 .hero-text {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 60px; /* Reduced bottom margin */
     text-align: center;
-    margin-bottom: 80px;
 }
 
 .hero-tag {
@@ -387,6 +390,9 @@ body {
     border-radius: 30px;
     margin-bottom: 32px;
     box-shadow: 0 4px 15px var(--metallic-gold-glow);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards;
 }
 
 .hero-text h1 {
@@ -396,6 +402,9 @@ body {
     line-height: 1.3;
     margin-bottom: 24px;
     font-weight: 600;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards 0.2s;
 }
 
 .hero-text p {
@@ -404,6 +413,9 @@ body {
     line-height: 1.7;
     margin-bottom: 40px;
     font-weight: 300;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards 0.4s;
 }
 
 /* Call to Action Buttons */
@@ -412,6 +424,9 @@ body {
     gap: 24px;
     justify-content: center;
     margin-top: 40px;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards 0.6s;
 }
 
 .btn-primary, .btn-outline {
@@ -421,6 +436,7 @@ body {
     font-weight: 500;
     letter-spacing: 0.3px;
     transition: all 0.4s ease;
+    white-space: nowrap; /* Prevent button text from wrapping */
 }
 
 .btn-primary {
@@ -450,7 +466,10 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 80px;
+    margin-top: 60px; /* Reduced margin */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards 0.8s;
 }
 
 .highlight-card {
@@ -480,16 +499,20 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     font-weight: 300;
+    margin: 0; /* Remove default margin */
 }
 
-/* Scroll Indicator */
+/* Scroll Indicator - Repositioned and Restyled */
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 30px; /* Adjusted position */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     z-index: 3;
+    width: auto; /* Allow natural width */
+    opacity: 0;
+    animation: fadeIn 0.6s forwards 1s;
 }
 
 .scroll-indicator span {
@@ -497,12 +520,13 @@ body {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
     letter-spacing: 1px;
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* Reduced margin */
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .scroll-line {
     width: 1px;
-    height: 60px;
+    height: 40px; /* Reduced height */
     background: linear-gradient(
         to bottom,
         var(--metallic-gold) 0%,
@@ -510,6 +534,27 @@ body {
     );
     margin: 0 auto;
     animation: scrollLine 2s infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes scrollLine {
@@ -535,37 +580,40 @@ body {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-    .hero-content {
-        padding: 0 20px;
+    .services-hero {
+        padding: 100px 0 40px;
     }
 
     .hero-highlights {
         grid-template-columns: 1fr;
         max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 40px auto 0;
+        padding: 0 20px;
     }
 }
 
 @media (max-width: 768px) {
-    .services-hero {
-        padding: 100px 0 60px;
-    }
-
     .hero-cta {
         flex-direction: column;
         gap: 16px;
         max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 40px auto 0;
     }
 
     .highlight-card {
         padding: 30px;
     }
+
+    .scroll-indicator {
+        bottom: 20px;
+    }
 }
 
 @media (max-width: 480px) {
+    .services-hero {
+        padding: 80px 0 30px;
+    }
+
     .hero-tag {
         padding: 10px 24px;
         font-size: 0.9rem;
@@ -576,6 +624,12 @@ body {
     }
 
     .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary, .btn-outline {
+        padding: 14px 28px;
         font-size: 1rem;
     }
 }
