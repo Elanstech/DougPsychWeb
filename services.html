@@ -6,7 +6,7 @@
     <title>Professional Services - Dr. Doug Uhlig Psychological Services</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="Expert psychological care combining evidence-based therapies and innovative approaches for comprehensive mental health treatment">
+    <meta name="description" content="Evidence-based psychological services offering compassionate care and innovative treatment approaches">
     <meta name="keywords" content="psychological services, therapy, mental health, counseling, professional care">
     
     <!-- Fonts -->
@@ -14,24 +14,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Swiper.js -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Animation Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper for Elegant Sliding -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/services.css">
 </head>
 <body>
-    <!-- Header (Same as main page) -->
+    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="#" class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <div class="brand-logo-container">
-                        <img src="logo.png" alt="Dr. Doug Uhlig" class="brand-logo">
+                        <img src="./assets/logo.png" alt="Dr. Doug Uhlig" class="brand-logo">
                     </div>
                     <div class="brand-text">
                         <span class="brand-name">Dr. Doug Uhlig</span>
@@ -42,7 +41,7 @@
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="services.html" class="nav-link active">Services</a>
-                    <a href="teams.html" class="nav-link">Team</a>
+                    <a href="team.html" class="nav-link">Team</a>
                     <a href="contact.html" class="btn-consultation">Schedule Consultation</a>
                 </div>
                 <button class="nav-toggle" aria-label="Toggle Menu">
@@ -56,535 +55,221 @@
 
     <!-- Hero Section -->
     <section class="services-hero">
+        <div class="hero-gradient-overlay"></div>
         <div class="hero-content">
-            <h1 data-aos="fade-up">Professional Psychological Services</h1>
-            <p data-aos="fade-up" data-aos-delay="100">Comprehensive mental health care tailored to your individual needs</p>
-            <div class="hero-features" data-aos="fade-up" data-aos-delay="200">
-                <span class="feature">Evidence-Based Treatment</span>
-                <span class="feature">Personalized Care</span>
-                <span class="feature">Expert Practitioners</span>
+            <div class="container">
+                <div class="hero-text" data-aos="fade-up">
+                    <h1>Professional<br>Psychological Services</h1>
+                    <p>Comprehensive mental health care tailored to your individual needs</p>
+                </div>
+                <div class="hero-highlights" data-aos="fade-up" data-aos-delay="200">
+                    <div class="highlight">Evidence-Based Treatment</div>
+                    <div class="highlight">Personalized Care</div>
+                    <div class="highlight">Professional Excellence</div>
+                </div>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Explore Our Services</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- Service Overview -->
-    <section class="service-overview">
+    <!-- Services Overview -->
+    <section class="services-overview">
         <div class="container">
-            <div class="overview-grid">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Expertise</span>
+                <h2>Comprehensive Mental Health Services</h2>
+                <p>Discover our range of specialized psychological services designed to support your mental well-being</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid">
                 <!-- Depression & Mood Disorders -->
                 <div class="service-card" data-aos="fade-up">
                     <div class="service-content">
-                        <h2>Depression & Mood Disorders</h2>
-                        <div class="service-description">
-                            <p>Specialized treatment for various forms of depression and mood-related conditions, utilizing evidence-based approaches for lasting recovery.</p>
-                        </div>
-                        <div class="service-highlights">
-                            <span>Major Depressive Disorder</span>
-                            <span>Bipolar Disorder</span>
-                            <span>Persistent Depressive Disorder</span>
-                        </div>
-                        <a href="#depression-details" class="learn-more">View Treatment Details</a>
+                        <h3>Depression & Mood Disorders</h3>
+                        <p>Specialized treatment for various forms of depression and mood-related conditions.</p>
+                        <ul class="service-list">
+                            <li>Major Depressive Disorder</li>
+                            <li>Bipolar Disorder</li>
+                            <li>Persistent Depressive Disorder</li>
+                        </ul>
+                        <a href="#depression-details" class="service-link">Learn More</a>
                     </div>
                 </div>
 
                 <!-- Anxiety Treatment -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-content">
-                        <h2>Anxiety Treatment</h2>
-                        <div class="service-description">
-                            <p>Comprehensive anxiety management programs designed to help you overcome anxiety and develop lasting coping strategies.</p>
-                        </div>
-                        <div class="service-highlights">
-                            <span>Generalized Anxiety</span>
-                            <span>Panic Disorder</span>
-                            <span>Social Anxiety</span>
-                        </div>
-                        <a href="#anxiety-details" class="learn-more">View Treatment Details</a>
+                        <h3>Anxiety Treatment</h3>
+                        <p>Comprehensive anxiety management programs for lasting relief.</p>
+                        <ul class="service-list">
+                            <li>Generalized Anxiety</li>
+                            <li>Panic Disorder</li>
+                            <li>Social Anxiety</li>
+                        </ul>
+                        <a href="#anxiety-details" class="service-link">Learn More</a>
                     </div>
                 </div>
 
                 <!-- PTSD & Trauma -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-content">
-                        <h2>PTSD & Trauma Recovery</h2>
-                        <div class="service-description">
-                            <p>Specialized trauma-informed therapy utilizing advanced therapeutic techniques for healing and recovery.</p>
-                        </div>
-                        <div class="service-highlights">
-                            <span>Post-Traumatic Stress</span>
-                            <span>Complex Trauma</span>
-                            <span>Acute Stress Disorder</span>
-                        </div>
-                        <a href="#trauma-details" class="learn-more">View Treatment Details</a>
+                        <h3>PTSD & Trauma Recovery</h3>
+                        <p>Specialized trauma-informed therapy for healing and recovery.</p>
+                        <ul class="service-list">
+                            <li>Post-Traumatic Stress</li>
+                            <li>Complex Trauma</li>
+                            <li>Acute Stress Disorder</li>
+                        </ul>
+                        <a href="#trauma-details" class="service-link">Learn More</a>
                     </div>
                 </div>
 
                 <!-- Relationship Counseling -->
                 <div class="service-card" data-aos="fade-up">
                     <div class="service-content">
-                        <h2>Relationship Counseling</h2>
-                        <div class="service-description">
-                            <p>Expert guidance for couples and families seeking to strengthen their relationships and resolve conflicts.</p>
-                        </div>
-                        <div class="service-highlights">
-                            <span>Couples Therapy</span>
-                            <span>Family Counseling</span>
-                            <span>Communication Skills</span>
-                        </div>
-                        <a href="#relationship-details" class="learn-more">View Treatment Details</a>
+                        <h3>Relationship Counseling</h3>
+                        <p>Expert guidance for strengthening relationships and resolving conflicts.</p>
+                        <ul class="service-list">
+                            <li>Couples Therapy</li>
+                            <li>Family Counseling</li>
+                            <li>Communication Skills</li>
+                        </ul>
+                        <a href="#relationship-details" class="service-link">Learn More</a>
                     </div>
                 </div>
 
                 <!-- Mindfulness Programs -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-content">
-                        <h2>Mindfulness Programs</h2>
-                        <div class="service-description">
-                            <p>Learn and practice evidence-based mindfulness techniques for improved mental well-being and stress reduction.</p>
-                        </div>
-                        <div class="service-highlights">
-                            <span>Meditation Training</span>
-                            <span>Stress Management</span>
-                            <span>Present Awareness</span>
-                        </div>
-                        <a href="#mindfulness-details" class="learn-more">View Treatment Details</a>
+                        <h3>Mindfulness Programs</h3>
+                        <p>Evidence-based mindfulness techniques for improved well-being.</p>
+                        <ul class="service-list">
+                            <li>Meditation Training</li>
+                            <li>Stress Management</li>
+                            <li>Present Awareness</li>
+                        </ul>
+                        <a href="#mindfulness-details" class="service-link">Learn More</a>
                     </div>
                 </div>
 
                 <!-- Career Development -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-content">
-                        <h2>Career Development</h2>
-                        <div class="service-description">
-                            <p>Professional guidance for career transitions, workplace stress, and achieving professional growth.</p>
-                        </div>
-                        <div class="service-highlights">
-                            <span>Career Planning</span>
-                            <span>Work-Life Balance</span>
-                            <span>Professional Growth</span>
-                        </div>
-                        <a href="#career-details" class="learn-more">View Treatment Details</a>
+                        <h3>Career Development</h3>
+                        <p>Professional guidance for career transitions and growth.</p>
+                        <ul class="service-list">
+                            <li>Career Planning</li>
+                            <li>Work-Life Balance</li>
+                            <li>Professional Growth</li>
+                        </ul>
+                        <a href="#career-details" class="service-link">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Detailed Service Sections -->
-    <section id="detailed-services" class="detailed-services">
-        <!-- Depression Details -->
-        <div id="depression-details" class="service-detail">
-            <div class="container">
-                <div class="detail-content">
-                    <h2>Depression & Mood Disorders Treatment</h2>
-                    <div class="detail-introduction">
-                        <p>Our comprehensive approach to treating depression and mood disorders combines evidence-based therapies with personalized care to address your unique needs and circumstances.</p>
-                    </div>
-                    
-                    <div class="treatment-approach">
-                        <h3>Treatment Approach</h3>
-                        <div class="approach-grid">
-                            <div class="approach-item">
-                                <h4>Assessment & Diagnosis</h4>
-                                <p>Thorough evaluation of symptoms, history, and contributing factors to develop an accurate diagnosis and treatment plan.</p>
-                            </div>
-                            <div class="approach-item">
-                                <h4>Cognitive Behavioral Therapy</h4>
-                                <p>Identifying and modifying negative thought patterns and behaviors that contribute to depression.</p>
-                            </div>
-                            <div class="approach-item">
-                                <h4>Interpersonal Therapy</h4>
-                                <p>Addressing relationship issues and life transitions that may impact mood and emotional well-being.</p>
-                            </div>
-                            <div class="approach-item">
-                                <h4>Behavioral Activation</h4>
-                                <p>Engaging in positive activities and developing healthy routines to improve mood and energy levels.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="treatment-timeline">
-                        <h3>Treatment Process</h3>
-                        <div class="timeline-grid">
-                            <div class="timeline-item">
-                                <span class="phase">Phase 1</span>
-                                <h4>Initial Assessment</h4>
-                                <p>Comprehensive evaluation and treatment planning</p>
-                            </div>
-                            <div class="timeline-item">
-                                <span class="phase">Phase 2</span>
-                                <h4>Skill Building</h4>
-                                <p>Learning coping strategies and emotional regulation techniques</p>
-                            </div>
-                            <div class="timeline-item">
-                                <span class="phase">Phase 3</span>
-                                <h4>Active Treatment</h4>
-                                <p>Implementing therapeutic techniques and monitoring progress</p>
-                            </div>
-                            <div class="timeline-item">
-                                <span class="phase">Phase 4</span>
-                                <h4>Maintenance</h4>
-                                <p>Preventing relapse and maintaining improvements</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-      <!-- Anxiety Treatment Details -->
-<div id="anxiety-details" class="service-detail">
-    <div class="container">
-        <div class="detail-content">
-            <h2>Anxiety Treatment Program</h2>
-            <div class="detail-introduction">
-                <p>Our specialized anxiety treatment program combines proven therapeutic techniques with personalized strategies to help you manage anxiety and regain control of your life.</p>
-            </div>
-            
-            <div class="treatment-approach">
-                <h3>Treatment Approach</h3>
-                <div class="approach-grid">
-                    <div class="approach-item">
-                        <h4>Comprehensive Assessment</h4>
-                        <p>Detailed evaluation of anxiety patterns, triggers, and impact on daily functioning.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Exposure Therapy</h4>
-                        <p>Gradual exposure to anxiety-provoking situations in a safe, controlled environment.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Relaxation Techniques</h4>
-                        <p>Learning effective stress management and anxiety reduction strategies.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Cognitive Restructuring</h4>
-                        <p>Identifying and modifying anxious thought patterns and beliefs.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="treatment-timeline">
-                <h3>Treatment Process</h3>
-                <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <span class="phase">Phase 1</span>
-                        <h4>Assessment & Planning</h4>
-                        <p>Understanding your anxiety and developing targeted interventions</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 2</span>
-                        <h4>Coping Skills</h4>
-                        <p>Building practical anxiety management techniques</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 3</span>
-                        <h4>Exposure Work</h4>
-                        <p>Gradually facing fears with professional support</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 4</span>
-                        <h4>Relapse Prevention</h4>
-                        <p>Maintaining progress and preparing for future challenges</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- PTSD & Trauma Recovery Details -->
-<div id="trauma-details" class="service-detail">
-    <div class="container">
-        <div class="detail-content">
-            <h2>PTSD & Trauma Recovery Program</h2>
-            <div class="detail-introduction">
-                <p>Our trauma-informed therapy program provides a safe, supportive environment for healing from traumatic experiences using evidence-based approaches.</p>
-            </div>
-            
-            <div class="treatment-approach">
-                <h3>Treatment Approach</h3>
-                <div class="approach-grid">
-                    <div class="approach-item">
-                        <h4>Trauma Assessment</h4>
-                        <p>Careful evaluation of trauma history and its current impact on functioning.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>EMDR Therapy</h4>
-                        <p>Processing traumatic memories using bilateral stimulation techniques.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Trauma-Focused CBT</h4>
-                        <p>Addressing trauma-related thoughts and behaviors.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Emotional Regulation</h4>
-                        <p>Developing skills to manage trauma responses and triggers.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="treatment-timeline">
-                <h3>Treatment Process</h3>
-                <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <span class="phase">Phase 1</span>
-                        <h4>Safety & Stabilization</h4>
-                        <p>Establishing safety and building coping resources</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 2</span>
-                        <h4>Trauma Processing</h4>
-                        <p>Working through traumatic experiences at your pace</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 3</span>
-                        <h4>Integration</h4>
-                        <p>Integrating experiences and strengthening resilience</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 4</span>
-                        <h4>Post-Trauma Growth</h4>
-                        <p>Building a meaningful life beyond trauma</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Relationship Counseling Details -->
-<div id="relationship-details" class="service-detail">
-    <div class="container">
-        <div class="detail-content">
-            <h2>Relationship Counseling Program</h2>
-            <div class="detail-introduction">
-                <p>Our relationship counseling services help couples and families improve communication, resolve conflicts, and strengthen their connections.</p>
-            </div>
-            
-            <div class="treatment-approach">
-                <h3>Treatment Approach</h3>
-                <div class="approach-grid">
-                    <div class="approach-item">
-                        <h4>Relationship Assessment</h4>
-                        <p>Understanding relationship patterns and areas for growth.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Communication Skills</h4>
-                        <p>Developing effective listening and expression techniques.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Conflict Resolution</h4>
-                        <p>Learning constructive ways to handle disagreements.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Emotional Bonding</h4>
-                        <p>Strengthening emotional connection and intimacy.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="treatment-timeline">
-                <h3>Treatment Process</h3>
-                <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <span class="phase">Phase 1</span>
-                        <h4>Assessment</h4>
-                        <p>Understanding relationship dynamics and goals</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 2</span>
-                        <h4>Skill Building</h4>
-                        <p>Learning effective communication and conflict resolution</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 3</span>
-                        <h4>Implementation</h4>
-                        <p>Practicing new skills and patterns</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 4</span>
-                        <h4>Maintenance</h4>
-                        <p>Sustaining positive changes and growth</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Mindfulness Programs Details -->
-<div id="mindfulness-details" class="service-detail">
-    <div class="container">
-        <div class="detail-content">
-            <h2>Mindfulness & Meditation Program</h2>
-            <div class="detail-introduction">
-                <p>Our mindfulness programs teach practical techniques for stress reduction, emotional regulation, and enhanced well-being through present-moment awareness.</p>
-            </div>
-            
-            <div class="treatment-approach">
-                <h3>Treatment Approach</h3>
-                <div class="approach-grid">
-                    <div class="approach-item">
-                        <h4>Mindfulness Basics</h4>
-                        <p>Learning fundamental mindfulness principles and practices.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Meditation Techniques</h4>
-                        <p>Exploring various meditation styles and approaches.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Stress Reduction</h4>
-                        <p>Developing skills for managing stress and anxiety.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Daily Integration</h4>
-                        <p>Incorporating mindfulness into daily life.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="treatment-timeline">
-                <h3>Program Process</h3>
-                <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <span class="phase">Phase 1</span>
-                        <h4>Foundation</h4>
-                        <p>Introduction to mindfulness principles</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 2</span>
-                        <h4>Skill Development</h4>
-                        <p>Building meditation and mindfulness practices</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 3</span>
-                        <h4>Integration</h4>
-                        <p>Applying mindfulness in daily situations</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 4</span>
-                        <h4>Advanced Practice</h4>
-                        <p>Deepening awareness and presence</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Career Development Details -->
-<div id="career-details" class="service-detail">
-    <div class="container">
-        <div class="detail-content">
-            <h2>Career Development Program</h2>
-            <div class="detail-introduction">
-                <p>Our career development services help you navigate professional challenges, transitions, and growth opportunities while maintaining psychological well-being.</p>
-            </div>
-            
-            <div class="treatment-approach">
-                <h3>Treatment Approach</h3>
-                <div class="approach-grid">
-                    <div class="approach-item">
-                        <h4>Career Assessment</h4>
-                        <p>Evaluating professional goals, strengths, and challenges.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Stress Management</h4>
-                        <p>Developing strategies for workplace stress.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Professional Growth</h4>
-                        <p>Planning and implementing career advancement strategies.</p>
-                    </div>
-                    <div class="approach-item">
-                        <h4>Work-Life Balance</h4>
-                        <p>Creating sustainable professional and personal harmony.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="treatment-timeline">
-                <h3>Program Process</h3>
-                <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <span class="phase">Phase 1</span>
-                        <h4>Assessment</h4>
-                        <p>Understanding career goals and challenges</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 2</span>
-                        <h4>Strategy Development</h4>
-                        <p>Creating action plans for career growth</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 3</span>
-                        <h4>Implementation</h4>
-                        <p>Taking steps toward career objectives</p>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="phase">Phase 4</span>
-                        <h4>Optimization</h4>
-                        <p>Refining strategies and maintaining progress</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    </section>
-
-    <!-- Treatment Process Overview -->
+    <!-- Treatment Process -->
     <section class="treatment-process">
         <div class="container">
-            <h2>Our Treatment Process</h2>
-            <div class="process-grid">
-                <div class="process-step" data-aos="fade-up">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Approach</span>
+                <h2>Treatment Process</h2>
+                <p>A structured, evidence-based approach to mental health care</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="timeline-item" data-aos="fade-up">
                     <span class="step-number">01</span>
-                    <h3>Initial Consultation</h3>
-                    <p>A comprehensive assessment to understand your needs and develop a personalized treatment plan.</p>
+                    <div class="timeline-content">
+                        <h3>Initial Consultation</h3>
+                        <p>Comprehensive assessment of your needs and goals</p>
+                    </div>
                 </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
                     <span class="step-number">02</span>
-                    <h3>Treatment Planning</h3>
-                    <p>Collaborative development of treatment goals and therapeutic approaches.</p>
+                    <div class="timeline-content">
+                        <h3>Treatment Planning</h3>
+                        <p>Development of personalized therapeutic strategies</p>
+                    </div>
                 </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                     <span class="step-number">03</span>
-                    <h3>Active Treatment</h3>
-                    <p>Implementation of evidence-based therapeutic techniques and regular progress monitoring.</p>
+                    <div class="timeline-content">
+                        <h3>Active Treatment</h3>
+                        <p>Implementation of evidence-based therapeutic techniques</p>
+                    </div>
                 </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
                     <span class="step-number">04</span>
-                    <h3>Progress Review</h3>
-                    <p>Regular assessment of treatment effectiveness and adjustments as needed.</p>
+                    <div class="timeline-content">
+                        <h3>Progress Review</h3>
+                        <p>Regular assessment and treatment adjustment</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Insurance & Payment -->
-    <section class="insurance-payment">
+    <!-- Insurance Section -->
+    <section class="insurance-section">
         <div class="container">
-            <h2>Insurance & Payment Options</h2>
-            <div class="payment-info">
-                <div class="insurance-list">
-                    <h3>Accepted Insurance Plans</h3>
-                    <ul>
-                        <li>Blue Cross Blue Shield</li>
-                        <li>Aetna</li>
-                        <li>Cigna</li>
-                        <li>United Healthcare</li>
-                        <li>Medicare</li>
-                    </ul>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Insurance & Payment</span>
+                <h2>Accepted Insurance Plans</h2>
+                <p>We work with major insurance providers to make quality care accessible</p>
+            </div>
+
+            <div class="insurance-grid">
+                <!-- Insurance Logos -->
+                <div class="insurance-logo" data-aos="fade-up">
+                    <img src="https://companieslogo.com/img/orig/ANTM_BIG-20f12119.png?t=1633510137" alt="Blue Cross Blue Shield" class="insurance-image">
+                    <span class="insurance-name">Blue Cross Blue Shield</span>
                 </div>
+
+                <div class="insurance-logo" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://companieslogo.com/img/orig/AET-54a1b754.png?t=1633218227" alt="Aetna" class="insurance-image">
+                    <span class="insurance-name">Aetna</span>
+                </div>
+
+                <div class="insurance-logo" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://companieslogo.com/img/orig/CI-b3fc5cc7.png?t=1633496769" alt="Cigna" class="insurance-image">
+                    <span class="insurance-name">Cigna</span>
+                </div>
+
+                <div class="insurance-logo" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://companieslogo.com/img/orig/UNH-8b1d256d.png?t=1633077015" alt="United Healthcare" class="insurance-image">
+                    <span class="insurance-name">United Healthcare</span>
+                </div>
+
+                <div class="insurance-logo" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Medicare_logo.svg/1200px-Medicare_logo.svg.png" alt="Medicare" class="insurance-image">
+                    <span class="insurance-name">Medicare</span>
+                </div>
+            </div>
+
+            <div class="payment-info" data-aos="fade-up">
+                <h3>Additional Payment Options</h3>
                 <div class="payment-options">
-                    <h3>Payment Methods</h3>
-                    <ul>
-                        <li>Major Credit Cards</li>
-                        <li>HSA/FSA Cards</li>
-                        <li>Private Pay Options</li>
-                        <li>Sliding Scale Fees</li>
-                    </ul>
+                    <div class="payment-option">
+                        <span class="option-label">Credit Cards</span>
+                        <p>All major credit cards accepted</p>
+                    </div>
+                    <div class="payment-option">
+                        <span class="option-label">HSA/FSA</span>
+                        <p>Health Savings Account & Flexible Spending Account</p>
+                    </div>
+                    <div class="payment-option">
+                        <span class="option-label">Sliding Scale</span>
+                        <p>Income-based fee options available</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -593,7 +278,7 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-content">
+            <div class="cta-content" data-aos="fade-up">
                 <h2>Begin Your Journey to Well-being</h2>
                 <p>Take the first step towards positive change with professional support</p>
                 <div class="cta-buttons">
@@ -604,7 +289,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <!-- Footer -->
 <footer class="footer">
     <div class="footer-top">
@@ -706,11 +390,11 @@
         </a>
     </div>
 </div>
-
+   
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./js/script.js"></script>
-    <script src="./js/services.js"></script>
+    <div class="elfsight-app-a0f80401-4b4a-460e-88ba-707b6bb46e8c" data-elfsight-app-lazy></div>
 </body>
 </html>
