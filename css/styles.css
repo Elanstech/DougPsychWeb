@@ -1132,13 +1132,13 @@ body {
 }
 
 /* Section Header Styles */
-.services .section-header {
+.section-header {
     text-align: center;
-    margin-bottom: 3rem; /* Reduced from 4rem to move content up */
-    padding-top: 1rem; /* Added to move section tag and title up */
+    margin-bottom: 4rem;
+    padding: 0 1rem;
 }
 
-.services .section-tag {
+.section-tag {
     display: inline-block;
     padding: 0.75rem 2rem;
     background: var(--gold-gradient-metallic);
@@ -1148,7 +1148,7 @@ body {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     box-shadow: 0 4px 15px rgba(180, 155, 87, 0.2);
     transition: all 0.3s ease;
 }
@@ -1162,7 +1162,7 @@ body {
     color: var(--royal-blue); /* Changed from white to royal blue */
     font-family: var(--font-heading);
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
     font-weight: 700;
     text-shadow: none; /* Removed text shadow since it's no longer on white */
