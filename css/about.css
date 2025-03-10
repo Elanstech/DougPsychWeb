@@ -259,6 +259,14 @@ img {
   right: 0;
 }
 
+.story-section .section-title,
+.approach-section .section-title,
+.testimonials-section .section-title {
+  color: var(--royal-blue);
+  font-weight: 800;
+  text-shadow: none;
+}
+
 .hero-title {
   display: flex;
   flex-direction: column;
