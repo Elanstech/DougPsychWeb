@@ -277,6 +277,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%; /* Adjusted to show faces better */
     transition: transform 0.5s ease;
 }
 
@@ -421,13 +422,29 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 25%; /* Adjusted to position faces consistently */
 }
 
 .modal-info {
     padding: 3rem;
     overflow-y: auto;
     max-height: 600px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--metallic-gold) #f1f1f1;
+}
+
+.modal-info::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-info::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.modal-info::-webkit-scrollbar-thumb {
+    background: var(--metallic-gold);
+    border-radius: 10px;
 }
 
 .modal-info h2 {
@@ -484,6 +501,11 @@
     color: var(--text-medium);
     font-size: 1rem;
     line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.modal-section p:last-child {
+    margin-bottom: 0;
 }
 
 .expertise-list, .credentials-list {
