@@ -387,7 +387,9 @@
     position: relative;
 }
 
-.section-title {
+.section-title,
+.insurance-section .section-title,
+.faq-section .section-title {
     font-size: 2.5rem;
     color: var(--primary-blue);
     font-family: 'Playfair Display', serif;
