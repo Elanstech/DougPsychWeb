@@ -286,7 +286,9 @@
     position: relative;
 }
 
-.section-title {
+.section-title,
+.success-stories .section-title,
+.what-to-expect .section-title {
     font-size: 2.5rem;
     color: var(--primary-blue);
     font-family: 'Playfair Display', serif;
