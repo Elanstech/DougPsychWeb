@@ -20,6 +20,7 @@ const initializeServicesPage = () => {
     initializeSmoothScroll();
     handleScrollEffects();
     handleNavigation();
+    initializeAdditionalServices();
 };
 
 // Initialize AOS animations
@@ -37,9 +38,38 @@ const initializeAOS = () => {
 const initializeServicesHero = () => {
     const hero = document.querySelector('.services-hero');
     const heroContent = document.querySelector('.hero-content');
+    const heroCard = document.querySelector('.hero-card');
+    const heroFeatures = document.querySelectorAll('.hero-feature');
     const scrollIndicator = document.querySelector('.scroll-indicator');
     
     if (!hero || !heroContent) return;
+
+    // Add initial animation for hero elements
+    setTimeout(() => {
+        if (heroCard) {
+            heroCard.style.opacity = '0';
+            heroCard.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                heroCard.style.transition = 'all 0.8s ease';
+                heroCard.style.opacity = '1';
+                heroCard.style.transform = 'translateY(0)';
+            }, 500);
+        }
+        
+        if (heroFeatures.length > 0) {
+            heroFeatures.forEach((feature, index) => {
+                feature.style.opacity = '0';
+                feature.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    feature.style.transition = 'all 0.5s ease';
+                    feature.style.opacity = '1';
+                    feature.style.transform = 'translateY(0)';
+                }, 200 * (index + 1));
+            });
+        }
+    }, 300);
 
     // Subtle parallax effect on scroll
     window.addEventListener('scroll', () => {
@@ -56,17 +86,14 @@ const initializeServicesHero = () => {
         
         // Apply parallax effect to hero content
         heroContent.style.transform = `translateY(${rate}px)`;
+        
+        // Animate header on scroll
+        if (scrolled > 50) {
+            document.querySelector('.header').classList.add('scrolled');
+        } else {
+            document.querySelector('.header').classList.remove('scrolled');
+        }
     });
-
-    // Add initial animation classes
-    setTimeout(() => {
-        const highlights = document.querySelectorAll('.highlight-card');
-        highlights.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add('animated');
-            }, 300 * index);
-        });
-    }, 500);
 };
 
 // Initialize service features interactions
@@ -79,6 +106,7 @@ const initializeServiceFeatures = () => {
         const image = feature.querySelector('.service-image');
         const details = feature.querySelector('.service-details');
         const benefits = feature.querySelectorAll('.benefit');
+        const stats = feature.querySelectorAll('.stat');
         
         // Add hover interactions for benefits
         benefits.forEach(benefit => {
@@ -87,6 +115,26 @@ const initializeServiceFeatures = () => {
                 benefit.classList.add('active');
             });
         });
+        
+        // Add hover effects for stats
+        if (stats.length > 0) {
+            stats.forEach(stat => {
+                stat.addEventListener('mouseenter', () => {
+                    const number = stat.querySelector('.stat-number');
+                    if (number) {
+                        number.style.transform = 'scale(1.1)';
+                        number.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                stat.addEventListener('mouseleave', () => {
+                    const number = stat.querySelector('.stat-number');
+                    if (number) {
+                        number.style.transform = 'scale(1)';
+                    }
+                });
+            });
+        }
         
         // Add scroll animations
         window.addEventListener('scroll', () => {
@@ -102,6 +150,51 @@ const initializeServiceFeatures = () => {
                         benefit.classList.add('animated');
                     }, 200 * index);
                 });
+                
+                // Animate stats
+                if (stats.length > 0) {
+                    stats.forEach((stat, index) => {
+                        setTimeout(() => {
+                            stat.classList.add('animated');
+                            
+                            // Animate number counting
+                            const number = stat.querySelector('.stat-number');
+                            if (number) {
+                                const targetValue = number.innerText;
+                                const isPercentage = targetValue.includes('%');
+                                let value = 0;
+                                let finalValue = parseInt(targetValue.replace(/\D/g, ''));
+                                
+                                // Handle ranges like "6-12"
+                                if (targetValue.includes('-')) {
+                                    const range = targetValue.split('-');
+                                    finalValue = parseInt(range[0]);
+                                }
+                                
+                                // Special case for "100%" to make animation faster
+                                const increment = finalValue === 100 ? 5 : 1;
+                                
+                                const animateCounter = setInterval(() => {
+                                    value += increment;
+                                    
+                                    if (value >= finalValue) {
+                                        value = finalValue;
+                                        clearInterval(animateCounter);
+                                    }
+                                    
+                                    // Handle special formats
+                                    if (targetValue.includes('-')) {
+                                        number.innerText = targetValue;
+                                    } else if (isPercentage) {
+                                        number.innerText = value + '%';
+                                    } else {
+                                        number.innerText = value;
+                                    }
+                                }, 30);
+                            }
+                        }, 300 * index);
+                    });
+                }
             }
         });
     });
@@ -158,13 +251,37 @@ const handleServiceCardLeave = (e) => {
     card.classList.remove('hovered');
 };
 
+// Initialize additional services interactions
+const initializeAdditionalServices = () => {
+    const servicePoints = document.querySelectorAll('.service-points li');
+    
+    if (servicePoints.length === 0) return;
+    
+    servicePoints.forEach(point => {
+        point.addEventListener('mouseenter', () => {
+            point.style.transform = 'translateX(5px)';
+            point.style.color = 'var(--royal-blue)';
+            point.style.transition = 'all 0.3s ease';
+        });
+        
+        point.addEventListener('mouseleave', () => {
+            point.style.transform = 'translateX(0)';
+            point.style.color = 'var(--text-medium)';
+        });
+    });
+};
+
 // Initialize journey steps animations
 const initializeJourneySteps = () => {
     const journeySteps = document.querySelectorAll('.journey-step');
     
     if (journeySteps.length === 0) return;
     
-    journeySteps.forEach(step => {
+    journeySteps.forEach((step, index) => {
+        // Add initial state
+        step.style.opacity = '0';
+        step.style.transform = 'translateY(30px)';
+        
         // Add scroll animations
         window.addEventListener('scroll', () => {
             const stepTop = step.getBoundingClientRect().top;
@@ -173,10 +290,17 @@ const initializeJourneySteps = () => {
             if (stepTop < windowHeight * 0.75) {
                 step.classList.add('in-view');
                 
-                // Animate content with delay
+                // Staggered animation
                 setTimeout(() => {
-                    step.classList.add('content-visible');
-                }, 300);
+                    step.style.transition = 'all 0.6s ease';
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateY(0)';
+                    
+                    // Animate content with delay
+                    setTimeout(() => {
+                        step.classList.add('content-visible');
+                    }, 300);
+                }, 200 * index);
             }
         });
     });
@@ -192,13 +316,13 @@ const initializeTestimonials = () => {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
         autoplay: {
             delay: 5000,
             disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
         breakpoints: {
             768: {
@@ -217,19 +341,35 @@ const initializeTestimonials = () => {
 const initializeSmoothScroll = () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            const target = document.querySelector(anchor.getAttribute('href'));
-            
-            if (target) {
-                const headerOffset = 100;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            if (anchor.getAttribute('href') !== '#') {
+                e.preventDefault();
+                
+                const target = document.querySelector(anchor.getAttribute('href'));
+                
+                if (target) {
+                    const headerOffset = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const navMenu = document.querySelector('.nav-menu');
+                    const navToggle = document.querySelector('.nav-toggle');
+                    
+                    if (navMenu && navToggle && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        
+                        const spans = navToggle.querySelectorAll('span');
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    }
+                }
             }
         });
     });
@@ -297,18 +437,6 @@ const handleNavigation = () => {
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
-        
-        // Add animation to toggle spans
-        const spans = navToggle.querySelectorAll('span');
-        if (navToggle.classList.contains('active')) {
-            spans[0].style.transform = 'translateY(8px) rotate(45deg)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
     });
     
     // Close menu when clicking outside
@@ -316,11 +444,6 @@ const handleNavigation = () => {
         if (!navToggle.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
-            
-            const spans = navToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
         }
     });
     
@@ -329,11 +452,6 @@ const handleNavigation = () => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
-            
-            const spans = navToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
         });
     });
 };
@@ -360,11 +478,6 @@ window.addEventListener('resize', () => {
             if (navMenu && navToggle) {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
-                
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
             }
         }
     }, 250);
@@ -380,6 +493,25 @@ window.addEventListener('load', () => {
                 img.style.transition = 'opacity 0.5s ease';
                 img.style.opacity = '1';
             };
+        }
+    });
+    
+    // Initialize animations for elements already in viewport
+    const elementsToAnimate = document.querySelectorAll('.service-feature, .journey-step, .service-card, .benefit');
+    elementsToAnimate.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+            element.classList.add('in-view');
+            
+            // For benefit elements inside in-view service features
+            if (element.classList.contains('service-feature')) {
+                const benefits = element.querySelectorAll('.benefit');
+                benefits.forEach((benefit, index) => {
+                    setTimeout(() => {
+                        benefit.classList.add('animated');
+                    }, 200 * index);
+                });
+            }
         }
     });
 });
