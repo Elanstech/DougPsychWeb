@@ -1129,6 +1129,8 @@ body {
     margin: 0 auto;
     padding: 0 2rem;
     box-sizing: border-box;
+    /* This is the key change to move content up */
+    margin-top: -180px; 
 }
 
 /* Section Header Styles */
@@ -1159,22 +1161,32 @@ body {
 }
 
 .services .section-header h2 {
-    color: var(--royal-blue); /* Changed from white to royal blue */
+    color: var(--royal-blue);
     font-family: var(--font-heading);
     font-size: 3rem;
     margin-bottom: 1.5rem;
     line-height: 1.2;
     font-weight: 700;
-    text-shadow: none; /* Removed text shadow since it's no longer on white */
+    text-shadow: none;
+    /* Add a background to make text more readable against the image */
+    background-color: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
 }
 
 .services .section-header p {
-    color: var(--text-medium); /* Changed to medium text color for better readability */
+    color: var(--text-medium);
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
     font-weight: 400;
+    /* Add a background to make text more readable against the image */
+    background-color: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
 }
 
 /* Services Carousel Wrapper */
@@ -1387,6 +1399,7 @@ body {
 @media screen and (max-width: 1199px) {
     .services .container {
         max-width: 960px;
+        margin-top: -160px; /* Adjust for smaller screens */
     }
 
     .service-card {
@@ -1411,6 +1424,7 @@ body {
 
     .services .container {
         max-width: 720px;
+        margin-top: -140px; /* Adjust for tablets */
     }
 
     .service-card {
@@ -1436,6 +1450,7 @@ body {
     .services .container {
         max-width: 540px;
         padding: 0 1.5rem;
+        margin-top: -120px; /* Adjust for mobile */
     }
 
     .service-card {
@@ -1467,6 +1482,7 @@ body {
 
     .services .container {
         padding: 0 1rem;
+        margin-top: -100px; /* Adjust for small mobile */
     }
 
     .section-header {
@@ -1519,6 +1535,10 @@ body {
         padding: 2.5rem 0;
     }
 
+    .services .container {
+        margin-top: -80px; /* Adjust for very small mobile */
+    }
+
     .service-card {
         padding: 1.25rem;
         min-height: 350px;
@@ -1538,6 +1558,10 @@ body {
     .services {
         min-height: auto;
         padding: 4rem 0;
+    }
+
+    .services .container {
+        margin-top: -120px; /* Adjust for landscape */
     }
 
     .service-card {
