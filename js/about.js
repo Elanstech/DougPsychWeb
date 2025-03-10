@@ -5,14 +5,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Main initialization function
 function initializeAboutPage() {
+    // Core functions
     initHeader();
     initMobileNav();
     initScrollAnimations();
-    initParallax();
+    initHoverEffects();
+    
+    // Section-specific initializations
+    initStorySection();
+    initPhilosophySection();
+    initApproachSection();
+    initTimelineSection();
+    initTestimonialsSection();
+    
+    // Utilities
+    initSmoothScroll();
+    initLazyLoading();
     initBackToTop();
-    initTimelineScrollEffect();
-    initContentBlockAnimations();
-    initValueCards();
     initVideoBackground();
 }
 
@@ -88,16 +97,19 @@ function initMobileNav() {
 ====================================== */
 function initScrollAnimations() {
     // Initialize AOS
-    AOS.init({
-        duration: 1000,
-        easing: 'ease-out',
-        once: true,
-        offset: 100,
-        disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    });
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out',
+            once: true,
+            offset: 100,
+            disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        });
+    }
 
-    // Custom animations for timeline items
-    const timelineItems = document.querySelectorAll('.timeline-item');
+    // Custom animations for elements not using AOS
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
     const observerOptions = {
         threshold: 0.2,
         rootMargin: '0px'
@@ -106,35 +118,338 @@ function initScrollAnimations() {
     const observerCallback = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateX(0)';
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
             }
         });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    timelineItems.forEach((item, index) => {
+    animatedElements.forEach((element) => {
+        observer.observe(element);
+    });
+}
+
+/* ======================================
+   HOVER EFFECTS
+====================================== */
+function initHoverEffects() {
+    // Philosophy cards hover effect
+    const philosophyCards = document.querySelectorAll('.philosophy-card');
+    philosophyCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.2)';
+                card.style.background = 'rgba(255, 255, 255, 0.15)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+                card.style.background = '';
+            }
+        });
+    });
+
+    // Approach cards hover effect
+    const approachCards = document.querySelectorAll('.approach-card');
+    approachCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            }
+        });
+    });
+
+    // Testimonial cards hover effect
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    testimonialCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            }
+        });
+    });
+}
+
+/* ======================================
+   STORY SECTION
+====================================== */
+function initStorySection() {
+    // Image hover effect
+    const storyImage = document.querySelector('.story-image img');
+    const imageFrame = document.querySelector('.image-frame');
+    
+    if (storyImage && imageFrame) {
+        imageFrame.addEventListener('mouseenter', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                storyImage.style.transform = 'scale(1.03)';
+            }
+        });
+        
+        imageFrame.addEventListener('mouseleave', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                storyImage.style.transform = '';
+            }
+        });
+    }
+
+    // Milestone animations
+    const milestoneItems = document.querySelectorAll('.milestone-item');
+    
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('fade-in');
+                }, index * 200);
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    milestoneItems.forEach((item) => {
         item.style.opacity = '0';
-        item.style.transform = index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)';
-        item.style.transition = 'all 0.6s ease';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(item);
     });
 }
 
 /* ======================================
-   PARALLAX EFFECT
+   PHILOSOPHY SECTION
 ====================================== */
-function initParallax() {
-    const parallaxSections = document.querySelectorAll('.parallax-background');
+function initPhilosophySection() {
+    // Quote animation
+    const philosophyQuote = document.querySelector('.philosophy-quote');
     
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.addEventListener('scroll', () => {
-            parallaxSections.forEach(section => {
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * 0.5;
-                section.style.transform = `translateY(${rate}px)`;
+    if (philosophyQuote) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    philosophyQuote.classList.add('fade-in');
+                    observer.unobserve(philosophyQuote);
+                }
             });
+        }, { threshold: 0.2 });
+        
+        observer.observe(philosophyQuote);
+    }
+
+    // Card staggered animations
+    const philosophyCards = document.querySelectorAll('.philosophy-card');
+    
+    const cardsObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            philosophyCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 200);
+            });
+            cardsObserver.unobserve(entries[0].target);
+        }
+    }, { threshold: 0.1 });
+    
+    if (philosophyCards.length > 0) {
+        cardsObserver.observe(document.querySelector('.philosophy-cards'));
+    }
+}
+
+/* ======================================
+   APPROACH SECTION
+====================================== */
+function initApproachSection() {
+    // List item hover effects
+    const listItems = document.querySelectorAll('.approach-list li');
+    listItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                item.style.transform = 'translateX(10px)';
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                item.style.transform = '';
+            }
+        });
+    });
+
+    // Environment feature hover effects
+    const envFeatures = document.querySelectorAll('.env-feature');
+    envFeatures.forEach(feature => {
+        feature.addEventListener('mouseenter', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                feature.style.transform = 'translateY(-5px)';
+            }
+        });
+        
+        feature.addEventListener('mouseleave', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                feature.style.transform = '';
+            }
+        });
+    });
+
+    // Method item hover effects
+    const methodItems = document.querySelectorAll('.method-item');
+    methodItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                item.style.transform = 'translateY(-5px)';
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                item.style.transform = '';
+            }
+        });
+    });
+}
+
+/* ======================================
+   TIMELINE SECTION
+====================================== */
+function initTimelineSection() {
+    // Timeline step animations
+    const timelineSteps = document.querySelectorAll('.process-step');
+    
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px'
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 200);
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    timelineSteps.forEach((step) => {
+        step.style.opacity = '0';
+        step.style.transform = 'translateY(20px)';
+        step.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(step);
+    });
+
+    // Icon pulse animation
+    const stepIcons = document.querySelectorAll('.step-icon');
+    stepIcons.forEach(icon => {
+        // Only apply animations if reduced motion is not preferred
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            // Apply animation
+        }
+    });
+}
+
+/* ======================================
+   TESTIMONIALS SECTION
+====================================== */
+function initTestimonialsSection() {
+    // Testimonial card animations
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            testimonialCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 200);
+            });
+            observer.unobserve(entries[0].target);
+        }
+    }, { threshold: 0.1 });
+    
+    if (testimonialCards.length > 0) {
+        observer.observe(document.querySelector('.testimonials-grid'));
+    }
+}
+
+/* ======================================
+   SMOOTH SCROLL
+====================================== */
+function initSmoothScroll() {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100, // Adjust for header
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+/* ======================================
+   LAZY LOADING
+====================================== */
+function initLazyLoading() {
+    // Lazy load images
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
         });
     }
 }
@@ -143,19 +458,47 @@ function initParallax() {
    BACK TO TOP BUTTON
 ====================================== */
 function initBackToTop() {
-    const backToTop = document.getElementById('backToTop');
-    if (!backToTop) return;
+    // Create back to top button if it doesn't exist
+    let backToTop = document.getElementById('backToTop');
+    
+    if (!backToTop) {
+        backToTop = document.createElement('button');
+        backToTop.id = 'backToTop';
+        backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTop.style.position = 'fixed';
+        backToTop.style.bottom = '20px';
+        backToTop.style.right = '20px';
+        backToTop.style.zIndex = '99';
+        backToTop.style.display = 'none';
+        backToTop.style.padding = '10px 15px';
+        backToTop.style.borderRadius = '50%';
+        backToTop.style.background = 'var(--gold-gradient-metallic)';
+        backToTop.style.color = 'white';
+        backToTop.style.border = 'none';
+        backToTop.style.cursor = 'pointer';
+        backToTop.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
+        backToTop.style.transition = 'all 0.3s ease';
+        
+        document.body.appendChild(backToTop);
+    }
 
+    // Show/hide button based on scroll position
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 500) {
-            backToTop.classList.add('visible');
+        if (window.pageYOffset > 300) {
+            backToTop.style.display = 'block';
+            backToTop.style.opacity = '1';
         } else {
-            backToTop.classList.remove('visible');
+            backToTop.style.opacity = '0';
+            setTimeout(() => {
+                if (window.pageYOffset <= 300) {
+                    backToTop.style.display = 'none';
+                }
+            }, 300);
         }
     });
 
-    backToTop.addEventListener('click', (e) => {
-        e.preventDefault();
+    // Scroll to top when button is clicked
+    backToTop.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -164,85 +507,7 @@ function initBackToTop() {
 }
 
 /* ======================================
-   TIMELINE SCROLL EFFECT
-====================================== */
-function initTimelineScrollEffect() {
-    const timeline = document.querySelector('.journey-timeline');
-    if (!timeline) return;
-
-    const entries = timeline.querySelectorAll('.timeline-entry');
-    
-    const options = {
-        root: null,
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
-
-    entries.forEach(entry => {
-        observer.observe(entry);
-    });
-}
-
-/* ======================================
-   CONTENT BLOCK ANIMATIONS
-====================================== */
-function initContentBlockAnimations() {
-    const blocks = document.querySelectorAll('.philosophy-card, .value-card');
-    
-    const options = {
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
-
-    blocks.forEach(block => {
-        observer.observe(block);
-    });
-}
-
-/* ======================================
-   VALUE CARDS INTERACTION
-====================================== */
-function initValueCards() {
-    const cards = document.querySelectorAll('.value-card');
-    
-    cards.forEach(card => {
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-
-            // Touch support for mobile
-            card.addEventListener('touchstart', () => {
-                card.classList.toggle('flipped');
-            });
-        }
-    });
-}
-
-/* ======================================
-   VIDEO BACKGROUND HANDLING
+   VIDEO BACKGROUND
 ====================================== */
 function initVideoBackground() {
     const videoWrapper = document.querySelector('.video-background');
@@ -294,107 +559,68 @@ function initVideoBackground() {
     // Initial check
     handleMobileVideo();
 }
-function initHeroAnimations() {
-    // Initialize AOS
-    AOS.init({
-        duration: 1000,
-        easing: 'ease-out',
-        once: true,
-        offset: 100,
-        disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    });
 
-    // Add smooth reveal for features
-    const features = document.querySelectorAll('.feature');
-    features.forEach((feature, index) => {
-        feature.style.transitionDelay = `${index * 0.1}s`;
-    });
+/* ======================================
+   UTILITY FUNCTIONS
+====================================== */
+// Debounce function to limit function calls
+function debounce(func, wait = 20) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        const later = function() {
+            timeout = null;
+            func.apply(context, args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Add class with delay
+function addClassWithDelay(element, className, delay) {
+    setTimeout(() => {
+        element.classList.add(className);
+    }, delay);
 }
 
 // Handle reduced motion preference
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-prefersReducedMotion.addEventListener('change', () => {
-    if (prefersReducedMotion.matches) {
-        if (typeof AOS !== 'undefined') {
-            AOS.init({ disable: true });
-        }
-    } else {
-        if (typeof AOS !== 'undefined') {
-            AOS.init({
-                disable: false,
-                duration: 1000,
-                easing: 'ease-out',
-                once: true,
-                offset: 100
-            });
+function handleReducedMotion() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    function setReducedMotion(reduced) {
+        const root = document.documentElement;
+        if (reduced) {
+            root.classList.add('reduced-motion');
+        } else {
+            root.classList.remove('reduced-motion');
         }
     }
-});
-
-/* ======================================
-   IMAGE LOADING OPTIMIZATION
-====================================== */
-function handleImageLoad(img) {
-    img.style.opacity = '1';
-    const frame = img.closest('.image-frame');
-    if (frame) {
-        frame.classList.add('image-loaded');
-    }
-}
-
-document.querySelectorAll('img').forEach(img => {
-    if (img.complete) {
-        handleImageLoad(img);
-    } else {
-        img.addEventListener('load', () => handleImageLoad(img));
-    }
-    img.addEventListener('error', () => {
-        img.src = 'placeholder.jpg'; // Fallback image
-        console.error('Error loading image:', img.src);
-    });
-});
-
-/* ======================================
-   PERFORMANCE OPTIMIZATION
-====================================== */
-// Handle window resize events
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        if (typeof AOS !== 'undefined') {
-            AOS.refresh();
-        }
-    }, 250);
-});
-
-// Handle reduced motion preference
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-prefersReducedMotion.addEventListener('change', () => {
-    if (prefersReducedMotion.matches) {
-        // Disable animations
-        if (typeof AOS !== 'undefined') {
-            AOS.init({ disable: true });
-        }
+    
+    setReducedMotion(prefersReducedMotion.matches);
+    
+    prefersReducedMotion.addEventListener('change', () => {
+        setReducedMotion(prefersReducedMotion.matches);
         
-        // Remove parallax effect
-        const parallaxSections = document.querySelectorAll('.parallax-background');
-        parallaxSections.forEach(section => {
-            section.style.transform = 'none';
-        });
-    } else {
-        // Re-enable animations
         if (typeof AOS !== 'undefined') {
-            AOS.init({
-                disable: false,
-                duration: 1000,
-                easing: 'ease-out',
-                once: true,
-                offset: 100
-            });
+            if (prefersReducedMotion.matches) {
+                AOS.init({ disable: true });
+            } else {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-out',
+                    once: true,
+                    offset: 100,
+                    disable: false
+                });
+            }
         }
-    }
-});
+    });
+}
+
+// Initialize the reduced motion handler
+handleReducedMotion();
 
 // Export if using modules
 if (typeof module !== 'undefined' && module.exports) {
