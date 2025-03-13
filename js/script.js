@@ -324,12 +324,12 @@ function initServices() {
     // Initialize Swiper
     const servicesSwiper = new Swiper('.services-carousel', {
         // Basic settings
-        slidesPerView: 1,
+        slidesPerView: 3, // Default to show 3 cards
         spaceBetween: 30,
         loop: true,
         speed: 800,
         grabCursor: true,
-        centeredSlides: true,
+        centeredSlides: false,
         
         // Autoplay settings
         autoplay: {
@@ -356,11 +356,19 @@ function initServices() {
         
         // Responsive breakpoints
         breakpoints: {
-            640: {
+            // When screen width is less than 768px
+            0: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                centeredSlides: true
+            },
+            // When screen width is between 768px and 1023px
+            768: {
                 slidesPerView: 2,
                 spaceBetween: 20,
                 centeredSlides: false
             },
+            // When screen width is 1024px and above
             1024: {
                 slidesPerView: 3,
                 spaceBetween: 30,
@@ -473,32 +481,72 @@ function initServices() {
     const viewAllButton = document.querySelector('.btn-view-services');
     if (viewAllButton) {
         viewAllButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetSection = document.querySelector(viewAllButton.getAttribute('href'));
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            // Only prevent default if it's not a proper link with href
+            if (!viewAllButton.getAttribute('href') || viewAllButton.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetSection = document.querySelector(viewAllButton.getAttribute('href'));
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     }
 
     // Initialize AOS animations if available
     if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1000,
-            easing: 'ease',
-            once: true,
-            mirror: false
-        });
+        AOS.refresh();
     }
 
     // Initial card height update
     updateCardHeights();
 
+    // Initialize focus handling for accessibility
+    initFocusHandling();
+
     return servicesSwiper;
+
+    // Helper function for focus handling
+    function initFocusHandling() {
+        const cards = document.querySelectorAll('.service-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('focusin', () => {
+                card.classList.add('focused');
+                card.style.transform = 'translateY(-10px)';
+            });
+
+            card.addEventListener('focusout', () => {
+                card.classList.remove('focused');
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Handle keyboard navigation for the swiper
+        document.addEventListener('keydown', (e) => {
+            if (document.activeElement.closest('.services-carousel')) {
+                // Arrow right to navigate to next slide
+                if (e.key === 'ArrowRight') {
+                    servicesSwiper.slideNext();
+                }
+                // Arrow left to navigate to previous slide
+                else if (e.key === 'ArrowLeft') {
+                    servicesSwiper.slidePrev();
+                }
+            }
+        });
+    }
 }
+
+// Execute the initialization when the document is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const servicesSection = document.querySelector('.services');
+    if (servicesSection) {
+        initServices();
+    }
+});
 
 // ===============================
 // ABOUT SECTION
