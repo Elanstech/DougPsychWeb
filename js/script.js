@@ -320,6 +320,7 @@ function initHeroSlider() {
 // ===============================
 // SERVICES SECTION
 // ===============================
+// Initialize Services Section
 function initServices() {
     // Initialize Swiper
     const servicesSwiper = new Swiper('.services-carousel', {
@@ -342,10 +343,7 @@ function initServices() {
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
-            dynamicBullets: true,
-            renderBullet: function (index, className) {
-                return '<span class="' + className + '"></span>';
-            }
+            dynamicBullets: true
         },
         
         // Navigation
@@ -388,7 +386,8 @@ function initServices() {
         // Callbacks
         on: {
             init: function() {
-                initCardAnimations();
+                initPeopleAnimations();
+                initCardInteractions();
                 if (typeof AOS !== 'undefined') {
                     AOS.refresh();
                 }
@@ -401,25 +400,63 @@ function initServices() {
         }
     });
 
-    // Initialize card animations
-    function initCardAnimations() {
+    // Handle Person Element Animations
+    function initPeopleAnimations() {
+        const people = document.querySelectorAll('.person');
+        
+        // Give each person element a custom animation delay and slight rotation
+        people.forEach((person, index) => {
+            // Set custom rotation for each person element
+            const rotation = -15 + (index * 10); // Varies from -15 to +15 degrees
+            person.style.setProperty('--rotation', `${rotation}deg`);
+            
+            // Add random subtle movements
+            setInterval(() => {
+                const randomX = Math.random() * 10 - 5; // Range: -5px to 5px
+                const randomY = Math.random() * 10 - 5; // Range: -5px to 5px
+                const randomScale = 0.98 + Math.random() * 0.04; // Range: 0.98 to 1.02
+                
+                person.style.transform = `translate(${randomX}px, ${randomY}px) scale(${randomScale}) rotate(${rotation}deg)`;
+            }, 8000 + (index * 1000)); // Staggered intervals
+        });
+    }
+
+    // Handle Service Card Interactions
+    function initCardInteractions() {
         const cards = document.querySelectorAll('.service-card');
         
         cards.forEach(card => {
-            // Add hover effects for desktop
+            const icon = card.querySelector('.service-icon');
+            const features = card.querySelectorAll('.service-features li');
+            
+            // Add initial staggered animation delay to list items
+            features.forEach((feature, index) => {
+                feature.style.opacity = '0';
+                feature.style.transform = 'translateY(10px)';
+                
+                setTimeout(() => {
+                    feature.style.transition = 'all 0.5s ease';
+                    feature.style.opacity = '1';
+                    feature.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+            
+            // Card hover effects for desktop
             card.addEventListener('mouseenter', () => {
                 if (window.innerWidth >= 1024) {
                     card.style.transform = 'translateY(-10px)';
+                    if (icon) icon.style.transform = 'scale(1.1)';
                 }
             });
 
             card.addEventListener('mouseleave', () => {
                 if (window.innerWidth >= 1024) {
-                    card.style.transform = 'translateY(0)';
+                    card.style.transform = '';
+                    if (icon) icon.style.transform = '';
                 }
             });
 
-            // Add touch effects for mobile
+            // Card touch effects for mobile
             card.addEventListener('touchstart', () => {
                 if (window.innerWidth < 1024) {
                     card.style.transform = 'translateY(-5px)';
@@ -428,27 +465,11 @@ function initServices() {
 
             card.addEventListener('touchend', () => {
                 if (window.innerWidth < 1024) {
-                    card.style.transform = 'translateY(0)';
+                    card.style.transform = '';
                 }
-            });
-
-            // Animate features list
-            const features = card.querySelectorAll('.service-features li');
-            features.forEach((feature, index) => {
-                feature.style.transitionDelay = `${index * 100}ms`;
             });
         });
     }
-
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            servicesSwiper.update();
-            updateCardHeights();
-        }, 250);
-    });
 
     // Update card heights for consistency
     function updateCardHeights() {
@@ -468,6 +489,24 @@ function initServices() {
         });
     }
 
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            servicesSwiper.update();
+            updateCardHeights();
+            
+            // Reset transforms on mobile/desktop switch
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                card.style.transform = '';
+                const icon = card.querySelector('.service-icon');
+                if (icon) icon.style.transform = '';
+            });
+        }, 250);
+    });
+
     // Handle visibility changes
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
@@ -477,76 +516,55 @@ function initServices() {
         }
     });
 
-    // Initialize "View All Services" button
-    const viewAllButton = document.querySelector('.btn-view-services');
-    if (viewAllButton) {
-        viewAllButton.addEventListener('click', (e) => {
-            // Only prevent default if it's not a proper link with href
-            if (!viewAllButton.getAttribute('href') || viewAllButton.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-                const targetSection = document.querySelector(viewAllButton.getAttribute('href'));
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    }
-
-    // Initialize AOS animations if available
-    if (typeof AOS !== 'undefined') {
-        AOS.refresh();
-    }
-
     // Initial card height update
     updateCardHeights();
 
-    // Initialize focus handling for accessibility
-    initFocusHandling();
-
     return servicesSwiper;
-
-    // Helper function for focus handling
-    function initFocusHandling() {
-        const cards = document.querySelectorAll('.service-card');
-        
-        cards.forEach(card => {
-            card.addEventListener('focusin', () => {
-                card.classList.add('focused');
-                card.style.transform = 'translateY(-10px)';
-            });
-
-            card.addEventListener('focusout', () => {
-                card.classList.remove('focused');
-                card.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Handle keyboard navigation for the swiper
-        document.addEventListener('keydown', (e) => {
-            if (document.activeElement.closest('.services-carousel')) {
-                // Arrow right to navigate to next slide
-                if (e.key === 'ArrowRight') {
-                    servicesSwiper.slideNext();
-                }
-                // Arrow left to navigate to previous slide
-                else if (e.key === 'ArrowLeft') {
-                    servicesSwiper.slidePrev();
-                }
-            }
-        });
-    }
 }
 
-// Execute the initialization when the document is loaded
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     const servicesSection = document.querySelector('.services');
     if (servicesSection) {
         initServices();
     }
 });
+
+// Handle accessibility focus
+function initAccessibilityFocus() {
+    const cards = document.querySelectorAll('.service-card');
+    
+    cards.forEach(card => {
+        // Add focus styles for keyboard navigation
+        card.addEventListener('focusin', () => {
+            card.style.transform = 'translateY(-10px)';
+            card.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.12)';
+            const icon = card.querySelector('.service-icon');
+            if (icon) icon.style.transform = 'scale(1.1)';
+        });
+        
+        card.addEventListener('focusout', () => {
+            card.style.transform = '';
+            card.style.boxShadow = '';
+            const icon = card.querySelector('.service-icon');
+            if (icon) icon.style.transform = '';
+        });
+    });
+    
+    // Handle keyboard navigation for the swiper
+    document.addEventListener('keydown', (e) => {
+        const servicesSwiper = document.querySelector('.services-carousel').swiper;
+        if (!servicesSwiper) return;
+        
+        if (document.activeElement.closest('.services-carousel')) {
+            if (e.key === 'ArrowRight') {
+                servicesSwiper.slideNext();
+            } else if (e.key === 'ArrowLeft') {
+                servicesSwiper.slidePrev();
+            }
+        }
+    });
+}
 
 // ===============================
 // ABOUT SECTION
