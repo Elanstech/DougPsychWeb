@@ -426,7 +426,7 @@ function initServices() {
         const cards = document.querySelectorAll('.service-card');
         
         cards.forEach(card => {
-            const icon = card.querySelector('.service-icon');
+            const silhouette = card.querySelector('.service-silhouette');
             const features = card.querySelectorAll('.service-features li');
             
             // Add initial staggered animation delay to list items
@@ -445,14 +445,14 @@ function initServices() {
             card.addEventListener('mouseenter', () => {
                 if (window.innerWidth >= 1024) {
                     card.style.transform = 'translateY(-10px)';
-                    if (icon) icon.style.transform = 'scale(1.1)';
+                    if (silhouette) silhouette.style.transform = 'scale(1.1)';
                 }
             });
 
             card.addEventListener('mouseleave', () => {
                 if (window.innerWidth >= 1024) {
                     card.style.transform = '';
-                    if (icon) icon.style.transform = '';
+                    if (silhouette) silhouette.style.transform = '';
                 }
             });
 
@@ -501,8 +501,8 @@ function initServices() {
             const cards = document.querySelectorAll('.service-card');
             cards.forEach(card => {
                 card.style.transform = '';
-                const icon = card.querySelector('.service-icon');
-                if (icon) icon.style.transform = '';
+                const silhouette = card.querySelector('.service-silhouette');
+                if (silhouette) silhouette.style.transform = '';
             });
         }, 250);
     });
@@ -518,6 +518,14 @@ function initServices() {
 
     // Initial card height update
     updateCardHeights();
+
+    // Add relationship silhouette span programmatically if needed
+    document.querySelectorAll('.relationship-silhouette').forEach(silhouette => {
+        if (!silhouette.querySelector('span')) {
+            const span = document.createElement('span');
+            silhouette.appendChild(span);
+        }
+    });
 
     return servicesSwiper;
 }
@@ -539,15 +547,15 @@ function initAccessibilityFocus() {
         card.addEventListener('focusin', () => {
             card.style.transform = 'translateY(-10px)';
             card.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.12)';
-            const icon = card.querySelector('.service-icon');
-            if (icon) icon.style.transform = 'scale(1.1)';
+            const silhouette = card.querySelector('.service-silhouette');
+            if (silhouette) silhouette.style.transform = 'scale(1.1)';
         });
         
         card.addEventListener('focusout', () => {
             card.style.transform = '';
             card.style.boxShadow = '';
-            const icon = card.querySelector('.service-icon');
-            if (icon) icon.style.transform = '';
+            const silhouette = card.querySelector('.service-silhouette');
+            if (silhouette) silhouette.style.transform = '';
         });
     });
     
@@ -564,6 +572,26 @@ function initAccessibilityFocus() {
             }
         }
     });
+}
+
+// Initialize accessibility features
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        initAccessibilityFocus();
+    }, 1000); // Delay to ensure Swiper is properly initialized
+});
+
+// Helper function for debouncing resize events
+function debounce(func, wait = 250) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // ===============================
