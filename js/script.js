@@ -320,7 +320,6 @@ function initHeroSlider() {
 // ===============================
 // SERVICES SECTION
 // ===============================
-// Initialize Services Section
 function initServices() {
     // Initialize Swiper
     const servicesSwiper = new Swiper('.services-carousel', {
@@ -388,6 +387,7 @@ function initServices() {
             init: function() {
                 initPeopleAnimations();
                 initCardInteractions();
+                lazyLoadImages();
                 if (typeof AOS !== 'undefined') {
                     AOS.refresh();
                 }
@@ -421,12 +421,54 @@ function initServices() {
         });
     }
 
+    // Lazy load images for better performance
+    function lazyLoadImages() {
+        const serviceImages = document.querySelectorAll('.service-image');
+        
+        // Create intersection observer for lazy loading
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    
+                    if (src) {
+                        img.setAttribute('src', src);
+                        img.removeAttribute('data-src');
+                        
+                        // Add loaded class when image is fully loaded
+                        img.addEventListener('load', () => {
+                            img.classList.add('loaded');
+                        });
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px',
+            threshold: 0.1
+        });
+        
+        // Observe all service images
+        serviceImages.forEach(img => {
+            // Only observe images with data-src attribute
+            if (img.getAttribute('data-src')) {
+                imageObserver.observe(img);
+            } else {
+                // Add loaded class to images that don't need lazy loading
+                img.classList.add('loaded');
+            }
+        });
+    }
+
     // Handle Service Card Interactions
     function initCardInteractions() {
         const cards = document.querySelectorAll('.service-card');
         
         cards.forEach(card => {
-            const silhouette = card.querySelector('.service-silhouette');
+            const image = card.querySelector('.service-image');
+            const overlay = card.querySelector('.image-overlay');
             const features = card.querySelectorAll('.service-features li');
             
             // Add initial staggered animation delay to list items
@@ -445,14 +487,16 @@ function initServices() {
             card.addEventListener('mouseenter', () => {
                 if (window.innerWidth >= 1024) {
                     card.style.transform = 'translateY(-10px)';
-                    if (silhouette) silhouette.style.transform = 'scale(1.1)';
+                    if (image) image.style.transform = 'scale(1.05)';
+                    if (overlay) overlay.style.paddingBottom = '25px';
                 }
             });
 
             card.addEventListener('mouseleave', () => {
                 if (window.innerWidth >= 1024) {
                     card.style.transform = '';
-                    if (silhouette) silhouette.style.transform = '';
+                    if (image) image.style.transform = '';
+                    if (overlay) overlay.style.paddingBottom = '';
                 }
             });
 
@@ -468,23 +512,41 @@ function initServices() {
                     card.style.transform = '';
                 }
             });
+
+            // Handle image loading errors
+            if (image) {
+                image.addEventListener('error', () => {
+                    // Replace with a fallback image or color
+                    image.src = 'https://images.unsplash.com/photo-1527082395-e939b847da0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80';
+                    console.warn('Image failed to load, using fallback');
+                });
+            }
         });
     }
 
     // Update card heights for consistency
     function updateCardHeights() {
-        const cards = document.querySelectorAll('.service-card');
-        let maxHeight = 0;
-
-        // Reset heights
-        cards.forEach(card => {
+        // Group cards by their slide groups in current view
+        const slideGroups = {};
+        const slidesPerView = servicesSwiper.params.slidesPerView;
+        const activeIndex = servicesSwiper.activeIndex;
+        
+        // Only equalize heights for non-mobile views
+        if (slidesPerView === 1) return;
+        
+        // Get all visible cards
+        const visibleCards = Array.from(document.querySelectorAll('.swiper-slide-visible .service-card'));
+        
+        // Reset heights first
+        visibleCards.forEach(card => {
             card.style.height = 'auto';
-            const height = card.offsetHeight;
-            maxHeight = Math.max(maxHeight, height);
         });
-
-        // Apply max height to all cards
-        cards.forEach(card => {
+        
+        // Calculate max height for visible cards
+        let maxHeight = Math.max(...visibleCards.map(card => card.offsetHeight));
+        
+        // Apply the max height
+        visibleCards.forEach(card => {
             card.style.height = `${maxHeight}px`;
         });
     }
@@ -501,8 +563,10 @@ function initServices() {
             const cards = document.querySelectorAll('.service-card');
             cards.forEach(card => {
                 card.style.transform = '';
-                const silhouette = card.querySelector('.service-silhouette');
-                if (silhouette) silhouette.style.transform = '';
+                const image = card.querySelector('.service-image');
+                const overlay = card.querySelector('.image-overlay');
+                if (image) image.style.transform = '';
+                if (overlay) overlay.style.paddingBottom = '';
             });
         }, 250);
     });
@@ -517,15 +581,17 @@ function initServices() {
     });
 
     // Initial card height update
-    updateCardHeights();
+    setTimeout(() => {
+        updateCardHeights();
+    }, 500);
 
-    // Add relationship silhouette span programmatically if needed
-    document.querySelectorAll('.relationship-silhouette').forEach(silhouette => {
-        if (!silhouette.querySelector('span')) {
-            const span = document.createElement('span');
-            silhouette.appendChild(span);
-        }
+    // Update card heights after all images are loaded
+    window.addEventListener('load', () => {
+        updateCardHeights();
     });
+
+    // Add update event after each slide change
+    servicesSwiper.on('slideChangeTransitionEnd', updateCardHeights);
 
     return servicesSwiper;
 }
@@ -543,19 +609,30 @@ function initAccessibilityFocus() {
     const cards = document.querySelectorAll('.service-card');
     
     cards.forEach(card => {
+        // Make cards focusable for keyboard navigation
+        card.setAttribute('tabindex', '0');
+        
         // Add focus styles for keyboard navigation
         card.addEventListener('focusin', () => {
             card.style.transform = 'translateY(-10px)';
             card.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.12)';
-            const silhouette = card.querySelector('.service-silhouette');
-            if (silhouette) silhouette.style.transform = 'scale(1.1)';
+            const image = card.querySelector('.service-image');
+            if (image) image.style.transform = 'scale(1.05)';
         });
         
         card.addEventListener('focusout', () => {
             card.style.transform = '';
             card.style.boxShadow = '';
-            const silhouette = card.querySelector('.service-silhouette');
-            if (silhouette) silhouette.style.transform = '';
+            const image = card.querySelector('.service-image');
+            if (image) image.style.transform = '';
+        });
+
+        // Allow keyboard users to "click" on cards with Enter key
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const link = card.querySelector('a');
+                if (link) link.click();
+            }
         });
     });
     
