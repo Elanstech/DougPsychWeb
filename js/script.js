@@ -1175,6 +1175,336 @@ function initBookSection() {
 // Locations Section JavaScript
 // ===============================
 
+function initPremiumTestimonials() {
+    // Initialize Swiper for testimonials
+    const testimonialsSwiper = new Swiper('.testimonials-slider', {
+        // Core settings
+        slidesPerView: 1,
+        spaceBetween: 20,
+        speed: 600,
+        grabCursor: true,
+        watchSlidesProgress: true,
+        
+        // Ensure consistent height
+        autoHeight: false,
+        
+        // Loop and autoplay settings
+        loop: true,
+        loopAdditionalSlides: 2,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+        },
+        
+        // Effect settings
+        effect: 'slide',
+        
+        // Custom pagination
+        pagination: {
+            el: '.testimonials-pagination',
+            clickable: true,
+            dynamicBullets: true,
+            renderBullet: function(index, className) {
+                return `<span class="${className}"></span>`;
+            }
+        },
+        
+        // Custom navigation
+        navigation: {
+            nextEl: '.nav-next',
+            prevEl: '.nav-prev',
+        },
+        
+        // Responsive breakpoints
+        breakpoints: {
+            576: {
+                slidesPerView: 1.2,
+                spaceBetween: 15,
+                centeredSlides: true
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            1024: {
+                slidesPerView: 2,
+                spaceBetween: 25
+            },
+            1200: {
+                slidesPerView: 2,
+                spaceBetween: 30
+            }
+        },
+        
+        // Accessibility
+        a11y: {
+            enabled: true,
+            prevSlideMessage: 'Previous testimonial',
+            nextSlideMessage: 'Next testimonial',
+            firstSlideMessage: 'This is the first testimonial',
+            lastSlideMessage: 'This is the last testimonial',
+            paginationBulletMessage: 'Go to testimonial {{index}}'
+        },
+        
+        // Event callbacks
+        on: {
+            init: function() {
+                initAnimations();
+                equalizeCardHeights();
+                
+                // Refresh AOS animations if available
+                if (typeof AOS !== 'undefined') {
+                    setTimeout(() => {
+                        AOS.refresh();
+                    }, 500);
+                }
+            },
+            resize: function() {
+                equalizeCardHeights();
+            },
+            slideChangeTransitionStart: function() {
+                animate();
+            }
+        }
+    });
+    
+    // Initialize animations for testimonial cards and featured testimonial
+    function initAnimations() {
+        // Set up featured testimonial
+        const featuredTestimonial = document.querySelector('.featured-testimonial');
+        if (featuredTestimonial) {
+            // Add entrance animation
+            featuredTestimonial.style.opacity = '0';
+            featuredTestimonial.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                featuredTestimonial.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                featuredTestimonial.style.opacity = '1';
+                featuredTestimonial.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Add hover interactions
+            featuredTestimonial.addEventListener('mouseenter', () => {
+                featuredTestimonial.style.transform = 'translateY(-10px)';
+            });
+            
+            featuredTestimonial.addEventListener('mouseleave', () => {
+                featuredTestimonial.style.transform = 'translateY(0)';
+            });
+        }
+        
+        // Setup all testimonial cards
+        const cards = document.querySelectorAll('.testimonial-card');
+        cards.forEach((card, index) => {
+            // Add staggered entrance animation
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 500 + (index * 150));
+            
+            // Add hover effects
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Animate stats
+        animateStats();
+    }
+    
+    // Function to ensure all testimonial cards are the same height
+    function equalizeCardHeights() {
+        const cards = document.querySelectorAll('.testimonial-card');
+        const currentHeight = parseInt(cards[0]?.style.height || 0);
+        
+        // First, reset heights to auto to get natural height
+        cards.forEach(card => {
+            card.style.height = '';
+        });
+        
+        // Get max height considering content
+        let maxContentHeight = 0;
+        cards.forEach(card => {
+            const contentHeight = card.scrollHeight;
+            if (contentHeight > maxContentHeight) {
+                maxContentHeight = contentHeight;
+            }
+        });
+        
+        // Apply the greater of fixed height or content height
+        const fixedHeight = 320; // Our default fixed height
+        const finalHeight = Math.max(maxContentHeight, fixedHeight);
+        
+        // Set all cards to the final height
+        cards.forEach(card => {
+            card.style.height = `${finalHeight}px`;
+        });
+    }
+    
+    // Animate the stats with counting effect
+    function animateStats() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        // Check if IntersectionObserver is available
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        countUp(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statNumbers.forEach(stat => {
+                observer.observe(stat);
+            });
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            setTimeout(() => {
+                statNumbers.forEach(stat => {
+                    countUp(stat);
+                });
+            }, 1000);
+        }
+    }
+    
+    // Count up animation for stat numbers
+    function countUp(element) {
+        const text = element.textContent;
+        const value = parseFloat(text.replace(/[^\d.-]/g, ''));
+        const suffix = text.replace(/[\d.-]/g, '');
+        
+        if (isNaN(value)) return;
+        
+        const duration = 2000; // Animation duration in ms
+        const frameDuration = 1000/60; // 60fps
+        const totalFrames = Math.round(duration / frameDuration);
+        
+        let frame = 0;
+        const countTo = value;
+        
+        const counter = setInterval(() => {
+            frame++;
+            
+            // Calculate current count with easing
+            const progress = frame / totalFrames;
+            const easedProgress = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            
+            const count = countTo * easedProgress;
+            
+            // Handle different number formats
+            if (value % 1 === 0) {
+                // Integer
+                element.textContent = Math.floor(count) + suffix;
+            } else {
+                // Decimal
+                element.textContent = count.toFixed(1) + suffix;
+            }
+            
+            if (frame === totalFrames) {
+                clearInterval(counter);
+                element.textContent = value + suffix; // Ensure final value is exact
+            }
+        }, frameDuration);
+    }
+    
+    // Animate elements when they come into view
+    function animate() {
+        const cards = document.querySelectorAll('.swiper-slide-active .testimonial-card, .swiper-slide-next .testimonial-card');
+        
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    }
+    
+    // Handle window resize events
+    const debouncedResize = debounce(() => {
+        equalizeCardHeights();
+        
+        // Check if we should reset transforms on mobile
+        if (window.innerWidth < 768) {
+            const elements = document.querySelectorAll('.featured-testimonial, .testimonial-card');
+            elements.forEach(el => {
+                el.style.transform = '';
+            });
+        }
+    }, 250);
+    
+    window.addEventListener('resize', debouncedResize);
+    
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            testimonialsSwiper.autoplay.stop();
+        } else {
+            testimonialsSwiper.autoplay.start();
+            equalizeCardHeights();
+        }
+    });
+    
+    // Utility function to debounce events
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    // Return the initialized swiper instance
+    return testimonialsSwiper;
+}
+
+// Initialize testimonials when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add to the main initialization if available, otherwise initialize directly
+    if (typeof window.initializeAllComponents === 'function') {
+        const originalInit = window.initializeAllComponents;
+        window.initializeAllComponents = function() {
+            originalInit();
+            initPremiumTestimonials();
+        };
+    } else {
+        initPremiumTestimonials();
+    }
+    
+    // Initialize AOS if available
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    }
+});
+
+// ===============================
+// Locations Section JavaScript
+// ===============================
+
 document.addEventListener('DOMContentLoaded', function() {
     initializeLocations();
 });
@@ -1414,6 +1744,7 @@ if (typeof module !== 'undefined' && module.exports) {
         initAboutSection,
         initTeamSection,
         initBookSection,
+        initPremiumTestimonials,
         initLocationsSection,
         initContactSection
     };
