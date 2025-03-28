@@ -219,7 +219,7 @@ body {
 
 .brand-title {
     color: var(--text-medium);
-    font-size: 0.9rem;
+    font-size: 0.5rem;
     font-weight: 500;
     letter-spacing: 0.3px;
 }
