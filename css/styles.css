@@ -210,7 +210,7 @@ body {
 
 .brand-name {
     color: var(--metallic-gold);
-    font-size: 1.4rem;
+    font-size: 1.0rem;
     font-weight: 700;
     font-family: var(--font-heading);
     letter-spacing: 0.5px;
@@ -3866,7 +3866,7 @@ body {
     }
     
     .brand-name {
-        font-size: 1.2rem;
+        font-size: 0.5rem;
     }
     
     .brand-title {
