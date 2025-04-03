@@ -51,6 +51,7 @@ function initializeNavigation() {
         navToggle.addEventListener('click', function() {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
         });
         
         // Close menu when clicking on links
@@ -59,6 +60,7 @@ function initializeNavigation() {
             link.addEventListener('click', function() {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
             });
         });
         
@@ -71,13 +73,13 @@ function initializeNavigation() {
             
             // Add/remove scrolled class
             if (currentScroll > 100) {
-                header.classList.add('scrolled');
+                header.classList.add('header-scrolled');
             } else {
-                header.classList.remove('scrolled');
+                header.classList.remove('header-scrolled');
             }
             
             // Hide/show header on scroll
-            if (currentScroll > lastScroll && currentScroll > 200) {
+            if (currentScroll > lastScroll && currentScroll > 200 && !document.body.classList.contains('menu-open')) {
                 header.style.transform = 'translateY(-100%)';
             } else {
                 header.style.transform = 'translateY(0)';
@@ -93,7 +95,6 @@ function initializeNavigation() {
  */
 function initializeCounters() {
     const counters = document.querySelectorAll('.counter');
-    const speed = 200; // Lower number = faster animation
     
     // Only run if IntersectionObserver is available
     if ('IntersectionObserver' in window) {
@@ -103,14 +104,15 @@ function initializeCounters() {
                     const counter = entry.target;
                     const target = parseInt(counter.innerText);
                     let count = 0;
+                    const duration = 2000; // Animation duration in ms
+                    const interval = 10;
+                    const increment = Math.ceil(target / (duration / interval));
                     
                     const updateCount = () => {
-                        const increment = target / speed;
-                        
                         if (count < target) {
                             count += increment;
-                            counter.innerText = Math.ceil(count);
-                            setTimeout(updateCount, 1);
+                            counter.innerText = Math.min(count, target);
+                            setTimeout(updateCount, interval);
                         } else {
                             counter.innerText = target;
                         }
@@ -120,7 +122,7 @@ function initializeCounters() {
                     observer.unobserve(counter);
                 }
             });
-        }, { threshold: 0.8 });
+        }, { threshold: 0.5 });
         
         counters.forEach(counter => {
             observer.observe(counter);
@@ -128,8 +130,7 @@ function initializeCounters() {
     } else {
         // Fallback for browsers without IntersectionObserver
         counters.forEach(counter => {
-            const target = parseInt(counter.innerText);
-            counter.innerText = target;
+            counter.innerText = counter.innerText;
         });
     }
 }
@@ -194,6 +195,12 @@ function initializeMemberModals() {
             if (modal) {
                 document.body.style.overflow = 'hidden';
                 modal.classList.add('open');
+                
+                // Focus on the modal for accessibility
+                setTimeout(() => {
+                    const closeButton = modal.querySelector('.close-modal');
+                    if (closeButton) closeButton.focus();
+                }, 100);
             }
         });
     });
@@ -204,6 +211,11 @@ function initializeMemberModals() {
             const modal = this.closest('.member-modal');
             document.body.style.overflow = '';
             modal.classList.remove('open');
+            
+            // Return focus to the button that opened the modal
+            const buttonId = modal.id;
+            const button = document.querySelector(`.view-profile-btn[data-modal="${buttonId}"]`);
+            if (button) button.focus();
         });
     });
     
@@ -213,6 +225,11 @@ function initializeMemberModals() {
             if (e.target === this) {
                 document.body.style.overflow = '';
                 this.classList.remove('open');
+                
+                // Return focus to the button that opened the modal
+                const buttonId = this.id;
+                const button = document.querySelector(`.view-profile-btn[data-modal="${buttonId}"]`);
+                if (button) button.focus();
             }
         });
     });
@@ -224,6 +241,11 @@ function initializeMemberModals() {
             if (openModal) {
                 document.body.style.overflow = '';
                 openModal.classList.remove('open');
+                
+                // Return focus to the button that opened the modal
+                const buttonId = openModal.id;
+                const button = document.querySelector(`.view-profile-btn[data-modal="${buttonId}"]`);
+                if (button) button.focus();
             }
         }
     });
@@ -233,19 +255,6 @@ function initializeMemberModals() {
  * Handle various scroll effects
  */
 function handleScrollEffects() {
-    // Image parallax effect on scroll
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            
-            // Parallax for hero background
-            const heroBackground = document.querySelector('.hero-bg-image');
-            if (heroBackground) {
-                heroBackground.style.transform = `translateY(${scrolled * 0.4}px)`;
-            }
-        });
-    }
-    
     // Animate elements when they come into view
     if ('IntersectionObserver' in window) {
         const animatedElements = document.querySelectorAll('.member-card, .stat-item, .join-content');
@@ -263,17 +272,18 @@ function handleScrollEffects() {
             observer.observe(element);
         });
     }
-}
-
-/**
- * Handle window resize events
- */
-window.addEventListener('resize', debounce(function() {
-    // Refresh AOS on window resize
-    if (typeof AOS !== 'undefined') {
-        AOS.refresh();
+    
+    // Parallax effect for the hero section
+    const heroSection = document.querySelector('.team-hero');
+    if (heroSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.addEventListener('scroll', function() {
+            const scrollY = window.pageYOffset;
+            if (scrollY <= heroSection.offsetHeight) {
+                heroSection.style.backgroundPositionY = `${scrollY * 0.5}px`;
+            }
+        });
     }
-}, 200));
+}
 
 /**
  * Debounce helper function to limit function calls
@@ -294,10 +304,61 @@ function debounce(func, wait = 20, immediate = true) {
     };
 }
 
+// Handle window resize events
+window.addEventListener('resize', debounce(function() {
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
+    
+    // Fix card heights for consistency
+    equalizeCardHeights();
+}, 200));
+
+/**
+ * Equalize card heights in the team grid
+ */
+function equalizeCardHeights() {
+    // Only run on larger screens
+    if (window.innerWidth >= 768) {
+        const memberCards = document.querySelectorAll('.member-card');
+        
+        // Reset heights first
+        memberCards.forEach(card => {
+            card.style.height = 'auto';
+        });
+        
+        // Get row groups
+        const rows = {};
+        memberCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const key = Math.round(rect.top);
+            
+            if (!rows[key]) {
+                rows[key] = [];
+            }
+            
+            rows[key].push(card);
+        });
+        
+        // Set equal height for each row
+        for (const key in rows) {
+            const rowCards = rows[key];
+            const maxHeight = Math.max(...rowCards.map(card => card.offsetHeight));
+            
+            rowCards.forEach(card => {
+                card.style.height = `${maxHeight}px`;
+            });
+        }
+    }
+}
+
 // Support for browsers without IntersectionObserver
 if (!('IntersectionObserver' in window)) {
-    // Simple fallback to show all elements
     document.querySelectorAll('.member-card, .stat-item, .join-content').forEach(el => {
         el.classList.add('in-view');
+    });
+    
+    document.querySelectorAll('.counter').forEach(counter => {
+        counter.innerText = counter.innerText;
     });
 }
