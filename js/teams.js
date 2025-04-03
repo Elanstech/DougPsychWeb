@@ -22,6 +22,11 @@ function initializeTeamPage() {
     initializeTeamFilter();
     initializeMemberModals();
     handleScrollEffects();
+    
+    // Run equalizeCardHeights after images are loaded
+    window.addEventListener('load', function() {
+        equalizeCardHeights();
+    });
 }
 
 /**
@@ -168,6 +173,11 @@ function initializeTeamFilter() {
                         }, 300);
                     }
                 });
+                
+                // Run after filter completes
+                setTimeout(() => {
+                    equalizeCardHeights();
+                }, 500);
             });
         });
     }
@@ -196,6 +206,15 @@ function initializeMemberModals() {
                 document.body.style.overflow = 'hidden';
                 modal.classList.add('open');
                 
+                // Set the modal content to visible after a small delay
+                setTimeout(() => {
+                    const modalContent = modal.querySelector('.modal-content');
+                    if (modalContent) {
+                        modalContent.style.transform = 'translateY(0)';
+                        modalContent.style.opacity = '1';
+                    }
+                }, 50);
+                
                 // Focus on the modal for accessibility
                 setTimeout(() => {
                     const closeButton = modal.querySelector('.close-modal');
@@ -208,14 +227,7 @@ function initializeMemberModals() {
     // Close modal when clicking the close button
     closeButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const modal = this.closest('.member-modal');
-            document.body.style.overflow = '';
-            modal.classList.remove('open');
-            
-            // Return focus to the button that opened the modal
-            const buttonId = modal.id;
-            const button = document.querySelector(`.view-profile-btn[data-modal="${buttonId}"]`);
-            if (button) button.focus();
+            closeModal(this.closest('.member-modal'));
         });
     });
     
@@ -223,13 +235,7 @@ function initializeMemberModals() {
     modals.forEach(modal => {
         modal.addEventListener('click', function(e) {
             if (e.target === this) {
-                document.body.style.overflow = '';
-                this.classList.remove('open');
-                
-                // Return focus to the button that opened the modal
-                const buttonId = this.id;
-                const button = document.querySelector(`.view-profile-btn[data-modal="${buttonId}"]`);
-                if (button) button.focus();
+                closeModal(this);
             }
         });
     });
@@ -239,16 +245,29 @@ function initializeMemberModals() {
         if (e.key === 'Escape') {
             const openModal = document.querySelector('.member-modal.open');
             if (openModal) {
-                document.body.style.overflow = '';
-                openModal.classList.remove('open');
-                
-                // Return focus to the button that opened the modal
-                const buttonId = openModal.id;
-                const button = document.querySelector(`.view-profile-btn[data-modal="${buttonId}"]`);
-                if (button) button.focus();
+                closeModal(openModal);
             }
         }
     });
+    
+    // Helper function to close modal with animation
+    function closeModal(modal) {
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.transform = 'translateY(50px)';
+            modalContent.style.opacity = '0';
+        }
+        
+        setTimeout(() => {
+            document.body.style.overflow = '';
+            modal.classList.remove('open');
+            
+            // Return focus to the button that opened the modal
+            const buttonId = modal.id;
+            const button = document.querySelector(`.view-profile-btn[data-modal="${buttonId}"]`);
+            if (button) button.focus();
+        }, 300);
+    }
 }
 
 /**
@@ -272,16 +291,45 @@ function handleScrollEffects() {
             observer.observe(element);
         });
     }
-    
-    // Parallax effect for the hero section
-    const heroSection = document.querySelector('.team-hero');
-    if (heroSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.addEventListener('scroll', function() {
-            const scrollY = window.pageYOffset;
-            if (scrollY <= heroSection.offsetHeight) {
-                heroSection.style.backgroundPositionY = `${scrollY * 0.5}px`;
-            }
+}
+
+/**
+ * Equalize card heights in the team grid
+ */
+function equalizeCardHeights() {
+    // Only run on larger screens
+    if (window.innerWidth >= 768) {
+        const memberCards = document.querySelectorAll('.member-card');
+        
+        // Reset heights first
+        memberCards.forEach(card => {
+            card.style.height = 'auto';
         });
+        
+        // Get row groups
+        const rows = {};
+        memberCards.forEach(card => {
+            if (card.classList.contains('hide')) return;
+            
+            const rect = card.getBoundingClientRect();
+            const key = Math.round(rect.top);
+            
+            if (!rows[key]) {
+                rows[key] = [];
+            }
+            
+            rows[key].push(card);
+        });
+        
+        // Set equal height for each row
+        for (const key in rows) {
+            const rowCards = rows[key];
+            const maxHeight = Math.max(...rowCards.map(card => card.offsetHeight));
+            
+            rowCards.forEach(card => {
+                card.style.height = `${maxHeight}px`;
+            });
+        }
     }
 }
 
@@ -313,44 +361,6 @@ window.addEventListener('resize', debounce(function() {
     // Fix card heights for consistency
     equalizeCardHeights();
 }, 200));
-
-/**
- * Equalize card heights in the team grid
- */
-function equalizeCardHeights() {
-    // Only run on larger screens
-    if (window.innerWidth >= 768) {
-        const memberCards = document.querySelectorAll('.member-card');
-        
-        // Reset heights first
-        memberCards.forEach(card => {
-            card.style.height = 'auto';
-        });
-        
-        // Get row groups
-        const rows = {};
-        memberCards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const key = Math.round(rect.top);
-            
-            if (!rows[key]) {
-                rows[key] = [];
-            }
-            
-            rows[key].push(card);
-        });
-        
-        // Set equal height for each row
-        for (const key in rows) {
-            const rowCards = rows[key];
-            const maxHeight = Math.max(...rowCards.map(card => card.offsetHeight));
-            
-            rowCards.forEach(card => {
-                card.style.height = `${maxHeight}px`;
-            });
-        }
-    }
-}
 
 // Support for browsers without IntersectionObserver
 if (!('IntersectionObserver' in window)) {
