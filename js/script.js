@@ -1505,158 +1505,379 @@ document.addEventListener('DOMContentLoaded', function() {
 // Locations Section JavaScript
 // ===============================
 
-document.addEventListener('DOMContentLoaded', function() {
-    initializeLocations();
-});
+function initPremiumTestimonials() {
+    // State management
+    const state = {
+        section: document.querySelector('.testimonials-reimagined'),
+        heroTestimonial: document.querySelector('.hero-testimonial'),
+        testimonialCards: document.querySelectorAll('.testimonial-card'),
+        statNumbers: document.querySelectorAll('.stat-number'),
+        statItems: document.querySelectorAll('.stat-item'),
+        isAnimated: false,
+        countersAnimated: false,
+        observers: {
+            main: null,
+            counter: null
+        }
+    };
 
-function initializeLocations() {
-    // Initialize AOS animations
+    if (!state.section) return;
+
+    // Initialize all components
+    initIntersectionObservers();
+    initCardInteractions();
+    initHeroInteractions();
+    initParallaxEffect();
+    initResponsiveHandler();
+    
+    // Initialize AOS if available
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 1000,
+            duration: 800,
+            easing: 'ease-out-cubic',
             once: true,
             offset: 100
         });
     }
 
-    // Add hover effects to location cards
-    const locationCards = document.querySelectorAll('.location-card');
-    locationCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-        });
+    // Initialize immediately if section is already visible
+    if (isElementInViewport(state.section)) {
+        triggerAnimations();
+    }
 
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
+    // Initialize Intersection Observers
+    function initIntersectionObservers() {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
 
-    // Add click animation to direction buttons
-    const directionButtons = document.querySelectorAll('.btn-directions');
-    directionButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            // Add click animation
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 200);
-
-            // Track click if analytics is available
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'get_directions', {
-                    'location': this.closest('.location-card').querySelector('h3').textContent
-                });
-            }
-        });
-    });
-
-    // Floating elements animation
-    const floatingElements = document.querySelectorAll('.float-item');
-    floatingElements.forEach((element, index) => {
-        element.style.animationDelay = `${index * -1}s`;
-    });
-
-    // Lazy load maps when they come into view
-    const mapObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const iframe = entry.target;
-                if (iframe.dataset.src) {
-                    iframe.src = iframe.dataset.src;
-                    iframe.removeAttribute('data-src');
+        // Observer for main animations
+        state.observers.main = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !state.isAnimated) {
+                    triggerAnimations();
+                    state.isAnimated = true;
                 }
-                observer.unobserve(iframe);
-            }
+            });
+        }, options);
+
+        // Observer for counter animations
+        state.observers.counter = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !state.countersAnimated) {
+                    animateCounters();
+                    state.countersAnimated = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Start observing
+        state.observers.main.observe(state.section);
+        
+        const statsSection = document.querySelector('.testimonial-stats');
+        if (statsSection) {
+            state.observers.counter.observe(statsSection);
+        }
+    }
+
+    // Trigger all animations
+    function triggerAnimations() {
+        animateHeroTestimonial();
+        animateTestimonialCards();
+        animateFloatingElements();
+    }
+
+    // Animate hero testimonial
+    function animateHeroTestimonial() {
+        if (!state.heroTestimonial) return;
+
+        state.heroTestimonial.style.opacity = '0';
+        state.heroTestimonial.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            state.heroTestimonial.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            state.heroTestimonial.style.opacity = '1';
+            state.heroTestimonial.style.transform = 'translateY(0)';
+        }, 200);
+    }
+
+    // Animate testimonial cards
+    function animateTestimonialCards() {
+        state.testimonialCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300 + (index * 100));
         });
-    }, {
-        rootMargin: '50px',
-        threshold: 0.1
-    });
+    }
 
-    // Observe map iframes
-    document.querySelectorAll('.location-image iframe').forEach(iframe => {
-        mapObserver.observe(iframe);
-    });
+    // Animate floating elements
+    function animateFloatingElements() {
+        const floatingElements = document.querySelectorAll('.float-element');
+        floatingElements.forEach((element, index) => {
+            element.style.animationDelay = `${index * -2}s`;
+            element.style.opacity = '0.03';
+        });
+    }
 
-    // Add scroll reveal for amenities
-    const amenityItems = document.querySelectorAll('.amenity-item');
-    amenityItems.forEach((item, index) => {
-        item.setAttribute('data-aos', 'fade-up');
-        item.setAttribute('data-aos-delay', `${index * 100}`);
-    });
-
-    // Handle mobile touch interactions
-    if ('ontouchstart' in window) {
-        locationCards.forEach(card => {
-            card.addEventListener('touchstart', function() {
-                this.style.transform = 'translateY(-5px)';
+    // Initialize card interactions
+    function initCardInteractions() {
+        state.testimonialCards.forEach(card => {
+            // Enhanced hover effects for desktop
+            card.addEventListener('mouseenter', () => {
+                if (window.innerWidth >= 1024) {
+                    enhanceCardHover(card, true);
+                }
             });
 
-            card.addEventListener('touchend', function() {
-                this.style.transform = 'translateY(0)';
+            card.addEventListener('mouseleave', () => {
+                if (window.innerWidth >= 1024) {
+                    enhanceCardHover(card, false);
+                }
+            });
+
+            // Touch effects for mobile
+            card.addEventListener('touchstart', () => {
+                if (window.innerWidth < 1024) {
+                    card.style.transform = 'translateY(-5px)';
+                }
+            });
+
+            card.addEventListener('touchend', () => {
+                if (window.innerWidth < 1024) {
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 200);
+                }
             });
         });
     }
 
-    // Add smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+    // Enhanced card hover effects
+    function enhanceCardHover(card, isHover) {
+        const quoteIcon = card.querySelector('.quote-icon');
+        const clientInitial = card.querySelector('.client-initial');
+        
+        if (isHover) {
+            card.style.transform = 'translateY(-10px)';
+            if (quoteIcon) {
+                quoteIcon.style.transform = 'scale(1.2) rotate(5deg)';
+                quoteIcon.style.opacity = '0.6';
+            }
+            if (clientInitial) {
+                clientInitial.style.transform = 'scale(1.1)';
+            }
+        } else {
+            card.style.transform = 'translateY(0)';
+            if (quoteIcon) {
+                quoteIcon.style.transform = 'scale(1) rotate(0deg)';
+                quoteIcon.style.opacity = '0.3';
+            }
+            if (clientInitial) {
+                clientInitial.style.transform = 'scale(1)';
+            }
+        }
+    }
+
+    // Initialize hero interactions
+    function initHeroInteractions() {
+        if (!state.heroTestimonial) return;
+
+        // Enhanced hover for hero testimonial
+        state.heroTestimonial.addEventListener('mouseenter', () => {
+            if (window.innerWidth >= 1024) {
+                const avatar = state.heroTestimonial.querySelector('.author-avatar');
+                if (avatar) {
+                    avatar.style.transform = 'scale(1.1) rotate(5deg)';
+                }
             }
         });
-    });
 
-    // Update map size on window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            const maps = document.querySelectorAll('.location-image iframe');
-            maps.forEach(map => {
-                // Force map refresh on resize
-                map.style.height = map.offsetHeight + 'px';
-            });
+        state.heroTestimonial.addEventListener('mouseleave', () => {
+            if (window.innerWidth >= 1024) {
+                const avatar = state.heroTestimonial.querySelector('.author-avatar');
+                if (avatar) {
+                    avatar.style.transform = 'scale(1) rotate(0deg)';
+                }
+            }
+        });
+    }
+
+    // Initialize parallax effect
+    function initParallaxEffect() {
+        let ticking = false;
+
+        const handleScroll = () => {
+            if (!ticking && window.innerWidth >= 1024) {
+                requestAnimationFrame(() => {
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+
+    // Update parallax effect
+    function updateParallax() {
+        if (!state.heroTestimonial) return;
+
+        const rect = state.heroTestimonial.getBoundingClientRect();
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            state.heroTestimonial.style.transform = `translateY(${rate * 0.1}px)`;
+        }
+    }
+
+    // Animate counters
+    function animateCounters() {
+        state.statNumbers.forEach((element, index) => {
+            setTimeout(() => {
+                countUp(element);
+            }, index * 200);
+        });
+
+        // Animate stat items
+        state.statItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'all 0.5s ease';
+                item.style.transform = 'translateY(0)';
+                item.style.opacity = '1';
+            }, index * 150);
+        });
+    }
+
+    // Count up animation
+    function countUp(element) {
+        const target = parseFloat(element.getAttribute('data-count'));
+        const suffix = element.textContent.replace(/[\d.-]/g, '');
+        const duration = 2000;
+        const frameDuration = 1000 / 60;
+        const totalFrames = Math.round(duration / frameDuration);
+        
+        let frame = 0;
+
+        // Initialize element
+        element.textContent = '0' + suffix;
+
+        const counter = setInterval(() => {
+            frame++;
+            
+            // Easing function (ease-out)
+            const progress = frame / totalFrames;
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            
+            const current = target * easedProgress;
+            
+            // Format number based on target
+            if (target === 5.0) {
+                element.textContent = current.toFixed(1);
+            } else if (target >= 100) {
+                element.textContent = Math.floor(current) + (suffix.includes('%') ? '%' : '');
+            } else {
+                element.textContent = Math.floor(current) + suffix;
+            }
+            
+            if (frame === totalFrames) {
+                clearInterval(counter);
+                // Ensure final value is exact
+                if (target === 5.0) {
+                    element.textContent = '5.0';
+                } else if (suffix.includes('%')) {
+                    element.textContent = target + '%';
+                } else {
+                    element.textContent = target + suffix;
+                }
+            }
+        }, frameDuration);
+    }
+
+    // Initialize responsive handler
+    function initResponsiveHandler() {
+        const debouncedResize = debounce(() => {
+            handleResize();
         }, 250);
-    });
+        
+        window.addEventListener('resize', debouncedResize);
+    }
 
-    // Add error handling for maps
-    document.querySelectorAll('.location-image iframe').forEach(iframe => {
-        iframe.addEventListener('error', function() {
-            this.style.display = 'none';
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'map-error';
-            errorMessage.innerHTML = `
-                <i class="fas fa-map-marked-alt"></i>
-                <p>Map loading error. Please try again later.</p>
-            `;
-            this.parentElement.appendChild(errorMessage);
-        });
-    });
+    // Handle window resize
+    function handleResize() {
+        // Reset transforms on mobile
+        if (window.innerWidth < 1024) {
+            state.testimonialCards.forEach(card => {
+                card.style.transform = '';
+                const quoteIcon = card.querySelector('.quote-icon');
+                const clientInitial = card.querySelector('.client-initial');
+                
+                if (quoteIcon) {
+                    quoteIcon.style.transform = '';
+                    quoteIcon.style.opacity = '0.3';
+                }
+                if (clientInitial) {
+                    clientInitial.style.transform = '';
+                }
+            });
 
-    // Initialize contact buttons
-    const contactButtons = document.querySelectorAll('.detail-item a[href^="tel:"]');
-    contactButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'contact', {
-                    'method': 'phone',
-                    'location': this.closest('.location-card').querySelector('h3').textContent
-                });
+            if (state.heroTestimonial) {
+                state.heroTestimonial.style.transform = '';
+                const avatar = state.heroTestimonial.querySelector('.author-avatar');
+                if (avatar) {
+                    avatar.style.transform = '';
+                }
             }
-        });
-    });
-}
+        }
+    }
 
-// Export if using modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        initializeLocations
+    // Utility function to check if element is in viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Pause animations when tab is not visible
+            const floatingElements = document.querySelectorAll('.float-element');
+            floatingElements.forEach(element => {
+                element.style.animationPlayState = 'paused';
+            });
+        } else {
+            // Resume animations when tab becomes visible
+            const floatingElements = document.querySelectorAll('.float-element');
+            floatingElements.forEach(element => {
+                element.style.animationPlayState = 'running';
+            });
+        }
+    });
+
+    // Return cleanup function for potential future use
+    return function cleanup() {
+        if (state.observers.main) {
+            state.observers.main.disconnect();
+        }
+        if (state.observers.counter) {
+            state.observers.counter.disconnect();
+        }
     };
 }
 
