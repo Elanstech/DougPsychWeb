@@ -1,18 +1,23 @@
-// Wait for DOM to be loaded
+// Modern Contact Page JavaScript
+// Enhanced functionality with smooth animations and modern interactions
+
 document.addEventListener('DOMContentLoaded', function() {
-    initializeContactPage();
+    initializeModernContactPage();
 });
 
 // Main initialization function
-function initializeContactPage() {
+function initializeModernContactPage() {
     initHeader();
     initMobileNav();
     initScrollAnimations();
-    initMapLinks();
-    initFaqItems();
-    initFormValidation();
-    initBackToTop();
+    initHeroAnimations();
     initCardInteractions();
+    initFormHandling();
+    initMapLinks();
+    initSmoothScrolling();
+    initParallaxEffects();
+    initAccessibility();
+    initPerformanceOptimizations();
 }
 
 /* ======================================
@@ -20,18 +25,23 @@ function initializeContactPage() {
 ====================================== */
 function initHeader() {
     const header = document.querySelector('.header');
+    if (!header) return;
+
     let lastScroll = 0;
     let isScrollingDown = false;
+    let ticking = false;
 
-    window.addEventListener('scroll', () => {
+    function updateHeader() {
         const currentScroll = window.pageYOffset;
         
+        // Add scrolled class for styling
         if (currentScroll > 100) {
             header.classList.add('header-scrolled');
         } else {
             header.classList.remove('header-scrolled');
         }
         
+        // Hide/show header on scroll (only if menu is not open)
         if (!document.body.classList.contains('menu-open')) {
             if (currentScroll > lastScroll && !isScrollingDown && currentScroll > 200) {
                 isScrollingDown = true;
@@ -43,6 +53,14 @@ function initHeader() {
         }
         
         lastScroll = currentScroll;
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
     });
 }
 
@@ -54,31 +72,58 @@ function initMobileNav() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    if (navToggle && navMenu) {
-        // Toggle menu on button click
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
+    if (!navToggle || !navMenu) return;
 
-        // Close menu when clicking a link
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-        });
+    // Toggle menu on button click
+    navToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleMobileMenu();
+    });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
+    // Close menu when clicking a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
         });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+        }
+    });
+
+    function toggleMobileMenu() {
+        const isOpen = navToggle.classList.contains('active');
+        
+        if (isOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    }
+
+    function openMobileMenu() {
+        navToggle.classList.add('active');
+        navMenu.classList.add('active');
+        document.body.classList.add('menu-open');
+        
+        // Trap focus in menu
+        navMenu.querySelector('.nav-link')?.focus();
+    }
+
+    function closeMobileMenu() {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
     }
 }
 
@@ -86,118 +131,94 @@ function initMobileNav() {
    SCROLL ANIMATIONS
 ====================================== */
 function initScrollAnimations() {
-    // Initialize AOS
+    // Initialize AOS with enhanced settings
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 1000,
-            easing: 'ease-out',
+            duration: 800,
+            easing: 'ease-out-cubic',
             once: true,
-            offset: 100,
+            offset: 50,
+            delay: 0,
             disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        });
+
+        // Refresh AOS on window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                AOS.refresh();
+            }, 250);
         });
     }
 
-    // Refresh AOS on window resize
-    window.addEventListener('resize', () => {
-        if (typeof AOS !== 'undefined') {
-            AOS.refresh();
-        }
-    });
+    // Custom scroll-triggered animations
+    initCustomScrollAnimations();
 }
 
-/* ======================================
-   MAP LINKS FUNCTIONALITY
-====================================== */
-function initMapLinks() {
-    const mapLinks = document.querySelectorAll('.location-link');
-    
-    mapLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Get the office address from the previous paragraph
-            const officeAddress = link.parentElement.querySelector('p').textContent.trim();
-            
-            // You can customize this to use specific map coordinates if needed
-            const encodedAddress = encodeURIComponent(officeAddress);
-            const mapUrl = `https://maps.google.com/maps?q=${encodedAddress}`;
-            
-            // Update the href attribute to ensure it opens with the correct address
-            link.setAttribute('href', mapUrl);
-        });
-    });
-}
+function initCustomScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-/* ======================================
-   FAQ ITEMS INTERACTION
-====================================== */
-function initFaqItems() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        // Add hover effect
-        item.addEventListener('mouseenter', () => {
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                item.style.transform = 'translateY(-5px)';
-                item.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
-                item.style.borderColor = 'var(--accent-gold-light)';
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
             }
         });
-        
-        item.addEventListener('mouseleave', () => {
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                item.style.transform = 'translateY(0)';
-                item.style.boxShadow = 'var(--shadow-md)';
-                item.style.borderColor = 'var(--neutral-300)';
-            }
-        });
+    }, observerOptions);
+
+    // Observe elements for custom animations
+    const animatedElements = document.querySelectorAll('.stat-item, .contact-card, .location-card, .insurance-card, .faq-item');
+    animatedElements.forEach(el => {
+        observer.observe(el);
     });
 }
 
 /* ======================================
-   FORM VALIDATION & INTERACTION
+   HERO ANIMATIONS
 ====================================== */
-function initFormValidation() {
-    // Most form validation will be handled by the Elfsight widget
-    // This is a placeholder for any additional validation you might want to add
+function initHeroAnimations() {
+    const heroShapes = document.querySelectorAll('.shape');
+    const floatingElements = document.querySelectorAll('.float-element');
     
-    // Check if Elfsight is loaded successfully
-    const checkElfsightLoaded = setInterval(() => {
-        const elfsightWidget = document.querySelector('.elfsight-app-7a063013-7327-45f2-8e58-f32816e4b9f2 .elfsight-app-widget');
-        
-        if (elfsightWidget) {
-            clearInterval(checkElfsightLoaded);
-            console.log('Elfsight form loaded successfully');
-            
-            // You can add additional interactions here if needed
-        }
-    }, 1000);
-    
-    // Stop checking after 10 seconds to avoid infinite loop
-    setTimeout(() => {
-        clearInterval(checkElfsightLoaded);
-    }, 10000);
-}
+    // Add staggered animation delays to shapes
+    heroShapes.forEach((shape, index) => {
+        shape.style.animationDelay = `${index * 0.5}s`;
+    });
 
-/* ======================================
-   BACK TO TOP BUTTON
-====================================== */
-function initBackToTop() {
-    const backToTop = document.getElementById('backToTop');
-    if (!backToTop) return;
+    floatingElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 1}s`;
+    });
+
+    // Parallax effect for hero content
+    let ticking = false;
+    
+    function updateHeroParallax() {
+        const scrolled = window.pageYOffset;
+        const heroContent = document.querySelector('.hero-content');
+        const heroShapes = document.querySelector('.floating-shapes');
+        
+        if (heroContent && scrolled < window.innerHeight) {
+            const rate = scrolled * -0.3;
+            heroContent.style.transform = `translateY(${rate}px)`;
+        }
+        
+        if (heroShapes && scrolled < window.innerHeight) {
+            const rate = scrolled * -0.1;
+            heroShapes.style.transform = `translateY(${rate}px)`;
+        }
+        
+        ticking = false;
+    }
 
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 500) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
+        if (!ticking && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            requestAnimationFrame(updateHeroParallax);
+            ticking = true;
         }
-    });
-
-    backToTop.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
     });
 }
 
@@ -205,87 +226,501 @@ function initBackToTop() {
    CARD INTERACTIONS
 ====================================== */
 function initCardInteractions() {
-    const cards = document.querySelectorAll('.location-card, .contact-method-card, .hours-card, .insurance-card');
-    
-    cards.forEach(card => {
-        // Add hover effects for desktop/mouse interactions
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-5px)';
-                card.style.boxShadow = 'var(--shadow-xl)';
-                
-                // Change icon background if there's an icon
-                const cardIcon = card.querySelector('.card-icon, .insurance-icon');
-                if (cardIcon) {
-                    cardIcon.style.background = 'var(--gold-gradient)';
-                }
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-                card.style.boxShadow = 'var(--shadow-lg)';
-                
-                // Reset icon background
-                const cardIcon = card.querySelector('.card-icon, .insurance-icon');
-                if (cardIcon && !cardIcon.classList.contains('method-icon')) {
-                    cardIcon.style.background = 'var(--primary-blue)';
-                }
-            });
-        }
+    // Contact cards hover effects
+    const contactCards = document.querySelectorAll('.contact-card');
+    contactCards.forEach(card => {
+        initCardHover(card);
     });
-    
-    // Add special handling for contact methods
-    const contactMethods = document.querySelectorAll('.contact-method');
-    
-    contactMethods.forEach(method => {
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            method.addEventListener('mouseenter', () => {
-                const methodIcon = method.querySelector('.method-icon');
-                if (methodIcon) {
-                    methodIcon.style.background = 'var(--gold-gradient)';
-                    methodIcon.style.transform = 'scale(1.1)';
+
+    // Location cards hover effects
+    const locationCards = document.querySelectorAll('.location-card');
+    locationCards.forEach(card => {
+        initCardHover(card);
+    });
+
+    // Insurance cards hover effects
+    const insuranceCards = document.querySelectorAll('.insurance-card');
+    insuranceCards.forEach(card => {
+        initCardHover(card);
+    });
+
+    // FAQ items hover effects
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(card => {
+        initCardHover(card);
+    });
+
+    function initCardHover(card) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        card.addEventListener('mouseenter', () => {
+            animateCardHover(card, true);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            animateCardHover(card, false);
+        });
+
+        // Touch support for mobile
+        card.addEventListener('touchstart', () => {
+            animateCardHover(card, true);
+        });
+
+        card.addEventListener('touchend', () => {
+            setTimeout(() => animateCardHover(card, false), 150);
+        });
+    }
+
+    function animateCardHover(card, isHover) {
+        const icon = card.querySelector('.card-icon, .detail-icon, .insurance-icon, .faq-icon');
+        
+        if (isHover) {
+            card.style.transform = 'translateY(-8px)';
+            card.style.boxShadow = 'var(--shadow-2xl)';
+            
+            if (icon) {
+                icon.style.transform = 'scale(1.1)';
+                icon.style.background = 'var(--gold-gradient)';
+            }
+        } else {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'var(--shadow-lg)';
+            
+            if (icon) {
+                icon.style.transform = 'scale(1)';
+                if (!icon.classList.contains('detail-icon')) {
+                    icon.style.background = 'var(--primary-blue)';
+                } else {
+                    icon.style.background = 'var(--primary-blue-light)';
                 }
+            }
+        }
+    }
+}
+
+/* ======================================
+   FORM HANDLING
+====================================== */
+function initFormHandling() {
+    // Monitor Elfsight widget loading
+    const formContainer = document.querySelector('.form-widget');
+    if (!formContainer) return;
+
+    const elfsightWidget = formContainer.querySelector('[data-elfsight-app-lazy]');
+    if (!elfsightWidget) return;
+
+    // Add loading state
+    formContainer.classList.add('loading');
+    
+    // Create loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'form-loading';
+    loadingIndicator.innerHTML = `
+        <div class="loading-spinner"></div>
+        <p>Loading contact form...</p>
+    `;
+    formContainer.appendChild(loadingIndicator);
+
+    // Check if widget is loaded
+    const checkInterval = setInterval(() => {
+        const widgetContent = elfsightWidget.querySelector('.elfsight-app-widget');
+        
+        if (widgetContent) {
+            clearInterval(checkInterval);
+            formContainer.classList.remove('loading');
+            if (loadingIndicator.parentNode) {
+                loadingIndicator.remove();
+            }
+            
+            // Add success styling
+            formContainer.classList.add('loaded');
+            
+            // Trigger animation
+            setTimeout(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            }, 100);
+        }
+    }, 500);
+
+    // Stop checking after 15 seconds
+    setTimeout(() => {
+        clearInterval(checkInterval);
+        if (formContainer.classList.contains('loading')) {
+            formContainer.classList.remove('loading');
+            formContainer.classList.add('error');
+            
+            if (loadingIndicator.parentNode) {
+                loadingIndicator.innerHTML = `
+                    <div class="error-icon">⚠️</div>
+                    <p>Form loading error. Please <a href="tel:9176176731">call us directly</a> or <a href="mailto:duhlig2004@yahoo.com">send an email</a>.</p>
+                `;
+            }
+        }
+    }, 15000);
+
+    // Smooth scroll to form when clicking CTA buttons
+    const formCTAButtons = document.querySelectorAll('a[href="#contact-form"]');
+    formCTAButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            smoothScrollTo(formContainer, 1000);
+        });
+    });
+}
+
+/* ======================================
+   MAP LINKS FUNCTIONALITY
+====================================== */
+function initMapLinks() {
+    const directionsLinks = document.querySelectorAll('.directions-link');
+    
+    directionsLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Add analytics tracking if needed
+            gtag && gtag('event', 'directions_click', {
+                'event_category': 'engagement',
+                'event_label': link.textContent.trim()
             });
             
-            method.addEventListener('mouseleave', () => {
-                const methodIcon = method.querySelector('.method-icon');
-                if (methodIcon) {
-                    methodIcon.style.background = 'var(--primary-blue-light)';
-                    methodIcon.style.transform = 'scale(1)';
-                }
-            });
+            // Add visual feedback
+            link.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                link.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+}
+
+/* ======================================
+   SMOOTH SCROLLING
+====================================== */
+function initSmoothScrolling() {
+    // Smooth scroll for anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href === '#') return;
+            
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                smoothScrollTo(target, 800);
+            }
+        });
+    });
+}
+
+function smoothScrollTo(element, duration = 800) {
+    const targetPosition = element.offsetTop - 100; // Account for fixed header
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    // Easing function
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+/* ======================================
+   PARALLAX EFFECTS
+====================================== */
+function initParallaxEffects() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const parallaxElements = document.querySelectorAll('.floating-shapes, .floating-elements');
+    let ticking = false;
+
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        
+        parallaxElements.forEach((element, index) => {
+            const rate = scrolled * (0.1 + index * 0.05);
+            element.style.transform = `translateY(${rate}px)`;
+        });
+        
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
         }
     });
 }
 
 /* ======================================
-   PERFORMANCE OPTIMIZATION
+   ACCESSIBILITY ENHANCEMENTS
 ====================================== */
+function initAccessibility() {
+    // Skip link functionality
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+        skipLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(skipLink.getAttribute('href'));
+            if (target) {
+                target.focus();
+                target.scrollIntoView();
+            }
+        });
+    }
+
+    // Enhanced focus management
+    const focusableElements = document.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
+    focusableElements.forEach(element => {
+        element.addEventListener('focus', () => {
+            element.classList.add('focused');
+        });
+
+        element.addEventListener('blur', () => {
+            element.classList.remove('focused');
+        });
+    });
+
+    // Keyboard navigation for cards
+    const interactiveCards = document.querySelectorAll('.contact-card, .location-card, .insurance-card, .faq-item');
+    
+    interactiveCards.forEach(card => {
+        // Make cards focusable
+        if (!card.hasAttribute('tabindex')) {
+            card.setAttribute('tabindex', '0');
+        }
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const link = card.querySelector('a');
+                if (link) {
+                    link.click();
+                }
+            }
+        });
+    });
+
+    // Announce dynamic content changes
+    const announcer = document.createElement('div');
+    announcer.setAttribute('aria-live', 'polite');
+    announcer.setAttribute('aria-atomic', 'true');
+    announcer.className = 'sr-only';
+    document.body.appendChild(announcer);
+
+    window.announceToScreenReader = function(message) {
+        announcer.textContent = message;
+        setTimeout(() => {
+            announcer.textContent = '';
+        }, 1000);
+    };
+}
+
+/* ======================================
+   PERFORMANCE OPTIMIZATIONS
+====================================== */
+function initPerformanceOptimizations() {
+    // Intersection Observer for lazy loading animations
+    const lazyElements = document.querySelectorAll('[data-aos]');
+    
+    if ('IntersectionObserver' in window) {
+        const lazyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                    lazyObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.1
+        });
+
+        lazyElements.forEach(el => {
+            lazyObserver.observe(el);
+        });
+    }
+
+    // Debounce scroll events
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            document.body.classList.remove('scrolling');
+        }, 100);
+        
+        document.body.classList.add('scrolling');
+    });
+
+    // Preload critical resources
+    const criticalImages = [
+        'logo.png',
+        'elanstechlogo.jpeg'
+    ];
+
+    criticalImages.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+    });
+}
+
+/* ======================================
+   UTILITY FUNCTIONS
+====================================== */
+
+// Throttle function for performance
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Debounce function for performance
+function debounce(func, wait, immediate) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
 // Handle reduced motion preference
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 prefersReducedMotion.addEventListener('change', () => {
     if (prefersReducedMotion.matches) {
         // Disable animations
+        document.body.classList.add('reduce-motion');
         if (typeof AOS !== 'undefined') {
             AOS.init({ disable: true });
         }
     } else {
         // Re-enable animations
+        document.body.classList.remove('reduce-motion');
         if (typeof AOS !== 'undefined') {
             AOS.init({
                 disable: false,
-                duration: 1000,
-                easing: 'ease-out',
+                duration: 800,
+                easing: 'ease-out-cubic',
                 once: true,
-                offset: 100
+                offset: 50
             });
         }
     }
 });
 
-// Export if using modules
+// Initialize reduced motion check
+if (prefersReducedMotion.matches) {
+    document.body.classList.add('reduce-motion');
+}
+
+/* ======================================
+   ERROR HANDLING
+====================================== */
+window.addEventListener('error', (e) => {
+    console.error('Contact page error:', e.error);
+    
+    // Graceful degradation for critical features
+    if (e.error.message.includes('AOS')) {
+        console.warn('AOS failed to load, continuing without animations');
+    }
+});
+
+// Service Worker registration for offline functionality
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
+
+/* ======================================
+   ANALYTICS & TRACKING
+====================================== */
+function trackUserInteraction(action, element) {
+    // Google Analytics 4 tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+            'event_category': 'contact_page',
+            'event_label': element,
+            'value': 1
+        });
+    }
+    
+    // Custom analytics if needed
+    if (window.customAnalytics) {
+        window.customAnalytics.track(action, {
+            page: 'contact',
+            element: element,
+            timestamp: Date.now()
+        });
+    }
+}
+
+// Track important interactions
+document.addEventListener('click', (e) => {
+    const target = e.target.closest('a, button');
+    if (!target) return;
+    
+    if (target.href && target.href.includes('tel:')) {
+        trackUserInteraction('phone_click', 'contact_phone');
+    } else if (target.href && target.href.includes('mailto:')) {
+        trackUserInteraction('email_click', 'contact_email');
+    } else if (target.href && target.href.includes('maps.google.com')) {
+        trackUserInteraction('directions_click', 'office_location');
+    }
+});
+
+// Export for testing purposes
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        initializeContactPage
+        initializeModernContactPage,
+        smoothScrollTo,
+        throttle,
+        debounce
     };
 }
