@@ -47,7 +47,7 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="#" class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <div class="brand-logo-container">
                         <img src="logo.png" alt="Dr. Doug Uhlig Psychological Services" class="brand-logo">
                     </div>
@@ -59,7 +59,7 @@
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link">About Us</a>
                     <a href="services.html" class="nav-link">Our Services</a>
-                    <a href="teams.html" class="nav-link active">Our Team</a>
+                    <a href="teams.html" class="nav-link">Our Team</a>
                     <a href="contact.html" class="btn-consultation">Contact Us Now</a>
                 </div>
                 <button class="nav-toggle" aria-label="Toggle Menu">
@@ -73,51 +73,67 @@
 
     <!-- Teams Hero Section -->
     <section class="teams-hero">
-        <div class="container">
-            <div class="teams-hero-content" data-aos="fade-up">
-                <span class="section-tag">Our Professional Team</span>
-                <h1>Meet Our Expert Clinicians</h1>
-                <p>Our diverse team of highly qualified mental health professionals brings decades of combined experience to provide compassionate and evidence-based psychological care across Brooklyn and Queens.</p>
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('teams.jpg')"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="content-container">
+                <h1 class="hero-title">Meet Our Expert Team</h1>
+                <div class="hero-description">
+                    <p>Our diverse team of highly qualified mental health professionals brings decades of combined experience to provide compassionate, evidence-based psychological care across Brooklyn and Queens.</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Expert Professionals</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Specializations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Stats Section -->
-    <section class="teams-stats">
+    <!-- Team Introduction Section -->
+    <section id="team-intro" class="team-intro">
         <div class="container">
-            <div class="stats-container">
-                <div class="stats-header" data-aos="fade-up">
-                    <span class="section-tag">Why Choose Our Team</span>
-                    <h2>Excellence in Mental Health Care</h2>
-                    <p>At Doug Uhlig Psychological Services, we've assembled a diverse team of highly qualified mental health professionals. Each member brings unique expertise and specialized training to address a wide range of psychological needs.</p>
-                </div>
-                
-                <div class="stats-grid">
-                    <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Why Choose Our Team</span>
+                <h2>Excellence in Mental Health Care</h2>
+                <p>At Doug Uhlig Psychological Services, we've assembled a diverse team of highly qualified mental health professionals. Each member brings unique expertise and specialized training to address a wide range of psychological needs.</p>
+            </div>
+            
+            <div class="intro-content">
+                <div class="intro-grid">
+                    <div class="intro-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-icon">
+                            <i class="fas fa-user-md"></i>
                         </div>
-                        <div class="stat-number counter" data-count="12">12</div>
-                        <div class="stat-label">Expert Professionals</div>
-                        <p class="stat-description">Highly qualified mental health specialists with diverse backgrounds</p>
+                        <h3>Licensed Professionals</h3>
+                        <p>All our team members are fully licensed and credentialed mental health professionals with extensive training and experience.</p>
                     </div>
                     
-                    <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="stat-icon">
+                    <div class="intro-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Compassionate Care</h3>
+                        <p>We provide empathetic, client-centered care that honors your unique story and supports your journey to wellness.</p>
+                    </div>
+                    
+                    <div class="intro-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-icon">
                             <i class="fas fa-brain"></i>
                         </div>
-                        <div class="stat-number counter" data-count="20">20+</div>
-                        <div class="stat-label">Areas of Specialization</div>
-                        <p class="stat-description">Comprehensive coverage of psychological treatments and therapies</p>
-                    </div>
-                    
-                    <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="stat-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <div class="stat-number counter" data-count="200">200+</div>
-                        <div class="stat-label">Years Combined Experience</div>
-                        <p class="stat-description">Decades of collective expertise in mental health treatment</p>
+                        <h3>Evidence-Based</h3>
+                        <p>Our therapeutic approaches are grounded in the latest research and proven methodologies for optimal treatment outcomes.</p>
                     </div>
                 </div>
             </div>
@@ -128,8 +144,8 @@
     <section class="team-filter">
         <div class="container">
             <div class="filter-header" data-aos="fade-up">
-                <h3>Find the Right Professional for You</h3>
-                <p>Browse our team by specialty to find the mental health professional who best matches your needs</p>
+                <h3>Find Your Perfect Match</h3>
+                <p>Browse our team by specialty to find the mental health professional who best fits your needs</p>
             </div>
             
             <div class="filter-buttons" data-aos="fade-up" data-aos-delay="200">
@@ -137,16 +153,16 @@
                     <span>All Professionals</span>
                 </button>
                 <button class="filter-btn" data-filter="psychology">
-                    <span>Psychology</span>
+                    <span>Clinical Psychology</span>
                 </button>
                 <button class="filter-btn" data-filter="therapy">
-                    <span>Therapy</span>
+                    <span>Therapy & Counseling</span>
                 </button>
                 <button class="filter-btn" data-filter="counseling">
-                    <span>Counseling</span>
+                    <span>Mental Health Counseling</span>
                 </button>
                 <button class="filter-btn" data-filter="mindfulness">
-                    <span>Mindfulness</span>
+                    <span>Mindfulness & Wellness</span>
                 </button>
             </div>
         </div>
@@ -160,14 +176,23 @@
                 <div class="member-card" data-aos="fade-up" data-category="psychology leadership">
                     <div class="member-image">
                         <img src="doug.jpeg" alt="Dr. Doug Uhlig">
-                        <div class="specialty-badge">Founder</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Founder & Clinical Director</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Dr. Doug Uhlig</h4>
                         <span class="member-title">Clinical Psychologist, Founder</span>
-                        <p class="member-specialty">Leadership & Clinical Excellence with over 20 years of experience in evidence-based psychological care</p>
+                        <p class="member-specialty">Leadership in clinical excellence with over 20 years of experience in evidence-based psychological care and practice development.</p>
+                        <div class="member-credentials">
+                            <span class="credential">Ph.D. Clinical Psychology</span>
+                            <span class="credential">20+ Years Experience</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="doug-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -176,14 +201,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="100" data-category="therapy counseling">
                     <div class="member-image">
                         <img src="Angela.jpeg" alt="Angela Christina Ferri">
-                        <div class="specialty-badge">Youth Specialist</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Youth Specialist</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Angela Christina Ferri</h4>
                         <span class="member-title">Licensed Mental Health Counselor</span>
-                        <p class="member-specialty">Specializing in youth and young adult therapy, anger management, and school performance anxiety</p>
+                        <p class="member-specialty">Specializing in youth and young adult therapy, anger management, self-esteem building, and academic performance anxiety.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LMHC</span>
+                            <span class="credential">Youth & Young Adults</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="angela-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -192,14 +226,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="200" data-category="therapy counseling">
                     <div class="member-image">
                         <img src="jaqueline.jpeg" alt="Jaqueline Galynsky">
-                        <div class="specialty-badge">Bilingual</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Bilingual Therapy</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Jaqueline Galynsky</h4>
                         <span class="member-title">Licensed Mental Health Counselor</span>
-                        <p class="member-specialty">Bilingual therapy (English/Russian) with expertise in CBT and mindfulness techniques</p>
+                        <p class="member-specialty">Bilingual therapy services (English/Russian) with expertise in CBT, REBT, and mindfulness-based interventions.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LMHC</span>
+                            <span class="credential">English/Russian</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="jaqueline-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -208,14 +251,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="300" data-category="counseling psychology">
                     <div class="member-image">
                         <img src="Zbigniew.jpeg" alt="Zbigniew Korczak">
-                        <div class="specialty-badge">Trauma Expert</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Trauma & Addiction</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Zbigniew Korczak</h4>
                         <span class="member-title">Licensed Clinical Social Worker</span>
-                        <p class="member-specialty">Trauma & PTSD treatment, addiction counseling with Buddhist compassion approach</p>
+                        <p class="member-specialty">Specialized in trauma, PTSD, and addiction treatment using Buddhist compassion therapy and cognitive behavioral approaches.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LCSW-R</span>
+                            <span class="credential">CASAC</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="zbigniew-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -224,14 +276,23 @@
                 <div class="member-card" data-aos="fade-up" data-category="mindfulness therapy">
                     <div class="member-image">
                         <img src="Stephanie.jpeg" alt="Stephanie Palacios">
-                        <div class="specialty-badge">Bilingual</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Bilingual Counseling</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Stephanie Palacios</h4>
                         <span class="member-title">Mental Health Counselor</span>
-                        <p class="member-specialty">Bilingual therapy (English/Spanish) focusing on stress reduction and self-esteem issues</p>
+                        <p class="member-specialty">Bilingual counseling services (English/Spanish) focusing on stress reduction, self-esteem, and trauma recovery.</p>
+                        <div class="member-credentials">
+                            <span class="credential">MHC</span>
+                            <span class="credential">English/Spanish</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="stephanie-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -240,14 +301,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="100" data-category="therapy psychology">
                     <div class="member-image">
                         <img src="RASHANDA.jpeg" alt="Rashanda Allen">
-                        <div class="specialty-badge">Ph.D.</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Ph.D. Clinical Psychologist</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Rashanda Allen</h4>
                         <span class="member-title">Clinical Psychologist</span>
-                        <p class="member-specialty">CBT, DBT, and mindfulness training with 20+ years of experience across all age groups</p>
+                        <p class="member-specialty">CBT, DBT, and mindfulness training with 20+ years of experience serving clients across all age groups.</p>
+                        <div class="member-credentials">
+                            <span class="credential">Ph.D.</span>
+                            <span class="credential">20+ Years</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="rashanda-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -256,14 +326,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="200" data-category="therapy mindfulness">
                     <div class="member-image">
                         <img src="https://photos.psychologytoday.com/09a338db-34ae-4d24-9455-d5ab1ee3f461/4/320x400.jpeg" alt="Yunetta Baron">
-                        <div class="specialty-badge">20+ Years</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Bilingual LMSW</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Yunetta Baron</h4>
                         <span class="member-title">Licensed Master Social Worker</span>
-                        <p class="member-specialty">Bilingual therapy (English/Russian) with expertise in trauma, addiction, and family counseling</p>
+                        <p class="member-specialty">Bilingual therapy (English/Russian) with expertise in trauma, addiction, family counseling, and elder care psychology.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LMSW</span>
+                            <span class="credential">20+ Years</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="yunetta-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -272,14 +351,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="300" data-category="psychology counseling mindfulness">
                     <div class="member-image">
                         <img src="krystal.jpeg" alt="Krystal Ortiz">
-                        <div class="specialty-badge">Consciousness</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Self-Awareness Coach</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Krystal Ortiz</h4>
                         <span class="member-title">Licensed Mental Health Counselor</span>
-                        <p class="member-specialty">Self-awareness teacher specializing in breaking cycles of anxiety and depression</p>
+                        <p class="member-specialty">Self-awareness teacher specializing in breaking cycles of anxiety and depression, confidence building, and personal transformation.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LMHC</span>
+                            <span class="credential">Consciousness Work</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="krystal-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -288,14 +376,23 @@
                 <div class="member-card" data-aos="fade-up" data-category="counseling therapy">
                     <div class="member-image">
                         <img src="Jenny.jpeg" alt="Jenny Toussaint">
-                        <div class="specialty-badge">Life Transitions</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Life Transitions</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Jenny Toussaint</h4>
                         <span class="member-title">Mental Health Counselor</span>
-                        <p class="member-specialty">Anxiety & depression treatment with focus on self-awareness and healthy coping mechanisms</p>
+                        <p class="member-specialty">Anxiety and depression treatment with focus on life transitions, self-awareness development, and healthy coping mechanisms.</p>
+                        <div class="member-credentials">
+                            <span class="credential">MHC</span>
+                            <span class="credential">Life Coaching</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="jenny-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -304,14 +401,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="100" data-category="counseling psychology">
                     <div class="member-image">
                         <img src="https://photos.psychologytoday.com/94a45188-d44b-40bd-8e62-492ce4ea40d0/2/320x400.jpeg" alt="Thomas Gerard Smith">
-                        <div class="specialty-badge">Schema Therapy</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Schema Therapy</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Thomas Gerard Smith</h4>
                         <span class="member-title">Licensed Psychoanalyst</span>
-                        <p class="member-specialty">Schema therapy specialist helping clients overcome self-defeating patterns and build confidence</p>
+                        <p class="member-specialty">Schema therapy specialist helping clients overcome self-defeating patterns, build confidence, and achieve career success.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LP</span>
+                            <span class="credential">Schema Therapy</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="thomas-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -320,14 +426,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="200" data-category="therapy counseling">
                     <div class="member-image">
                         <img src="https://photos.psychologytoday.com/1843cea7-bc19-4849-ad0b-b0bdd00489ab/1/320x400.jpeg" alt="Emma Johnson">
-                        <div class="specialty-badge">Family Therapy</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">Family Therapy</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Emma Johnson</h4>
                         <span class="member-title">Clinical Social Worker/Therapist</span>
-                        <p class="member-specialty">Relationship & family therapy with focus on communication skills and conflict resolution</p>
+                        <p class="member-specialty">Relationship and family therapy with focus on communication skills, conflict resolution, and parenting support.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LMSW</span>
+                            <span class="credential">Family Systems</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="emma-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -336,14 +451,23 @@
                 <div class="member-card" data-aos="fade-up" data-aos-delay="300" data-category="therapy psychology mindfulness">
                     <div class="member-image">
                         <img src="https://photos.psychologytoday.com/8a54f7ba-db13-483c-b3a4-4c0e7e50f4f3/1/320x400.jpeg" alt="Rebecca Ostrow">
-                        <div class="specialty-badge">EMDR Trained</div>
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <span class="specialty-badge">EMDR Trained</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="member-info">
                         <h4>Rebecca Ostrow</h4>
                         <span class="member-title">Clinical Social Worker/Therapist</span>
-                        <p class="member-specialty">Mindfulness & trauma recovery with expertise in EMDR and trauma-focused CBT</p>
+                        <p class="member-specialty">Mindfulness and trauma recovery with expertise in EMDR, trauma-focused CBT, and holistic healing approaches.</p>
+                        <div class="member-credentials">
+                            <span class="credential">LMSW</span>
+                            <span class="credential">EMDR Certified</span>
+                        </div>
                         <button class="view-profile-btn" data-modal="rebecca-modal">
-                            View Full Profile <i class="fas fa-arrow-right"></i>
+                            <span>View Full Profile</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -355,17 +479,19 @@
     <section class="join-team">
         <div class="container">
             <div class="join-content" data-aos="fade-up">
+                <span class="section-tag">Career Opportunities</span>
                 <h2>Join Our Growing Team</h2>
                 <p>We're always looking for talented professionals who share our passion for helping others. If you're interested in becoming part of our team of dedicated mental health professionals, we'd love to hear from you.</p>
                 <a href="contact.html" class="join-button">
-                    Explore Career Opportunities
+                    <span>Explore Career Opportunities</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Team Member Modals -->
+    <!-- All Team Member Modals -->
+    
     <!-- Dr. Doug Uhlig Modal -->
     <div id="doug-modal" class="member-modal">
         <div class="modal-content">
@@ -458,9 +584,6 @@
         </div>
     </div>
 
-    <!-- Continue with other modals... -->
-    <!-- I'll include a few more key modals, but you can add the rest following the same pattern -->
-
     <!-- Jaqueline Galynsky Modal -->
     <div id="jaqueline-modal" class="member-modal">
         <div class="modal-content">
@@ -505,8 +628,433 @@
         </div>
     </div>
 
-    <!-- Add remaining modals following the same pattern -->
-    <!-- ... (Include all other team member modals) ... -->
+    <!-- Zbigniew Korczak Modal -->
+    <div id="zbigniew-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="Zbigniew.jpeg" alt="Zbigniew Korczak">
+                </div>
+                <div class="modal-info">
+                    <h2>Zbigniew Korczak</h2>
+                    <span class="modal-title">Licensed Clinical Social Worker</span>
+                    <div class="modal-specialty">Trauma & Addiction Treatment</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>Life is tough these days and we all need help, particularly with this new pandemic threat and the consequent anxiety and depression it has caused. My therapeutic practice is based on Buddhist compassion and Cognitive Behavioral Therapy.</p>
+                        <p>I work with alcohol and drug addiction as well as trauma and PTSD clients. I provide a traditional psychological perspective as well as a discovery of your life's inner meaning, your strengths, your dreams, your creativity, your spirituality, and the socio-cultural context that surrounds you.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Trauma and PTSD Treatment</li>
+                            <li>Alcohol and Drug Addiction Recovery</li>
+                            <li>Buddhist Compassion Therapy</li>
+                            <li>Cognitive Behavioral Therapy (CBT)</li>
+                            <li>Anxiety and Depression Treatment</li>
+                            <li>Mindfulness-Based Interventions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Education & Credentials</h3>
+                        <ul class="credentials-list">
+                            <li>Licensed Clinical Social Worker (LCSW-R)</li>
+                            <li>Credentialed Alcoholism and Substance Abuse Counselor (CASAC)</li>
+                            <li>Certified Clinical Trauma Professional (CCTP)</li>
+                            <li>Buddhist Psychology Training Certification</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stephanie Palacios Modal -->
+    <div id="stephanie-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="Stephanie.jpeg" alt="Stephanie Palacios">
+                </div>
+                <div class="modal-info">
+                    <h2>Stephanie Palacios</h2>
+                    <span class="modal-title">Mental Health Counselor</span>
+                    <div class="modal-specialty">Bilingual Therapy (English/Spanish)</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>Hi there! My name is Stephanie Palacios. I am a Spanish speaking Mental Health Counselor. I am great with young adults and adults. I offer individual counseling, stress reduction, self-esteem issues, anger management, child behavioral concerns, anxiety and depression. I understand your cultural needs and welcome you into my practice.</p>
+                        <p>The highest priority is to meet you, the client, where you are, making sure you are heard, understood, and feel accepted and empowered. I've facilitated the journey of a client learning how to heal from the childhood trauma that they suffered, using cognitive behavioral therapy to address each thought process and how that affected their emotional wellbeing.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Bilingual Counseling Services (English/Spanish)</li>
+                            <li>Individual Counseling & Therapy</li>
+                            <li>Stress Reduction Techniques</li>
+                            <li>Self-Esteem Building & Confidence</li>
+                            <li>Anger Management Programs</li>
+                            <li>Child Behavioral Concerns</li>
+                            <li>Anxiety and Depression Treatment</li>
+                            <li>Childhood Trauma Recovery</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Therapeutic Approaches</h3>
+                        <ul class="credentials-list">
+                            <li>Cognitive Behavioral Therapy (CBT)</li>
+                            <li>Culturally Responsive Therapy</li>
+                            <li>Trauma-Informed Care</li>
+                            <li>Strength-Based Counseling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rashanda Allen Modal -->
+    <div id="rashanda-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="RASHANDA.jpeg" alt="Rashanda Allen">
+                </div>
+                <div class="modal-info">
+                    <h2>Rashanda Allen</h2>
+                    <span class="modal-title">Clinical Psychologist</span>
+                    <div class="modal-specialty">Cognitive Behavioral Therapy</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>Dr. Allen received her Ph.D. from Walden University with Honors. She is a NYS clinical psychologist specializing in providing therapy to Adults, Children, and Families. She has twenty plus years of experience providing Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT), Mindfulness Training, Motivational Interviewing, Supportive Psychotherapy, Progressive Relaxation Training, and Psychoeducation to clients across the lifespan.</p>
+                        <p>She provides culturally sensitive approaches that provide help to individuals who may feel lost or hopeless pre-and-post the Covid pandemic, as well as trauma-and-stress-related disorders. Her approaches reflect her commitment to client well-being and provide a safe space where clients can explore and express themselves and their emotions freely.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Psychological Testing & Assessment</li>
+                            <li>Anxiety and Depression Treatment</li>
+                            <li>Post-traumatic Stress Disorder (PTSD)</li>
+                            <li>Mood Disorders and OCD</li>
+                            <li>Disruptive and Conduct Disorders</li>
+                            <li>Adjustment Disorders</li>
+                            <li>Family and Child Psychology</li>
+                            <li>Cultural Competency in Treatment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Education & Credentials</h3>
+                        <ul class="credentials-list">
+                            <li>Ph.D. in Clinical Psychology, Walden University (with Honors)</li>
+                            <li>NYS Licensed Clinical Psychologist</li>
+                            <li>20+ years of clinical experience</li>
+                            <li>Certified in DBT and CBT</li>
+                            <li>Mindfulness Training Certification</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Yunetta Baron Modal -->
+    <div id="yunetta-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="https://photos.psychologytoday.com/09a338db-34ae-4d24-9455-d5ab1ee3f461/4/320x400.jpeg" alt="Yunetta Baron">
+                </div>
+                <div class="modal-info">
+                    <h2>Yunetta Baron</h2>
+                    <span class="modal-title">Licensed Master Social Worker</span>
+                    <div class="modal-specialty">Bilingual Therapy (English/Russian)</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>I am a Russian speaking Licensed Social Worker with over 20 years of experience in all age groups. If you are looking for a therapist who is able to help you recover from trauma, abuse, addiction, anger, depression or anxiety, please do not hesitate to contact me.</p>
+                        <p>I provide individual psychotherapy, counseling for couples, the elderly and family issues. I use Cognitive Behavioral Therapy, Mindfulness Meditation and insight oriented therapy. I am seeing my clients in Rego Park office and in LI office.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Trauma and Abuse Recovery</li>
+                            <li>Addiction Treatment & Recovery</li>
+                            <li>Anger Management Programs</li>
+                            <li>Depression and Anxiety Treatment</li>
+                            <li>Couples and Family Counseling</li>
+                            <li>Elder Care Psychology</li>
+                            <li>Bilingual Services (English/Russian)</li>
+                            <li>Multi-generational Therapy</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Education & Credentials</h3>
+                        <ul class="credentials-list">
+                            <li>Licensed Master Social Worker (LMSW)</li>
+                            <li>20+ years of clinical experience</li>
+                            <li>Verified by Psychology Today</li>
+                            <li>Specialized Training in Trauma Recovery</li>
+                            <li>Certified in Mindfulness Meditation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Krystal Ortiz Modal -->
+    <div id="krystal-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="krystal.jpeg" alt="Krystal Ortiz">
+                </div>
+                <div class="modal-info">
+                    <h2>Krystal Ortiz</h2>
+                    <span class="modal-title">Licensed Mental Health Counselor</span>
+                    <div class="modal-specialty">Self-Awareness & Consciousness</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>Welcome! I'm grateful that you've found your way here. If you're ready to break free from cycles of anxiety and depression, reclaim your confidence, and create a life filled with purpose and joy, you're in the right place.</p>
+                        <p>As a therapist and self-awareness teacher, I empower individuals to turn their challenges into opportunities for growth and healing. Together, we will unlock your potential, address what's holding you back, and build a thriving, abundant life. Let's begin this transformative journey today! A new life awaits!</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Breaking Cycles of Anxiety and Depression</li>
+                            <li>Self-Awareness and Consciousness Development</li>
+                            <li>Confidence Building & Self-Esteem</li>
+                            <li>Trauma Healing & Recovery</li>
+                            <li>Overcoming Limiting Beliefs</li>
+                            <li>Purpose and Life Direction</li>
+                            <li>Holistic Healing Approaches</li>
+                            <li>Personal Transformation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Education & Credentials</h3>
+                        <ul class="credentials-list">
+                            <li>Licensed Mental Health Counselor (LMHC)</li>
+                            <li>M.A. in Mental Health Counseling</li>
+                            <li>Certified Self-Awareness Teacher</li>
+                            <li>Verified by Psychology Today</li>
+                            <li>Specialized Training in Consciousness Work</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Jenny Toussaint Modal -->
+    <div id="jenny-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="Jenny.jpeg" alt="Jenny Toussaint">
+                </div>
+                <div class="modal-info">
+                    <h2>Jenny Toussaint</h2>
+                    <span class="modal-title">Mental Health Counselor</span>
+                    <div class="modal-specialty">Anxiety & Depression</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>It is normal to experience a range of emotions when beginning therapy. There are times when life is difficult, relationships are complicated, and change can be frightening. Life may be made significantly easier to navigate if you have the correct tools and assistance in place to help you. I'm happy that you have taken the initial step!</p>
+                        <p>My purpose is to inspire and encourage clients to pursue their individual pathways to become a better version of themselves. My mission is to provide each and every client with a welcoming, safe and caring atmosphere. It is my goal to help clients acquire insight, improve their self-awareness, and create healthy coping mechanisms so they can better handle life's obstacles.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Anxiety and Depression Treatment</li>
+                            <li>Life Transitions & Change Management</li>
+                            <li>Self-Awareness Development</li>
+                            <li>Healthy Coping Mechanism Building</li>
+                            <li>Personal Growth & Development</li>
+                            <li>Relationship Challenges</li>
+                            <li>Stress Management</li>
+                            <li>Emotional Regulation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Therapeutic Approaches</h3>
+                        <ul class="credentials-list">
+                            <li>Cognitive Behavioral Therapy (CBT)</li>
+                            <li>Insight-Oriented Therapy</li>
+                            <li>Solution-Focused Brief Therapy</li>
+                            <li>Strength-Based Counseling</li>
+                            <li>Supportive Therapy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Thomas Gerard Smith Modal -->
+    <div id="thomas-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="https://photos.psychologytoday.com/94a45188-d44b-40bd-8e62-492ce4ea40d0/2/320x400.jpeg" alt="Thomas Gerard Smith">
+                </div>
+                <div class="modal-info">
+                    <h2>Thomas Gerard Smith</h2>
+                    <span class="modal-title">Licensed Psychoanalyst</span>
+                    <div class="modal-specialty">Schema Therapy & Self-Development</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>When you face a challenge, do you become your own worst enemy? Do you put yourself down, rather than put your best foot forward? When attracted to someone, or an exciting new job prospect, or a difficult task at your present job, do you hear an inner, paralytic voice saying you can never succeed? And does that send you into a funk—rather than pump you up to succeed?</p>
+                        <p>I can help you rewrite the "schemas" that hold you back, by exploring how they got written, in the first place, how your inner personas feel they somehow benefit you, and work through their emotional-cognitive bases, to help you build a better life.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Schema Therapy & Pattern Recognition</li>
+                            <li>Overcoming Self-Defeating Patterns</li>
+                            <li>Career Development & Professional Growth</li>
+                            <li>Self-Confidence Building</li>
+                            <li>Personal Growth & Life Enhancement</li>
+                            <li>Inner Critic Work</li>
+                            <li>Relationship Patterns</li>
+                            <li>Performance Anxiety</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Education & Credentials</h3>
+                        <ul class="credentials-list">
+                            <li>Licensed Psychoanalyst (LP)</li>
+                            <li>Specialized Training in Schema Therapy</li>
+                            <li>Verified by Psychology Today</li>
+                            <li>Advanced Training in Psychodynamic Therapy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Emma Johnson Modal -->
+    <div id="emma-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="https://photos.psychologytoday.com/1843cea7-bc19-4849-ad0b-b0bdd00489ab/1/320x400.jpeg" alt="Emma Johnson">
+                </div>
+                <div class="modal-info">
+                    <h2>Emma Johnson</h2>
+                    <span class="modal-title">Clinical Social Worker/Therapist</span>
+                    <div class="modal-specialty">Relationship & Family Therapy</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>As a dedicated therapist, I focus on creating a warm, supportive environment where clients can safely explore their challenges and work toward personal growth. My approach combines evidence-based practices with compassionate understanding to help individuals, couples, and families navigate life's complexities.</p>
+                        <p>I believe in the inherent strength and resilience of every person. My goal is to help you recognize and harness your own inner resources while developing new skills and perspectives to overcome obstacles and thrive in your relationships and life journey.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Couple's Counseling & Relationship Therapy</li>
+                            <li>Family Therapy & Family Systems</li>
+                            <li>Communication Skills Development</li>
+                            <li>Conflict Resolution & Mediation</li>
+                            <li>Parenting Support & Guidance</li>
+                            <li>Attachment Issues</li>
+                            <li>Relationship Patterns & Dynamics</li>
+                            <li>Life Transitions & Adjustment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Education & Credentials</h3>
+                        <ul class="credentials-list">
+                            <li>Licensed Master Social Worker (LMSW)</li>
+                            <li>MSW, Columbia University School of Social Work</li>
+                            <li>Certified in Family Systems Therapy</li>
+                            <li>Verified by Psychology Today</li>
+                            <li>Gottman Method Couples Therapy Training</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Rebecca Ostrow Modal -->
+    <div id="rebecca-modal" class="member-modal">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-image">
+                    <img src="https://photos.psychologytoday.com/8a54f7ba-db13-483c-b3a4-4c0e7e50f4f3/1/320x400.jpeg" alt="Rebecca Ostrow">
+                </div>
+                <div class="modal-info">
+                    <h2>Rebecca Ostrow</h2>
+                    <span class="modal-title">Clinical Social Worker/Therapist</span>
+                    <div class="modal-specialty">Mindfulness & Trauma Recovery</div>
+                    
+                    <div class="modal-section">
+                        <h3>About</h3>
+                        <p>In my practice, I integrate trauma-informed care with mindfulness approaches to help clients process difficult experiences and develop healthier relationships with themselves and others. I specialize in working with individuals who have experienced trauma, anxiety, depression, and life transitions.</p>
+                        <p>I believe therapy is a collaborative journey. By combining evidence-based techniques with mindfulness practices, we can work together to increase your self-awareness, develop coping strategies, and create meaningful change in your life. My approach is holistic, recognizing the interconnection between mind, body, and spirit.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Areas of Expertise</h3>
+                        <ul class="expertise-list">
+                            <li>Trauma Recovery & PTSD Treatment</li>
+                            <li>EMDR (Eye Movement Desensitization and Reprocessing)</li>
+                            <li>Mindfulness-Based Therapy</li>
+                            <li>Anxiety and Depression Treatment</li>
+                            <li>Stress Management & Resilience Building</li>
+                            <li>Life Transitions & Adjustment</li>
+                            <li>Body-Mind Integration</li>
+                            <li>Holistic Healing Approaches</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Education & Credentials</h3>
+                        <ul class="credentials-list">
+                            <li>Licensed Master Social Worker (LMSW)</li>
+                            <li>MSW, New York University</li>
+                            <li>Certified in Trauma-Focused Cognitive Behavioral Therapy</li>
+                            <li>Trained in EMDR (Eye Movement Desensitization and Reprocessing)</li>
+                            <li>Verified by Psychology Today</li>
+                            <li>Mindfulness-Based Stress Reduction (MBSR) Certification</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer (Same as index) -->
     <footer class="footer">
