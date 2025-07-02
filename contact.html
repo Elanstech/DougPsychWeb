@@ -29,40 +29,64 @@
 </head>
 <body>
     <!-- Header (Same as other pages) -->
-<header class="header">
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="nav-brand">
-                <div class="brand-logo-container">
-                    <img src="logo.png" alt="Dr. Doug Uhlig Psychological Services" class="brand-logo">
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="nav-brand">
+                    <div class="brand-logo-container">
+                        <img src="logo.png" alt="Dr. Doug Uhlig Psychological Services" class="brand-logo">
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">Doug Uhlig & South Brooklyn Psychological Services PLLC</span>
+                    </div>
+                </a>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="services.html" class="nav-link">Our Services</a>
+                    <a href="teams.html" class="nav-link">Our Team</a>
+                    <a href="contact.html" class="btn-consultation">Contact Us Now</a>
                 </div>
-                <div class="brand-text">
-                    <span class="brand-name">Doug Uhlig & South Brooklyn Psychological Services PLLC</span>
-                </div>
-            </a>
-            <div class="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About Us</a>
-                <a href="services.html" class="nav-link">Our Services</a>
-                <a href="teams.html" class="nav-link">Our Team</a>
-                <a href="contact.html" class="btn-consultation">Contact Us Now</a>
+                <button class="nav-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <button class="nav-toggle" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
     <!-- Contact Hero Section -->
     <section class="contact-hero">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
         <div class="container">
-            <div class="contact-hero-content" data-aos="fade-up">
-                <h1 class="contact-title">Get in Touch</h1>
+            <div class="hero-content" data-aos="fade-up">
+                <span class="section-tag">Get in Touch</span>
+                <h1 class="hero-title">Ready to Begin Your Journey?</h1>
                 <div class="title-accent"></div>
-                <p class="contact-subtitle">We're here to answer your questions and help you begin your journey to wellness</p>
+                <p class="hero-subtitle">We're here to answer your questions and help you take the first step toward wellness and positive change</p>
+                <div class="hero-stats">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">NYC Locations</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Expert Therapists</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -70,83 +94,225 @@
     <!-- Contact Info Section -->
     <section class="contact-info-section">
         <div class="container">
-            <div class="contact-info-grid">
-                <!-- Left Column - Contact Cards -->
-                <div class="contact-cards" data-aos="fade-right">
-                    <div class="location-card">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <h3>Our Locations</h3>
-                        <div class="location-details">
-                            <div class="location">
-                                <h4>Brooklyn Office</h4>
-                                <p>1517 Voorhies Ave<br>Brooklyn, NY 11235</p>
-                                <a href="https://maps.google.com" target="_blank" class="location-link">
-                                    <i class="fa-solid fa-directions"></i> Get Directions
-                                </a>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Contact Information</span>
+                <h2>How to Reach Us</h2>
+                <p>Multiple ways to connect with our caring team</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container" data-aos="fade-right">
+                    <div class="form-card">
+                        <div class="card-header">
+                            <div class="header-icon">
+                                <i class="fas fa-envelope"></i>
                             </div>
-                            <div class="location">
-                                <h4>Queens Office</h4>
-                                <p>63-44 Saunders St, Suite 106<br>Queens, NY 11374</p>
-                                <a href="https://maps.google.com" target="_blank" class="location-link">
-                                    <i class="fa-solid fa-directions"></i> Get Directions
-                                </a>
+                            <div class="header-content">
+                                <h3>Send Us a Message</h3>
+                                <p>Fill out the form below and we'll get back to you within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Elfsight Contact Form Widget -->
+                        <div class="form-widget">
+                            <div class="elfsight-app-7a063013-7327-45f2-8e58-f32816e4b9f2" data-elfsight-app-lazy></div>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <div class="urgent-notice">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>For urgent matters, please call us directly at <a href="tel:9176176731">(917) 617-6731</a></span>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="contact-method-card">
-                        <div class="contact-method">
-                            <div class="method-icon">
-                                <i class="fa-solid fa-phone"></i>
+                </div>
+
+                <!-- Contact Methods -->
+                <div class="contact-methods" data-aos="fade-left">
+                    <!-- Phone Contact -->
+                    <div class="contact-card phone-card">
+                        <div class="card-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Call Us</h4>
+                            <p>Speak directly with our team</p>
+                            <a href="tel:9176176731" class="contact-link">
+                                (917) 617-6731
+                            </a>
+                        </div>
+                        <div class="card-action">
+                            <a href="tel:9176176731" class="btn-contact">
+                                <i class="fas fa-phone"></i>
+                                Call Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Email Contact -->
+                    <div class="contact-card email-card">
+                        <div class="card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Email Us</h4>
+                            <p>Send us your questions anytime</p>
+                            <a href="mailto:duhlig2004@yahoo.com" class="contact-link">
+                                duhlig2004@yahoo.com
+                            </a>
+                        </div>
+                        <div class="card-action">
+                            <a href="mailto:duhlig2004@yahoo.com" class="btn-contact">
+                                <i class="fas fa-envelope"></i>
+                                Send Email
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Office Hours -->
+                    <div class="contact-card hours-card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Office Hours</h4>
+                            <div class="hours-list">
+                                <div class="hours-row">
+                                    <span class="day">Monday - Friday</span>
+                                    <span class="time">9:00 AM - 7:00 PM</span>
+                                </div>
+                                <div class="hours-row">
+                                    <span class="day">Saturday</span>
+                                    <span class="time">10:00 AM - 3:00 PM</span>
+                                </div>
+                                <div class="hours-row">
+                                    <span class="day">Sunday</span>
+                                    <span class="time">Closed</span>
+                                </div>
                             </div>
-                            <div class="method-content">
+                            <div class="hours-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Evening appointments available upon request</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Locations</span>
+                <h2>Visit Our Offices</h2>
+                <p>Convenient locations in Brooklyn and Queens</p>
+            </div>
+
+            <div class="locations-grid">
+                <!-- Brooklyn Location -->
+                <div class="location-card" data-aos="fade-up">
+                    <div class="location-header">
+                        <div class="location-badge">
+                            <i class="fas fa-star"></i>
+                            <span>Brooklyn Office</span>
+                        </div>
+                        <h3>South Brooklyn Psychological Services</h3>
+                    </div>
+                    
+                    <div class="location-details">
+                        <div class="detail-group">
+                            <div class="detail-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h4>Address</h4>
+                                <p>1517 Voorhies Ave<br>Brooklyn, NY 11235</p>
+                                <a href="https://maps.google.com/?q=1517+Voorhies+Ave,+Brooklyn,+NY+11235" target="_blank" class="directions-link">
+                                    <i class="fas fa-directions"></i>
+                                    Get Directions
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="detail-group">
+                            <div class="detail-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="detail-content">
                                 <h4>Phone</h4>
                                 <a href="tel:9176176731">(917) 617-6731</a>
                             </div>
                         </div>
-                        
-                        <div class="contact-method">
-                            <div class="method-icon">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div class="method-content">
-                                <h4>Email</h4>
-                                <a href="mailto:duhlig2004@yahoo.com">duhlig2004@yahoo.com</a>
-                            </div>
-                        </div>
                     </div>
-                    
-                    <div class="hours-card">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-clock"></i>
+
+                    <div class="location-features">
+                        <div class="feature">
+                            <i class="fas fa-parking"></i>
+                            <span>Easy Parking</span>
                         </div>
-                        <h3>Office Hours</h3>
-                        <div class="hours-grid">
-                            <div class="day">Monday - Friday</div>
-                            <div class="time">9:00 AM - 7:00 PM</div>
-                            <div class="day">Saturday</div>
-                            <div class="time">10:00 AM - 3:00 PM</div>
-                            <div class="day">Sunday</div>
-                            <div class="time">Closed</div>
+                        <div class="feature">
+                            <i class="fas fa-wheelchair"></i>
+                            <span>Accessible</span>
                         </div>
-                        <p class="hours-note">Evening appointments available upon request</p>
+                        <div class="feature">
+                            <i class="fas fa-wifi"></i>
+                            <span>Free WiFi</span>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Right Column - Contact Form -->
-                <div class="contact-form-container" data-aos="fade-left">
-                    <div class="form-header">
-                        <h2>Send Us a Message</h2>
-                        <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+
+                <!-- Queens Location -->
+                <div class="location-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="location-header">
+                        <div class="location-badge secondary">
+                            <i class="fas fa-building"></i>
+                            <span>Queens Office</span>
+                        </div>
+                        <h3>Doug Uhlig Psychological Services</h3>
                     </div>
                     
-                    <!-- Elfsight Contact Form Widget -->
-                    <div class="elfsight-app-7a063013-7327-45f2-8e58-f32816e4b9f2" data-elfsight-app-lazy></div>
-                    
-                    <div class="form-footer">
-                        <p>For urgent matters, please call us directly at <a href="tel:9176176731">(917) 617-6731</a></p>
+                    <div class="location-details">
+                        <div class="detail-group">
+                            <div class="detail-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h4>Address</h4>
+                                <p>63-44 Saunders St, Suite 106<br>Queens, NY 11374</p>
+                                <a href="https://maps.google.com/?q=63-44+Saunders+St,+Suite+106,+Queens,+NY+11374" target="_blank" class="directions-link">
+                                    <i class="fas fa-directions"></i>
+                                    Get Directions
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="detail-group">
+                            <div class="detail-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="detail-content">
+                                <h4>Phone</h4>
+                                <a href="tel:9176176731">(917) 617-6731</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-features">
+                        <div class="feature">
+                            <i class="fas fa-parking"></i>
+                            <span>Easy Parking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-wheelchair"></i>
+                            <span>Accessible</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-wifi"></i>
+                            <span>Free WiFi</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,47 +323,73 @@
     <section class="insurance-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Accepted Insurance</h2>
-                <div class="title-accent"></div>
-                <p class="section-subtitle">We work with many insurance providers to make care accessible</p>
+                <span class="section-tag">Insurance & Payment</span>
+                <h2>Accepted Insurance Plans</h2>
+                <p>We work with many insurance providers to make care accessible</p>
             </div>
             
-            <div class="insurance-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="insurance-card">
-                    <div class="insurance-icon">
-                        <i class="fa-solid fa-shield-heart"></i>
+            <div class="insurance-grid">
+                <div class="insurance-card" data-aos="fade-up">
+                    <div class="card-header">
+                        <div class="insurance-icon">
+                            <i class="fas fa-shield-heart"></i>
+                        </div>
+                        <h3>Major Insurance Plans</h3>
                     </div>
-                    <h3>Major Insurance Plans</h3>
-                    <ul class="insurance-list">
-                        <li><i class="fa-solid fa-check"></i> Blue Cross Blue Shield</li>
-                        <li><i class="fa-solid fa-check"></i> Cigna</li>
-                        <li><i class="fa-solid fa-check"></i> United Healthcare</li>
-                        <li><i class="fa-solid fa-check"></i> Aetna</li>
-                        <li><i class="fa-solid fa-check"></i> Medicare</li>
-                    </ul>
+                    <div class="insurance-list">
+                        <div class="insurance-item">
+                            <i class="fas fa-check"></i>
+                            <span>Blue Cross Blue Shield</span>
+                        </div>
+                        <div class="insurance-item">
+                            <i class="fas fa-check"></i>
+                            <span>Cigna</span>
+                        </div>
+                        <div class="insurance-item">
+                            <i class="fas fa-check"></i>
+                            <span>United Healthcare</span>
+                        </div>
+                        <div class="insurance-item">
+                            <i class="fas fa-check"></i>
+                            <span>Aetna</span>
+                        </div>
+                        <div class="insurance-item">
+                            <i class="fas fa-check"></i>
+                            <span>Medicare</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="insurance-card">
-                    <div class="insurance-icon">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                <div class="insurance-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-header">
+                        <div class="insurance-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3>Self-Pay Options</h3>
                     </div>
-                    <h3>Self-Pay Options</h3>
-                    <p>We offer flexible payment plans and sliding scale fees based on financial need. Please contact our office to discuss available options.</p>
-                    <div class="insurance-note">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span>Superbills provided for out-of-network reimbursement</span>
+                    <div class="card-content">
+                        <p>We offer flexible payment plans and sliding scale fees based on financial need. Please contact our office to discuss available options.</p>
+                        <div class="insurance-note">
+                            <i class="fas fa-circle-info"></i>
+                            <span>Superbills provided for out-of-network reimbursement</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="insurance-card">
-                    <div class="insurance-icon">
-                        <i class="fa-solid fa-circle-question"></i>
+                <div class="insurance-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-header">
+                        <div class="insurance-icon">
+                            <i class="fas fa-circle-question"></i>
+                        </div>
+                        <h3>Insurance Verification</h3>
                     </div>
-                    <h3>Insurance Verification</h3>
-                    <p>Contact our office for a complimentary benefits check. We'll verify your coverage and explain any out-of-pocket costs before your first appointment.</p>
-                    <a href="tel:9176176731" class="btn-verify">
-                        <i class="fa-solid fa-phone"></i> Call for Verification
-                    </a>
+                    <div class="card-content">
+                        <p>Contact our office for a complimentary benefits check. We'll verify your coverage and explain any out-of-pocket costs before your first appointment.</p>
+                        <a href="tel:9176176731" class="btn-verify">
+                            <i class="fas fa-phone"></i>
+                            Call for Verification
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -207,39 +399,70 @@
     <section class="faq-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="title-accent"></div>
+                <span class="section-tag">Common Questions</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to the most common questions about our services</p>
             </div>
             
-            <div class="faq-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="faq-item">
-                    <h3>What should I expect at my first appointment?</h3>
-                    <p>Your initial consultation is primarily a conversation to understand your needs and establish comfort and trust. We'll discuss your reasons for seeking therapy, your background, and start developing a treatment plan tailored to your goals.</p>
+            <div class="faq-grid">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="faq-content">
+                        <h3>What should I expect at my first appointment?</h3>
+                        <p>Your initial consultation is primarily a conversation to understand your needs and establish comfort and trust. We'll discuss your reasons for seeking therapy, your background, and start developing a treatment plan tailored to your goals.</p>
+                    </div>
                 </div>
                 
-                <div class="faq-item">
-                    <h3>How long are therapy sessions?</h3>
-                    <p>Standard therapy sessions are 50 minutes. However, initial consultations may be longer to allow time for a thorough assessment of your needs.</p>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="faq-content">
+                        <h3>How long are therapy sessions?</h3>
+                        <p>Standard therapy sessions are 50 minutes. However, initial consultations may be longer to allow time for a thorough assessment of your needs.</p>
+                    </div>
                 </div>
                 
-                <div class="faq-item">
-                    <h3>How often will I need to attend therapy?</h3>
-                    <p>Most clients begin with weekly sessions. As progress is made, sessions might be scheduled less frequently. The frequency of therapy is tailored to your specific situation and goals.</p>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-icon">
+                        <i class="fas fa-repeat"></i>
+                    </div>
+                    <div class="faq-content">
+                        <h3>How often will I need to attend therapy?</h3>
+                        <p>Most clients begin with weekly sessions. As progress is made, sessions might be scheduled less frequently. The frequency of therapy is tailored to your specific situation and goals.</p>
+                    </div>
                 </div>
                 
-                <div class="faq-item">
-                    <h3>Is everything I say confidential?</h3>
-                    <p>Yes, confidentiality is a cornerstone of therapy. There are specific legal limitations to confidentiality that will be discussed during your first session, such as risk of harm to self or others.</p>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="faq-content">
+                        <h3>Is everything I say confidential?</h3>
+                        <p>Yes, confidentiality is a cornerstone of therapy. There are specific legal limitations to confidentiality that will be discussed during your first session, such as risk of harm to self or others.</p>
+                    </div>
                 </div>
                 
-                <div class="faq-item">
-                    <h3>Do you offer teletherapy/virtual sessions?</h3>
-                    <p>Yes, we offer secure video sessions for clients who prefer or require remote therapy. Our virtual platform is HIPAA-compliant to ensure your privacy.</p>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="faq-content">
+                        <h3>Do you offer teletherapy/virtual sessions?</h3>
+                        <p>Yes, we offer secure video sessions for clients who prefer or require remote therapy. Our virtual platform is HIPAA-compliant to ensure your privacy.</p>
+                    </div>
                 </div>
                 
-                <div class="faq-item">
-                    <h3>How do I know if therapy is working?</h3>
-                    <p>Progress in therapy is regularly discussed and assessed. We'll establish clear goals and check in on your progress throughout treatment. Most clients report feeling better understood, having improved coping skills, and experiencing positive changes in their lives.</p>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="faq-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="faq-content">
+                        <h3>How do I know if therapy is working?</h3>
+                        <p>Progress in therapy is regularly discussed and assessed. We'll establish clear goals and check in on your progress throughout treatment. Most clients report feeling better understood, having improved coping skills, and experiencing positive changes in their lives.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,16 +470,27 @@
     
     <!-- Call to Action Section -->
     <section class="cta-section">
+        <div class="cta-background">
+            <div class="gradient-overlay"></div>
+            <div class="floating-elements">
+                <div class="float-element"></div>
+                <div class="float-element"></div>
+                <div class="float-element"></div>
+            </div>
+        </div>
         <div class="container">
             <div class="cta-content" data-aos="fade-up">
+                <span class="section-tag light">Take the First Step</span>
                 <h2>Ready to Begin Your Journey?</h2>
-                <p>Take the first step towards positive change with our expert guidance</p>
+                <p>Take the first step towards positive change with our expert guidance and compassionate care</p>
                 <div class="cta-buttons">
                     <a href="tel:9176176731" class="btn-primary">
-                        <i class="fa-solid fa-phone"></i> Call Now
+                        <i class="fas fa-phone"></i>
+                        Call Now
                     </a>
-                    <a href="#elfsight-app" class="btn-secondary">
-                        <i class="fa-solid fa-envelope"></i> Send a Message
+                    <a href="#contact-form" class="btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Send a Message
                     </a>
                 </div>
             </div>
@@ -367,19 +601,6 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="./js/script.js"></script>
-
-    <!-- Initialize AOS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 1000,
-                easing: 'ease-out',
-                once: true,
-                offset: 100,
-                disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-            });
-        });
-    </script>
+    <script src="./js/contact.js"></script>
 </body>
 </html>
