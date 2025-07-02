@@ -1001,14 +1001,24 @@
 /* Mobile Landscape */
 @media (max-width: 768px) {
     .teams-hero {
-        height: 70vh;
-        min-height: 500px;
+        height: auto;
+        min-height: 100vh;
         margin-top: 70px;
+        padding: 2rem 0;
+    }
+    
+    .hero-content {
+        align-items: flex-start;
+        padding-top: 2rem;
     }
     
     .hero-title {
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
+    }
+    
+    .hero-description {
+        margin-bottom: 2rem;
     }
     
     .hero-description p {
@@ -1088,13 +1098,23 @@
 /* Mobile Portrait */
 @media (max-width: 576px) {
     .teams-hero {
-        height: 60vh;
-        min-height: 450px;
+        height: auto;
+        min-height: 100vh;
+        padding: 1.5rem 0 3rem 0;
+    }
+    
+    .hero-content {
+        align-items: flex-start;
+        padding-top: 1rem;
     }
     
     .hero-title {
         font-size: 2rem;
         margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+        margin-bottom: 2rem;
     }
     
     .hero-description p {
@@ -1186,6 +1206,10 @@
     
     .stat-label {
         font-size: 0.85rem;
+    }
+    
+    .hero-stats {
+        margin-bottom: 2rem;
     }
 }
 
