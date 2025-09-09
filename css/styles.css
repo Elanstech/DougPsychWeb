@@ -474,6 +474,98 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* ==========================================================================
+   FLOATING CAREERS BUTTON
+   ========================================================================== */
+.floating-careers-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    animation: fadeInUp 0.5s ease;
+}
+
+.floating-careers-btn button {
+    background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-dark) 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(26, 35, 126, 0.3);
+    border: 2px solid var(--metallic-gold);
+    position: relative;
+}
+
+.floating-careers-btn button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(26, 35, 126, 0.4);
+    background: linear-gradient(135deg, var(--royal-blue-light) 0%, var(--royal-blue) 100%);
+}
+
+.floating-careers-btn button i {
+    color: var(--metallic-gold);
+    font-size: 1rem;
+}
+
+.floating-careers-btn button span {
+    white-space: nowrap;
+}
+
+/* Pulse animation to draw attention */
+.floating-careers-btn button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--metallic-gold) 0%, var(--metallic-gold-light) 100%);
+    border-radius: 50px;
+    z-index: -1;
+    animation: pulse 2s infinite;
+    opacity: 0.7;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hide when certain elements are in view to avoid overlap */
+.floating-careers-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
 /* Responsive Design */
 @media (max-width: 991px) {
     .job-info {
@@ -558,6 +650,27 @@ body {
     .job-contact-section {
         margin: 1rem -1rem -1rem -1rem;
         padding: 1.5rem 1rem;
+    }
+    
+    .floating-careers-btn {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .floating-careers-btn button {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .floating-careers-btn button span {
+        display: none; /* Hide text on mobile, show only icon */
+    }
+    
+    .floating-careers-btn button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        justify-content: center;
     }
 }
 
