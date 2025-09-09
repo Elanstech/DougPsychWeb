@@ -306,6 +306,30 @@
     </div>
 </div>
 
+<!-- Job Posting Banner - Sleek Version -->
+<div class="job-banner" id="jobBanner">
+    <div class="container">
+        <div class="job-banner-content">
+            <div class="job-info">
+                <span class="job-badge">
+                    <i class="fas fa-briefcase"></i>
+                    NOW HIRING
+                </span>
+                <span class="job-title">Mental Health Counselor Position Available</span>
+                <span class="job-contact">Contact: <a href="tel:9176176731">(917) 617-6731</a></span>
+            </div>
+            <div class="job-actions">
+                <button class="btn-learn-more" onclick="openJobModal()">
+                    Learn More
+                </button>
+                <button class="btn-close" onclick="closeJobBanner()" aria-label="Close banner">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Job Details Modal -->
 <div class="job-modal" id="jobModal">
     <div class="job-modal-overlay" onclick="closeJobModal()"></div>
@@ -391,6 +415,14 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Floating Careers Button (shows when banner is closed) -->
+<div class="floating-careers-btn" id="floatingCareersBtn" style="display: none;">
+    <button onclick="openJobModal()" aria-label="View Career Opportunities">
+        <i class="fas fa-briefcase"></i>
+        <span>Careers</span>
+    </button>
 </div>
   
 <header class="header">
