@@ -112,45 +112,75 @@ function initIntersectionObservers() {
 }
 
 // ===============================
-// JOB BANNER FUNCTIONALITY
+// JOB BANNER & MODAL FUNCTIONALITY
 // ===============================
 function initJobBanner() {
     const banner = document.getElementById('jobBanner');
-    const details = document.getElementById('jobDetails');
-    const readMoreBtn = document.querySelector('.btn-read-more');
+    const modal = document.getElementById('jobModal');
     
     // Check if banner was previously closed
     if (localStorage.getItem('jobBannerClosed') === 'true') {
         banner.style.display = 'none';
         document.body.classList.add('banner-closed');
     }
+    
+    // Close modal when clicking outside or pressing Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeJobModal();
+        }
+    });
+    
+    // Prevent modal close when clicking inside modal content
+    const modalContent = document.querySelector('.job-modal-content');
+    if (modalContent) {
+        modalContent.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
 }
 
-function toggleJobDetails() {
-    const details = document.getElementById('jobDetails');
-    const btn = document.querySelector('.btn-read-more');
-    const icon = btn.querySelector('i');
+function openJobModal() {
+    const modal = document.getElementById('jobModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
     
-    if (details.classList.contains('expanded')) {
-        details.classList.remove('expanded');
-        btn.innerHTML = '<i class="fas fa-file-alt"></i> Read Full Description';
-        
-        // Scroll back to top of banner
-        document.getElementById('jobBanner').scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    } else {
-        details.classList.add('expanded');
-        btn.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Details';
-        
-        // Small delay to allow expansion, then scroll
-        setTimeout(() => {
-            details.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }, 300);
+    // Focus trap for accessibility
+    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (firstElement) {
+        firstElement.focus();
+    }
+    
+    // Handle tab navigation within modal
+    modal.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+    });
+}
+
+function closeJobModal() {
+    const modal = document.getElementById('jobModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    
+    // Return focus to the button that opened the modal
+    const learnMoreBtn = document.querySelector('.btn-learn-more');
+    if (learnMoreBtn) {
+        learnMoreBtn.focus();
     }
 }
 
