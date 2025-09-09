@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeAllComponents() {
     // Core components
+    initJobBanner();
     initHeader();
     initMobileNav();
     initHeroSlider();
@@ -109,6 +110,82 @@ function initIntersectionObservers() {
         observer.observe(element);
     });
 }
+
+// ===============================
+// JOB BANNER FUNCTIONALITY
+// ===============================
+function initJobBanner() {
+    const banner = document.getElementById('jobBanner');
+    const details = document.getElementById('jobDetails');
+    const readMoreBtn = document.querySelector('.btn-read-more');
+    
+    // Check if banner was previously closed
+    if (localStorage.getItem('jobBannerClosed') === 'true') {
+        banner.style.display = 'none';
+        document.body.classList.add('banner-closed');
+    }
+}
+
+function toggleJobDetails() {
+    const details = document.getElementById('jobDetails');
+    const btn = document.querySelector('.btn-read-more');
+    const icon = btn.querySelector('i');
+    
+    if (details.classList.contains('expanded')) {
+        details.classList.remove('expanded');
+        btn.innerHTML = '<i class="fas fa-file-alt"></i> Read Full Description';
+        
+        // Scroll back to top of banner
+        document.getElementById('jobBanner').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    } else {
+        details.classList.add('expanded');
+        btn.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Details';
+        
+        // Small delay to allow expansion, then scroll
+        setTimeout(() => {
+            details.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 300);
+    }
+}
+
+function closeJobBanner() {
+    const banner = document.getElementById('jobBanner');
+    
+    // Animate out
+    banner.style.transform = 'translateY(-100%)';
+    banner.style.opacity = '0';
+    
+    setTimeout(() => {
+        banner.style.display = 'none';
+        document.body.classList.add('banner-closed');
+        
+        // Remember user choice
+        localStorage.setItem('jobBannerClosed', 'true');
+        
+        // Adjust header position
+        const header = document.querySelector('.header');
+        if (header) {
+            header.style.top = '0';
+        }
+        
+        // Adjust hero margin
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            hero.style.marginTop = '80px';
+        }
+    }, 300);
+}
+
+// Initialize job banner when DOM loads
+document.addEventListener('DOMContentLoaded', function() {
+    initJobBanner();
+});
 
 // ===============================
 // HEADER & NAVIGATION
@@ -1959,6 +2036,7 @@ function initBackToTop() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         initializeAllComponents,
+        initJobBanner,
         initHeader,
         initHeroSlider,
         initServices,
