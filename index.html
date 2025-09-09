@@ -282,69 +282,111 @@
 </head>
 <body>
 
-<!-- Job Posting Banner -->
+<!-- Job Posting Banner - Sleek Version -->
 <div class="job-banner" id="jobBanner">
     <div class="container">
         <div class="job-banner-content">
             <div class="job-info">
-                <div class="job-badge">
+                <span class="job-badge">
                     <i class="fas fa-briefcase"></i>
-                    <span>OPEN POSITION</span>
-                </div>
-                <h3>Mental Health Counselor – Doug Uhlig Psychological Services PLLC</h3>
-                <p class="job-summary">Bachelor's Degree in Social Work, Psychology, Mental Health Counseling, or related field required, plus 2 years of relevant experience.</p>
-                <div class="job-meta">
-                    <div class="contact-info">
-                        <i class="fas fa-phone"></i>
-                        <strong>Contact:</strong> Dr. Douglas Uhlig – <a href="tel:9176176731">(917) 617-6731</a>
-                    </div>
-                    <div class="job-date">
-                        <i class="fas fa-calendar"></i>
-                        <span>Posted: February 9, 2025</span>
-                    </div>
-                </div>
+                    NOW HIRING
+                </span>
+                <span class="job-title">Mental Health Counselor Position Available</span>
+                <span class="job-contact">Contact: <a href="tel:9176176731">(917) 617-6731</a></span>
             </div>
             <div class="job-actions">
-                <button class="btn-read-more" onclick="toggleJobDetails()">
-                    <i class="fas fa-file-alt"></i>
-                    Read Full Description
+                <button class="btn-learn-more" onclick="openJobModal()">
+                    Learn More
                 </button>
                 <button class="btn-close" onclick="closeJobBanner()" aria-label="Close banner">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Job Details Modal -->
+<div class="job-modal" id="jobModal">
+    <div class="job-modal-overlay" onclick="closeJobModal()"></div>
+    <div class="job-modal-content">
+        <div class="job-modal-header">
+            <div class="job-modal-title">
+                <h2>Mental Health Counselor</h2>
+                <p>Doug Uhlig Psychological Services PLLC</p>
+            </div>
+            <button class="job-modal-close" onclick="closeJobModal()" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
         
-        <!-- Expandable Job Details -->
-        <div class="job-details" id="jobDetails">
-            <div class="job-description">
-                <h4>Key Responsibilities:</h4>
-                <ul>
-                    <li>Conduct assessments, intakes and participate in level of care determinations by gathering appropriate data</li>
-                    <li>Evaluate client's physical and emotional condition, based on review of clients information</li>
-                    <li>Orient client to his/her rights and responsibilities and program expectations</li>
-                    <li>Counsel patients, individually and in group sessions to assist in overcoming dependencies, adjusting to life and making changes</li>
-                    <li>Guide clients in the development of skills or strategies for dealing with their problems</li>
-                    <li>Assess patients for risk of suicide attempts</li>
-                    <li>Work with individuals and groups of various backgrounds addressing issues including substance abuse, aging, bullying, anger management, careers, depression, relationships, LGBTQ issues, self-image, stress and suicide</li>
-                    <li>Review and evaluate patient's progress</li>
-                    <li>Complete necessary administrative procedures for admission to treatment and assist in development of treatment plans</li>
-                    <li>Facilitate admissions or referrals to social agencies, housing and vocational and educational career training</li>
-                    <li>Prepare and maintain all required treatment records and reports while maintaining confidentiality</li>
-                    <li>Provide individual, group, and/or family counseling services in a professional, ethical and culturally competent manner</li>
-                    <li>Manage all aspects of assigned caseload during treatment with attention to appropriate levels of care</li>
-                    <li>Develop and maintain positive relationships with referents and collateral contacts</li>
+        <div class="job-modal-body">
+            <div class="job-overview">
+                <div class="job-meta-card">
+                    <div class="meta-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <strong>Education Required</strong>
+                            <span>Bachelor's Degree in Social Work, Psychology, Mental Health Counseling, or related field</span>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Experience Required</strong>
+                            <span>Minimum 2 years of relevant experience</span>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <strong>Posted</strong>
+                            <span>February 9, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-section">
+                <h3><i class="fas fa-tasks"></i> Key Responsibilities</h3>
+                <ul class="job-list">
+                    <li>Conduct comprehensive assessments, intakes and participate in level of care determinations</li>
+                    <li>Evaluate client's physical and emotional condition through thorough review of client information</li>
+                    <li>Orient clients to their rights, responsibilities and program expectations</li>
+                    <li>Provide individual and group counseling to assist clients in overcoming dependencies and life adjustments</li>
+                    <li>Guide clients in developing effective coping skills and problem-solving strategies</li>
+                    <li>Assess patients for suicide risk and implement appropriate safety measures</li>
+                    <li>Work with diverse populations addressing substance abuse, depression, anxiety, LGBTQ issues, trauma, and more</li>
+                    <li>Monitor and evaluate patient progress throughout treatment</li>
+                    <li>Complete administrative procedures for treatment admission and develop comprehensive treatment plans</li>
+                    <li>Facilitate referrals to community resources, housing, and vocational/educational programs</li>
+                    <li>Maintain accurate, confidential treatment records and documentation</li>
+                    <li>Provide culturally competent individual, group, and family counseling services</li>
+                    <li>Manage assigned caseload with attention to appropriate clinical interventions</li>
+                    <li>Develop positive relationships with referral sources and collateral contacts</li>
                 </ul>
-                
-                <h4>Requirements:</h4>
-                <ul>
+            </div>
+
+            <div class="job-section">
+                <h3><i class="fas fa-check-circle"></i> Requirements</h3>
+                <ul class="job-list">
                     <li>Bachelor's Degree in Social Work, Psychology, Mental Health Counseling, or related field</li>
-                    <li>Minimum 2 years of relevant job experience</li>
+                    <li>Minimum 2 years of relevant job experience in mental health counseling</li>
                     <li>Professional, ethical, and culturally competent approach to counseling</li>
+                    <li>Strong assessment and treatment planning skills</li>
+                    <li>Excellent written and verbal communication abilities</li>
+                    <li>Knowledge of mental health regulations and best practices</li>
                 </ul>
-                
-                <div class="apply-now">
-                    <p><strong>Ready to join our team?</strong> Contact Dr. Douglas Uhlig at <a href="tel:9176176731">(917) 617-6731</a> to discuss this opportunity.</p>
+            </div>
+
+            <div class="job-contact-section">
+                <div class="contact-card">
+                    <h3>Ready to Join Our Team?</h3>
+                    <p>Contact Dr. Douglas Uhlig to discuss this exciting opportunity</p>
+                    <a href="tel:9176176731" class="btn-contact">
+                        <i class="fas fa-phone"></i>
+                        Call (917) 617-6731
+                    </a>
                 </div>
             </div>
         </div>
