@@ -117,11 +117,19 @@ function initIntersectionObservers() {
 function initJobBanner() {
     const banner = document.getElementById('jobBanner');
     const modal = document.getElementById('jobModal');
+    const floatingBtn = document.getElementById('floatingCareersBtn');
     
     // Check if banner was previously closed
     if (localStorage.getItem('jobBannerClosed') === 'true') {
         banner.style.display = 'none';
         document.body.classList.add('banner-closed');
+        
+        // Show floating careers button after a delay
+        setTimeout(() => {
+            if (floatingBtn) {
+                floatingBtn.style.display = 'block';
+            }
+        }, 1000);
     }
     
     // Close modal when clicking outside or pressing Escape
@@ -138,6 +146,42 @@ function initJobBanner() {
             e.stopPropagation();
         });
     }
+    
+    // Handle floating button visibility on scroll
+    initFloatingButtonScroll();
+}
+
+function initFloatingButtonScroll() {
+    const floatingBtn = document.getElementById('floatingCareersBtn');
+    if (!floatingBtn) return;
+    
+    let lastScrollTop = 0;
+    const hideElements = ['.footer', '.contact-section', '.locations-section'];
+    
+    window.addEventListener('scroll', debounce(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Check if any hide elements are in view
+        let shouldHide = false;
+        hideElements.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    shouldHide = true;
+                }
+            }
+        });
+        
+        // Hide/show floating button based on scroll direction and elements in view
+        if (shouldHide || (scrollTop > lastScrollTop && scrollTop > 100)) {
+            floatingBtn.classList.add('hidden');
+        } else {
+            floatingBtn.classList.remove('hidden');
+        }
+        
+        lastScrollTop = scrollTop;
+    }, 100));
 }
 
 function openJobModal() {
@@ -145,17 +189,20 @@ function openJobModal() {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
     
+    // Track that user opened the modal (for analytics if needed)
+    console.log('Job modal opened');
+    
     // Focus trap for accessibility
     const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
     
     if (firstElement) {
-        firstElement.focus();
+        setTimeout(() => firstElement.focus(), 100);
     }
     
     // Handle tab navigation within modal
-    modal.addEventListener('keydown', function(e) {
+    const handleTabKey = function(e) {
         if (e.key === 'Tab') {
             if (e.shiftKey) {
                 if (document.activeElement === firstElement) {
@@ -169,7 +216,12 @@ function openJobModal() {
                 }
             }
         }
-    });
+    };
+    
+    modal.addEventListener('keydown', handleTabKey);
+    
+    // Store the handler to remove it later
+    modal._tabHandler = handleTabKey;
 }
 
 function closeJobModal() {
@@ -177,15 +229,32 @@ function closeJobModal() {
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Restore scrolling
     
-    // Return focus to the button that opened the modal
-    const learnMoreBtn = document.querySelector('.btn-learn-more');
-    if (learnMoreBtn) {
-        learnMoreBtn.focus();
+    // Remove tab handler
+    if (modal._tabHandler) {
+        modal.removeEventListener('keydown', modal._tabHandler);
+        delete modal._tabHandler;
+    }
+    
+    // Return focus to appropriate element
+    const banner = document.getElementById('jobBanner');
+    const floatingBtn = document.getElementById('floatingCareersBtn');
+    
+    if (banner && banner.style.display !== 'none') {
+        const learnMoreBtn = document.querySelector('.btn-learn-more');
+        if (learnMoreBtn) {
+            learnMoreBtn.focus();
+        }
+    } else if (floatingBtn && floatingBtn.style.display !== 'none') {
+        const floatingButton = floatingBtn.querySelector('button');
+        if (floatingButton) {
+            floatingButton.focus();
+        }
     }
 }
 
 function closeJobBanner() {
     const banner = document.getElementById('jobBanner');
+    const floatingBtn = document.getElementById('floatingCareersBtn');
     
     // Animate out
     banner.style.transform = 'translateY(-100%)';
@@ -197,6 +266,13 @@ function closeJobBanner() {
         
         // Remember user choice
         localStorage.setItem('jobBannerClosed', 'true');
+        
+        // Show floating careers button
+        if (floatingBtn) {
+            setTimeout(() => {
+                floatingBtn.style.display = 'block';
+            }, 500);
+        }
         
         // Adjust header position
         const header = document.querySelector('.header');
@@ -210,6 +286,50 @@ function closeJobBanner() {
             hero.style.marginTop = '80px';
         }
     }, 300);
+}
+
+function reopenJobBanner() {
+    const banner = document.getElementById('jobBanner');
+    const floatingBtn = document.getElementById('floatingCareersBtn');
+    
+    // Hide floating button
+    if (floatingBtn) {
+        floatingBtn.style.display = 'none';
+    }
+    
+    // Show and reset banner
+    banner.style.display = 'block';
+    banner.style.transform = '';
+    banner.style.opacity = '';
+    document.body.classList.remove('banner-closed');
+    
+    // Clear localStorage
+    localStorage.removeItem('jobBannerClosed');
+    
+    // Adjust header position
+    const header = document.querySelector('.header');
+    if (header) {
+        header.style.top = '48px';
+    }
+    
+    // Adjust hero margin
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.marginTop = '128px';
+    }
+}
+
+// Utility function for debouncing scroll events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // Initialize job banner when DOM loads
