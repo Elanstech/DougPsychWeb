@@ -9,7 +9,7 @@
    1. Initialization
    2. Utilities
    3. Header & Navigation
-   4. Hero Slider
+   4. Hero Section (Updated)
    5. About Section
    6. Services Section
    7. Team Section
@@ -183,7 +183,7 @@ function initMobileNav() {
 }
 
 // ==========================================================================
-// 4. HERO SLIDER
+// 4. HERO SECTION (UPDATED - Modern Side-by-Side)
 // ==========================================================================
 function initHeroSlider() {
     // Service items animations
@@ -283,11 +283,6 @@ function initHeroSlider() {
         heroPhoto.loading = 'eager'; // Load hero image immediately
     }
 }
-
-// Initialize on DOM load
-document.addEventListener('DOMContentLoaded', function() {
-    initHeroSlider();
-});
 
 // ==========================================================================
 // 5. ABOUT SECTION
