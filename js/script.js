@@ -186,78 +186,9 @@ function initMobileNav() {
 // 4. HERO SLIDER
 // ==========================================================================
 function initHeroSlider() {
-    const state = {
-        slides: document.querySelectorAll('.hero-slider .slide'),
-        dots: document.querySelectorAll('.nav-dot'),
-        progress: document.querySelector('.progress'),
-        currentSlide: 0,
-        slideInterval: null,
-        slideDuration: 5000,
-        startTime: null,
-        isHovered: false
-    };
-
-    function updateProgress(timestamp) {
-        if (!state.startTime) state.startTime = timestamp;
-        const elapsed = timestamp - state.startTime;
-        const progressPercent = (elapsed / state.slideDuration) * 100;
-
-        if (state.progress) {
-            state.progress.style.height = `${Math.min(progressPercent, 100)}%`;
-        }
-
-        if (elapsed < state.slideDuration) {
-            requestAnimationFrame(updateProgress);
-        }
-    }
-
-    function showSlide(index) {
-        if (state.progress) state.progress.style.height = '0%';
-        state.startTime = null;
-        requestAnimationFrame(updateProgress);
-
-        state.slides.forEach(slide => {
-            slide.classList.remove('active');
-            slide.style.zIndex = 1;
-        });
-        state.dots.forEach(dot => dot.classList.remove('active'));
-
-        state.slides[index].classList.add('active');
-        state.slides[index].style.zIndex = 2;
-        state.dots[index].classList.add('active');
-
-        state.currentSlide = index;
-    }
-
-    function nextSlide() {
-        if (!state.isHovered) {
-            showSlide((state.currentSlide + 1) % state.slides.length);
-        }
-    }
-
-    function startSlideshow() {
-        if (state.slideInterval) clearInterval(state.slideInterval);
-        state.slideInterval = setInterval(nextSlide, state.slideDuration);
-    }
-
-    function stopSlideshow() {
-        if (state.slideInterval) {
-            clearInterval(state.slideInterval);
-            state.slideInterval = null;
-        }
-    }
-
-    // Initialize event listeners
-    state.dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            stopSlideshow();
-            showSlide(index);
-            startSlideshow();
-        });
-    });
-
-    // Handle service items animations
+    // Service items animations
     const serviceItems = document.querySelectorAll('.services-list li');
+    
     serviceItems.forEach((item, index) => {
         item.style.opacity = '0';
         item.style.transform = 'translateX(-20px)';
@@ -268,49 +199,95 @@ function initHeroSlider() {
             item.style.transform = 'translateX(0)';
         }, 200 + (index * 100));
 
+        // Hover effects
         item.addEventListener('mouseenter', () => {
             item.style.transform = 'translateX(10px)';
-            item.querySelector('.service-item').style.backgroundColor = 'rgba(255, 255, 255, 0.25)';
+            const serviceItem = item.querySelector('.service-item');
+            if (serviceItem) {
+                serviceItem.style.backgroundColor = 'rgba(255, 255, 255, 0.25)';
+            }
         });
 
         item.addEventListener('mouseleave', () => {
             item.style.transform = 'translateX(0)';
-            item.querySelector('.service-item').style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            const serviceItem = item.querySelector('.service-item');
+            if (serviceItem) {
+                serviceItem.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            }
         });
     });
 
-    // Handle visibility changes
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            stopSlideshow();
-        } else {
-            showSlide(state.currentSlide);
-            startSlideshow();
-        }
-    });
-
-    window.addEventListener('focus', () => {
-        showSlide(state.currentSlide);
-        startSlideshow();
-    });
-
-    window.addEventListener('blur', stopSlideshow);
-
-    // Handle slider hover
-    const sliderContainer = document.querySelector('.hero-slider');
-    if (sliderContainer) {
-        sliderContainer.addEventListener('mouseenter', () => {
-            state.isHovered = true;
-        });
-        sliderContainer.addEventListener('mouseleave', () => {
-            state.isHovered = false;
+    // Parallax effect for hero image
+    const heroImage = document.querySelector('.hero-photo');
+    if (heroImage && window.innerWidth >= 992) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero');
+            
+            if (heroSection) {
+                const heroTop = heroSection.offsetTop;
+                const heroHeight = heroSection.offsetHeight;
+                
+                // Only apply parallax when hero is in view
+                if (scrolled < heroHeight) {
+                    const parallaxValue = (scrolled - heroTop) * 0.3;
+                    heroImage.style.transform = `translateY(${parallaxValue}px)`;
+                }
+            }
         });
     }
 
-    // Initialize
-    showSlide(0);
-    startSlideshow();
+    // Animate experience badge on scroll
+    const experienceBadge = document.querySelector('.experience-badge');
+    if (experienceBadge) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    experienceBadge.style.animation = 'fadeInUp 1s ease forwards 0.5s';
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(experienceBadge);
+    }
+
+    // Add subtle animation to the hero button
+    const heroButton = document.querySelector('.btn-hero');
+    if (heroButton) {
+        heroButton.addEventListener('mouseenter', () => {
+            heroButton.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+
+        heroButton.addEventListener('mouseleave', () => {
+            heroButton.style.transform = 'translateY(0) scale(1)';
+        });
+    }
+
+    // Add intersection observer for content wrapper
+    const contentWrapper = document.querySelector('.content-wrapper');
+    if (contentWrapper) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    contentWrapper.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        observer.observe(contentWrapper);
+    }
+
+    // Image lazy loading optimization
+    const heroPhoto = document.querySelector('.hero-photo');
+    if (heroPhoto && 'loading' in HTMLImageElement.prototype) {
+        heroPhoto.loading = 'eager'; // Load hero image immediately
+    }
 }
+
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', function() {
+    initHeroSlider();
+});
 
 // ==========================================================================
 // 5. ABOUT SECTION
