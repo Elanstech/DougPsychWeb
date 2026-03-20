@@ -14,6 +14,7 @@ function initCoachingPage() {
     initCoachingCardEffects();
     initCoachingParallax();
     initCoachingScrollReveal();
+    initCoachingLocations();
 }
 
 /* ==========================================================================
@@ -246,6 +247,35 @@ function initCoachingParallax() {
 }
 
 /* ==========================================================================
+   6. LOCATION CARD INTERACTIONS
+   ========================================================================== */
+function initCoachingLocations() {
+    var locationCards = document.querySelectorAll('.coaching-location-card');
+    locationCards.forEach(function (card) {
+        card.addEventListener('mouseenter', function () {
+            if (window.innerWidth < 992) return;
+            card.style.transform = 'translateY(-10px)';
+        });
+        card.addEventListener('mouseleave', function () {
+            if (window.innerWidth < 992) return;
+            card.style.transform = 'translateY(0)';
+        });
+    });
+
+    var remoteBanner = document.querySelector('.coaching-remote-banner');
+    if (remoteBanner) {
+        remoteBanner.addEventListener('mouseenter', function () {
+            if (window.innerWidth < 992) return;
+            remoteBanner.style.transform = 'translateY(-3px)';
+        });
+        remoteBanner.addEventListener('mouseleave', function () {
+            if (window.innerWidth < 992) return;
+            remoteBanner.style.transform = 'translateY(0)';
+        });
+    }
+}
+
+/* ==========================================================================
    5. SCROLL REVEAL (fallback if AOS not loaded)
    ========================================================================== */
 function initCoachingScrollReveal() {
@@ -253,7 +283,7 @@ function initCoachingScrollReveal() {
     if (typeof AOS !== 'undefined') return;
 
     var revealElements = document.querySelectorAll(
-        '.coaching-bio-card, .coaching-service-card, .skill-item, .client-card, .credential-entry, .coaching-book-wrapper, .coaching-cta-content'
+        '.coaching-bio-card, .coaching-service-card, .skill-item, .client-card, .credential-entry, .coaching-book-wrapper, .coaching-cta-content, .coaching-location-card, .coaching-remote-banner'
     );
 
     if (!revealElements.length) return;
