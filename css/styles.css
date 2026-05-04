@@ -2322,6 +2322,25 @@ body {
     transform: translateX(5px);
 }
 
+/* Manhattan Partnership Location */
+.location-badge.tertiary {
+    background: linear-gradient(135deg, var(--royal-blue-light), var(--royal-blue));
+    color: white;
+}
+
+.location-badge.tertiary i {
+    color: var(--metallic-gold);
+}
+
+.partnership-tag {
+    color: var(--metallic-gold);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-style: italic;
+}
+
 /* ==========================================================================
    11. FOOTER
    ========================================================================== */
