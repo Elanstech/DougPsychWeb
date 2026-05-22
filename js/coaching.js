@@ -1,6 +1,6 @@
 /**
- * Executive Coaching Landing Page - JavaScript
- * Version: 1.0
+ * Coaching Landing Page - JavaScript
+ * Version: 2.0
  * Supplements main script.js (header, nav, smooth scroll already handled)
  */
 
@@ -13,6 +13,7 @@ function initCoachingPage() {
     initCoachingCounters();
     initCoachingCardEffects();
     initCoachingParallax();
+    initStruggleTabs();
     initCoachingScrollReveal();
     initCoachingLocations();
 }
@@ -24,7 +25,6 @@ function initCoachingHeroAnimations() {
     const heroPhoto = document.querySelector('.coaching-photo');
     const badge = document.querySelector('.coaching-credential-badge');
 
-    // Subtle parallax on hero image on mouse move (desktop only)
     if (heroPhoto && window.innerWidth >= 992) {
         const heroSection = document.querySelector('.coaching-hero');
         if (heroSection) {
@@ -74,7 +74,6 @@ function initCoachingCounters() {
         function step(now) {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
             const eased = 1 - Math.pow(1 - progress, 3);
             const current = Math.round(target * eased);
 
@@ -113,7 +112,6 @@ function initCoachingCounters() {
    3. CARD HOVER EFFECTS
    ========================================================================== */
 function initCoachingCardEffects() {
-    // Bio cards
     const bioCards = document.querySelectorAll('.coaching-bio-card');
     bioCards.forEach(function (card) {
         card.addEventListener('mouseenter', function () {
@@ -126,7 +124,6 @@ function initCoachingCardEffects() {
         });
     });
 
-    // Service cards
     const serviceCards = document.querySelectorAll('.coaching-service-card');
     serviceCards.forEach(function (card) {
         card.addEventListener('mouseenter', function () {
@@ -139,7 +136,6 @@ function initCoachingCardEffects() {
         });
     });
 
-    // Skill items - tilt effect
     const skillItems = document.querySelectorAll('.skill-item');
     skillItems.forEach(function (item) {
         item.addEventListener('mousemove', function (e) {
@@ -162,7 +158,6 @@ function initCoachingCardEffects() {
         });
     });
 
-    // Client cards
     const clientCards = document.querySelectorAll('.client-card');
     clientCards.forEach(function (card) {
         card.addEventListener('mouseenter', function () {
@@ -175,7 +170,6 @@ function initCoachingCardEffects() {
         });
     });
 
-    // Timeline items
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach(function (item) {
         item.addEventListener('mouseenter', function () {
@@ -188,7 +182,6 @@ function initCoachingCardEffects() {
         });
     });
 
-    // Credential columns
     const credCols = document.querySelectorAll('.credentials-column');
     credCols.forEach(function (col) {
         col.addEventListener('mouseenter', function () {
@@ -198,6 +191,30 @@ function initCoachingCardEffects() {
         col.addEventListener('mouseleave', function () {
             if (window.innerWidth < 992) return;
             col.style.transform = 'translateY(0)';
+        });
+    });
+
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    pricingCards.forEach(function (card) {
+        card.addEventListener('mouseenter', function () {
+            if (window.innerWidth < 992) return;
+            card.style.transform = 'translateY(-8px)';
+        });
+        card.addEventListener('mouseleave', function () {
+            if (window.innerWidth < 992) return;
+            card.style.transform = 'translateY(0)';
+        });
+    });
+
+    const approachSteps = document.querySelectorAll('.approach-step');
+    approachSteps.forEach(function (step) {
+        step.addEventListener('mouseenter', function () {
+            if (window.innerWidth < 992) return;
+            step.style.transform = 'translateY(-10px)';
+        });
+        step.addEventListener('mouseleave', function () {
+            if (window.innerWidth < 992) return;
+            step.style.transform = 'translateY(0)';
         });
     });
 }
@@ -223,7 +240,6 @@ function initCoachingParallax() {
     function updateParallax() {
         const scrolled = window.pageYOffset;
 
-        // Subtle parallax on coaching hero background
         const hero = document.querySelector('.coaching-hero');
         if (hero) {
             const heroHeight = hero.offsetHeight + hero.offsetTop;
@@ -232,7 +248,6 @@ function initCoachingParallax() {
             }
         }
 
-        // CTA section background shift
         const cta = document.querySelector('.coaching-cta');
         if (cta) {
             const ctaRect = cta.getBoundingClientRect();
@@ -244,6 +259,59 @@ function initCoachingParallax() {
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+/* ==========================================================================
+   5. FOCUS AREAS — "If You're Struggling With…" TAB SWITCHING
+   ========================================================================== */
+function initStruggleTabs() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.struggle-btn'));
+    var panels = document.querySelectorAll('.struggle-panel');
+    if (!tabs.length) return;
+
+    function activate(tab) {
+        tabs.forEach(function (t) {
+            var on = t === tab;
+            t.classList.toggle('active', on);
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+            t.tabIndex = on ? 0 : -1;
+        });
+
+        var target = tab.getAttribute('data-target');
+        panels.forEach(function (p) {
+            var on = p.id === 'panel-' + target;
+            p.classList.toggle('active', on);
+            if (on) {
+                p.removeAttribute('hidden');
+            } else {
+                p.setAttribute('hidden', '');
+            }
+        });
+    }
+
+    tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () {
+            activate(tab);
+        });
+
+        tab.addEventListener('keydown', function (e) {
+            var next;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                next = tabs[(i + 1) % tabs.length];
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                next = tabs[(i - 1 + tabs.length) % tabs.length];
+            } else if (e.key === 'Home') {
+                next = tabs[0];
+            } else if (e.key === 'End') {
+                next = tabs[tabs.length - 1];
+            }
+            if (next) {
+                e.preventDefault();
+                activate(next);
+                next.focus();
+            }
+        });
+    });
 }
 
 /* ==========================================================================
@@ -276,14 +344,13 @@ function initCoachingLocations() {
 }
 
 /* ==========================================================================
-   5. SCROLL REVEAL (fallback if AOS not loaded)
+   7. SCROLL REVEAL (fallback if AOS not loaded)
    ========================================================================== */
 function initCoachingScrollReveal() {
-    // Only run if AOS is not available
     if (typeof AOS !== 'undefined') return;
 
     var revealElements = document.querySelectorAll(
-        '.coaching-bio-card, .coaching-service-card, .skill-item, .client-card, .credential-entry, .coaching-book-wrapper, .coaching-cta-content, .coaching-location-card, .coaching-remote-banner'
+        '.coaching-bio-card, .coaching-service-card, .skill-item, .client-card, .credential-entry, .coaching-book-wrapper, .coaching-cta-content, .coaching-location-card, .coaching-remote-banner, .approach-step, .pricing-card'
     );
 
     if (!revealElements.length) return;
