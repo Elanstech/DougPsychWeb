@@ -1,5 +1,278 @@
 /* ==========================================================================
-   FOCUS AREAS — "If You're Struggling With…"
+   Executive Coaching Landing Page - Stylesheet
+   Version: 2.0
+   ========================================================================== */
+
+/* ==========================================================================
+   1. COACHING HERO
+   ========================================================================== */
+.coaching-hero {
+    position: relative;
+    min-height: 100vh;
+    margin-top: 85px;
+    background: linear-gradient(135deg, #0a1628 0%, #1a237e 40%, #1b3a5c 70%, #0d2137 100%);
+    display: flex;
+    align-items: center;
+    padding: 5rem 0;
+    overflow: hidden;
+}
+
+.coaching-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(180, 155, 87, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(26, 35, 126, 0.15) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.coaching-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.03), transparent);
+    z-index: 1;
+}
+
+.coaching-hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.coaching-hero-content {
+    position: relative;
+}
+
+.coaching-tag {
+    display: inline-block;
+    padding: 0.6rem 1.8rem;
+    background: rgba(180, 155, 87, 0.15);
+    border: 1px solid rgba(180, 155, 87, 0.4);
+    color: var(--metallic-gold-light);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+.coaching-hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.4s;
+}
+
+.coaching-hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.6s;
+}
+
+.coaching-hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.8s;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.hero-stat:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    border-color: rgba(180, 155, 87, 0.4);
+}
+
+.hero-stat-number {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--metallic-gold-light);
+    line-height: 1;
+}
+
+.hero-stat-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+}
+
+.coaching-hero-actions {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 1s;
+}
+
+.btn-coaching-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.1rem 2.5rem;
+    background: var(--gold-gradient-metallic);
+    color: var(--royal-blue-dark);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(180, 155, 87, 0.3);
+}
+
+.btn-coaching-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(180, 155, 87, 0.4);
+}
+
+.btn-coaching-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.1rem 2.5rem;
+    background: transparent;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-coaching-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+.btn-coaching-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.1rem 2.5rem;
+    background: transparent;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-coaching-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-3px);
+}
+
+.btn-lg {
+    padding: 1.3rem 3rem;
+    font-size: 1.15rem;
+}
+
+.coaching-hero-image {
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards 0.5s;
+}
+
+.coaching-image-wrapper {
+    position: relative;
+    max-width: 480px;
+    margin-left: auto;
+}
+
+.coaching-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+    aspect-ratio: 3/4;
+}
+
+.coaching-credential-badge {
+    position: absolute;
+    bottom: 25px;
+    left: -30px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--gold-gradient-metallic);
+    color: var(--royal-blue-dark);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+
+.coaching-credential-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.coaching-credential-badge i {
+    font-size: 1.5rem;
+}
+
+.badge-title {
+    display: block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-text {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   2. FOCUS AREAS — "If You're Struggling With…"
    ========================================================================== */
 .coaching-struggle {
     position: relative;
@@ -197,7 +470,7 @@
 }
 
 /* ==========================================================================
-   APPROACH — Self-Leadership Transformation Framework
+   3. APPROACH — Self-Leadership Transformation Framework
    ========================================================================== */
 .coaching-approach {
     padding: 120px 0;
@@ -327,7 +600,275 @@
 }
 
 /* ==========================================================================
-   PRICING — Programs & Rates
+   4. COACHING SERVICES
+   ========================================================================== */
+.coaching-services {
+    position: relative;
+    padding: 120px 0;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e9ecef 100%);
+    overflow: hidden;
+}
+
+.coaching-services-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 10% 90%, rgba(26, 35, 126, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(180, 155, 87, 0.06) 0%, transparent 50%);
+    z-index: 0;
+}
+
+.coaching-services .container {
+    position: relative;
+    z-index: 1;
+}
+
+.coaching-services .section-header h2 {
+    color: var(--royal-blue);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.coaching-services .section-header p {
+    color: var(--text-medium);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.coaching-services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.coaching-service-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.coaching-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold-gradient-metallic);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.coaching-service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.coaching-service-card:hover::before {
+    opacity: 1;
+}
+
+.coaching-service-card.card-featured {
+    background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-dark) 100%);
+    border: none;
+}
+
+.coaching-service-card.card-featured .service-card-icon {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.coaching-service-card.card-featured .service-card-icon i {
+    color: var(--metallic-gold-light);
+}
+
+.coaching-service-card.card-featured h3 {
+    color: white;
+}
+
+.coaching-service-card.card-featured p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.coaching-service-card.card-featured .service-card-features li {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.coaching-service-card.card-featured .service-card-features li i {
+    color: var(--metallic-gold-light);
+}
+
+.service-card-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.08), rgba(180, 155, 87, 0.08));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.service-card-icon i {
+    font-size: 1.5rem;
+    color: var(--royal-blue);
+    transition: all 0.3s ease;
+}
+
+.coaching-service-card:hover .service-card-icon {
+    background: var(--gold-gradient-metallic);
+}
+
+.coaching-service-card:hover .service-card-icon i {
+    color: var(--royal-blue-dark);
+}
+
+.coaching-service-card.card-featured:hover .service-card-icon {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.coaching-service-card.card-featured:hover .service-card-icon i {
+    color: white;
+}
+
+.service-card-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--royal-blue);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.service-card-content p {
+    color: var(--text-medium);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.service-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.service-card-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.service-card-features li i {
+    color: var(--metallic-gold);
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   5. CLIENTS & INDUSTRIES
+   ========================================================================== */
+.coaching-clients {
+    padding: 120px 0;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.coaching-clients .section-header h2 {
+    color: var(--royal-blue);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.coaching-clients .section-header p {
+    color: var(--text-medium);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.client-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.client-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.client-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.08), rgba(180, 155, 87, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.client-icon i {
+    font-size: 1.8rem;
+    color: var(--royal-blue);
+    transition: all 0.3s ease;
+}
+
+.client-card:hover .client-icon {
+    background: var(--gold-gradient-metallic);
+}
+
+.client-card:hover .client-icon i {
+    color: var(--royal-blue-dark);
+}
+
+.client-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--royal-blue);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.client-card p {
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ==========================================================================
+   6. PRICING — Programs & Rates
    ========================================================================== */
 .coaching-pricing {
     position: relative;
@@ -545,88 +1086,1108 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE — new sections
+   7. COACHING ABOUT / BIO
    ========================================================================== */
+.coaching-about {
+    padding: 120px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.coaching-about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.03) 0%, rgba(180, 155, 87, 0.05) 100%);
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 0;
+}
+
+.coaching-about .container {
+    position: relative;
+    z-index: 1;
+}
+
+.coaching-about .section-header h2 {
+    color: var(--royal-blue);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.coaching-about .section-header p {
+    color: var(--text-medium);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.coaching-about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.coaching-bio-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.coaching-bio-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gold-gradient-metallic);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+}
+
+.coaching-bio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.coaching-bio-card:hover::after {
+    transform: scaleX(1);
+}
+
+.bio-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(26, 35, 126, 0.08), rgba(180, 155, 87, 0.1));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.bio-icon i {
+    font-size: 1.5rem;
+    color: var(--royal-blue);
+    transition: all 0.3s ease;
+}
+
+.coaching-bio-card:hover .bio-icon {
+    background: var(--gold-gradient-metallic);
+}
+
+.coaching-bio-card:hover .bio-icon i {
+    color: var(--royal-blue-dark);
+}
+
+.coaching-bio-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--royal-blue);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.coaching-bio-card p {
+    color: var(--text-medium);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.coaching-career-timeline {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--royal-blue);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.timeline-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.timeline-item:hover {
+    background: var(--royal-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(26, 35, 126, 0.2);
+}
+
+.timeline-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(26, 35, 126, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.timeline-icon i {
+    font-size: 1.2rem;
+    color: var(--royal-blue);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.timeline-item:hover .timeline-icon i {
+    color: var(--metallic-gold-light);
+}
+
+.timeline-item span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.timeline-item:hover span {
+    color: white;
+}
+
+/* ==========================================================================
+   8. CREDENTIALS
+   ========================================================================== */
+.coaching-credentials {
+    padding: 120px 0;
+    background: white;
+    position: relative;
+}
+
+.coaching-credentials .section-header h2 {
+    color: var(--royal-blue);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.coaching-credentials .section-header p {
+    color: var(--text-medium);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.credentials-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.credentials-column {
+    background: #f8f9fa;
+    padding: 2.5rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.credentials-column:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+}
+
+.credentials-heading {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--royal-blue);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--metallic-gold);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 600;
+}
+
+.credentials-heading i {
+    color: var(--metallic-gold);
+    font-size: 1.2rem;
+}
+
+.credential-entry {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.credential-entry:last-child {
+    border-bottom: none;
+}
+
+.credential-degree {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+}
+
+.credential-school {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   9. CORE SKILLS
+   ========================================================================== */
+.coaching-skills {
+    position: relative;
+    padding: 120px 0;
+    background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-dark) 100%);
+    overflow: hidden;
+}
+
+.coaching-skills-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 80% 20%, rgba(180, 155, 87, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+}
+
+.coaching-skills .container {
+    position: relative;
+    z-index: 1;
+}
+
+.coaching-skills .section-header h2 {
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.coaching-skills .section-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.coaching-skills .section-tag {
+    background: rgba(180, 155, 87, 0.2);
+    border: 1px solid rgba(180, 155, 87, 0.4);
+    color: var(--metallic-gold-light);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.skill-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-8px);
+    border-color: rgba(180, 155, 87, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.skill-icon {
+    width: 65px;
+    height: 65px;
+    background: rgba(180, 155, 87, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.skill-icon i {
+    font-size: 1.5rem;
+    color: var(--metallic-gold-light);
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover .skill-icon {
+    background: var(--gold-gradient-metallic);
+    transform: scale(1.1);
+}
+
+.skill-item:hover .skill-icon i {
+    color: var(--royal-blue-dark);
+}
+
+.skill-item h4 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   10. BOOK PROMO
+   ========================================================================== */
+.coaching-book {
+    padding: 120px 0;
+    background: white;
+}
+
+.coaching-book-wrapper {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, rgba(26, 35, 126, 0.03) 100%);
+    padding: 4rem;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.coaching-book-image {
+    text-align: center;
+}
+
+.coaching-book-image img {
+    max-width: 280px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: -8px 12px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+}
+
+.coaching-book-image img:hover {
+    transform: rotate(-3deg) scale(1.03);
+}
+
+.coaching-book-content .section-tag {
+    margin-bottom: 1rem;
+}
+
+.coaching-book-content h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--royal-blue);
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+.coaching-book-content p {
+    color: var(--text-medium);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.book-highlights {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.book-highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    font-weight: 600;
+    color: var(--royal-blue);
+    font-size: 0.9rem;
+}
+
+.book-highlight-item i {
+    color: var(--metallic-gold);
+}
+
+/* ==========================================================================
+   11. COACHING LOCATIONS
+   ========================================================================== */
+.coaching-locations {
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.coaching-locations-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.coaching-locations-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.coaching-locations-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coaching-locations .container {
+    position: relative;
+    z-index: 2;
+}
+
+.coaching-locations .section-header h2 {
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.coaching-locations .section-header p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.coaching-locations .section-tag {
+    background: rgba(180, 155, 87, 0.2);
+    border: 1px solid rgba(180, 155, 87, 0.4);
+    color: var(--metallic-gold-light);
+}
+
+.coaching-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.coaching-location-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.coaching-location-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.coaching-location-card.card-manhattan {
+    border: 2px solid var(--metallic-gold);
+}
+
+.coaching-location-map {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.coaching-location-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.coaching-location-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--royal-blue);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    z-index: 5;
+}
+
+.coaching-location-badge i {
+    color: var(--metallic-gold-light);
+}
+
+.coaching-badge-featured {
+    background: var(--gold-gradient-metallic);
+    color: var(--royal-blue-dark);
+}
+
+.coaching-badge-featured i {
+    color: var(--royal-blue-dark);
+}
+
+.coaching-location-info {
+    padding: 1.8rem;
+}
+
+.coaching-location-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--royal-blue);
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+.coaching-location-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.coaching-location-detail:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.coaching-location-detail i {
+    color: var(--royal-blue);
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    width: 18px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.coaching-location-detail p,
+.coaching-location-detail a {
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.coaching-location-detail a:hover {
+    color: var(--royal-blue);
+}
+
+.btn-coaching-directions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    background: var(--royal-blue);
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-coaching-directions:hover {
+    background: var(--royal-blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);
+}
+
+.coaching-remote-banner {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    transition: all 0.3s ease;
+}
+
+.coaching-remote-banner:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(180, 155, 87, 0.3);
+    transform: translateY(-3px);
+}
+
+.remote-icon-group {
+    display: flex;
+    gap: 0.8rem;
+    flex-shrink: 0;
+}
+
+.remote-icon {
+    width: 55px;
+    height: 55px;
+    background: rgba(180, 155, 87, 0.2);
+    border: 1px solid rgba(180, 155, 87, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remote-icon i {
+    font-size: 1.2rem;
+    color: var(--metallic-gold-light);
+}
+
+.coaching-remote-banner:hover .remote-icon {
+    background: rgba(180, 155, 87, 0.3);
+}
+
+.remote-content {
+    flex: 1;
+}
+
+.remote-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.remote-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.coaching-remote-banner .btn-coaching-primary {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   12. CTA SECTION
+   ========================================================================== */
+.coaching-cta {
+    position: relative;
+    padding: 120px 0;
+    background: linear-gradient(135deg, #0a1628 0%, #1a237e 50%, #0d2137 100%);
+    text-align: center;
+    overflow: hidden;
+}
+
+.coaching-cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 50% 50%, rgba(180, 155, 87, 0.1) 0%, transparent 60%);
+}
+
+.coaching-cta .container {
+    position: relative;
+    z-index: 2;
+}
+
+.coaching-cta-content h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.coaching-cta-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   13. ACTIVE NAV STATE
+   ========================================================================== */
+.nav-link.active {
+    color: var(--metallic-gold);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   14. RESPONSIVE
+   ========================================================================== */
+
+/* Tablet Landscape */
+@media screen and (max-width: 1199px) {
+    .coaching-hero-title {
+        font-size: 3rem;
+    }
+    
+    .coaching-services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .credentials-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-items {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .coaching-locations-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .coaching-locations-grid .coaching-location-card:first-child {
+        grid-column: span 2;
+        max-width: 500px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .coaching-remote-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+    
+    .remote-icon-group {
+        justify-content: center;
+    }
+}
+
+/* Tablet Portrait */
 @media screen and (max-width: 991px) {
+    .coaching-hero {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+    
+    .coaching-hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .coaching-hero-title {
+        font-size: 2.6rem;
+    }
+    
+    .coaching-image-wrapper {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .coaching-credential-badge {
+        left: 10px;
+    }
+    
     .coaching-struggle,
     .coaching-approach,
-    .coaching-pricing {
+    .coaching-about,
+    .coaching-services,
+    .coaching-clients,
+    .coaching-pricing,
+    .coaching-credentials,
+    .coaching-skills,
+    .coaching-book,
+    .coaching-locations,
+    .coaching-cta {
         padding: 80px 0;
     }
-
+    
     .coaching-struggle .section-header h2,
     .coaching-approach .section-header h2,
     .coaching-pricing .section-header h2 {
         font-size: 2.5rem;
     }
-
+    
     .approach-steps {
         grid-template-columns: 1fr;
         gap: 1.5rem;
         max-width: 520px;
         margin: 0 auto;
     }
-
+    
     .approach-steps::before {
         display: none;
     }
-
+    
     .pricing-grid {
         grid-template-columns: 1fr;
         max-width: 480px;
     }
-
+    
     .panel-inner {
         padding: 2.2rem;
     }
+    
+    .coaching-about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .timeline-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .coaching-locations-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 3rem;
+    }
+    
+    .coaching-locations-grid .coaching-location-card:first-child {
+        grid-column: span 1;
+        max-width: none;
+    }
+    
+    .coaching-book-wrapper {
+        grid-template-columns: 1fr;
+        padding: 2.5rem;
+        text-align: center;
+    }
+    
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
 }
 
+/* Mobile */
 @media screen and (max-width: 767px) {
+    .coaching-hero {
+        padding: 2rem 0;
+    }
+    
+    .coaching-hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .coaching-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .coaching-hero-stats {
+        gap: 1rem;
+    }
+    
+    .hero-stat {
+        padding: 0.8rem 1rem;
+    }
+    
+    .hero-stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .coaching-hero-actions {
+        flex-direction: column;
+    }
+    
+    .btn-coaching-primary,
+    .btn-coaching-secondary,
+    .btn-coaching-outline {
+        width: 100%;
+        justify-content: center;
+    }
+    
     .coaching-struggle,
     .coaching-approach,
-    .coaching-pricing {
+    .coaching-about,
+    .coaching-services,
+    .coaching-clients,
+    .coaching-pricing,
+    .coaching-credentials,
+    .coaching-skills,
+    .coaching-book,
+    .coaching-locations,
+    .coaching-cta {
         padding: 60px 0;
     }
-
+    
     .coaching-struggle .section-header h2,
     .coaching-approach .section-header h2,
     .coaching-pricing .section-header h2 {
         font-size: 2rem;
     }
-
+    
     .struggle-btn {
         padding: 0.7rem 1.2rem;
         font-size: 0.88rem;
     }
-
+    
     .panel-head {
         flex-direction: column;
         text-align: center;
     }
-
+    
     .panel-icon {
         width: 60px;
         height: 60px;
     }
-
+    
     .panel-questions li {
         font-size: 1rem;
     }
-
+    
     .pricing-card {
         padding: 2.5rem 2rem;
     }
-
+    
     .pricing-price {
         font-size: 2.6rem;
     }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .clients-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .coaching-service-card {
+        flex-direction: column;
+        padding: 2rem;
+    }
+    
+    .coaching-cta-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-lg {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .book-highlights {
+        justify-content: center;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
 }
 
+/* Small Mobile */
+@media screen and (max-width: 480px) {
+    .coaching-hero-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .hero-stat {
+        flex: 1;
+        min-width: 90px;
+    }
+    
+    .coaching-book-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .skill-item {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
+    .coaching-tag,
+    .coaching-hero-title,
+    .coaching-hero-subtitle,
+    .coaching-hero-stats,
+    .coaching-hero-actions,
+    .coaching-hero-image {
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    
     .struggle-panel {
         animation: none;
     }
-
+    
     .struggle-btn,
     .approach-step,
     .pricing-card {
