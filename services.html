@@ -3,440 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
+
+    <!-- SEO -->
     <title>Psychological Services NYC | Depression, Anxiety & PTSD Treatment | Dr. Doug Uhlig</title>
-    <meta name="description" content="Expert psychological services in Brooklyn & Queens. Specialized treatment for depression, anxiety, PTSD, trauma recovery, and relationship counseling. 35+ years experience. Evidence-based therapy. Insurance accepted.">
-    <meta name="keywords" content="psychological services NYC, depression treatment Brooklyn, anxiety therapy Queens, PTSD counseling, trauma recovery NYC, relationship counseling, couples therapy, mindfulness programs, mental health services New York, evidence-based therapy">
-    
-    <!-- Open Graph Meta Tags -->
+    <meta name="description" content="Expert psychological services across Manhattan, Brooklyn & Queens. Specialized treatment for depression, anxiety, PTSD, trauma recovery, couples and mindfulness. 20+ years experience. Insurance accepted.">
+    <meta name="keywords" content="psychological services NYC, depression treatment Manhattan, anxiety therapy Brooklyn, PTSD counseling Queens, trauma recovery, couples therapy, mindfulness programs, evidence-based therapy New York">
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Professional Psychological Services | Dr. Doug Uhlig NYC">
-    <meta property="og:description" content="Transform your mental wellbeing with expert psychological care. 35+ years of clinical excellence in treating depression, anxiety, trauma, and relationship issues.">
+    <meta property="og:description" content="Transform your mental wellbeing with expert psychological care. 20+ years of clinical excellence across three NYC locations.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.douguhligpsychology.com/services">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.douguhligpsychology.com/services">
-    
+
+    <link rel="canonical" href="https://dougpsychassociates.com/services.html">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/services.css">
 </head>
 <body>
-  
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <a href="index.html" class="nav-brand">
-                    <div class="brand-logo-container">
-                        <img src="logo.png" alt="Dr. Doug Uhlig Psychological Services" class="brand-logo">
-                    </div>
-                    <div class="brand-text">
-                        <span class="brand-name">Doug Uhlig & South Brooklyn Psychological Services PLLC</span>
-                    </div>
-                </a>
-                <div class="nav-menu">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About Us</a>
-                    <a href="services.html" class="nav-link active">Our Services</a>
-                    <a href="teams.html" class="nav-link">Our Team</a>
-                    <a href="contact.html" class="btn-consultation">Contact Us Now</a>
-                </div>
-                <button class="nav-toggle" aria-label="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="services-hero">
-        <div class="hero-bg-overlay"></div>
-        <div class="hero-pattern"></div>
-        
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Header -->
+<header class="header" id="header">
+    <nav class="navbar">
         <div class="container">
-            <div class="hero-content-grid">
-                <div class="hero-text-side" data-aos="fade-up">
-                    <div class="hero-badge-tag">
-                        <span>35+ Years of Excellence</span>
-                    </div>
-                    <h1 class="hero-title">Transform Your Mental Wellbeing</h1>
-                    <p class="hero-desc">Expert psychological services designed to help you overcome challenges, build resilience, and create lasting positive change in your life.</p>
-                    
-                    <div class="hero-features-list">
-                        <div class="hero-feature-item">
-                            <div class="feature-dot"></div>
-                            <span>Evidence-Based Therapy</span>
-                        </div>
-                        <div class="hero-feature-item">
-                            <div class="feature-dot"></div>
-                            <span>Personalized Treatment</span>
-                        </div>
-                        <div class="hero-feature-item">
-                            <div class="feature-dot"></div>
-                            <span>Compassionate Support</span>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-cta-buttons">
-                        <a href="contact.html" class="btn-hero-primary">Begin Your Journey</a>
-                        <a href="#services-list" class="btn-hero-outline">View Services</a>
-                    </div>
+            <a href="index.html" class="nav-brand">
+                <div class="brand-logo-container">
+                    <img src="logo.png" alt="Doug Uhlig Psychology" class="brand-logo">
                 </div>
-
-                <div class="hero-card-side" data-aos="fade-up" data-aos-delay="200">
-                    <div class="hero-info-card">
-                        <h2>Ready to Take the First Step?</h2>
-                        <p>Schedule a confidential consultation to discuss your needs and discover how we can help.</p>
-                        <div class="card-features-list">
-                            <div class="card-feature-row">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span>Confidential Assessment</span>
-                            </div>
-                            <div class="card-feature-row">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span>Treatment Options</span>
-                            </div>
-                            <div class="card-feature-row">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span>Insurance Verification</span>
-                            </div>
-                        </div>
-                        <a href="tel:3473951759" class="btn-card-cta">Call (347) 395-1759</a>
-                    </div>
+                <div class="brand-text">
+                    <span class="brand-name">Doug Uhlig Psychology</span>
+                    <span class="brand-sub">Manhattan · Brooklyn · Queens</span>
                 </div>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="teams.html" class="nav-link">Our Team</a>
+                <a href="contact.html" class="btn-consultation">Book a Consultation</a>
             </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </section>
+    </nav>
+</header>
 
-    <!-- Main Services -->
-    <section id="services-list" class="main-services-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Services</span>
-                <h2>Specialized Psychological Services</h2>
-                <p>Discover how our specialized services can help you achieve better mental health</p>
-            </div>
+<!-- Hero -->
+<section class="services-hero">
+    <div class="hero-bg" aria-hidden="true">
+        <span class="hero-orb orb-a"></span>
+        <span class="hero-orb orb-b"></span>
+        <span class="hero-grid"></span>
+    </div>
 
-            <div class="services-showcase">
-                <!-- Depression -->
-                <div class="service-showcase-item" data-aos="fade-up">
-                    <div class="service-img-container">
-                        <img src="https://images.unsplash.com/photo-1490111718993-d98654ce6cf7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Depression Treatment">
-                    </div>
-                    <div class="service-info-container">
-                        <span class="service-label">Comprehensive Treatment</span>
-                        <h3>Depression & Mood Disorders</h3>
-                        <p>Our evidence-based approach combines cognitive-behavioral therapy, interpersonal therapy, and medication management when appropriate to help you regain control and find joy in life again.</p>
-                        
-                        <div class="service-stats-row">
-                            <div class="stat-box-item">
-                                <div class="stat-num">80%</div>
-                                <div class="stat-txt">Success Rate</div>
-                            </div>
-                            <div class="stat-box-item">
-                                <div class="stat-num">35+</div>
-                                <div class="stat-txt">Years Experience</div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-benefits-list">
-                            <div class="benefit-item-card">
-                                <h4>Major Depressive Disorder</h4>
-                                <p>Cognitive restructuring, behavioral activation, and lifestyle modifications to address persistent sadness and loss of interest.</p>
-                            </div>
-                            <div class="benefit-item-card">
-                                <h4>Bipolar Disorder</h4>
-                                <p>Mood stabilization, episode prevention, and functional recovery through comprehensive treatment.</p>
-                            </div>
-                        </div>
-                        
-                        <a href="contact.html" class="btn-service-link">Schedule Consultation</a>
-                    </div>
+    <div class="container">
+        <div class="services-hero-grid">
+            <div class="services-hero-text reveal">
+                <span class="hero-eyebrow"><span class="pulse-dot"></span> 20+ Years of Excellence</span>
+                <h1 class="hero-title">Transform Your <span class="hero-title-accent">Mental Wellbeing</span></h1>
+                <p class="hero-lead">Expert psychological services designed to help you overcome challenges, build resilience, and create lasting positive change — across Manhattan, Brooklyn, and Queens.</p>
+                <div class="hero-services">
+                    <span class="hero-chip"><i class="fas fa-circle-check"></i> Evidence-Based Therapy</span>
+                    <span class="hero-chip"><i class="fas fa-circle-check"></i> Personalized Treatment</span>
+                    <span class="hero-chip"><i class="fas fa-circle-check"></i> Compassionate Support</span>
                 </div>
-
-                <!-- Anxiety -->
-                <div class="service-showcase-item alt" data-aos="fade-up">
-                    <div class="service-info-container">
-                        <span class="service-label">Proven Techniques</span>
-                        <h3>Anxiety Treatment</h3>
-                        <p>Our expert anxiety treatment combines cognitive-behavioral therapy, exposure techniques, mindfulness practices, and relaxation training tailored to your specific needs.</p>
-                        
-                        <div class="service-stats-row">
-                            <div class="stat-box-item">
-                                <div class="stat-num">90%</div>
-                                <div class="stat-txt">Symptom Reduction</div>
-                            </div>
-                            <div class="stat-box-item">
-                                <div class="stat-num">6-12</div>
-                                <div class="stat-txt">Sessions Average</div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-benefits-list">
-                            <div class="benefit-item-card">
-                                <h4>Generalized Anxiety Disorder</h4>
-                                <p>Break the cycle of persistent worry through cognitive restructuring and uncertainty tolerance training.</p>
-                            </div>
-                            <div class="benefit-item-card">
-                                <h4>Panic Disorder</h4>
-                                <p>Interoceptive exposure techniques and cognitive restructuring to reduce fear of physical sensations.</p>
-                            </div>
-                        </div>
-                        
-                        <a href="contact.html" class="btn-service-link">Schedule Consultation</a>
-                    </div>
-                    <div class="service-img-container">
-                        <img src="https://images.unsplash.com/photo-1619950835688-1bddaffce4a0?q=80&w=3540&auto=format&fit=crop" alt="Anxiety Treatment">
-                    </div>
-                </div>
-
-                <!-- PTSD -->
-                <div class="service-showcase-item" data-aos="fade-up">
-                    <div class="service-img-container">
-                        <img src="https://images.unsplash.com/photo-1620077399971-431e7ea0cf0c?q=80&w=3682&auto=format&fit=crop" alt="PTSD Treatment">
-                    </div>
-                    <div class="service-info-container">
-                        <span class="service-label">Trauma-Informed Care</span>
-                        <h3>PTSD & Trauma Recovery</h3>
-                        <p>Our trauma-informed approach combines evidence-based protocols with compassionate care to help you process traumatic experiences and rebuild a sense of safety.</p>
-                        
-                        <div class="service-stats-row">
-                            <div class="stat-box-item">
-                                <div class="stat-num">85%</div>
-                                <div class="stat-txt">Symptom Reduction</div>
-                            </div>
-                            <div class="stat-box-item">
-                                <div class="stat-num">100%</div>
-                                <div class="stat-txt">Confidential Care</div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-benefits-list">
-                            <div class="benefit-item-card">
-                                <h4>Post-Traumatic Stress Disorder</h4>
-                                <p>EMDR, Prolonged Exposure, and Cognitive Processing Therapy to address trauma symptoms.</p>
-                            </div>
-                            <div class="benefit-item-card">
-                                <h4>Complex Trauma</h4>
-                                <p>Phase-based treatment focusing on safety, processing memories, and rebuilding identity.</p>
-                            </div>
-                        </div>
-                        
-                        <a href="contact.html" class="btn-service-link">Schedule Consultation</a>
-                    </div>
+                <div class="hero-cta">
+                    <a href="contact.html" class="btn-primary"><i class="fas fa-calendar-check"></i> Begin Your Journey</a>
+                    <a href="#services-list" class="btn-ghost"><i class="fas fa-arrow-down"></i> View Services</a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Additional Services -->
-    <section class="additional-services-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Specialized Care</span>
-                <h2>Additional Services</h2>
-                <p>Comprehensive support for various mental health needs</p>
-            </div>
-            
-            <div class="services-cards-grid" data-aos="fade-up">
-                <div class="additional-service-card">
-                    <div class="service-card-img">
-                        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Relationship Counseling">
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Relationship Counseling</h3>
-                        <p>Build stronger connections through effective communication and conflict resolution techniques.</p>
-                        <ul class="service-card-points">
-                            <li>Couples Therapy</li>
-                            <li>Family Counseling</li>
-                            <li>Communication Skills</li>
-                        </ul>
-                        <a href="contact.html" class="btn-learn">Learn More →</a>
-                    </div>
-                </div>
-
-                <div class="additional-service-card">
-                    <div class="service-card-img">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mindfulness Programs">
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Mindfulness Programs</h3>
-                        <p>Develop present-moment awareness and emotional regulation through evidence-based practices.</p>
-                        <ul class="service-card-points">
-                            <li>Meditation Training</li>
-                            <li>Stress Management</li>
-                            <li>MBCT Programs</li>
-                        </ul>
-                        <a href="contact.html" class="btn-learn">Learn More →</a>
-                    </div>
-                </div>
-
-                <div class="additional-service-card">
-                    <div class="service-card-img">
-                        <img src="https://images.unsplash.com/photo-1589386417686-0d34b5903d23?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Career Development">
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Career Development</h3>
-                        <p>Navigate professional challenges and transitions with confidence and clarity.</p>
-                        <ul class="service-card-points">
-                            <li>Career Transitions</li>
-                            <li>Work-Life Balance</li>
-                            <li>Stress Management</li>
-                        </ul>
-                        <a href="contact.html" class="btn-learn">Learn More →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-services-section">
-        <div class="container">
-            <div class="cta-content-wrapper" data-aos="zoom-in">
-                <h2>Begin Your Journey to Well-being</h2>
-                <p>Take the first step towards positive change with professional support</p>
-                <div class="cta-buttons-row">
-                    <a href="contact.html" class="btn-cta-primary">Schedule Consultation</a>
-                    <a href="tel:3473951759" class="btn-cta-secondary">Call (347) 395-1759</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-brand">
-                    <div class="footer-logo-wrapper">
-                        <div class="footer-logo-circle">
-                            <img src="logo.png" alt="Dr. Doug Uhlig" class="footer-logo">
-                        </div>
-                        <div class="footer-brand-text">
-                            <span class="brand-title">Doug Uhlig</span>
-                            <span class="brand-subtitle">Psychological Services PLLC</span>
-                        </div>
-                    </div>
-                    <div class="footer-practices">
-                        <div class="practice-label">
-                            <span>Including</span>
-                            <span class="south-brooklyn">South Brooklyn Psychological Services PLLC</span>
-                        </div>
-                    </div>
-                    <p class="footer-description">Providing comprehensive psychological services and innovative therapeutic approaches for over 20 years.</p>
-                    <div class="social-links">
-                        <a href="https://www.psychologytoday.com/us/therapists/douglas-j-uhlig-rego-park-ny/66792" aria-label="Psychology Today" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://www.instagram.com/dougpsychassociates/" aria-label="Instagram" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-content">
-                    <div class="footer-widget">
-                        <h4>Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="teams.html">Our Team</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-widget">
-                        <h4>Our Services</h4>
-                        <ul class="footer-links">
-                            <li><a href="services.html">Depression Treatment</a></li>
-                            <li><a href="services.html">Anxiety Management</a></li>
-                            <li><a href="services.html">PTSD & Trauma</a></li>
-                            <li><a href="services.html">Mindfulness</a></li>
-                            <li><a href="services.html">Couples Therapy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-widget">
-                        <h4>Contact Info</h4>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:3473951759">(347) 395-1759</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:duhlig2004@yahoo.com">duhlig2004@yahoo.com</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="address-group">
-                                    <p>Queens: 63-44 Saunders St, Suite 106, Rego Park, NY 11374</p>
-                                    <p>Brooklyn: 1517 Voorhies Ave, Brooklyn, NY 11235</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <p class="copyright">&copy; 2026 Doug Uhlig Psychological Services PLLC. All rights reserved.</p>
-                    <div class="footer-bottom-links">
-                        <a href="/privacy">Privacy Policy</a>
-                        <a href="/terms">Terms of Service</a>
-                        <a href="/accessibility">Accessibility</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Designer Credit -->
-    <div class="designer-credit">
-        <div class="container">
-            <div class="credit-wrapper">
-                <div class="credit-divider"></div>
-                <a href="https://elanstechworld.com" target="_blank" class="credit-link">
-                    <span class="credit-text">Designed & Developed by</span>
-                    <div class="designer-info">
-                        <div class="designer-logo">
-                            <img src="elanstechlogo.jpeg" alt="Elan's Tech World">
-                        </div>
-                        <span class="designer-name">Elan's Tech World</span>
-                    </div>
-                </a>
-                <div class="credit-divider"></div>
+            <div class="services-hero-card reveal">
+                <h2>Ready to Take the First Step?</h2>
+                <p>Schedule a confidential consultation to discuss your needs and discover how we can help.</p>
+                <ul class="shc-list">
+                    <li><i class="fas fa-circle-check"></i> Confidential Assessment</li>
+                    <li><i class="fas fa-circle-check"></i> Tailored Treatment Options</li>
+                    <li><i class="fas fa-circle-check"></i> Insurance Verification</li>
+                </ul>
+                <a href="tel:3473951759" class="btn-primary light full"><i class="fas fa-phone"></i> Call (347) 395-1759</a>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="./js/script.js"></script>
-    <script src="./js/services.js"></script>
+<!-- Main featured services -->
+<section id="services-list" class="featured-services">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Our Services</span>
+            <h2>Specialized Psychological Services</h2>
+            <p>Discover how our specialized care can help you achieve better mental health.</p>
+        </div>
+
+        <!-- Depression -->
+        <div class="fs-row reveal">
+            <div class="fs-media">
+                <img src="https://images.unsplash.com/photo-1490111718993-d98654ce6cf7?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80" alt="Depression treatment" loading="lazy">
+                <div class="fs-stat-float"><span class="num">80%</span><span class="txt">Success Rate</span></div>
+            </div>
+            <div class="fs-body">
+                <span class="fs-label">Comprehensive Treatment</span>
+                <h3>Depression &amp; Mood Disorders</h3>
+                <p>Our evidence-based approach combines cognitive-behavioral therapy, interpersonal therapy, and lifestyle modification to help you regain control and find joy in life again.</p>
+                <div class="fs-cards">
+                    <div class="fs-card"><h4>Major Depressive Disorder</h4><p>Cognitive restructuring and behavioral activation for persistent low mood.</p></div>
+                    <div class="fs-card"><h4>Bipolar &amp; Mood Cycling</h4><p>Mood stabilization and episode prevention through comprehensive care.</p></div>
+                </div>
+                <a href="contact.html" class="btn-text">Schedule a consultation <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Anxiety -->
+        <div class="fs-row alt reveal">
+            <div class="fs-media">
+                <img src="https://images.unsplash.com/photo-1619950835688-1bddaffce4a0?q=80&w=900&auto=format&fit=crop" alt="Anxiety treatment" loading="lazy">
+                <div class="fs-stat-float"><span class="num">90%</span><span class="txt">Symptom Reduction</span></div>
+            </div>
+            <div class="fs-body">
+                <span class="fs-label">Proven Techniques</span>
+                <h3>Anxiety Management</h3>
+                <p>Expert anxiety treatment combining CBT, exposure techniques, mindfulness practices, and relaxation training — tailored to your specific needs.</p>
+                <div class="fs-cards">
+                    <div class="fs-card"><h4>Generalized Anxiety</h4><p>Break the cycle of worry through cognitive restructuring and uncertainty tolerance.</p></div>
+                    <div class="fs-card"><h4>Panic Disorder</h4><p>Interoceptive exposure to reduce fear of physical sensations.</p></div>
+                </div>
+                <a href="contact.html" class="btn-text">Schedule a consultation <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- PTSD -->
+        <div class="fs-row reveal">
+            <div class="fs-media">
+                <img src="https://images.unsplash.com/photo-1620077399971-431e7ea0cf0c?q=80&w=900&auto=format&fit=crop" alt="PTSD and trauma recovery" loading="lazy">
+                <div class="fs-stat-float"><span class="num">85%</span><span class="txt">Symptom Reduction</span></div>
+            </div>
+            <div class="fs-body">
+                <span class="fs-label">Trauma-Informed Care</span>
+                <h3>PTSD &amp; Trauma Recovery</h3>
+                <p>Our trauma-informed approach combines evidence-based protocols with compassionate care to help you process traumatic experiences and rebuild a sense of safety.</p>
+                <div class="fs-cards">
+                    <div class="fs-card"><h4>Post-Traumatic Stress</h4><p>EMDR, prolonged exposure, and cognitive processing therapy.</p></div>
+                    <div class="fs-card"><h4>Complex Trauma</h4><p>Phase-based treatment focusing on safety and rebuilding identity.</p></div>
+                </div>
+                <a href="contact.html" class="btn-text">Schedule a consultation <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional services -->
+<section class="additional-services">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Specialized Care</span>
+            <h2>Additional Services</h2>
+            <p>Comprehensive support for a wide range of mental health needs.</p>
+        </div>
+
+        <div class="add-grid">
+            <div class="add-card reveal">
+                <div class="add-icon"><i class="fas fa-heart"></i></div>
+                <h3>Relationship Counseling</h3>
+                <p>Build stronger connections through effective communication and conflict resolution.</p>
+                <ul><li>Couples Therapy</li><li>Family Counseling</li><li>Communication Skills</li></ul>
+                <a href="contact.html" class="btn-text">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="add-card reveal">
+                <div class="add-icon"><i class="fas fa-spa"></i></div>
+                <h3>Mindfulness Programs</h3>
+                <p>Develop present-moment awareness and emotional regulation through proven practices.</p>
+                <ul><li>Meditation Training</li><li>Stress Management</li><li>MBCT Programs</li></ul>
+                <a href="contact.html" class="btn-text">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="add-card reveal">
+                <div class="add-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Business &amp; Career Coaching</h3>
+                <p>Navigate professional challenges and transitions with confidence and clarity.</p>
+                <ul><li>Leadership Development</li><li>Work-Life Balance</li><li>Professional Growth</li></ul>
+                <a href="contact.html" class="btn-text">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Approaches -->
+<section class="approaches">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Treatment Methods</span>
+            <h2>Evidence-Based Approaches</h2>
+            <p>Proven therapeutic techniques tailored to your unique needs.</p>
+        </div>
+        <div class="approach-grid">
+            <div class="approach-card reveal"><div class="ac-icon"><i class="fas fa-brain"></i></div><h3>CBT</h3><p>Identify and change negative thought patterns and behaviors.</p></div>
+            <div class="approach-card reveal"><div class="ac-icon"><i class="fas fa-heart-pulse"></i></div><h3>DBT</h3><p>Mindfulness, distress tolerance, and emotion regulation skills.</p></div>
+            <div class="approach-card reveal"><div class="ac-icon"><i class="fas fa-eye"></i></div><h3>EMDR</h3><p>Reprocessing for trauma recovery and PTSD treatment.</p></div>
+            <div class="approach-card reveal"><div class="ac-icon"><i class="fas fa-people-group"></i></div><h3>Family Systems</h3><p>Address family dynamics to improve communication.</p></div>
+            <div class="approach-card reveal"><div class="ac-icon"><i class="fas fa-leaf"></i></div><h3>Mindfulness</h3><p>Meditation and mind-body practices for balance.</p></div>
+            <div class="approach-card reveal"><div class="ac-icon"><i class="fas fa-compass"></i></div><h3>Psychodynamic</h3><p>Explore patterns and experiences shaping current behavior.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Process accordion -->
+<section class="process">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Our Process</span>
+            <h2>How Treatment Works</h2>
+            <p>A straightforward, supportive path to start your healing journey.</p>
+        </div>
+
+        <div class="accordion reveal">
+            <div class="acc-item active">
+                <button class="acc-head"><span class="acc-num">01</span><span class="acc-title">Initial Contact</span><i class="fas fa-chevron-down acc-chevron"></i></button>
+                <div class="acc-panel"><div class="acc-body">Reach out by phone, email, or our online form. We respond within 24 hours to schedule your consultation and answer questions.</div></div>
+            </div>
+            <div class="acc-item">
+                <button class="acc-head"><span class="acc-num">02</span><span class="acc-title">Comprehensive Assessment</span><i class="fas fa-chevron-down acc-chevron"></i></button>
+                <div class="acc-panel"><div class="acc-body">Your first session is a thorough, confidential evaluation of your concerns, history, and goals.</div></div>
+            </div>
+            <div class="acc-item">
+                <button class="acc-head"><span class="acc-num">03</span><span class="acc-title">Personalized Treatment Plan</span><i class="fas fa-chevron-down acc-chevron"></i></button>
+                <div class="acc-panel"><div class="acc-body">We collaborate with you to create a customized plan using evidence-based approaches suited to you.</div></div>
+            </div>
+            <div class="acc-item">
+                <button class="acc-head"><span class="acc-num">04</span><span class="acc-title">Ongoing Sessions &amp; Growth</span><i class="fas fa-chevron-down acc-chevron"></i></button>
+                <div class="acc-panel"><div class="acc-body">Regular sessions with progress check-ins, adjusting as you move toward your wellness goals.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+    <div class="container cta-inner reveal">
+        <h2>Begin your journey to well-being</h2>
+        <p>Take the first step toward positive change with professional support.</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn-primary light"><i class="fas fa-calendar-check"></i> Schedule Consultation</a>
+            <a href="tel:3473951759" class="btn-ghost light"><i class="fas fa-phone"></i> (347) 395-1759</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <div class="footer-logo-circle"><img src="logo.png" alt="Doug Uhlig Psychology" class="footer-logo"></div>
+                    <div class="footer-brand-text">
+                        <span class="brand-title">Doug Uhlig</span>
+                        <span class="brand-subtitle">Psychology PLLC</span>
+                    </div>
+                </div>
+                <p class="footer-description">Comprehensive psychological services and innovative therapeutic approaches across Manhattan, Brooklyn, and Queens.</p>
+                <div class="social-links">
+                    <a href="https://www.psychologytoday.com/us/therapists/douglas-j-uhlig-rego-park-ny/66792" aria-label="Psychology Today" class="social-link"><i class="fas fa-brain"></i></a>
+                    <a href="https://www.instagram.com/dougpsychassociates/" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-content">
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="teams.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Depression Treatment</a></li>
+                        <li><a href="services.html">Anxiety Management</a></li>
+                        <li><a href="services.html">PTSD &amp; Trauma</a></li>
+                        <li><a href="services.html">Mindfulness</a></li>
+                        <li><a href="services.html">Couples Therapy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <div class="contact-item"><i class="fas fa-phone"></i><a href="tel:3473951759">(347) 395-1759</a></div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:duhlig2004@yahoo.com">duhlig2004@yahoo.com</a></div>
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i>
+                            <div class="address-group">
+                                <p>Manhattan: 274 Madison Ave, Suite 905, NY 10016</p>
+                                <p>Brooklyn: 1517 Voorhies Ave, NY 11235</p>
+                                <p>Queens: 63-44 Saunders St, Suite 106, Rego Park, NY 11374</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <p class="copyright">&copy; 2026 Doug Uhlig Psychology PLLC. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/accessibility">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Designer Credit -->
+<div class="designer-credit">
+    <div class="container">
+        <div class="credit-wrapper">
+            <div class="credit-divider"></div>
+            <a href="https://elanstechworld.com" target="_blank" rel="noopener" class="credit-link">
+                <span class="credit-text">Designed &amp; Developed by</span>
+                <div class="designer-info">
+                    <div class="designer-logo"><img src="elanstechlogo.jpeg" alt="Elan's Tech World"></div>
+                    <span class="designer-name">Elan's Tech World</span>
+                </div>
+            </a>
+            <div class="credit-divider"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile sticky action bar -->
+<div class="mobile-actionbar">
+    <a href="tel:3473951759" class="mab-btn"><i class="fas fa-phone"></i> Call</a>
+    <a href="contact.html" class="mab-btn primary"><i class="fas fa-calendar-check"></i> Book</a>
+</div>
+
+<!-- Back to top -->
+<button class="to-top" id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Scripts -->
+<script src="./js/script.js"></script>
+<script src="./js/services.js"></script>
 </body>
 </html>
