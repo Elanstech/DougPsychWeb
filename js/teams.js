@@ -415,7 +415,7 @@
         {
             name: "Clo\u00e8 D'Arcangelo",
             role: "Supervised Psychotherapist",
-            img: "CloeDArcangelo.jpeg",
+            img: "../CloeDArcangelo.jpeg",
             specialty: "Eating Disorders, Anxiety & Identity",
             blurb: "Integrative support for eating disorders, anxiety, self-esteem, relationships, and life transitions.",
             sections: [
