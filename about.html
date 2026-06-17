@@ -3,494 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>About Dr. Doug Uhlig | Expert Psychologist & Meditation Teacher in Queens, NY</title>
-    <meta name="description" content="Meet Dr. Doug Uhlig, a renowned psychologist combining 35+ years of expertise in positive psychology, transcendental meditation, and modern therapy in Rego Park, Queens. Discover our unique approach to mental wellness.">
-    <meta name="keywords" content="Dr. Doug Uhlig, psychologist Queens NY, Rego Park therapist, positive psychology, transcendental meditation teacher, marriage counseling Queens, anxiety treatment, depression therapy, mindfulness therapy, holistic mental health">
-    
+
+    <!-- SEO -->
+    <title>About Dr. Doug Uhlig | Psychologist & Meditation Teacher in Manhattan, Brooklyn & Queens</title>
+    <meta name="description" content="Meet Dr. Doug Uhlig — a licensed clinical psychologist blending positive psychology, mindfulness, and evidence-based therapy across Manhattan, Brooklyn, and Queens. 20+ years of compassionate care.">
+    <meta name="keywords" content="Dr. Doug Uhlig, psychologist Manhattan, Brooklyn therapist, Queens psychologist, positive psychology, meditation teacher, CBT, mindfulness therapy, holistic mental health NYC">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="About Dr. Doug Uhlig | Expert Psychologist & Meditation Teacher">
-    <meta property="og:description" content="Discover Dr. Doug Uhlig's unique approach combining Eastern philosophy, meditation, and modern therapeutic techniques for transformative mental health care.">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.douguhligpsychology.com/about">
-    
+    <meta property="og:description" content="Discover Dr. Doug Uhlig's unique approach combining mindfulness, meditation, and modern therapeutic techniques across three NYC locations.">
+
+    <link rel="canonical" href="https://dougpsychassociates.com/about.html">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/about.css">
 </head>
 <body>
-    
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <a href="index.html" class="nav-brand">
-                    <div class="brand-logo-container">
-                        <img src="logo.png" alt="Dr. Doug Uhlig Psychological Services" class="brand-logo">
-                    </div>
-                    <div class="brand-text">
-                        <span class="brand-name">Doug Uhlig & South Brooklyn Psychological Services PLLC</span>
-                    </div>
-                </a>
-                <div class="nav-menu">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link active">About Us</a>
-                    <a href="services.html" class="nav-link">Our Services</a>
-                    <a href="teams.html" class="nav-link">Our Team</a>
-                    <a href="contact.html" class="btn-consultation">Contact Us Now</a>
-                </div>
-                <button class="nav-toggle" aria-label="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="about-hero">
-        <div class="hero-video-container">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="videoforabout.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
-        </div>
-        
-        <div class="hero-content-wrapper">
-            <div class="container">
-                <div class="hero-text" data-aos="fade-up">
-                    <div class="hero-accent-line"></div>
-                    <h1 class="hero-main-title">
-                        <span class="title-small">Welcome to</span>
-                        <span class="title-large">About Us</span>
-                        <span class="title-subtitle">Where Excellence Meets Compassion</span>
-                    </h1>
-                    <div class="hero-accent-line"></div>
-                </div>
-                
-                <div class="hero-stats-grid" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-box">
-                        <div class="stat-number">35+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Lives Changed</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Success Rate</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Philosophy Section -->
-    <section class="philosophy-section">
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Header -->
+<header class="header" id="header">
+    <nav class="navbar">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Philosophy</span>
-                <h2>Philosophy & Approach</h2>
-                <p>A unique blend of Eastern wisdom and modern psychology</p>
-            </div>
-            
-            <div class="philosophy-grid">
-                <div class="philosophy-intro-card" data-aos="fade-right">
-                    <div class="quote-mark">"</div>
-                    <p class="intro-quote">
-                        As a Positive Psychologist and Teacher of Transcendental Meditation, I approach therapy from a holistic perspective of the "Psyche" or soul. My work focuses on transforming lives at a deep existential level.
-                    </p>
-                    <div class="intro-author">
-                        <strong>Dr. Doug Uhlig</strong>
-                        <span>Founder & Lead Psychologist</span>
-                    </div>
+            <a href="index.html" class="nav-brand">
+                <div class="brand-logo-container">
+                    <img src="logo.png" alt="Doug Uhlig Psychology" class="brand-logo">
                 </div>
-                
-                <div class="focus-areas-grid" data-aos="fade-left">
-                    <div class="focus-box">
-                        <div class="focus-icon-wrapper">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                        </div>
-                        <h3>Trauma Recovery</h3>
-                        <p>Healing deep-rooted trauma through compassionate approaches</p>
-                    </div>
-                    
-                    <div class="focus-box">
-                        <div class="focus-icon-wrapper">
-                            <i class="fa-solid fa-hands-holding-heart"></i>
-                        </div>
-                        <h3>Relationships</h3>
-                        <p>Building stronger connections and communication</p>
-                    </div>
-                    
-                    <div class="focus-box">
-                        <div class="focus-icon-wrapper">
-                            <i class="fa-solid fa-leaf"></i>
-                        </div>
-                        <h3>Addiction Support</h3>
-                        <p>Holistic recovery with sustainable methods</p>
-                    </div>
-                    
-                    <div class="focus-box">
-                        <div class="focus-icon-wrapper">
-                            <i class="fa-solid fa-compass"></i>
-                        </div>
-                        <h3>Career Guidance</h3>
-                        <p>Discovering purpose and professional fulfillment</p>
-                    </div>
+                <div class="brand-text">
+                    <span class="brand-name">Doug Uhlig Psychology</span>
+                    <span class="brand-sub">Manhattan · Brooklyn · Queens</span>
                 </div>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="teams.html" class="nav-link">Our Team</a>
+                <a href="contact.html" class="btn-consultation">Book a Consultation</a>
             </div>
-            
-            <div class="results-showcase" data-aos="zoom-in">
-                <h3>Transformative Results</h3>
-                <p class="results-description">What sets our practice apart is the profound, lasting change our clients experience</p>
-                <div class="results-list">
-                    <div class="result-point">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Naturally alleviate depression and anxiety</span>
-                    </div>
-                    <div class="result-point">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Prevent and overcome addiction</span>
-                    </div>
-                    <div class="result-point">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Discover authentic passion and purpose</span>
-                    </div>
-                    <div class="result-point">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Achieve deep, lasting peace of mind</span>
-                    </div>
-                </div>
-            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </section>
+    </nav>
+</header>
 
-    <!-- What Makes Us Different -->
-    <section class="difference-section">
+<!-- Hero (video) -->
+<section class="about-hero">
+    <div class="about-hero-video">
+        <video autoplay muted loop playsinline poster="doug.jpeg">
+            <source src="videoforabout.mp4" type="video/mp4">
+        </video>
+        <div class="about-hero-overlay"></div>
+    </div>
+
+    <div class="about-hero-inner">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Why Choose Us</span>
-                <h2>What Makes Us Different</h2>
-                <p>A unique combination of expertise, environment, and approach</p>
-            </div>
+            <div class="about-hero-content reveal">
+                <span class="about-hero-eyebrow"><span class="pulse-dot"></span> About Our Practice</span>
+                <h1 class="about-hero-title">Where Excellence<br>Meets <span class="about-hero-accent">Compassion</span></h1>
+                <p class="about-hero-lead">Two decades of evidence-based, deeply human psychological care — now across three NYC locations.</p>
 
-            <div class="difference-cards-grid">
-                <div class="diff-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="diff-card-header">
-                        <div class="diff-icon">
-                            <i class="fa-solid fa-award"></i>
-                        </div>
-                        <h3>Unparalleled Experience</h3>
-                    </div>
-                    <p class="diff-description">Over three decades of proven expertise in psychology, meditation, and life coaching</p>
-                    <ul class="diff-features">
-                        <li><i class="fa-solid fa-check"></i> 35+ years marriage & relationship experience</li>
-                        <li><i class="fa-solid fa-check"></i> Certified Transcendental Meditation teacher</li>
-                        <li><i class="fa-solid fa-check"></i> Business and life coaching expertise</li>
-                        <li><i class="fa-solid fa-check"></i> Holistic approach to mental wellness</li>
-                    </ul>
+                <div class="about-hero-stats">
+                    <div class="ahs-item"><span class="ahs-num" data-count="20" data-suffix="+">0</span><span class="ahs-label">Years Experience</span></div>
+                    <div class="ahs-item"><span class="ahs-num" data-count="1000" data-suffix="+">0</span><span class="ahs-label">Lives Changed</span></div>
+                    <div class="ahs-item"><span class="ahs-num" data-count="3">0</span><span class="ahs-label">NYC Locations</span></div>
                 </div>
-
-                <div class="diff-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="diff-card-header">
-                        <div class="diff-icon">
-                            <i class="fa-solid fa-spa"></i>
-                        </div>
-                        <h3>Healing Environment</h3>
-                    </div>
-                    <div class="location-info">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Rego Park, Queens, NY</span>
-                    </div>
-                    <p class="diff-description">Our office provides a serene atmosphere designed for healing</p>
-                    <div class="environment-features">
-                        <div class="env-item">
-                            <i class="fa-solid fa-palette"></i>
-                            <span>Thoughtful Aesthetics</span>
-                        </div>
-                        <div class="env-item">
-                            <i class="fa-solid fa-om"></i>
-                            <span>Cultural Elements</span>
-                        </div>
-                        <div class="env-item">
-                            <i class="fa-solid fa-couch"></i>
-                            <span>Comfort First</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="diff-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="diff-card-header">
-                        <div class="diff-icon">
-                            <i class="fa-solid fa-brain"></i>
-                        </div>
-                        <h3>Integrated Methodology</h3>
-                    </div>
-                    <p class="diff-description">Proven therapeutic techniques with mindfulness practices</p>
-                    <div class="method-tags">
-                        <span class="method-tag">Positive Psychology</span>
-                        <span class="method-tag">CBT</span>
-                        <span class="method-tag">Mindfulness</span>
-                        <span class="method-tag">Meditation</span>
-                        <span class="method-tag">Family Therapy</span>
-                        <span class="method-tag">Hypnotherapy</span>
-                    </div>
-                    <div class="specialties-list">
-                        <h4>Our Specialties</h4>
-                        <div class="specialty-items">
-                            <span>Marriage Counseling</span>
-                            <span>Anxiety & Depression</span>
-                            <span>Substance Abuse</span>
-                            <span>Pain Management</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials-section-about">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Client Stories</span>
-                <h2>Success Stories</h2>
-                <p>Real transformations from people we've helped</p>
-            </div>
-
-            <div class="testimonials-grid-about" data-aos="fade-up">
-                <div class="testimonial-box">
-                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                    <p class="testimonial-content">Dr. Uhlig's unique blend of Eastern philosophy and modern therapy helped me find inner peace I never thought possible. His approach transformed my understanding of anxiety.</p>
-                    <div class="testimonial-author-info">
-                        <strong>Marketing Professional</strong>
-                        <span>Manhattan, NYC</span>
-                    </div>
-                    <div class="therapy-type">Anxiety Management</div>
-                </div>
-
-                <div class="testimonial-box">
-                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                    <p class="testimonial-content">The meditation techniques combined with couples therapy saved our marriage. We learned to communicate in ways we never had before.</p>
-                    <div class="testimonial-author-info">
-                        <strong>Married Couple</strong>
-                        <span>Queens, NY</span>
-                    </div>
-                    <div class="therapy-type">Marriage Counseling</div>
-                </div>
-
-                <div class="testimonial-box">
-                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                    <p class="testimonial-content">Dr. Uhlig's business background and psychological expertise was exactly what I needed. He helped me navigate career challenges while addressing deeper personal issues.</p>
-                    <div class="testimonial-author-info">
-                        <strong>Tech Executive</strong>
-                        <span>Brooklyn, NY</span>
-                    </div>
-                    <div class="therapy-type">Career Coaching</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Journey Process -->
-    <section class="journey-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Your Journey</span>
-                <h2>What to Expect</h2>
-                <p>A clear path to wellness and transformation</p>
-            </div>
-
-            <div class="journey-timeline">
-                <div class="journey-step" data-aos="fade-right">
-                    <div class="step-number">01</div>
-                    <div class="step-details">
-                        <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
-                        <h3>Initial Consultation</h3>
-                        <p>A warm, confidential conversation where we listen to your story and establish trust.</p>
-                    </div>
-                </div>
-
-                <div class="journey-step" data-aos="fade-left">
-                    <div class="step-number">02</div>
-                    <div class="step-details">
-                        <div class="step-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <h3>Personalized Plan</h3>
-                        <p>We create a tailored approach combining techniques best suited to your needs.</p>
-                    </div>
-                </div>
-
-                <div class="journey-step" data-aos="fade-right">
-                    <div class="step-number">03</div>
-                    <div class="step-details">
-                        <div class="step-icon"><i class="fa-solid fa-path"></i></div>
-                        <h3>Active Transformation</h3>
-                        <p>Regular sessions with practical tools that create real change in your daily life.</p>
-                    </div>
-                </div>
-
-                <div class="journey-step" data-aos="fade-left">
-                    <div class="step-number">04</div>
-                    <div class="step-details">
-                        <div class="step-icon"><i class="fa-solid fa-seedling"></i></div>
-                        <h3>Sustainable Growth</h3>
-                        <p>Ongoing support as you develop resilience and maintain positive changes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CTA Section -->
-    <section class="cta-about-section">
-        <div class="container">
-            <div class="cta-content-about" data-aos="zoom-in">
-                <h2>Ready to Begin Your Transformation?</h2>
-                <p>Take the first step toward a more fulfilling life with our expert guidance</p>
-                <div class="cta-buttons-about">
-                    <a href="contact.html" class="btn-primary-about">
-                        <span>Schedule Consultation</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                    <a href="services.html" class="btn-secondary-about">
-                        <span>Explore Services</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-brand">
-                    <div class="footer-logo-wrapper">
-                        <div class="footer-logo-circle">
-                            <img src="logo.png" alt="Dr. Doug Uhlig" class="footer-logo">
-                        </div>
-                        <div class="footer-brand-text">
-                            <span class="brand-title">Doug Uhlig</span>
-                            <span class="brand-subtitle">Psychological Services PLLC</span>
-                        </div>
-                    </div>
-                    <div class="footer-practices">
-                        <div class="practice-label">
-                            <span>Including</span>
-                            <span class="south-brooklyn">South Brooklyn Psychological Services PLLC</span>
-                        </div>
-                    </div>
-                    <p class="footer-description">Providing comprehensive psychological services and innovative therapeutic approaches for over 20 years.</p>
-                    <div class="social-links">
-                        <a href="https://www.psychologytoday.com/us/therapists/douglas-j-uhlig-rego-park-ny/66792" aria-label="Psychology Today" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://www.instagram.com/dougpsychassociates/" aria-label="Instagram" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-content">
-                    <div class="footer-widget">
-                        <h4>Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="teams.html">Our Team</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-widget">
-                        <h4>Our Services</h4>
-                        <ul class="footer-links">
-                            <li><a href="services.html">Depression Treatment</a></li>
-                            <li><a href="services.html">Anxiety Management</a></li>
-                            <li><a href="services.html">PTSD & Trauma</a></li>
-                            <li><a href="services.html">Mindfulness</a></li>
-                            <li><a href="services.html">Couples Therapy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-widget">
-                        <h4>Contact Info</h4>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:3473951759">(347) 395-1759</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:duhlig2004@yahoo.com">duhlig2004@yahoo.com</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="address-group">
-                                    <p>Queens: 63-44 Saunders St, Suite 106, Rego Park, NY 11374</p>
-                                    <p>Brooklyn: 1517 Voorhies Ave, Brooklyn, NY 11235</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <p class="copyright">&copy; 2026 Doug Uhlig Psychological Services PLLC. All rights reserved.</p>
-                    <div class="footer-bottom-links">
-                        <a href="/privacy">Privacy Policy</a>
-                        <a href="/terms">Terms of Service</a>
-                        <a href="/accessibility">Accessibility</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Designer Credit -->
-    <div class="designer-credit">
-        <div class="container">
-            <div class="credit-wrapper">
-                <div class="credit-divider"></div>
-                <a href="https://elanstechworld.com" target="_blank" class="credit-link">
-                    <span class="credit-text">Designed & Developed by</span>
-                    <div class="designer-info">
-                        <div class="designer-logo">
-                            <img src="elanstechlogo.jpeg" alt="Elan's Tech World">
-                        </div>
-                        <span class="designer-name">Elan's Tech World</span>
-                    </div>
-                </a>
-                <div class="credit-divider"></div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="./js/script.js"></script>
-    <script src="./js/about.js"></script>
+    <a href="#philosophy" class="hero-scroll" aria-label="Scroll to content">
+        <span class="mouse"><span class="wheel"></span></span>
+    </a>
+</section>
+
+<!-- Philosophy -->
+<section id="philosophy" class="philosophy">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Our Philosophy</span>
+            <h2>A Holistic Approach to Healing</h2>
+            <p>A blend of mindfulness, positive psychology, and modern evidence-based therapy.</p>
+        </div>
+
+        <div class="philosophy-grid">
+            <div class="philosophy-quote-card reveal">
+                <i class="fas fa-quote-left"></i>
+                <p class="pq-text">
+                    "As a positive psychologist and teacher of meditation, I approach therapy from a holistic
+                    perspective — helping people contact the wiser, deeper part of themselves that's always
+                    available in times of need."
+                </p>
+                <div class="pq-author">
+                    <strong>Dr. Doug Uhlig</strong>
+                    <span>Founder &amp; Lead Psychologist</span>
+                </div>
+            </div>
+
+            <div class="philosophy-focus reveal">
+                <div class="focus-box">
+                    <div class="focus-icon"><i class="fas fa-heart-pulse"></i></div>
+                    <h3>Trauma Recovery</h3>
+                    <p>Healing deep-rooted trauma through compassionate, evidence-based approaches.</p>
+                </div>
+                <div class="focus-box">
+                    <div class="focus-icon"><i class="fas fa-hands-holding-heart"></i></div>
+                    <h3>Relationships</h3>
+                    <p>Building stronger connections and healthier communication.</p>
+                </div>
+                <div class="focus-box">
+                    <div class="focus-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Mindfulness</h3>
+                    <p>Meditation and mind-body practices for lasting calm and clarity.</p>
+                </div>
+                <div class="focus-box">
+                    <div class="focus-icon"><i class="fas fa-compass"></i></div>
+                    <h3>Purpose &amp; Growth</h3>
+                    <p>Discovering meaning, identity, and professional fulfillment.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-showcase reveal">
+            <h3>Transformative Results</h3>
+            <p>What sets our practice apart is the profound, lasting change our clients experience.</p>
+            <div class="results-list">
+                <div class="result-point"><i class="fas fa-circle-check"></i> Naturally alleviate depression and anxiety</div>
+                <div class="result-point"><i class="fas fa-circle-check"></i> Prevent and overcome addiction</div>
+                <div class="result-point"><i class="fas fa-circle-check"></i> Discover authentic passion and purpose</div>
+                <div class="result-point"><i class="fas fa-circle-check"></i> Achieve deep, lasting peace of mind</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What makes us different -->
+<section class="difference">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Why Choose Us</span>
+            <h2>What Makes Us Different</h2>
+            <p>A unique combination of expertise, environment, and approach.</p>
+        </div>
+
+        <div class="difference-grid">
+            <div class="diff-card reveal">
+                <div class="diff-icon"><i class="fas fa-award"></i></div>
+                <h3>Unparalleled Experience</h3>
+                <p>Two decades of proven expertise in psychology, meditation, and coaching.</p>
+                <ul class="diff-list">
+                    <li><i class="fas fa-check"></i> 20+ years of clinical practice</li>
+                    <li><i class="fas fa-check"></i> Certified meditation teacher</li>
+                    <li><i class="fas fa-check"></i> Business &amp; life coaching expertise</li>
+                    <li><i class="fas fa-check"></i> Holistic approach to wellness</li>
+                </ul>
+            </div>
+
+            <div class="diff-card reveal">
+                <div class="diff-icon"><i class="fas fa-spa"></i></div>
+                <h3>Healing Environment</h3>
+                <p>Serene, welcoming offices designed for comfort and calm across three boroughs.</p>
+                <ul class="diff-list">
+                    <li><i class="fas fa-check"></i> Manhattan · Madison Ave</li>
+                    <li><i class="fas fa-check"></i> Brooklyn · Voorhies Ave</li>
+                    <li><i class="fas fa-check"></i> Queens · Rego Park</li>
+                    <li><i class="fas fa-check"></i> Telehealth available statewide</li>
+                </ul>
+            </div>
+
+            <div class="diff-card reveal">
+                <div class="diff-icon"><i class="fas fa-brain"></i></div>
+                <h3>Integrated Methodology</h3>
+                <p>Proven therapeutic techniques woven together with mindfulness practices.</p>
+                <div class="method-tags">
+                    <span>Positive Psychology</span><span>CBT</span><span>Mindfulness</span>
+                    <span>Meditation</span><span>Family Therapy</span><span>Hypnotherapy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Journey timeline -->
+<section class="journey">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Your Journey</span>
+            <h2>What to Expect</h2>
+            <p>A clear path to wellness and lasting transformation.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="tl-item reveal">
+                <div class="tl-marker">01</div>
+                <div class="tl-content">
+                    <div class="tl-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Initial Consultation</h3>
+                    <p>A warm, confidential conversation where we listen to your story and build trust.</p>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-marker">02</div>
+                <div class="tl-content">
+                    <div class="tl-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Personalized Plan</h3>
+                    <p>We craft a tailored approach combining the techniques best suited to your needs.</p>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-marker">03</div>
+                <div class="tl-content">
+                    <div class="tl-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Active Transformation</h3>
+                    <p>Regular sessions with practical tools that create real change in daily life.</p>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="tl-marker">04</div>
+                <div class="tl-content">
+                    <div class="tl-icon"><i class="fas fa-sun"></i></div>
+                    <h3>Sustainable Growth</h3>
+                    <p>Ongoing support as you build resilience and maintain positive change.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+    <div class="container cta-inner reveal">
+        <h2>Ready to begin your transformation?</h2>
+        <p>Take the first step toward a more fulfilling life with expert guidance.</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn-primary light"><i class="fas fa-calendar-check"></i> Schedule Consultation</a>
+            <a href="services.html" class="btn-ghost light"><i class="fas fa-arrow-right"></i> Explore Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-wrapper">
+                    <div class="footer-logo-circle"><img src="logo.png" alt="Doug Uhlig Psychology" class="footer-logo"></div>
+                    <div class="footer-brand-text">
+                        <span class="brand-title">Doug Uhlig</span>
+                        <span class="brand-subtitle">Psychology PLLC</span>
+                    </div>
+                </div>
+                <p class="footer-description">Comprehensive psychological services and innovative therapeutic approaches across Manhattan, Brooklyn, and Queens.</p>
+                <div class="social-links">
+                    <a href="https://www.psychologytoday.com/us/therapists/douglas-j-uhlig-rego-park-ny/66792" aria-label="Psychology Today" class="social-link"><i class="fas fa-brain"></i></a>
+                    <a href="https://www.instagram.com/dougpsychassociates/" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-content">
+                <div class="footer-widget">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="teams.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Depression Treatment</a></li>
+                        <li><a href="services.html">Anxiety Management</a></li>
+                        <li><a href="services.html">PTSD &amp; Trauma</a></li>
+                        <li><a href="services.html">Mindfulness</a></li>
+                        <li><a href="services.html">Couples Therapy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget">
+                    <h4>Contact</h4>
+                    <div class="contact-info">
+                        <div class="contact-item"><i class="fas fa-phone"></i><a href="tel:3473951759">(347) 395-1759</a></div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:duhlig2004@yahoo.com">duhlig2004@yahoo.com</a></div>
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i>
+                            <div class="address-group">
+                                <p>Manhattan: 274 Madison Ave, Suite 905, NY 10016</p>
+                                <p>Brooklyn: 1517 Voorhies Ave, NY 11235</p>
+                                <p>Queens: 63-44 Saunders St, Suite 106, Rego Park, NY 11374</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <p class="copyright">&copy; 2026 Doug Uhlig Psychology PLLC. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/accessibility">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Designer Credit -->
+<div class="designer-credit">
+    <div class="container">
+        <div class="credit-wrapper">
+            <div class="credit-divider"></div>
+            <a href="https://elanstechworld.com" target="_blank" rel="noopener" class="credit-link">
+                <span class="credit-text">Designed &amp; Developed by</span>
+                <div class="designer-info">
+                    <div class="designer-logo"><img src="elanstechlogo.jpeg" alt="Elan's Tech World"></div>
+                    <span class="designer-name">Elan's Tech World</span>
+                </div>
+            </a>
+            <div class="credit-divider"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile sticky action bar -->
+<div class="mobile-actionbar">
+    <a href="tel:3473951759" class="mab-btn"><i class="fas fa-phone"></i> Call</a>
+    <a href="contact.html" class="mab-btn primary"><i class="fas fa-calendar-check"></i> Book</a>
+</div>
+
+<!-- Back to top -->
+<button class="to-top" id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Scripts -->
+<script src="./js/script.js"></script>
+<script src="./js/about.js"></script>
 </body>
 </html>
