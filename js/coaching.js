@@ -1,7 +1,16 @@
 /**
  * Coaching Landing Page - JavaScript
- * Version: 2.0
- * Supplements main script.js (header, nav, smooth scroll already handled)
+ * Version: 3.0
+ *
+ * Supplements the shared main script.js (v3.0), which now owns:
+ *   - header shrink/hide on scroll  (initHeader)
+ *   - mobile nav toggle             (initMobileNav)
+ *   - scroll progress bar           (initScrollProgress)
+ *   - back-to-top button            (initBackToTop)
+ *   - in-page smooth scroll         (initSmoothScroll)
+ *   - [data-count] counters         (initCounters)
+ *
+ * This file only handles coaching-specific behaviors so nothing is duplicated.
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -51,7 +60,8 @@ function initCoachingHeroAnimations() {
 }
 
 /* ==========================================================================
-   2. ANIMATED COUNTERS
+   2. ANIMATED COUNTERS (coaching hero stats — these are NOT [data-count],
+      so they are handled here and won't collide with main script.js)
    ========================================================================== */
 function initCoachingCounters() {
     const stats = document.querySelectorAll('.hero-stat-number');
