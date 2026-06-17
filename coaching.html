@@ -26,7 +26,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -42,7 +42,10 @@
 </head>
 <body id="top">
 
-<header class="header">
+<!-- Scroll progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header" id="header">
     <nav class="navbar">
         <div class="container">
             <a href="#top" class="nav-brand">
@@ -53,7 +56,7 @@
                     <span class="brand-name">Douglas Uhlig, Ph.D.</span>
                 </div>
             </a>
-            <div class="nav-menu">
+            <div class="nav-menu" id="navMenu">
                 <a href="#focus" class="nav-link">Focus Areas</a>
                 <a href="#approach" class="nav-link">Methodology</a>
                 <a href="#services" class="nav-link">Services</a>
@@ -61,7 +64,7 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="contact.html" class="btn-consultation">Book a Consultation</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle Menu">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -921,6 +924,15 @@
         </div>
     </div>
 </div>
+
+<!-- Mobile sticky action bar -->
+<div class="mobile-actionbar">
+    <a href="tel:9176176731" class="mab-btn"><i class="fas fa-phone"></i> Call</a>
+    <a href="contact.html" class="mab-btn primary"><i class="fas fa-calendar-check"></i> Book</a>
+</div>
+
+<!-- Back to top -->
+<button class="to-top" id="toTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
