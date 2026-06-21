@@ -612,11 +612,11 @@ ul { list-style: none; }
     .hero-container { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-visual { order: -1; }
     .hero-photo-wrap { margin: 0 auto; max-width: 380px; }
-    .about-grid { grid-template-columns: 1fr; }
     .credentials-grid { grid-template-columns: repeat(2, 1fr); }
     .locations-grid { grid-template-columns: 1fr; max-width: 540px; margin: 0 auto 3rem; }
     .testimonials-grid { grid-template-columns: 1fr; max-width: 540px; margin: 0 auto; }
     .footer-top .container { grid-template-columns: 1fr; gap: 2.5rem; }
+   
 }
 
 @media (max-width: 768px) {
@@ -637,6 +637,11 @@ ul { list-style: none; }
     .mobile-actionbar { display: flex; }
     .to-top { bottom: 84px; }
     body { padding-bottom: 0; }
+}
+
+@media (max-width: 640px) {
+    .about-features { grid-template-columns: 1fr; }
+    .about-badge { left: 0; }
 }
 
 @media (max-width: 480px) {
