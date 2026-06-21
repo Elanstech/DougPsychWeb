@@ -346,7 +346,16 @@ ul { list-style: none; }
 .marquee-row i { color: var(--gold-light); }
 
 /* ============================ 8. ABOUT ================================== */
-/* ============================ 8. ABOUT ================================== */
+
+.about-container {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 clamp(1.2rem, 4vw, 2.5rem);
+    position: relative;
+    z-index: 2;
+}
+
 .about { padding: clamp(4.5rem, 9vw, 8rem) 0; position: relative; }
 .about-grid {
     display: grid; grid-template-columns: 0.9fr 1.1fr;
