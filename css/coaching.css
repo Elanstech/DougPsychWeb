@@ -2650,3 +2650,45 @@
     .transformation-heading h3 { font-size: 1.6rem; }
     .coaching-testimonials .section-header h2 { font-size: 2.2rem; }
 }
+
+/* ==========================================================================
+   UX FIX (Doug's feedback): remove button-like "lift" from cards that are
+   NOT clickable, so they stop signalling "press me."
+   The translateY lift is now reserved for cards with a real action
+   (.pricing-card, .coaching-location-card, .coaching-remote-banner).
+   Decorative content cards keep their subtle shadow/icon accents but no
+   longer rise on hover. Placed at end of file to win by source order.
+   ========================================================================== */
+.coaching-bio-card:hover,
+.client-card:hover,
+.supporting-card:hover,
+.timeline-item:hover,
+.credentials-column:hover,
+.approach-step:hover,
+.fit-card:hover,
+.testimonial-card:hover {
+    transform: none;
+}
+
+/* ==========================================================================
+   TESTIMONIALS — layout tuned for 5 cards (3 + 2, centered) + initial avatars
+   ========================================================================== */
+.testimonials-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.testimonials-grid .testimonial-card {
+    flex: 1 1 320px;
+    max-width: 380px;
+}
+
+.testimonial-avatar {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--royal-blue);
+}
