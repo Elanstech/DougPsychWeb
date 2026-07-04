@@ -106,88 +106,12 @@ function initCoachingCounters() {
    3. CARD HOVER EFFECTS
    ========================================================================== */
 function initCoachingCardEffects() {
-    const bioCards = document.querySelectorAll('.coaching-bio-card');
-    bioCards.forEach(function (card) {
-        card.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(-8px)';
-        });
-        card.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(0)';
-        });
-    });
- 
-    const serviceCards = document.querySelectorAll('.coaching-service-card');
-    serviceCards.forEach(function (card) {
-        card.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(-8px)';
-        });
-        card.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(0)';
-        });
-    });
- 
-    const skillItems = document.querySelectorAll('.skill-item');
-    skillItems.forEach(function (item) {
-        item.addEventListener('mousemove', function (e) {
-            if (window.innerWidth < 992) return;
-            const rect = item.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
- 
-            item.style.transform =
-                'translateY(-8px) perspective(600px) rotateX(' +
-                y * -8 +
-                'deg) rotateY(' +
-                x * 8 +
-                'deg)';
-        });
- 
-        item.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            item.style.transform = 'translateY(0) perspective(600px) rotateX(0) rotateY(0)';
-        });
-    });
- 
-    const clientCards = document.querySelectorAll('.client-card');
-    clientCards.forEach(function (card) {
-        card.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(-10px)';
-        });
-        card.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(0)';
-        });
-    });
- 
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach(function (item) {
-        item.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 768) return;
-            item.style.transform = 'translateY(-5px)';
-        });
-        item.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 768) return;
-            item.style.transform = 'translateY(0)';
-        });
-    });
- 
-    const credCols = document.querySelectorAll('.credentials-column');
-    credCols.forEach(function (col) {
-        col.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 992) return;
-            col.style.transform = 'translateY(-5px)';
-        });
-        col.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            col.style.transform = 'translateY(0)';
-        });
-    });
- 
+    /* Doug's feedback: several cards "looked like buttons but did nothing."
+       The hover LIFT (translateY) reads as a pressable/clickable affordance,
+       so it's now reserved for cards that actually have an action.
+       Pricing cards keep the lift because each contains a clear CTA button.
+       Decorative content cards (bio, clients, timeline, credentials, approach,
+       fit, testimonials) no longer lift — they're read-only content. */
     const pricingCards = document.querySelectorAll('.pricing-card');
     pricingCards.forEach(function (card) {
         card.addEventListener('mouseenter', function () {
@@ -197,18 +121,6 @@ function initCoachingCardEffects() {
         card.addEventListener('mouseleave', function () {
             if (window.innerWidth < 992) return;
             card.style.transform = 'translateY(0)';
-        });
-    });
- 
-    const approachSteps = document.querySelectorAll('.approach-step');
-    approachSteps.forEach(function (step) {
-        step.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 992) return;
-            step.style.transform = 'translateY(-10px)';
-        });
-        step.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            step.style.transform = 'translateY(0)';
         });
     });
 }
