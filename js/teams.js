@@ -293,9 +293,9 @@
             ]
         },
         {
-            name: "Marilyn Samiengo",
-            role: "Pre-Licensed Professional, MHC",
-            img: "Marilyn.jpeg",
+            name: "Marilyn Samaniego",
+            role: "Pre-Licensed Professional, MHC, MS",
+            img: "https://photos.psychologytoday.com/46087619-7836-4c27-a974-c8031716cb11/2/320x400.jpeg",
             specialty: "Bilingual Counseling (English/Spanish)",
             blurb: "Bilingual services for children, teens, and adults — trauma, stress, and emotional wellbeing.",
             sections: [
@@ -413,7 +413,7 @@
             ]
         },
         {
-            name: "Clo\u00e8 D'Arcangelo",
+            name: "Cloe D'Arcangelo",
             role: "Supervised Psychotherapist",
             img: "../CloeDArcangelo.jpeg",
             specialty: "Eating Disorders, Anxiety & Identity",
