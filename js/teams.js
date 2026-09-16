@@ -179,7 +179,7 @@
         {
             name: "Saima Gul",
             role: "Licensed Mental Health Counselor",
-            img: "https://photos.psychologytoday.com/8815a428-6d2a-49f3-b53f-ea298e32e267/1/320x400.jpeg",
+            img: "saima.jpeg",
             specialty: "Integrative Therapy & Trauma Recovery",
             blurb: "Personalized, integrative therapy for anxiety, depression, trauma, PTSD, and relationships.",
             sections: [
