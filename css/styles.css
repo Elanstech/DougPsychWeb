@@ -688,3 +688,68 @@ ul { list-style: none; }
     .reveal { opacity: 1; transform: none; }
     .hero-orb, .pulse-dot::after, .wheel { animation: none; }
 }
+
+
+/* ======================= PATH CHOOSER (Coaching | Therapy) ================= */
+/* Photos: add split-coaching.jpg and split-therapy.jpg to the root folder.
+   Until then, the colored gradient shows. */
+.path-split {
+    position: relative; display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 100vh; padding-top: var(--header-h); overflow: hidden;
+}
+.path-side {
+    position: relative; display: flex; align-items: flex-end;
+    padding: 4rem 3rem; color: #fff; text-decoration: none; overflow: hidden;
+}
+.path-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    transition: transform 0.8s var(--ease-out);
+}
+.path-coaching .path-bg {
+    background-image: linear-gradient(180deg, rgba(7,9,38,0.15) 30%, rgba(7,9,38,0.85) 100%), url("../split-coaching.jpg"), linear-gradient(135deg, #0d1147, #1a237e);
+}
+.path-therapy .path-bg {
+    background-image: linear-gradient(180deg, rgba(20,40,50,0.1) 30%, rgba(20,40,50,0.8) 100%), url("../split-therapy.jpg"), linear-gradient(135deg, #3f6e73, #9c834a);
+}
+.path-side:hover .path-bg { transform: scale(1.05); }
+.path-content { position: relative; z-index: 1; max-width: 460px; }
+.path-therapy .path-content { margin-left: auto; text-align: right; }
+.path-label {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 0.75rem;
+}
+.path-content h2 {
+    font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.2; color: #fff; margin-bottom: 1.5rem;
+}
+.path-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.85rem 1.6rem; border-radius: var(--r-pill);
+    background: var(--gold-gradient); color: var(--royal-blue-dark); font-weight: 700;
+    transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.path-side:hover .path-btn { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+.path-center {
+    position: absolute; top: calc(var(--header-h) + 2.5rem); left: 50%; transform: translateX(-50%);
+    z-index: 2; text-align: center; pointer-events: none;
+}
+.path-photo {
+    width: 130px; height: 130px; border-radius: 50%; object-fit: cover; object-position: top;
+    border: 4px solid var(--gold-light); box-shadow: var(--shadow-lg);
+}
+.path-name {
+    margin-top: 0.75rem; padding: 0.6rem 1.2rem; border-radius: var(--r-md);
+    background: rgba(255,255,255,0.92); color: var(--royal-blue);
+    font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; line-height: 1.3;
+}
+.path-name span { display: block; font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; color: var(--text-medium); }
+.path-split + .hero { min-height: auto; padding-top: 6rem; }
+
+@media (max-width: 767px) {
+    .path-split { grid-template-columns: 1fr; min-height: auto; }
+    .path-side { min-height: 46vh; padding: 2.5rem 1.5rem; }
+    .path-therapy .path-content { margin-left: 0; text-align: left; }
+    .path-center { position: relative; top: auto; left: auto; transform: none; order: -1; padding: 2rem 1rem 1.5rem; background: var(--bg-soft); }
+    .path-photo { width: 100px; height: 100px; }
+}
