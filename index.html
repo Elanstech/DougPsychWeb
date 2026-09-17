@@ -11,7 +11,7 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dougpsychassociates.com/index.html">
+    <meta property="og:url" content="https://dougpsychassociates.com/">
     <meta property="og:title" content="Doug Uhlig Psychological Services PLLC | Expert Mental Health Care in Manhattan, Brooklyn & Queens">
     <meta property="og:description" content="Evidence-based psychological care for depression, anxiety, trauma and more across three NYC locations. Book your consultation today.">
     <meta property="og:image" content="https://dougpsychassociates.com/logo.png">
@@ -95,6 +95,43 @@
 <!-- Scroll progress -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- =====================================================================
+     SPLIT-SCREEN GATE — shows on load, user picks Therapy or Coaching
+     Styles: css/styles.css (#gate section)   Logic: js/script.js (initGate)
+     ===================================================================== -->
+<div class="gate" id="gate" role="dialog" aria-label="Choose therapy or coaching">
+    <div class="gate-panels">
+        <button type="button" class="gate-panel gate-coaching" id="gateCoaching">
+            <span class="gate-bg" aria-hidden="true"></span>
+            <span class="gate-shade" aria-hidden="true"></span>
+            <span class="gate-inner">
+                <span class="gate-eyebrow"><i class="fas fa-briefcase"></i> Executive Coaching</span>
+                <span class="gate-headline">Build the career and life that you want</span>
+                <span class="gate-sub">One-on-one coaching for executives, founders and emerging leaders through the Manhattan Executive Coach Consortium.</span>
+                <span class="gate-enter">Enter Coaching <i class="fas fa-arrow-right"></i></span>
+            </span>
+        </button>
+
+        <button type="button" class="gate-panel gate-therapy" id="gateTherapy">
+            <span class="gate-bg" aria-hidden="true"></span>
+            <span class="gate-shade" aria-hidden="true"></span>
+            <span class="gate-inner">
+                <span class="gate-eyebrow"><i class="fas fa-leaf"></i> Therapy</span>
+                <span class="gate-headline">Understand yourself, feel better, live fully</span>
+                <span class="gate-sub">Evidence-based care for depression, anxiety, trauma and relationships across Manhattan, Brooklyn and Queens.</span>
+                <span class="gate-enter">Enter Therapy <i class="fas fa-arrow-right"></i></span>
+            </span>
+        </button>
+    </div>
+
+    <div class="gate-id">
+        <span class="gate-id-photo"><img src="coachingdougtry.jpeg" alt="Doug Uhlig PhD"></span>
+        <span class="gate-id-name">Doug Uhlig <em>PhD</em></span>
+        <span class="gate-id-role">Psychologist &amp; Coach</span>
+        <span class="gate-id-hint">Choose where to begin</span>
+    </div>
+</div>
+
 <!-- Header -->
 <header class="header" id="header">
     <nav class="navbar">
@@ -122,32 +159,6 @@
         </div>
     </nav>
 </header>
-
-<!-- Path chooser: Coaching | Therapy -->
-<section class="path-split" id="choose" aria-label="Choose coaching or therapy">
-    <a href="coaching.html" class="path-side path-coaching">
-        <div class="path-bg" aria-hidden="true"></div>
-        <div class="path-content">
-            <span class="path-label"><i class="fas fa-briefcase"></i> Executive Coaching</span>
-            <h2>Build the career and life that you want</h2>
-            <span class="path-btn">Explore Coaching <i class="fas fa-arrow-right"></i></span>
-        </div>
-    </a>
-
-    <div class="path-center">
-        <img src="coachingdougtry.jpeg" alt="Dr. Doug Uhlig" class="path-photo">
-        <p class="path-name">Doug Uhlig PhD<span>Psychologist and Coach</span></p>
-    </div>
-
-    <a href="#home" class="path-side path-therapy">
-        <div class="path-bg" aria-hidden="true"></div>
-        <div class="path-content">
-            <span class="path-label"><i class="fas fa-leaf"></i> Therapy</span>
-            <h2>Understand yourself, feel better, live fully</h2>
-            <span class="path-btn">Explore Therapy <i class="fas fa-arrow-right"></i></span>
-        </div>
-    </a>
-</section>
 
 <!-- Hero -->
 <section class="hero" id="home">
