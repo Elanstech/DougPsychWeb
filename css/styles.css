@@ -690,66 +690,138 @@ ul { list-style: none; }
 }
 
 
-/* ======================= PATH CHOOSER (Coaching | Therapy) ================= */
-/* Photos: add split-coaching.jpg and split-therapy.jpg to the root folder.
-   Until then, the colored gradient shows. */
-.path-split {
-    position: relative; display: grid; grid-template-columns: 1fr 1fr;
-    min-height: 100vh; padding-top: var(--header-h); overflow: hidden;
-}
-.path-side {
-    position: relative; display: flex; align-items: flex-end;
-    padding: 4rem 3rem; color: #fff; text-decoration: none; overflow: hidden;
-}
-.path-bg {
-    position: absolute; inset: 0; background-size: cover; background-position: center;
-    transition: transform 0.8s var(--ease-out);
-}
-.path-coaching .path-bg {
-    background-image: linear-gradient(180deg, rgba(7,9,38,0.15) 30%, rgba(7,9,38,0.85) 100%), url("../split-coaching.jpg"), linear-gradient(135deg, #0d1147, #1a237e);
-}
-.path-therapy .path-bg {
-    background-image: linear-gradient(180deg, rgba(20,40,50,0.1) 30%, rgba(20,40,50,0.8) 100%), url("../split-therapy.jpg"), linear-gradient(135deg, #3f6e73, #9c834a);
-}
-.path-side:hover .path-bg { transform: scale(1.05); }
-.path-content { position: relative; z-index: 1; max-width: 460px; }
-.path-therapy .path-content { margin-left: auto; text-align: right; }
-.path-label {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold-light); margin-bottom: 0.75rem;
-}
-.path-content h2 {
-    font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.8rem);
-    line-height: 1.2; color: #fff; margin-bottom: 1.5rem;
-}
-.path-btn {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    padding: 0.85rem 1.6rem; border-radius: var(--r-pill);
-    background: var(--gold-gradient); color: var(--royal-blue-dark); font-weight: 700;
-    transition: transform var(--t-fast), box-shadow var(--t-fast);
-}
-.path-side:hover .path-btn { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
-.path-center {
-    position: absolute; top: calc(var(--header-h) + 2.5rem); left: 50%; transform: translateX(-50%);
-    z-index: 2; text-align: center; pointer-events: none;
-}
-.path-photo {
-    width: 130px; height: 130px; border-radius: 50%; object-fit: cover; object-position: top;
-    border: 4px solid var(--gold-light); box-shadow: var(--shadow-lg);
-}
-.path-name {
-    margin-top: 0.75rem; padding: 0.6rem 1.2rem; border-radius: var(--r-md);
-    background: rgba(255,255,255,0.92); color: var(--royal-blue);
-    font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; line-height: 1.3;
-}
-.path-name span { display: block; font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; color: var(--text-medium); }
-.path-split + .hero { min-height: auto; padding-top: 6rem; }
+/* ==========================================================================
+   SPLIT-SCREEN GATE (index.html) — choose Therapy or Coaching on load
+   Add split-coaching.jpg / split-therapy.jpg to the root folder for photos;
+   the gate looks finished without them.
+   ========================================================================== */
+body.gate-open { overflow: hidden; }
 
-@media (max-width: 767px) {
-    .path-split { grid-template-columns: 1fr; min-height: auto; }
-    .path-side { min-height: 46vh; padding: 2.5rem 1.5rem; }
-    .path-therapy .path-content { margin-left: 0; text-align: left; }
-    .path-center { position: relative; top: auto; left: auto; transform: none; order: -1; padding: 2rem 1rem 1.5rem; background: var(--bg-soft); }
-    .path-photo { width: 100px; height: 100px; }
+.gate {
+    position: fixed; inset: 0; z-index: 4000;
+    background: #0b0c22; opacity: 1;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.gate.is-dismissed { opacity: 0; visibility: hidden; pointer-events: none; }
+.gate-panels { display: flex; width: 100%; height: 100%; }
+
+.gate-panel {
+    position: relative; flex: 1 1 50%; overflow: hidden; border: 0; cursor: pointer;
+    display: flex; align-items: flex-end; text-align: left; color: #fff; font: inherit;
+    background: transparent; padding: 0;
+    transition: flex-basis 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gate-bg {
+    position: absolute; inset: -2%; background-size: cover; background-position: center;
+    transform: scale(1.12); opacity: 0;
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.1s ease;
+}
+.gate-coaching .gate-bg {
+    background-image: url("../split-coaching.jpg"),
+        radial-gradient(120% 90% at 25% 15%, #2b3080 0%, #141541 45%, #0a0b22 100%);
+}
+.gate-therapy .gate-bg {
+    background-image: url("../split-therapy.jpg"),
+        radial-gradient(120% 90% at 75% 15%, #4a7c78 0%, #22403f 48%, #101f20 100%);
+}
+.gate-shade {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(8,9,26,0.25) 0%, rgba(8,9,26,0.55) 55%, rgba(8,9,26,0.92) 100%);
+    box-shadow: inset 0 0 160px rgba(0,0,0,0.45);
+}
+.gate-inner {
+    position: relative; z-index: 2; display: block; max-width: 30rem;
+    padding: 0 clamp(1.5rem, 4vw, 4.5rem) clamp(3rem, 7vh, 6rem);
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gate-therapy .gate-inner { margin-left: auto; text-align: right; }
+.gate-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;
+    padding: 0.4rem 0.9rem; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.08);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: #f0e2b0;
+}
+.gate-headline {
+    display: block; font-family: var(--font-heading, 'Playfair Display', Georgia, serif);
+    font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.9rem); line-height: 1.12; margin-bottom: 0.9rem;
+}
+.gate-sub { display: block; font-size: clamp(0.9rem, 1vw, 1rem); line-height: 1.65; color: rgba(255,255,255,0.72); margin-bottom: 1.75rem; }
+.gate-enter {
+    display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.6rem; border-radius: 999px;
+    background: rgba(255,255,255,0.95); color: #12142e; font-size: 0.85rem; font-weight: 700;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gate-enter i { transition: transform 0.3s ease; }
+
+@media (hover: hover) and (min-width: 900px) {
+    .gate-panels.is-hovering .gate-panel { flex-basis: 42%; }
+    .gate-panels.is-hovering .gate-panel.is-hovered { flex-basis: 58%; }
+    .gate-panel:hover .gate-bg { transform: scale(1.02); }
+    .gate-panel:hover .gate-enter { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,0,0,0.35); }
+    .gate-panel:hover .gate-enter i { transform: translateX(4px); }
+    .gate-panels.is-hovering .gate-panel:not(.is-hovered) .gate-inner { opacity: 0.45; }
+}
+
+/* Center identity card */
+.gate-id {
+    position: absolute; z-index: 3; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.92); opacity: 0;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: clamp(1.25rem, 2vw, 1.75rem) clamp(1.5rem, 2.5vw, 2.25rem);
+    border-radius: 22px; pointer-events: none;
+    background: rgba(12,13,34,0.55); border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+    transition: opacity 1s ease 0.15s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+.gate-id-photo {
+    width: clamp(88px, 9vw, 118px); height: clamp(88px, 9vw, 118px); border-radius: 50%;
+    overflow: hidden; margin-bottom: 1rem; border: 2px solid rgba(240,226,176,0.75);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+.gate-id-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.gate-id-name { font-family: var(--font-heading, 'Playfair Display', Georgia, serif); font-size: clamp(1.2rem, 1.6vw, 1.5rem); font-weight: 700; color: #fff; }
+.gate-id-name em { font-style: normal; color: #f0e2b0; }
+.gate-id-role { font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.62); margin-top: 0.3rem; }
+.gate-id-hint {
+    margin-top: 0.9rem; padding-top: 0.75rem; width: 100%; font-size: 0.7rem; letter-spacing: 1.4px;
+    text-transform: uppercase; color: rgba(240,226,176,0.85); border-top: 1px solid rgba(255,255,255,0.14);
+    animation: gatePulse 2.8s ease-in-out infinite;
+}
+@keyframes gatePulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* Curtain wipe + reveal */
+.gate::before, .gate::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 50%; z-index: 5;
+    background: #0b0c22; transition: transform 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.gate::before { left: 0; }
+.gate::after { right: 0; }
+.gate.is-ready::before { transform: translateX(-101%); }
+.gate.is-ready::after { transform: translateX(101%); }
+.gate.is-ready .gate-bg { opacity: 1; transform: scale(1); }
+.gate.is-ready .gate-inner { opacity: 1; transform: translateY(0); }
+.gate.is-ready .gate-coaching .gate-inner { transition-delay: 0.55s; }
+.gate.is-ready .gate-therapy .gate-inner { transition-delay: 0.7s; }
+.gate.is-ready .gate-id { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+@media (max-width: 899px) {
+    .gate { overflow-y: auto; }
+    .gate-panels { flex-direction: column; height: auto; min-height: 100%; }
+    .gate-panel { min-height: 50vh; min-height: 50dvh; }
+    .gate-inner { max-width: none; padding: 0 1.5rem 2.5rem; }
+    .gate-therapy .gate-inner { margin-left: 0; text-align: left; }
+    .gate-id { padding: 1rem 1.25rem; border-radius: 18px; }
+    .gate-id-photo { width: 72px; height: 72px; margin-bottom: 0.7rem; }
+    .gate-id-hint { display: none; }
+    .gate::before, .gate::after { width: 100%; height: 50%; top: auto; bottom: auto; }
+    .gate::before { top: 0; }
+    .gate::after { bottom: 0; }
+    .gate.is-ready::before { transform: translateY(-101%); }
+    .gate.is-ready::after { transform: translateY(101%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gate, .gate *, .gate::before, .gate::after { transition: none !important; animation: none !important; }
 }
