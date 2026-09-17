@@ -284,3 +284,84 @@ function initSmoothScroll() {
         });
     });
 }
+
+
+/* ==========================================================================
+   SPLIT-SCREEN GATE (index.html)
+   Loads over the page, user picks Therapy (reveals this page) or Coaching
+   (goes to coaching.html). Skipped for the rest of the browser session.
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', function () {
+    const gate = document.getElementById('gate');
+    if (!gate) return;
+
+    const panels = Array.from(gate.querySelectorAll('.gate-panel'));
+    const track = gate.querySelector('.gate-panels');
+    const coaching = document.getElementById('gateCoaching');
+    const therapy = document.getElementById('gateTherapy');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let seen = false;
+    try { seen = sessionStorage.getItem('duGateSeen') === '1'; } catch (err) { seen = false; }
+
+    /* Deep links (index.html#services, /#contact) skip the gate */
+    const deepLink = window.location.hash && window.location.hash !== '#home';
+
+    function dismiss() {
+        gate.classList.add('is-dismissed');
+        document.body.classList.remove('gate-open');
+        try { sessionStorage.setItem('duGateSeen', '1'); } catch (err) { /* private mode */ }
+        setTimeout(function () { gate.remove(); }, 700);
+    }
+
+    if (seen || deepLink) {
+        gate.remove();
+        return;
+    }
+
+    /* Lock the page behind the gate and play the reveal */
+    document.body.classList.add('gate-open');
+    window.scrollTo(0, 0);
+    requestAnimationFrame(function () {
+        setTimeout(function () { gate.classList.add('is-ready'); }, 80);
+    });
+
+    /* Therapy: stay on this page */
+    if (therapy) {
+        therapy.addEventListener('click', function () {
+            dismiss();
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        });
+    }
+
+    /* Coaching: leave for the coaching site */
+    if (coaching) {
+        coaching.addEventListener('click', function () {
+            try { sessionStorage.setItem('duGateSeen', '1'); } catch (err) { /* private mode */ }
+            if (reduced) { window.location.href = 'coaching.html'; return; }
+            gate.classList.add('is-dismissed');
+            setTimeout(function () { window.location.href = 'coaching.html'; }, 420);
+        });
+    }
+
+    /* Hover focus on desktop */
+    if (track && window.matchMedia('(hover: hover) and (min-width: 900px)').matches) {
+        panels.forEach(function (panel) {
+            panel.addEventListener('mouseenter', function () {
+                track.classList.add('is-hovering');
+                panels.forEach(function (p) { p.classList.toggle('is-hovered', p === panel); });
+            });
+        });
+        track.addEventListener('mouseleave', function () {
+            track.classList.remove('is-hovering');
+            panels.forEach(function (p) { p.classList.remove('is-hovered'); });
+        });
+    }
+
+    /* Keyboard: left = coaching, right = therapy, Esc = therapy */
+    document.addEventListener('keydown', function onKey(e) {
+        if (gate.classList.contains('is-dismissed')) return;
+        if (e.key === 'ArrowLeft' && coaching) coaching.click();
+        if ((e.key === 'ArrowRight' || e.key === 'Escape') && therapy) therapy.click();
+    });
+});
