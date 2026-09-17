@@ -31,38 +31,55 @@
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </head>
 <body id="top">
-<!-- Scroll progress -->
-<div class="scroll-progress" id="scrollProgress"></div>
-<header class="header" id="header">
-    <nav class="navbar">
-        <div class="container">
-            <a href="#top" class="nav-brand">
-                <div class="brand-logo-container">
-                    <img src="logo.png" alt="Dr. Doug Uhlig — Business &amp; Life Coaching" class="brand-logo">
-                </div>
-                <div class="brand-text">
-                    <span class="brand-name">Manhattan Executive Coach Consortium</span>
-                </div>
-            </a>
-            <div class="nav-menu" id="navMenu">
-                <a href="#mecc" class="nav-link">About MECC</a>
-                <a href="#coaches" class="nav-link">Our Coaches</a>
-                <a href="#assessment" class="nav-link">Self-Assessment</a>
-                <a href="#focus" class="nav-link">Focus Areas</a>
-                <a href="#approach" class="nav-link">Methodology</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="index.html#home" class="nav-link">Therapy</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="contact.html" class="btn-consultation">Book a Consultation</a>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
+<!-- Status bar header (styles + logic live in coaching.css / coaching.js) -->
+<header class="mecc-bar" id="meccBar">
+    <div class="mecc-bar-inner">
+        <a href="#top" class="mecc-bar-brand">
+            <img src="logo.png" alt="Manhattan Executive Coach Consortium">
+            <span>MECC<small>Manhattan Executive Coach Consortium</small></span>
+        </a>
+
+        <nav class="mecc-status" id="meccStatus" aria-label="Section navigation">
+            <a href="#top" class="mecc-step is-active" data-section="top"><span class="mecc-step-dot"></span>Overview</a>
+            <a href="#mecc" class="mecc-step" data-section="mecc"><span class="mecc-step-dot"></span>About</a>
+            <a href="#coaches" class="mecc-step" data-section="coaches"><span class="mecc-step-dot"></span>Coaches</a>
+            <a href="#assessment" class="mecc-step" data-section="assessment"><span class="mecc-step-dot"></span>Assessment</a>
+            <a href="#focus" class="mecc-step" data-section="focus"><span class="mecc-step-dot"></span>Focus</a>
+            <a href="#approach" class="mecc-step" data-section="approach"><span class="mecc-step-dot"></span>Method</a>
+            <a href="#services" class="mecc-step" data-section="services"><span class="mecc-step-dot"></span>Services</a>
+            <a href="#locations" class="mecc-step" data-section="locations"><span class="mecc-step-dot"></span>Locations</a>
+        </nav>
+
+        <div class="mecc-bar-actions">
+            <a href="index.html" class="mecc-back"><i class="fas fa-arrow-left"></i> Therapy Site</a>
+            <a href="contact.html" class="mecc-cta">Book a Consultation</a>
+            <button class="mecc-burger" id="meccBurger" aria-label="Open section menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
         </div>
-    </nav>
+    </div>
+
+    <div class="mecc-current" id="meccCurrent">
+        <span class="mecc-current-dot"></span>
+        <span id="meccCurrentLabel">Overview</span>
+    </div>
+
+    <div class="mecc-progress"><span id="meccProgressBar"></span></div>
 </header>
+
+<div class="mecc-sheet" id="meccSheet" hidden>
+    <a href="#top">Overview</a>
+    <a href="#mecc">About MECC</a>
+    <a href="#coaches">Our Coaches</a>
+    <a href="#assessment">Self-Assessment</a>
+    <a href="#focus">Focus Areas</a>
+    <a href="#approach">Methodology</a>
+    <a href="#services">Services</a>
+    <a href="#locations">Locations</a>
+    <a href="contact.html" class="mecc-sheet-cta">Book a Consultation</a>
+    <a href="index.html" class="mecc-sheet-back"><i class="fas fa-arrow-left"></i> Back to Therapy Site</a>
+</div>
+
 <!-- Hero -->
 <section class="coaching-hero">
     <div class="coaching-hero-overlay"></div>
