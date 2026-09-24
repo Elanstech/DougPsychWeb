@@ -287,9 +287,12 @@ function initSmoothScroll() {
 
 
 /* ==========================================================================
-   SPLIT-SCREEN GATE (index.html)
-   Loads over the page, user picks Therapy (reveals this page) or Coaching
-   (goes to coaching.html). Skipped for the rest of the browser session.
+   SPLIT-SCREEN GATE (index.html) — acts as the preloader
+   Shows every time index.html loads. Doug's photo/name appear first, the two
+   photos fade in once they've downloaded (max 1.8s wait), then the visitor
+   picks Coaching (goes to coaching.html) or Therapy (reveals this page).
+   Skipped only for section links (index.html#services) and the Therapy
+   switch on the coaching page (index.html?site=therapy).
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', function () {
     const gate = document.getElementById('gate');
@@ -301,30 +304,50 @@ document.addEventListener('DOMContentLoaded', function () {
     const therapy = document.getElementById('gateTherapy');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    let seen = false;
-    try { seen = sessionStorage.getItem('duGateSeen') === '1'; } catch (err) { seen = false; }
+    const hash = window.location.hash;
+    const sectionLink = hash && hash !== '#home';
+    const choseTherapy = new URLSearchParams(window.location.search).get('site') === 'therapy';
 
-    /* Deep links (index.html#services, /#contact) skip the gate */
-    const deepLink = window.location.hash && window.location.hash !== '#home';
-
-    function dismiss() {
-        gate.classList.add('is-dismissed');
-        document.body.classList.remove('gate-open');
-        try { sessionStorage.setItem('duGateSeen', '1'); } catch (err) { /* private mode */ }
-        setTimeout(function () { gate.remove(); }, 700);
-    }
-
-    if (seen || deepLink) {
+    if (sectionLink || choseTherapy) {
         gate.remove();
         return;
     }
 
-    /* Lock the page behind the gate and play the reveal */
+    /* Lock the page behind the gate */
     document.body.classList.add('gate-open');
     window.scrollTo(0, 0);
-    requestAnimationFrame(function () {
-        setTimeout(function () { gate.classList.add('is-ready'); }, 80);
-    });
+
+    /* Preload: show identity now, reveal panels when both photos are ready */
+    requestAnimationFrame(function () { gate.classList.add('is-intro'); });
+
+    let revealed = false;
+    function reveal() {
+        if (revealed) return;
+        revealed = true;
+        gate.classList.add('is-ready');
+    }
+
+    const urls = Array.from(gate.querySelectorAll('.gate-bg')).map(function (el) {
+        const m = getComputedStyle(el).backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+        return m ? m[1] : null;
+    }).filter(Boolean);
+
+    let pending = urls.length;
+    if (!pending || reduced) {
+        reveal();
+    } else {
+        urls.forEach(function (src) {
+            const img = new Image();
+            img.onload = img.onerror = function () { if (--pending === 0) setTimeout(reveal, 250); };
+            img.src = src;
+        });
+        setTimeout(reveal, 1800);
+    }
+
+    function dismiss() {
+        gate.classList.add('is-dismissed');
+        document.body.classList.remove('gate-open');
+    }
 
     /* Therapy: stay on this page */
     if (therapy) {
@@ -337,12 +360,19 @@ document.addEventListener('DOMContentLoaded', function () {
     /* Coaching: leave for the coaching site */
     if (coaching) {
         coaching.addEventListener('click', function () {
-            try { sessionStorage.setItem('duGateSeen', '1'); } catch (err) { /* private mode */ }
             if (reduced) { window.location.href = 'coaching.html'; return; }
             gate.classList.add('is-dismissed');
             setTimeout(function () { window.location.href = 'coaching.html'; }, 420);
         });
     }
+
+    /* Back button (page restored from cache): show the gate again */
+    window.addEventListener('pageshow', function (e) {
+        if (!e.persisted) return;
+        gate.classList.remove('is-dismissed');
+        document.body.classList.add('gate-open');
+        window.scrollTo(0, 0);
+    });
 
     /* Hover focus on desktop */
     if (track && window.matchMedia('(hover: hover) and (min-width: 900px)').matches) {
@@ -358,10 +388,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* Keyboard: left = coaching, right = therapy, Esc = therapy */
-    document.addEventListener('keydown', function onKey(e) {
+    /* Keyboard: left = coaching, right = therapy */
+    document.addEventListener('keydown', function (e) {
         if (gate.classList.contains('is-dismissed')) return;
         if (e.key === 'ArrowLeft' && coaching) coaching.click();
-        if ((e.key === 'ArrowRight' || e.key === 'Escape') && therapy) therapy.click();
+        if (e.key === 'ArrowRight' && therapy) therapy.click();
     });
 });
