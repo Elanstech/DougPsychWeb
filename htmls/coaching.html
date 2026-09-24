@@ -370,7 +370,6 @@
     <!-- Site styles -->
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/coaching.css">
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </head>
 <body id="top">
 <!-- MECC header — styles: css/coaching.css (MECC HEADER) · logic: js/coaching.js (initMeccBar)
@@ -489,11 +488,140 @@
                 <li>Your coaching goals</li>
                 <li>Reflection and feedback</li>
                 <li>Coaching partnership</li>
+                <li>Your contact details</li>
             </ol>
         </div>
         <div class="mecc-form-wrap reveal">
-            <!-- TODO: swap this ID for the new Elfsight self-assessment form (emails Doug) -->
-            <div class="elfsight-app-7a063013-7327-45f2-8e58-f32816e4b9f2" data-elfsight-app-lazy></div>
+            <!-- Self-assessment quiz — logic: js/coaching.js (initMeccQuiz). Answers are emailed to Doug via FormSubmit. -->
+            <form class="mq" id="meccQuiz" novalidate>
+                <div class="mq-top">
+                    <p class="mq-count" id="mqCount" aria-live="polite">Part 1 of 6</p>
+                    <div class="mq-bar" role="progressbar" aria-label="Assessment progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><span id="mqBar"></span></div>
+                </div>
+
+                <fieldset class="mq-step" tabindex="-1">
+                    <legend class="mq-title">Your current leadership</legend>
+                <div class="mq-field">
+                    <label for="q1a">What do you consider your greatest leadership strength?</label>
+                    <textarea id="q1a" name="1a. Greatest leadership strength" rows="3"></textarea>
+                </div>
+                <div class="mq-field">
+                    <label for="q1b">What leadership capability would you most like to strengthen?</label>
+                    <textarea id="q1b" name="1b. Capability to strengthen" rows="3"></textarea>
+                </div>
+                </fieldset>
+
+                <fieldset class="mq-step" tabindex="-1" hidden>
+                    <legend class="mq-title">Your current situation</legend>
+                <div class="mq-field">
+                    <label for="q2a">What is the most important leadership or professional challenge you are facing right now?</label>
+                    <textarea id="q2a" name="2a. Most important current challenge" rows="3"></textarea>
+                </div>
+                <div class="mq-field">
+                    <label for="q2b">What is currently taking the most of your time, attention, or energy?</label>
+                    <textarea id="q2b" name="2b. What takes most time and energy" rows="3"></textarea>
+                </div>
+                </fieldset>
+
+                <fieldset class="mq-step" tabindex="-1" hidden>
+                    <legend class="mq-title">Your coaching goals</legend>
+                <div class="mq-field">
+                    <label for="q3a">What would you most like to accomplish through executive coaching?</label>
+                    <textarea id="q3a" name="3a. What they want to accomplish" rows="3"></textarea>
+                </div>
+                <div class="mq-field">
+                    <label for="q3b">If coaching is successful, what would be noticeably different about you or your leadership 6&ndash;12 months from now?</label>
+                    <textarea id="q3b" name="3b. What would be different in 6 to 12 months" rows="3"></textarea>
+                </div>
+                <div class="mq-field">
+                    <label for="q3c">What is one outcome you would like to achieve in the next 90 days?</label>
+                    <textarea id="q3c" name="3c. 90-day outcome" rows="3"></textarea>
+                </div>
+                </fieldset>
+
+                <fieldset class="mq-step" tabindex="-1" hidden>
+                    <legend class="mq-title">Reflection and feedback</legend>
+                <div class="mq-field">
+                    <label for="q4a">What feedback have you received recently that has influenced how you think about your leadership?</label>
+                    <textarea id="q4a" name="4a. Recent feedback that shaped their thinking" rows="3"></textarea>
+                </div>
+                <div class="mq-field">
+                    <label for="q4b">Is there a leadership situation, relationship, or decision you would like to work through with your coach?</label>
+                    <textarea id="q4b" name="4b. Situation to work through with coach" rows="3"></textarea>
+                </div>
+                </fieldset>
+
+                <fieldset class="mq-step" tabindex="-1" hidden>
+                    <legend class="mq-title">Coaching partnership</legend>
+                    <div class="mq-field">
+                        <p class="mq-q" id="q5aLabel">What do you most want from your coach? <span class="mq-hint">Choose all that apply.</span></p>
+                        <div class="mq-options" role="group" aria-labelledby="q5aLabel">
+                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="A confidential sounding board"><span>A confidential sounding board</span></label>
+                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Honest, direct feedback"><span>Honest, direct feedback</span></label>
+                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Accountability"><span>Accountability</span></label>
+                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="New perspectives and ideas"><span>New perspectives and ideas</span></label>
+                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Help navigating a specific challenge"><span>Help navigating a specific challenge</span></label>
+                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Leadership skill development"><span>Leadership skill development</span></label>
+                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Career/advancement guidance"><span>Career/advancement guidance</span></label>
+                            <label class="mq-option"><input type="checkbox" id="q5aOtherToggle" name="5a. What they want from a coach" value="Other"><span>Other</span></label>
+                        </div>
+                        <label for="q5aOther" class="mq-sr">Other, please describe</label>
+                        <input type="text" id="q5aOther" name="5a. Other (described)" placeholder="Tell us what else you're looking for" hidden>
+                    </div>
+                    <div class="mq-field">
+                        <p class="mq-q" id="q5bLabel">How ready are you to make meaningful changes?</p>
+                        <div class="mq-scale" role="radiogroup" aria-labelledby="q5bLabel">
+                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="1"><span>1</span></label>
+                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="2"><span>2</span></label>
+                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="3"><span>3</span></label>
+                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="4"><span>4</span></label>
+                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="5"><span>5</span></label>
+                        </div>
+                        <div class="mq-scale-ends" aria-hidden="true"><span>Not yet ready</span><span>Very ready</span></div>
+                    </div>
+                <div class="mq-field">
+                    <label for="q5c">Is there anything else you would like your coach to know before we begin?</label>
+                    <textarea id="q5c" name="5c. Anything else for the coach" rows="3"></textarea>
+                </div>
+                </fieldset>
+
+                <fieldset class="mq-step" tabindex="-1" hidden>
+                    <legend class="mq-title">Where should Dr. Uhlig reach you?</legend>
+                    <div class="mq-grid">
+                        <div class="mq-field">
+                            <label for="qName">Full name <span class="mq-req">(required)</span></label>
+                            <input type="text" id="qName" name="Name" autocomplete="name" required>
+                        </div>
+                        <div class="mq-field">
+                            <label for="qEmail">Email <span class="mq-req">(required)</span></label>
+                            <input type="email" id="qEmail" name="Email" autocomplete="email" required>
+                        </div>
+                        <div class="mq-field">
+                            <label for="qPhone">Phone</label>
+                            <input type="tel" id="qPhone" name="Phone" autocomplete="tel">
+                        </div>
+                        <div class="mq-field">
+                            <label for="qRole">Title and organization</label>
+                            <input type="text" id="qRole" name="Title and organization" autocomplete="organization-title">
+                        </div>
+                    </div>
+                    <p class="mq-note">Your answers go only to Dr. Uhlig and are kept confidential.</p>
+                    <input type="text" name="_honey" class="mq-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+                </fieldset>
+
+                <p class="mq-error" id="mqError" role="alert" hidden></p>
+
+                <div class="mq-nav">
+                    <button type="button" class="mq-back" id="mqBack" hidden>Back</button>
+                    <button type="submit" class="mecc-btn mecc-btn-gold" id="mqNext">Continue</button>
+                </div>
+            </form>
+
+            <div class="mq-done" id="mqDone" tabindex="-1" hidden>
+                <h3>Thank you</h3>
+                <p>Thank you for taking the time to complete this reflection. Your responses will help us create a coaching experience that is focused, practical, confidential, and relevant to your goals.</p>
+                <p>Dr. Uhlig will review your answers and reach out to schedule your first conversation. If you'd like to talk sooner, call <a href="tel:3473951759">(347) 395-1759</a>.</p>
+            </div>
         </div>
     </div>
 </section>
