@@ -4,126 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
  
 function initCoachingPage() {
     initMeccBar();
-    initCoachingHeroAnimations();
-    initCoachingCounters();
-    initCoachingCardEffects();
     initCoachingParallax();
     initStruggleTabs();
     initCoachingLocations();
-}
- 
-/* ==========================================================================
-   1. HERO ANIMATIONS
-   ========================================================================== */
-function initCoachingHeroAnimations() {
-    const heroPhoto = document.querySelector('.coaching-photo');
-    const badge = document.querySelector('.coaching-credential-badge');
- 
-    if (heroPhoto && window.innerWidth >= 992) {
-        const heroSection = document.querySelector('.coaching-hero');
-        if (heroSection) {
-            heroSection.addEventListener('mousemove', function (e) {
-                const rect = heroSection.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
- 
-                heroPhoto.style.transform = `translate(${x * 10}px, ${y * 10}px)`;
- 
-                if (badge) {
-                    badge.style.transform = `translate(${x * -5}px, ${y * -5}px)`;
-                }
-            });
- 
-            heroSection.addEventListener('mouseleave', function () {
-                heroPhoto.style.transform = 'translate(0, 0)';
-                if (badge) {
-                    badge.style.transform = 'translate(0, 0)';
-                }
-            });
-        }
-    }
-}
- 
-/* ==========================================================================
-   2. ANIMATED COUNTERS (coaching hero stats — these are NOT [data-count],
-      so they are handled here and won't collide with main script.js)
-   ========================================================================== */
-function initCoachingCounters() {
-    const stats = document.querySelectorAll('.hero-stat-number');
-    if (!stats.length) return;
- 
-    let animated = false;
- 
-    function animateCounter(el) {
-        const text = el.textContent.trim();
-        const match = text.match(/^(\d+)(\+?)$/);
-        if (!match) return;
- 
-        const target = parseInt(match[1], 10);
-        const suffix = match[2] || '';
-        const duration = 1800;
-        const startTime = performance.now();
- 
-        el.textContent = '0' + suffix;
- 
-        function step(now) {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.round(target * eased);
- 
-            el.textContent = current + suffix;
- 
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            }
-        }
- 
-        requestAnimationFrame(step);
-    }
- 
-    const observer = new IntersectionObserver(
-        function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting && !animated) {
-                    animated = true;
-                    stats.forEach(function (stat) {
-                        animateCounter(stat);
-                    });
-                    observer.disconnect();
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
- 
-    const statsContainer = document.querySelector('.coaching-hero-stats');
-    if (statsContainer) {
-        observer.observe(statsContainer);
-    }
-}
- 
-/* ==========================================================================
-   3. CARD HOVER EFFECTS
-   ========================================================================== */
-function initCoachingCardEffects() {
-    /* Doug's feedback: several cards "looked like buttons but did nothing."
-       The hover LIFT (translateY) reads as a pressable/clickable affordance,
-       so it's now reserved for cards that actually have an action.
-       Pricing cards keep the lift because each contains a clear CTA button.
-       Decorative content cards (bio, clients, timeline, credentials, approach,
-       fit, testimonials) no longer lift — they're read-only content. */
-    const pricingCards = document.querySelectorAll('.pricing-card');
-    pricingCards.forEach(function (card) {
-        card.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(-8px)';
-        });
-        card.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            card.style.transform = 'translateY(0)';
-        });
-    });
 }
  
 /* ==========================================================================
@@ -145,15 +28,6 @@ function initCoachingParallax() {
     }
  
     function updateParallax() {
-        const scrolled = window.pageYOffset;
- 
-        const hero = document.querySelector('.coaching-hero');
-        if (hero) {
-            const heroHeight = hero.offsetHeight + hero.offsetTop;
-            if (scrolled < heroHeight) {
-                hero.style.backgroundPositionY = scrolled * 0.3 + 'px';
-            }
-        }
  
         const cta = document.querySelector('.coaching-cta');
         if (cta) {
@@ -257,9 +131,6 @@ function initCoachingLocations() {
 function initMeccBar() {
     var bar = document.getElementById('header');
     if (!bar || !bar.classList.contains('mecc-bar')) return;
-
-    /* Anyone on this page has picked coaching — skip the gate if they switch to therapy */
-    try { sessionStorage.setItem('duGateSeen', '1'); } catch (err) { /* private mode */ }
 
     /* Active section in the nav */
     var steps = Array.prototype.slice.call(bar.querySelectorAll('.mecc-step'));

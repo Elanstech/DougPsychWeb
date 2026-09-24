@@ -290,7 +290,7 @@ function initSmoothScroll() {
    SPLIT-SCREEN GATE (index.html) — acts as the preloader
    Shows every time index.html loads. Doug's photo/name appear first, the two
    photos fade in once they've downloaded (max 1.8s wait), then the visitor
-   picks Coaching (goes to coaching.html) or Therapy (reveals this page).
+   picks Coaching (goes to htmls/coaching.html) or Therapy (reveals this page).
    Skipped only for section links (index.html#services) and the Therapy
    switch on the coaching page (index.html?site=therapy).
    ========================================================================== */
@@ -360,9 +360,9 @@ document.addEventListener('DOMContentLoaded', function () {
     /* Coaching: leave for the coaching site */
     if (coaching) {
         coaching.addEventListener('click', function () {
-            if (reduced) { window.location.href = 'coaching.html'; return; }
+            if (reduced) { window.location.href = 'htmls/coaching.html'; return; }
             gate.classList.add('is-dismissed');
-            setTimeout(function () { window.location.href = 'coaching.html'; }, 420);
+            setTimeout(function () { window.location.href = 'htmls/coaching.html'; }, 420);
         });
     }
 

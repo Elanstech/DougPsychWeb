@@ -17,7 +17,7 @@
         {
             name: "Dr. Doug Uhlig",
             role: "PhD, Clinical Psychologist & Founder",
-            img: "doug.jpeg",
+            img: "../images/doug.jpeg",
             specialty: "Leadership & Clinical Excellence",
             blurb: "Over two decades of clinical excellence, blending CBT, meditation, and mindfulness with deep, compassionate care.",
             sections: [
@@ -38,7 +38,7 @@
         {
             name: "Angela Christina Ferri",
             role: "Licensed Mental Health Counselor",
-            img: "Angela.jpeg",
+            img: "../images/angela.jpeg",
             specialty: "Youth & Young Adult Therapy",
             blurb: "Specializing in youth and young adult therapy, anger management, self-esteem, and academic performance anxiety.",
             sections: [
@@ -58,7 +58,7 @@
         {
             name: "Jaqueline Galynsky",
             role: "Licensed Mental Health Counselor",
-            img: "jaq.jpeg",
+            img: "../images/jaq.jpeg",
             specialty: "Bilingual Therapy (English/Russian)",
             blurb: "Bilingual therapy with expertise in CBT, REBT, and mindfulness-based interventions.",
             sections: [
@@ -78,7 +78,7 @@
         {
             name: "Zbigniew Korczak",
             role: "Licensed Clinical Social Worker",
-            img: "Zbigniew.jpeg",
+            img: "../images/zbigniew.jpeg",
             specialty: "Trauma & Addiction Treatment",
             blurb: "Specialized in trauma, PTSD, and addiction using Buddhist compassion therapy and CBT.",
             sections: [
@@ -98,7 +98,7 @@
         {
             name: "Stephanie Palacios",
             role: "Mental Health Counselor",
-            img: "Stephanie.jpeg",
+            img: "../images/stephanie.jpeg",
             specialty: "Bilingual Therapy (English/Spanish)",
             blurb: "Bilingual counseling focused on stress reduction, self-esteem, and trauma recovery.",
             sections: [
@@ -118,7 +118,7 @@
         {
             name: "Rashanda Allen",
             role: "Clinical Psychologist",
-            img: "RASHANDA.jpeg",
+            img: "../images/rashanda.jpeg",
             specialty: "Cognitive Behavioral Therapy",
             blurb: "CBT, DBT, and mindfulness training with 20+ years serving clients across all ages.",
             sections: [
@@ -139,7 +139,7 @@
         {
             name: "Yunetta Baron",
             role: "Licensed Master Social Worker",
-            img: "https://photos.psychologytoday.com/09a338db-34ae-4d24-9455-d5ab1ee3f461/4/320x400.jpeg",
+            img: "../images/yunetta.jpeg",
             specialty: "Bilingual Therapy (English/Russian)",
             blurb: "Bilingual therapy with expertise in trauma, addiction, family counseling, and elder care.",
             sections: [
@@ -159,7 +159,7 @@
         {
             name: "Jenny Toussaint",
             role: "Mental Health Counselor",
-            img: "Jenny.jpeg",
+            img: "../images/jenny.jpeg",
             specialty: "Anxiety & Depression",
             blurb: "Anxiety and depression treatment with a focus on life transitions and healthy coping.",
             sections: [
@@ -179,7 +179,7 @@
         {
             name: "Saima Gul",
             role: "Licensed Mental Health Counselor",
-            img: "saima.jpeg",
+            img: "../images/saima.jpeg",
             specialty: "Integrative Therapy & Trauma Recovery",
             blurb: "Personalized, integrative therapy for anxiety, depression, trauma, PTSD, and relationships.",
             sections: [
@@ -242,7 +242,7 @@
         {
             name: "Melanie Chandan",
             role: "Mental Health Counselor",
-            img: "Melanie.jpeg",
+            img: "",
             specialty: "Mental Health Counseling",
             blurb: "Dedicated to compassionate, client-centered care and a warm therapeutic environment.",
             sections: [
@@ -415,7 +415,7 @@
         {
             name: "Cloe D'Arcangelo",
             role: "Supervised Psychotherapist",
-            img: "../CloeDArcangelo.jpeg",
+            img: "../images/cloedarcangelo.jpeg",
             specialty: "Eating Disorders, Anxiety & Identity",
             blurb: "Integrative support for eating disorders, anxiety, self-esteem, relationships, and life transitions.",
             sections: [
@@ -525,6 +525,15 @@
         var grid = document.getElementById('membersGrid');
         if (!grid) return;
 
+        /* Initials avatar for anyone without a photo (or if a hosted photo fails) */
+        function avatar(name) {
+            var initials = name.replace(/^Dr\.\s*/, '').split(/\s+/).map(function (w) { return w.charAt(0); }).slice(0, 2).join('').toUpperCase();
+            var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400"><rect width="320" height="400" fill="#0d1147"/>' +
+                '<text x="160" y="222" text-anchor="middle" font-family="Georgia, serif" font-size="96" fill="#e6d5ac">' + initials + '</text></svg>';
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+        TEAM.forEach(function (m) { if (!m.img) m.img = avatar(m.name); });
+
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var frag = document.createDocumentFragment();
 
@@ -543,6 +552,7 @@
                 '</div>';
 
             card.querySelector('.mc-btn').addEventListener('click', function () { openModal(m); });
+            card.querySelector('.mc-image img').addEventListener('error', function () { this.src = avatar(m.name); m.img = this.src; }, { once: true });
             frag.appendChild(card);
         });
 
