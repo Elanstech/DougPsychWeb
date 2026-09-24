@@ -31,156 +31,126 @@
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </head>
 <body id="top">
-<!-- Status bar header (styles + logic live in coaching.css / coaching.js) -->
-<header class="mecc-bar" id="meccBar">
+<!-- MECC header — styles: css/coaching.css (MECC HEADER) · logic: js/coaching.js (initMeccBar)
+     id="header" lets the shared script.js handle scroll state + anchor offsets -->
+<header class="mecc-bar" id="header">
     <div class="mecc-bar-inner">
-        <a href="#top" class="mecc-bar-brand">
-            <img src="logo.png" alt="Manhattan Executive Coach Consortium">
-            <span>MECC<small>Manhattan Executive Coach Consortium</small></span>
+        <a href="#top" class="mecc-bar-brand" aria-label="Manhattan Executive Coach Consortium, back to top">
+            <img src="logo.png" alt="" width="46" height="46">
+            <span class="mecc-bar-name">MECC<small>Manhattan Executive Coach Consortium</small></span>
         </a>
 
-        <nav class="mecc-status" id="meccStatus" aria-label="Section navigation">
-            <a href="#top" class="mecc-step is-active" data-section="top"><span class="mecc-step-dot"></span>Overview</a>
-            <a href="#mecc" class="mecc-step" data-section="mecc"><span class="mecc-step-dot"></span>About</a>
-            <a href="#coaches" class="mecc-step" data-section="coaches"><span class="mecc-step-dot"></span>Coaches</a>
-            <a href="#assessment" class="mecc-step" data-section="assessment"><span class="mecc-step-dot"></span>Assessment</a>
-            <a href="#focus" class="mecc-step" data-section="focus"><span class="mecc-step-dot"></span>Focus</a>
-            <a href="#approach" class="mecc-step" data-section="approach"><span class="mecc-step-dot"></span>Method</a>
-            <a href="#services" class="mecc-step" data-section="services"><span class="mecc-step-dot"></span>Services</a>
-            <a href="#locations" class="mecc-step" data-section="locations"><span class="mecc-step-dot"></span>Locations</a>
+        <nav class="mecc-status" aria-label="Page sections">
+            <a href="#mecc" class="mecc-step">About</a>
+            <a href="#coaches" class="mecc-step">Coaches</a>
+            <a href="#assessment" class="mecc-step">Assessment</a>
+            <a href="#approach" class="mecc-step">Method</a>
+            <a href="#services" class="mecc-step">Services</a>
+            <a href="#locations" class="mecc-step">Locations</a>
         </nav>
 
         <div class="mecc-bar-actions">
-            <a href="index.html" class="mecc-back"><i class="fas fa-arrow-left"></i> Therapy Site</a>
-            <a href="contact.html" class="mecc-cta">Book a Consultation</a>
-            <button class="mecc-burger" id="meccBurger" aria-label="Open section menu" aria-expanded="false">
+            <div class="mecc-switch" role="group" aria-label="Switch between coaching and therapy">
+                <a href="coaching.html" aria-current="page">Coaching</a>
+                <a href="index.html">Therapy</a>
+            </div>
+            <a href="tel:3473951759" class="mecc-cta">Call (347) 395-1759</a>
+            <button class="mecc-burger" id="meccBurger" aria-label="Open menu" aria-expanded="false" aria-controls="meccSheet">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </div>
-
-    <div class="mecc-current" id="meccCurrent">
-        <span class="mecc-current-dot"></span>
-        <span id="meccCurrentLabel">Overview</span>
-    </div>
-
-    <div class="mecc-progress"><span id="meccProgressBar"></span></div>
+    <div class="mecc-progress" aria-hidden="true"><span id="meccProgressBar"></span></div>
 </header>
 
 <div class="mecc-sheet" id="meccSheet" hidden>
-    <a href="#top">Overview</a>
-    <a href="#mecc">About MECC</a>
-    <a href="#coaches">Our Coaches</a>
-    <a href="#assessment">Self-Assessment</a>
-    <a href="#focus">Focus Areas</a>
-    <a href="#approach">Methodology</a>
-    <a href="#services">Services</a>
-    <a href="#locations">Locations</a>
-    <a href="contact.html" class="mecc-sheet-cta">Book a Consultation</a>
-    <a href="index.html" class="mecc-sheet-back"><i class="fas fa-arrow-left"></i> Back to Therapy Site</a>
+    <nav aria-label="Page sections">
+        <a href="#mecc">About MECC</a>
+        <a href="#coaches">Our coaches</a>
+        <a href="#assessment">Self-assessment</a>
+        <a href="#approach">Method</a>
+        <a href="#services">Services</a>
+        <a href="#locations">Locations</a>
+    </nav>
+    <div class="mecc-switch mecc-switch-light" role="group" aria-label="Switch between coaching and therapy">
+        <a href="coaching.html" aria-current="page">Coaching</a>
+        <a href="index.html">Therapy</a>
+    </div>
+    <a href="tel:3473951759" class="mecc-sheet-cta">Call (347) 395-1759</a>
 </div>
 
 <!-- Hero -->
-<section class="coaching-hero">
-    <div class="coaching-hero-overlay"></div>
-    <div class="coaching-hero-container">
-        <div class="coaching-hero-content">
-            <span class="coaching-tag">Doug Uhlig dba</span>
-            <h1 class="coaching-hero-title">Manhattan Executive Coach Consortium (MECC)</h1>
-            <p class="coaching-hero-subtitle">We enjoy helping high performing professionals reach ambitious goals.</p>
-            <div class="coaching-hero-stats">
-                <div class="hero-stat">
-                    <span class="hero-stat-number">25+</span>
-                    <span class="hero-stat-label">Years Experience</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-number">3</span>
-                    <span class="hero-stat-label">NYC Offices + Remote</span>
-                </div>
-            </div>
-            <div class="coaching-hero-actions">
-                <a href="contact.html" class="btn-coaching-primary">
-                    <i class="fas fa-calendar-check"></i>
-                    Book a Free Consultation
-                </a>
-                <a href="#assessment" class="btn-coaching-secondary">
-                    <i class="fas fa-clipboard-list"></i>
-                    Take the Self-Assessment
-                </a>
-            </div>
-        </div>
-        <div class="coaching-hero-image">
-            <div class="coaching-image-wrapper">
-                <img src="coachingdougtry.jpeg" alt="Dr. Doug Uhlig — Mindfulness Business &amp; Life Coach" class="coaching-photo">
-                <div class="coaching-credential-badge">
-                    <i class="fas fa-award"></i>
-                    <div>
-                        <span class="badge-title">Credentialed Coach</span>
-                        <span class="badge-text">Business &amp; Life Coach</span>
-                    </div>
-                </div>
-            </div>
+<section class="mecc-hero">
+    <div class="mecc-hero-media" aria-hidden="true"></div>
+    <div class="container mecc-hero-inner">
+        <p class="mecc-hero-dba">Doug Uhlig dba</p>
+        <h1 class="mecc-hero-title">Manhattan Executive Coach Consortium</h1>
+        <p class="mecc-hero-lead">We enjoy helping high performing professionals reach ambitious goals.</p>
+        <div class="mecc-hero-actions">
+            <a href="#assessment" class="mecc-btn mecc-btn-gold">Take the self-assessment</a>
+            <a href="#coaches" class="mecc-btn mecc-btn-ghost">Meet our coaches</a>
         </div>
     </div>
 </section>
+
 <!-- About MECC -->
 <section class="mecc-intro" id="mecc">
-    <div class="container">
-        <div class="mecc-intro-grid">
-            <div class="mecc-intro-text reveal">
-                <!-- Swap logo.png for the MECC logo when it arrives -->
-                <img src="logo.png" alt="Manhattan Executive Coach Consortium" class="mecc-logo">
-                <span class="section-tag">About MECC</span>
-                <h2>A Boutique Group of Executive Coaches</h2>
-                <p>We are a boutique group of executive coaches sharing our expertise to provide one on one executive and business coaching to professionals, entrepreneurs, executives, and emerging leaders.</p>
-                <p>Our approach combines evidence-based coaching, leadership development, mindfulness, emotional intelligence and organizational psychology to help clients overcome challenges and maximize performance.</p>
-                <p>Our coaches are certified with a minimum of five years of executive, leadership, business or organizational coaching experience.</p>
-            </div>
-            <div class="mecc-unique reveal">
-                <h3>Our Uniqueness</h3>
-                <ul>
-                    <li><i class="fas fa-people-arrows"></i> Shared intake and matching system</li>
-                    <li><i class="fas fa-chart-line"></i> A common before and after assessment framework</li>
-                    <li><i class="fas fa-heart-pulse"></i> A complete executive wellness program</li>
-                    <li><i class="fas fa-users"></i> Quarterly roundtables for HR leaders and founders</li>
-                </ul>
-            </div>
+    <div class="container mecc-intro-grid">
+        <div class="mecc-intro-text reveal">
+            <h2 class="mecc-h2">A Boutique Group of Executive Coaches</h2>
+            <p class="mecc-lead">We are a boutique group of executive coaches sharing our expertise to provide one on one executive and business coaching to professionals, entrepreneurs, executives, and emerging leaders.</p>
+            <p>Our approach combines evidence-based coaching, leadership development, mindfulness, emotional intelligence and organizational psychology to help clients overcome challenges and maximize performance.</p>
+            <p>Our coaches are certified with a minimum of five years of executive, leadership, business or organizational coaching experience.</p>
         </div>
+        <aside class="mecc-unique reveal" aria-labelledby="meccUniqueTitle">
+            <h3 id="meccUniqueTitle">Our Uniqueness</h3>
+            <ul>
+                <li>Shared intake and matching system</li>
+                <li>A common before and after assessment framework</li>
+                <li>A complete executive wellness program</li>
+                <li>Quarterly roundtables for HR leaders and founders</li>
+            </ul>
+        </aside>
     </div>
 </section>
+
 <!-- Our Coaches -->
 <section class="mecc-coaches" id="coaches">
     <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Our Team</span>
-            <h2>Let Us Introduce Our Executive Coaches</h2>
+        <h2 class="mecc-h2 reveal">Let Us Introduce Our Executive Coaches</h2>
+        <div class="mecc-coach-list">
+            <!-- Copy one <article> per coach when photos and profiles arrive -->
+            <article class="mecc-coach reveal">
+                <img src="coachingdougtry.jpeg" alt="Douglas Uhlig, Ph.D., MBA" class="mecc-coach-photo" loading="lazy">
+                <div class="mecc-coach-body">
+                    <h3>Douglas Uhlig, Ph.D., MBA</h3>
+                    <p class="mecc-coach-role">Founder and executive coach</p>
+                    <p>Psychologist and mindfulness business and life coach with 25+ years of experience.</p>
+                    <a href="#about" class="mecc-coach-link">Read Doug&rsquo;s full profile</a>
+                </div>
+            </article>
         </div>
-        <div class="mecc-coaches-grid">
-            <!-- Copy this card for each coach once photos and profiles arrive -->
-            <div class="mecc-coach-card reveal">
-                <img src="coachingdougtry.jpeg" alt="Douglas Uhlig, Ph.D., MBA">
-                <h3>Douglas Uhlig, Ph.D., MBA</h3>
-                <span class="mecc-coach-role">Founder &amp; Executive Coach</span>
-                <p>Psychologist and mindfulness business &amp; life coach with 25+ years of experience.</p>
-            </div>
-            <div class="mecc-coach-card mecc-coach-soon reveal">
-                <div class="mecc-coach-placeholder"><i class="fas fa-user-plus"></i></div>
-                <h3>Coach Profiles Coming Soon</h3>
-                <p>More of our certified executive coaches will be introduced here.</p>
-            </div>
-        </div>
+        <p class="mecc-coach-note reveal">More of our certified executive coaches will be introduced here soon.</p>
     </div>
 </section>
+
 <!-- Self-Assessment -->
 <section class="mecc-assessment" id="assessment">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Get Started</span>
-            <h2>Leadership Intake &amp; Self-Assessment</h2>
-            <p>This brief assessment helps us understand where you are today, what matters most to you, and how coaching can best support your growth. There are no right or wrong answers.</p>
+    <div class="container mecc-assess-grid">
+        <div class="mecc-assess-intro reveal">
+            <h2 class="mecc-h2">Leadership Intake &amp; Self-Assessment</h2>
+            <p>This brief assessment is designed to help us understand where you are today, what matters most to you, and how coaching can best support your leadership and professional growth.</p>
+            <p>There are no right or wrong answers. Your responses go directly to Dr. Uhlig and give us a starting point for our first coaching conversation.</p>
+            <ol class="mecc-assess-parts">
+                <li>Your current leadership</li>
+                <li>Your current situation</li>
+                <li>Your coaching goals</li>
+                <li>Reflection and feedback</li>
+                <li>Coaching partnership</li>
+            </ol>
         </div>
         <div class="mecc-form-wrap reveal">
-            <!-- Elfsight Form (same widget as the psychology contact page) -->
+            <!-- TODO: swap this ID for the new Elfsight self-assessment form (emails Doug) -->
             <div class="elfsight-app-7a063013-7327-45f2-8e58-f32816e4b9f2" data-elfsight-app-lazy></div>
         </div>
     </div>
@@ -731,7 +701,7 @@
                     </div>
                     <div class="coaching-location-detail">
                         <i class="fas fa-phone-alt"></i>
-                        <a href="tel:9176176731">(917) 617-6731</a>
+                        <a href="tel:3473951759">(347) 395-1759</a>
                     </div>
                     <div class="coaching-location-detail">
                         <i class="fas fa-clock"></i>
@@ -763,7 +733,7 @@
                     </div>
                     <div class="coaching-location-detail">
                         <i class="fas fa-phone-alt"></i>
-                        <a href="tel:9176176731">(917) 617-6731</a>
+                        <a href="tel:3473951759">(347) 395-1759</a>
                     </div>
                     <div class="coaching-location-detail">
                         <i class="fas fa-clock"></i>
@@ -795,7 +765,7 @@
                     </div>
                     <div class="coaching-location-detail">
                         <i class="fas fa-phone-alt"></i>
-                        <a href="tel:9176176731">(917) 617-6731</a>
+                        <a href="tel:3473951759">(347) 395-1759</a>
                     </div>
                     <div class="coaching-location-detail">
                         <i class="fas fa-clock"></i>
@@ -908,9 +878,9 @@
                     <i class="fas fa-calendar-check"></i>
                     Schedule Your Free Consultation
                 </a>
-                <a href="tel:9176176731" class="btn-coaching-outline btn-lg">
+                <a href="tel:3473951759" class="btn-coaching-outline btn-lg">
                     <i class="fas fa-phone"></i>
-                    Call (917) 617-6731
+                    Call (347) 395-1759
                 </a>
             </div>
         </div>
@@ -958,7 +928,7 @@
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:9176176731">(917) 617-6731</a>
+                            <a href="tel:3473951759">(347) 395-1759</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -1009,7 +979,7 @@
 </div>
 <!-- Mobile sticky action bar -->
 <div class="mobile-actionbar">
-    <a href="tel:9176176731" class="mab-btn"><i class="fas fa-phone"></i> Call</a>
+    <a href="tel:3473951759" class="mab-btn"><i class="fas fa-phone"></i> Call</a>
     <a href="contact.html" class="mab-btn primary"><i class="fas fa-calendar-check"></i> Book</a>
 </div>
 <!-- Back to top -->
