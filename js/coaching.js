@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
  
 function initCoachingPage() {
+    initMeccBar();
     initCoachingHeroAnimations();
     initCoachingCounters();
     initCoachingCardEffects();
@@ -247,4 +248,70 @@ function initCoachingLocations() {
             remoteBanner.style.transform = 'translateY(0)';
         });
     }
+}
+
+
+/* ==========================================================================
+   MECC HEADER — active section, scroll progress, mobile sheet
+   ========================================================================== */
+function initMeccBar() {
+    var bar = document.getElementById('header');
+    if (!bar || !bar.classList.contains('mecc-bar')) return;
+
+    /* Anyone on this page has picked coaching — skip the gate if they switch to therapy */
+    try { sessionStorage.setItem('duGateSeen', '1'); } catch (err) { /* private mode */ }
+
+    /* Active section in the nav */
+    var steps = Array.prototype.slice.call(bar.querySelectorAll('.mecc-step'));
+    var sections = steps.map(function (s) { return document.querySelector(s.getAttribute('href')); }).filter(Boolean);
+
+    function setActive(id) {
+        steps.forEach(function (s) {
+            var on = s.getAttribute('href') === '#' + id;
+            s.classList.toggle('is-active', on);
+            if (on) { s.setAttribute('aria-current', 'location'); } else { s.removeAttribute('aria-current'); }
+        });
+    }
+
+    if ('IntersectionObserver' in window && sections.length) {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) { if (entry.isIntersecting) setActive(entry.target.id); });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        sections.forEach(function (sec) { io.observe(sec); });
+    }
+
+    /* Clear the highlight when back in the hero */
+    var progress = document.getElementById('meccProgressBar');
+    var ticking = false;
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            if (progress) progress.style.width = (max > 0 ? (window.pageYOffset / max) * 100 : 0) + '%';
+            if (sections[0] && window.pageYOffset < sections[0].offsetTop - window.innerHeight * 0.4) setActive('');
+            ticking = false;
+        });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* Mobile sheet */
+    var burger = document.getElementById('meccBurger');
+    var sheet = document.getElementById('meccSheet');
+    if (!burger || !sheet) return;
+
+    function setOpen(open) {
+        sheet.hidden = !open;
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        bar.classList.toggle('sheet-open', open);
+        document.body.classList.toggle('menu-open', open);
+    }
+    burger.addEventListener('click', function () { setOpen(sheet.hidden); });
+    sheet.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !sheet.hidden) { setOpen(false); burger.focus(); }
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1060 && !sheet.hidden) setOpen(false); });
 }
