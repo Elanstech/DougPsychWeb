@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
  
 function initCoachingPage() {
     initMeccBar();
+    initMeccQuiz();
     initCoachingParallax();
     initStruggleTabs();
     initCoachingLocations();
@@ -185,4 +186,157 @@ function initMeccBar() {
         if (e.key === 'Escape' && !sheet.hidden) { setOpen(false); burger.focus(); }
     });
     window.addEventListener('resize', function () { if (window.innerWidth > 1060 && !sheet.hidden) setOpen(false); });
+}
+
+
+/* ==========================================================================
+   SELF-ASSESSMENT QUIZ — one part at a time, answers emailed to Doug
+   Delivery: FormSubmit (free). The first real submission triggers a one-time
+   "Activate Form" email to Doug; after he clicks it, every result arrives
+   in his inbox as a table. Change ENDPOINT to send somewhere else.
+   ========================================================================== */
+function initMeccQuiz() {
+    var form = document.getElementById('meccQuiz');
+    if (!form) return;
+
+    var ENDPOINT = 'https://formsubmit.co/ajax/duhlig2004@yahoo.com';
+    var DRAFT_KEY = 'meccQuizDraft';
+
+    var steps = Array.prototype.slice.call(form.querySelectorAll('.mq-step'));
+    var total = steps.length;
+    var parts = Array.prototype.slice.call(document.querySelectorAll('.mecc-assess-parts li'));
+    var count = document.getElementById('mqCount');
+    var barWrap = form.querySelector('.mq-bar');
+    var bar = document.getElementById('mqBar');
+    var back = document.getElementById('mqBack');
+    var next = document.getElementById('mqNext');
+    var errorBox = document.getElementById('mqError');
+    var done = document.getElementById('mqDone');
+    var otherToggle = document.getElementById('q5aOtherToggle');
+    var otherText = document.getElementById('q5aOther');
+    var current = 0;
+
+    function showError(msg) { errorBox.textContent = msg; errorBox.hidden = !msg; }
+
+    function show(i, moveFocus) {
+        current = i;
+        steps.forEach(function (st, n) { st.hidden = n !== i; });
+        count.textContent = 'Part ' + (i + 1) + ' of ' + total;
+        bar.style.width = ((i + 1) / total * 100) + '%';
+        barWrap.setAttribute('aria-valuenow', String(i + 1));
+        back.hidden = i === 0;
+        next.textContent = i === total - 1 ? 'Send to Dr. Uhlig' : 'Continue';
+        parts.forEach(function (li, n) {
+            li.classList.toggle('is-current', n === i);
+            li.classList.toggle('is-done', n < i);
+            if (n === i) { li.setAttribute('aria-current', 'step'); } else { li.removeAttribute('aria-current'); }
+        });
+        showError('');
+        if (moveFocus) {
+            steps[i].focus({ preventScroll: true });
+            var top = form.getBoundingClientRect().top;
+            if (top < 90) window.scrollBy({ top: top - 110, behavior: 'smooth' });
+        }
+    }
+
+    /* "Other" reveals a text box */
+    function syncOther() {
+        otherText.hidden = !otherToggle.checked;
+        if (otherToggle.checked && document.activeElement === otherToggle) otherText.focus();
+    }
+    if (otherToggle && otherText) otherToggle.addEventListener('change', syncOther);
+
+    /* Save progress on this device so nothing is lost */
+    function saveDraft() {
+        var data = {};
+        Array.prototype.forEach.call(form.elements, function (el) {
+            if (!el.name || el.name === '_honey') return;
+            if (el.type === 'checkbox' || el.type === 'radio') {
+                if (el.checked) (data[el.name] = data[el.name] || []).push(el.value);
+            } else if (el.value) { data[el.name] = el.value; }
+        });
+        data._step = current;
+        try { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch (err) { /* storage off */ }
+    }
+    function loadDraft() {
+        var data;
+        try { data = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (err) { data = null; }
+        if (!data) return 0;
+        Array.prototype.forEach.call(form.elements, function (el) {
+            if (!el.name || !(el.name in data)) return;
+            if (el.type === 'checkbox' || el.type === 'radio') { el.checked = data[el.name].indexOf(el.value) !== -1; }
+            else { el.value = data[el.name]; }
+        });
+        syncOther();
+        return Math.min(data._step || 0, total - 1);
+    }
+    form.addEventListener('input', saveDraft);
+    form.addEventListener('change', saveDraft);
+
+    back.addEventListener('click', function () { if (current > 0) { show(current - 1, true); saveDraft(); } });
+
+    function validContact() {
+        var name = document.getElementById('qName');
+        var email = document.getElementById('qEmail');
+        if (!name.value.trim()) { showError('Please enter your name so Dr. Uhlig knows who the assessment is from.'); name.focus(); return false; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showError('Please enter a valid email address so Dr. Uhlig can reply.'); email.focus(); return false; }
+        return true;
+    }
+
+    function payload() {
+        var data = {}, order = [];
+        Array.prototype.forEach.call(form.elements, function (el) {
+            if (!el.name || el.name === '_honey' || el.type === 'submit' || el.type === 'button') return;
+            if (order.indexOf(el.name) === -1) order.push(el.name);
+            if (el.type === 'checkbox' || el.type === 'radio') {
+                if (el.checked) data[el.name] = data[el.name] ? data[el.name] + ', ' + el.value : el.value;
+            } else if (el.value.trim()) { data[el.name] = el.value.trim(); }
+        });
+        var name = data['Name'] || 'New client';
+        var out = {
+            _subject: 'MECC self-assessment: ' + name,
+            _template: 'table',
+            _captcha: 'false',
+            _replyto: data['Email'] || '',
+            _honey: form.elements['_honey'].value
+        };
+        ['Name', 'Email', 'Phone', 'Title and organization'].concat(order).forEach(function (k) {
+            if (k in out) return;
+            out[k] = data[k] || 'No answer';
+        });
+        return out;
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (current < total - 1) { show(current + 1, true); saveDraft(); return; }
+        if (!validContact()) return;
+
+        next.disabled = true; back.disabled = true;
+        next.textContent = 'Sending…';
+        showError('');
+
+        fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload())
+        })
+        .then(function (res) { return res.json().then(function (body) { return { ok: res.ok, body: body }; }); })
+        .then(function (r) {
+            if (!r.ok || String(r.body.success) === 'false') throw new Error(r.body.message || 'Send failed');
+            try { localStorage.removeItem(DRAFT_KEY); } catch (err) { /* ignore */ }
+            if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form_name: 'mecc_self_assessment' });
+            form.hidden = true;
+            parts.forEach(function (li) { li.classList.remove('is-current'); li.classList.add('is-done'); li.removeAttribute('aria-current'); });
+            done.hidden = false;
+            done.focus();
+        })
+        .catch(function () {
+            showError('Your answers could not be sent. Please check your connection and try again, or call (347) 395-1759.');
+            next.disabled = false; back.disabled = false;
+            next.textContent = 'Send to Dr. Uhlig';
+        });
+    });
+
+    show(loadDraft(), false);
 }
