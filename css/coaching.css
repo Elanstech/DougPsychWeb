@@ -2371,3 +2371,102 @@
 .mecc-unique { padding: 1.5rem 1.25rem 0.75rem; }
 .mecc-form-wrap { min-height: 420px; }
 }
+
+/* ==========================================================================
+   SELF-ASSESSMENT QUIZ
+   ========================================================================== */
+.mecc-form-wrap { min-height: 0; }
+.mq-top { margin-bottom: 1.75rem; }
+.mq-count { font-size: 0.85rem; font-weight: 600; color: var(--gold-dark); margin-bottom: 0.6rem; }
+.mq-bar { height: 4px; border-radius: 4px; background: rgba(26, 35, 126, 0.1); overflow: hidden; }
+.mq-bar span { display: block; height: 100%; width: 16.66%; background: var(--gold); border-radius: 4px; transition: width 0.45s var(--ease-out); }
+
+.mq-step { border: 0; padding: 0; margin: 0; min-width: 0; }
+.mq-step:focus { outline: none; }
+.mq-title {
+    padding: 0; margin-bottom: 1.5rem;
+    font-family: var(--font-heading); font-weight: 500; font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    line-height: 1.2; color: var(--royal-blue-dark);
+}
+.mq-field { margin-bottom: 1.4rem; }
+.mq-field label, .mq-q { display: block; margin-bottom: 0.55rem; font-weight: 600; font-size: 1rem; line-height: 1.5; color: var(--text-dark); }
+.mq-hint, .mq-req { font-weight: 500; font-size: 0.88rem; color: var(--text-light); }
+
+.mq textarea, .mq input[type="text"], .mq input[type="email"], .mq input[type="tel"] {
+    width: 100%; padding: 0.85rem 1rem; border-radius: var(--r-sm);
+    border: 1px solid rgba(26, 35, 126, 0.18); background: #fff;
+    font: inherit; font-size: 1rem; line-height: 1.55; color: var(--text-dark);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.mq textarea { resize: vertical; min-height: 96px; }
+.mq textarea:focus, .mq input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(180, 155, 87, 0.22); }
+#q5aOther { margin-top: 0.75rem; }
+
+.mq-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+.mq-option { position: relative; margin: 0 !important; cursor: pointer; }
+.mq-option input, .mq-point input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mq-option span {
+    display: flex; align-items: center; gap: 0.7rem; height: 100%;
+    padding: 0.8rem 0.95rem; border-radius: var(--r-sm); background: #fff;
+    border: 1px solid rgba(26, 35, 126, 0.16);
+    font-weight: 500; font-size: 0.95rem; line-height: 1.35; color: var(--text-dark);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.mq-option span::before {
+    content: ''; flex-shrink: 0; width: 18px; height: 18px; border-radius: 4px;
+    border: 1.5px solid rgba(26, 35, 126, 0.35); background: #fff center / 12px no-repeat;
+}
+.mq-option input:checked + span { border-color: var(--gold); background: rgba(230, 213, 172, 0.22); }
+.mq-option input:checked + span::before {
+    background-color: var(--royal-blue); border-color: var(--royal-blue);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.2l2.6 2.6L10 3.4' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+.mq-option input:focus-visible + span, .mq-point input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.mq-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+.mq-point { margin: 0 !important; position: relative; cursor: pointer; }
+.mq-point span {
+    display: grid; place-items: center; height: 52px; border-radius: var(--r-sm); background: #fff;
+    border: 1px solid rgba(26, 35, 126, 0.16);
+    font-family: var(--font-heading); font-size: 1.25rem; color: var(--royal-blue-dark);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.mq-point input:checked + span { background: var(--royal-blue); border-color: var(--royal-blue); color: #fff; }
+.mq-scale-ends { display: flex; justify-content: space-between; margin-top: 0.45rem; font-size: 0.85rem; color: var(--text-light); }
+
+.mq-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1rem; }
+.mq-note { font-size: 0.92rem; color: var(--text-medium); margin-top: -0.2rem; }
+.mq-honey { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.mq-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.mq-error {
+    margin: 0.25rem 0 1rem; padding: 0.8rem 1rem; border-radius: var(--r-sm);
+    background: #fdf1f1; border: 1px solid #efc6c6; color: #8a1f1f; font-size: 0.95rem; font-weight: 500;
+}
+.mq-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 0.5rem; }
+.mq-nav .mecc-btn { margin-left: auto; border: 0; cursor: pointer; font-family: inherit; }
+.mq-nav .mecc-btn:disabled { opacity: 0.7; cursor: wait; }
+.mq-back {
+    border: 0; background: none; padding: 0.75rem 0.25rem; cursor: pointer;
+    font: inherit; font-weight: 600; color: var(--royal-blue);
+    text-decoration: underline; text-decoration-color: rgba(26, 35, 126, 0.3); text-underline-offset: 4px;
+}
+.mq-back:hover { text-decoration-color: var(--royal-blue); }
+.mq-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.mq-done { padding: 1rem 0; }
+.mq-done:focus { outline: none; }
+.mq-done h3 { font-family: var(--font-heading); font-weight: 500; font-size: 1.9rem; color: var(--royal-blue-dark); margin-bottom: 1rem; }
+.mq-done p { color: var(--text-medium); line-height: 1.75; margin-bottom: 1rem; }
+.mq-done a { color: var(--royal-blue); font-weight: 600; }
+
+/* Parts list tracks where the visitor is */
+.mecc-assess-parts li { transition: color 0.25s ease; }
+.mecc-assess-parts li.is-current { color: var(--royal-blue-dark); font-weight: 700; }
+.mecc-assess-parts li.is-current::before { color: var(--gold); font-weight: 600; }
+.mecc-assess-parts li.is-done { color: var(--text-light); }
+
+@media (max-width: 560px) {
+    .mq-options, .mq-grid { grid-template-columns: 1fr; }
+    .mq-point span { height: 46px; }
+}
