@@ -2694,40 +2694,253 @@
 }
 
 
-/* ========================== MECC SECTIONS ========================== */
-.mecc-intro { padding: 110px 0; background: #fff; }
-.mecc-intro-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 4rem; align-items: center; }
-.mecc-logo { width: 90px; height: auto; opacity: 0.55; filter: grayscale(30%); margin-bottom: 1.25rem; display: block; }
-.mecc-intro-text h2 { font-family: var(--font-heading); font-size: 2.6rem; color: var(--royal-blue); margin: 0.5rem 0 1.25rem; }
-.mecc-intro-text p { color: var(--text-medium); font-size: 1.08rem; line-height: 1.8; margin-bottom: 1rem; }
-.mecc-unique { background: linear-gradient(135deg, var(--royal-blue-dark), var(--royal-blue)); color: #fff; border-radius: 24px; padding: 2.5rem; box-shadow: 0 20px 50px rgba(20,21,43,0.15); }
-.mecc-unique h3 { font-family: var(--font-heading); font-size: 1.7rem; color: var(--gold-light); margin-bottom: 1.5rem; }
-.mecc-unique ul { list-style: none; padding: 0; margin: 0; }
-.mecc-unique li { display: flex; gap: 0.9rem; align-items: flex-start; padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.12); font-size: 1.05rem; }
-.mecc-unique li:last-child { border-bottom: 0; }
-.mecc-unique i { color: var(--gold-light); margin-top: 0.25rem; width: 22px; }
+/* ==========================================================================
+   MECC HEADER — transparent over the hero, solid white once scrolled
+   (script.js toggles .scrolled / .hide on #header; coaching.js does the rest)
+   ========================================================================== */
+.mecc-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.35s var(--ease);
+}
+.mecc-bar.scrolled, .mecc-bar.sheet-open {
+    background: rgba(255, 255, 255, 0.97); color: var(--text-dark);
+    box-shadow: 0 1px 0 var(--border), 0 8px 24px rgba(20, 21, 43, 0.06);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.mecc-bar.hide { transform: translateY(-100%); }
 
-.mecc-coaches { padding: 110px 0; background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%); }
-.mecc-coaches .section-header, .mecc-assessment .section-header { text-align: center; margin-bottom: 3rem; }
-.mecc-coaches .section-header h2, .mecc-assessment .section-header h2 { font-family: var(--font-heading); font-size: 2.6rem; color: var(--royal-blue); margin-bottom: 1rem; }
-.mecc-assessment .section-header p { color: var(--text-medium); font-size: 1.1rem; max-width: 680px; margin: 0 auto; }
-.mecc-coaches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
-.mecc-coach-card { background: #fff; border-radius: 20px; padding: 2rem; text-align: center; box-shadow: 0 10px 30px rgba(20,21,43,0.08); }
-.mecc-coach-card img, .mecc-coach-placeholder { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: top; margin: 0 auto 1.25rem; border: 3px solid var(--gold-light); }
-.mecc-coach-placeholder { display: flex; align-items: center; justify-content: center; background: #f0f2fb; color: var(--royal-blue-light); font-size: 2.5rem; }
-.mecc-coach-card h3 { font-family: var(--font-heading); color: var(--royal-blue); font-size: 1.35rem; margin-bottom: 0.3rem; }
-.mecc-coach-role { display: block; color: var(--gold-medium); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.75rem; }
-.mecc-coach-card p { color: var(--text-medium); line-height: 1.6; }
-.mecc-coach-soon { border: 2px dashed rgba(26,35,126,0.15); box-shadow: none; }
+.mecc-bar-inner {
+    max-width: var(--container); margin: 0 auto; height: 76px;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+    display: flex; align-items: center; gap: 2rem;
+}
+.mecc-bar-brand { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+.mecc-bar-brand img {
+    width: 46px; height: 46px; border-radius: 50%; padding: 3px;
+    background: var(--royal-blue-dark); object-fit: contain;
+}
+.mecc-bar-name {
+    display: flex; flex-direction: column; line-height: 1.1;
+    font-family: var(--font-heading); font-size: 1.35rem; font-weight: 600; letter-spacing: 0.04em;
+}
+.mecc-bar-name small {
+    font-family: var(--font-body); font-size: 0.72rem; font-weight: 500; letter-spacing: 0;
+    opacity: 0.75; margin-top: 0.15rem;
+}
 
-.mecc-assessment { padding: 110px 0; background: #fff; }
-.mecc-form-wrap { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 24px; padding: 2rem; box-shadow: 0 20px 50px rgba(20,21,43,0.1); }
+.mecc-status { display: flex; gap: clamp(1rem, 1.8vw, 1.75rem); margin-left: auto; }
+.mecc-step {
+    position: relative; padding: 0.5rem 0;
+    font-size: 0.9rem; font-weight: 500; opacity: 0.82;
+    transition: opacity 0.2s ease;
+}
+.mecc-step:hover, .mecc-step.is-active { opacity: 1; }
+.mecc-step::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s var(--ease-out);
+}
+.mecc-step.is-active::after { transform: scaleX(1); }
+
+.mecc-bar-actions { display: flex; align-items: center; gap: 0.9rem; }
+
+/* Coaching | Therapy switch */
+.mecc-switch {
+    display: inline-flex; padding: 3px; border-radius: var(--r-pill);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.mecc-switch a {
+    padding: 0.38rem 0.85rem; border-radius: var(--r-pill);
+    font-size: 0.8rem; font-weight: 600; opacity: 0.85;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.mecc-switch a:hover { opacity: 1; }
+.mecc-switch a[aria-current="page"] { background: #fff; color: var(--royal-blue-dark); opacity: 1; }
+.mecc-bar.scrolled .mecc-switch, .mecc-switch-light { border-color: rgba(26, 35, 126, 0.18); }
+.mecc-bar.scrolled .mecc-switch a[aria-current="page"],
+.mecc-switch-light a[aria-current="page"] { background: var(--royal-blue); color: #fff; }
+
+.mecc-cta {
+    padding: 0.65rem 1.15rem; border-radius: var(--r-pill);
+    background: var(--gold); color: var(--royal-blue-deeper);
+    font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+.mecc-cta:hover { background: var(--gold-light); }
+
+.mecc-burger {
+    display: none; width: 44px; height: 44px; border: 0; background: transparent; color: inherit;
+    cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+}
+.mecc-burger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+.mecc-bar.sheet-open .mecc-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mecc-bar.sheet-open .mecc-burger span:nth-child(2) { opacity: 0; }
+.mecc-bar.sheet-open .mecc-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mecc-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; }
+.mecc-progress span { display: block; height: 100%; width: 0; background: var(--gold); }
+
+.mecc-sheet {
+    position: fixed; z-index: 999; top: 76px; left: 0; right: 0;
+    max-height: calc(100vh - 76px); overflow-y: auto;
+    background: #fff; padding: 0.5rem 1.5rem 1.75rem;
+    box-shadow: 0 20px 40px rgba(20, 21, 43, 0.15);
+}
+.mecc-sheet nav a {
+    display: block; padding: 0.95rem 0; border-bottom: 1px solid var(--border);
+    font-size: 1.05rem; font-weight: 500; color: var(--text-dark);
+}
+.mecc-sheet .mecc-switch { margin: 1.25rem 0 1rem; color: var(--text-dark); }
+.mecc-sheet-cta {
+    display: block; text-align: center; padding: 0.95rem; border-radius: var(--r-pill);
+    background: var(--gold); color: var(--royal-blue-deeper); font-weight: 700;
+}
+
+@media (max-width: 1180px) {
+    .mecc-bar-name small { display: none; }
+}
+@media (max-width: 1060px) {
+    .mecc-status, .mecc-bar-actions > .mecc-switch, .mecc-cta { display: none; }
+    .mecc-bar-actions { margin-left: auto; }
+    .mecc-burger { display: flex; }
+}
+@media (min-width: 1061px) {
+    .mecc-sheet { display: none !important; }
+}
+
+/* ==========================================================================
+   MECC HERO
+   ========================================================================== */
+.mecc-hero {
+    position: relative; overflow: hidden; color: #fff;
+    min-height: min(88vh, 820px); display: flex; align-items: flex-end;
+    background: var(--royal-blue-deeper);
+}
+.mecc-hero-media {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(90deg, rgba(7, 9, 38, 0.94) 0%, rgba(7, 9, 38, 0.78) 38%, rgba(7, 9, 38, 0.2) 100%),
+        linear-gradient(0deg, rgba(7, 9, 38, 0.7) 0%, rgba(7, 9, 38, 0) 45%),
+        url("../split-coaching.jpg");
+    background-size: cover; background-position: center 60%;
+}
+.mecc-hero-inner {
+    position: relative; z-index: 1;
+    padding-top: 140px; padding-bottom: clamp(4rem, 11vh, 7.5rem);
+}
+.mecc-hero-dba { font-size: 1rem; font-weight: 600; color: var(--gold-light); margin-bottom: 1rem; }
+.mecc-hero-title {
+    max-width: 14ch;
+    font-family: var(--font-heading); font-weight: 500;
+    font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1.04; letter-spacing: -0.015em;
+    margin-bottom: 1.5rem;
+}
+.mecc-hero-lead {
+    max-width: 34rem; font-size: clamp(1.05rem, 1.4vw, 1.25rem); line-height: 1.6;
+    color: rgba(255, 255, 255, 0.84); margin-bottom: 2.25rem;
+}
+.mecc-hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+
+.mecc-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.95rem 1.6rem; border-radius: var(--r-pill);
+    font-size: 0.95rem; font-weight: 700;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.mecc-btn-gold { background: var(--gold); color: var(--royal-blue-deeper); }
+.mecc-btn-gold:hover { background: var(--gold-light); }
+.mecc-btn-ghost { border: 1px solid rgba(255, 255, 255, 0.5); color: #fff; }
+.mecc-btn-ghost:hover { background: #fff; color: var(--royal-blue-dark); border-color: #fff; }
+.mecc-btn:focus-visible, .mecc-cta:focus-visible, .mecc-switch a:focus-visible,
+.mecc-step:focus-visible, .mecc-coach-link:focus-visible {
+    outline: 2px solid var(--gold); outline-offset: 3px;
+}
+
+/* ==========================================================================
+   MECC SECTIONS — About, Coaches, Self-Assessment
+   ========================================================================== */
+.mecc-h2 {
+    font-family: var(--font-heading); font-weight: 500; color: var(--royal-blue-dark);
+    font-size: clamp(2rem, 3.2vw, 2.75rem); line-height: 1.12; letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+}
+
+.mecc-intro { padding: clamp(5rem, 10vw, 8rem) 0; background: #fff; }
+.mecc-intro-grid {
+    display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 6rem); align-items: start;
+}
+.mecc-intro-text p { max-width: 38rem; color: var(--text-medium); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.1rem; }
+.mecc-intro-text .mecc-lead { color: var(--text-dark); font-size: clamp(1.15rem, 1.5vw, 1.3rem); line-height: 1.65; margin-bottom: 1.5rem; }
+
+.mecc-unique {
+    background: var(--bg-soft); border-top: 3px solid var(--gold);
+    padding: 2rem 2rem 1.25rem; border-radius: 0 0 var(--r-sm) var(--r-sm);
+    margin-top: 0.5rem;
+}
+.mecc-unique h3 {
+    font-family: var(--font-heading); font-weight: 500; color: var(--royal-blue-dark);
+    font-size: 1.4rem; margin-bottom: 0.75rem;
+}
+.mecc-unique ul { list-style: none; margin: 0; padding: 0; }
+.mecc-unique li {
+    padding: 1rem 0; border-top: 1px solid rgba(26, 35, 126, 0.1);
+    font-size: 1.02rem; line-height: 1.5; color: var(--text-dark);
+}
+.mecc-unique li:first-child { border-top: 0; }
+
+.mecc-coaches { padding: clamp(5rem, 9vw, 7rem) 0; background: var(--bg-soft); }
+.mecc-coach-list {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
+    gap: 1.5rem; margin-top: 1rem;
+}
+.mecc-coach {
+    display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; align-items: start;
+    background: #fff; padding: 1.5rem; border-radius: var(--r-sm);
+    border: 1px solid var(--border);
+}
+.mecc-coach-photo { width: 140px; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; border-radius: 6px; }
+.mecc-coach-body h3 { font-family: var(--font-heading); font-weight: 500; font-size: 1.35rem; color: var(--royal-blue-dark); line-height: 1.25; }
+.mecc-coach-role { font-size: 0.92rem; font-weight: 600; color: var(--gold-dark); margin: 0.3rem 0 0.75rem; }
+.mecc-coach-body p:not(.mecc-coach-role) { color: var(--text-medium); line-height: 1.65; margin-bottom: 1rem; }
+.mecc-coach-link {
+    font-size: 0.92rem; font-weight: 600; color: var(--royal-blue);
+    text-decoration: underline; text-decoration-color: rgba(26, 35, 126, 0.3); text-underline-offset: 4px;
+}
+.mecc-coach-link:hover { text-decoration-color: var(--royal-blue); }
+.mecc-coach-note { margin-top: 1.5rem; color: var(--text-light); font-size: 0.95rem; }
+
+.mecc-assessment { padding: clamp(5rem, 9vw, 7rem) 0; background: #fff; }
+.mecc-assess-grid {
+    display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2.5rem, 5vw, 5rem); align-items: start;
+}
+.mecc-assess-intro { position: sticky; top: 110px; }
+.mecc-assess-intro p { color: var(--text-medium); font-size: 1.02rem; line-height: 1.75; margin-bottom: 1rem; max-width: 32rem; }
+.mecc-assess-parts { list-style: none; counter-reset: part; margin: 1.75rem 0 0; padding: 0; max-width: 32rem; }
+.mecc-assess-parts li {
+    counter-increment: part; display: flex; gap: 1rem; align-items: baseline;
+    padding: 0.8rem 0; border-top: 1px solid var(--border); color: var(--text-dark); font-weight: 500;
+}
+.mecc-assess-parts li::before {
+    content: counter(part); min-width: 1.25rem;
+    font-family: var(--font-heading); font-size: 1.15rem; color: var(--gold-dark);
+}
+.mecc-form-wrap {
+    min-height: 520px; padding: clamp(1.25rem, 3vw, 2.25rem);
+    background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--r-sm);
+}
 
 @media (max-width: 991px) {
-    .mecc-intro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .mecc-intro-grid, .mecc-assess-grid { grid-template-columns: 1fr; }
+    .mecc-assess-intro { position: static; }
 }
-@media (max-width: 767px) {
-    .mecc-intro, .mecc-coaches, .mecc-assessment { padding: 70px 0; }
-    .mecc-intro-text h2, .mecc-coaches .section-header h2, .mecc-assessment .section-header h2 { font-size: 2rem; }
-    .mecc-unique, .mecc-form-wrap { padding: 1.5rem; }
+@media (max-width: 560px) {
+    .mecc-hero-inner { padding-top: 120px; }
+    .mecc-hero-actions .mecc-btn { width: 100%; }
+    .mecc-coach { grid-template-columns: 1fr; }
+    .mecc-coach-photo { width: 120px; }
+    .mecc-unique { padding: 1.5rem 1.25rem 0.75rem; }
+    .mecc-form-wrap { min-height: 420px; }
 }
