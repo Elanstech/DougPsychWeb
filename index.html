@@ -96,19 +96,28 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- =====================================================================
-     SPLIT-SCREEN GATE — shows on load, user picks Therapy or Coaching
-     Styles: css/styles.css (#gate section)   Logic: js/script.js (initGate)
+     SPLIT-SCREEN GATE — shows on load, user picks Coaching or Therapy
+     Styles: css/styles.css (gate section)   Logic: js/script.js (gate)
+     Photos: split-coaching.jpg / split-therapy.jpg in the root folder
      ===================================================================== -->
-<div class="gate" id="gate" role="dialog" aria-label="Choose therapy or coaching">
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateName">
+    <div class="gate-id">
+        <img src="coachingdougtry.jpeg" alt="" class="gate-id-photo">
+        <div class="gate-id-text">
+            <p class="gate-id-name" id="gateName">Doug Uhlig, PhD</p>
+            <p class="gate-id-role">Psychologist and Coach</p>
+        </div>
+    </div>
+
     <div class="gate-panels">
         <button type="button" class="gate-panel gate-coaching" id="gateCoaching">
             <span class="gate-bg" aria-hidden="true"></span>
             <span class="gate-shade" aria-hidden="true"></span>
             <span class="gate-inner">
-                <span class="gate-eyebrow"><i class="fas fa-briefcase"></i> Executive Coaching</span>
+                <span class="gate-kicker">Executive coaching</span>
                 <span class="gate-headline">Build the career and life that you want</span>
                 <span class="gate-sub">One-on-one coaching for executives, founders and emerging leaders through the Manhattan Executive Coach Consortium.</span>
-                <span class="gate-enter">Enter Coaching <i class="fas fa-arrow-right"></i></span>
+                <span class="gate-enter">Explore coaching</span>
             </span>
         </button>
 
@@ -116,19 +125,12 @@
             <span class="gate-bg" aria-hidden="true"></span>
             <span class="gate-shade" aria-hidden="true"></span>
             <span class="gate-inner">
-                <span class="gate-eyebrow"><i class="fas fa-leaf"></i> Therapy</span>
+                <span class="gate-kicker">Therapy</span>
                 <span class="gate-headline">Understand yourself, feel better, live fully</span>
                 <span class="gate-sub">Evidence-based care for depression, anxiety, trauma and relationships across Manhattan, Brooklyn and Queens.</span>
-                <span class="gate-enter">Enter Therapy <i class="fas fa-arrow-right"></i></span>
+                <span class="gate-enter">Explore therapy</span>
             </span>
         </button>
-    </div>
-
-    <div class="gate-id">
-        <span class="gate-id-photo"><img src="coachingdougtry.jpeg" alt="Doug Uhlig PhD"></span>
-        <span class="gate-id-name">Doug Uhlig <em>PhD</em></span>
-        <span class="gate-id-role">Psychologist &amp; Coach</span>
-        <span class="gate-id-hint">Choose where to begin</span>
     </div>
 </div>
 
