@@ -49,7 +49,7 @@
     background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg);
     padding: clamp(1.8rem, 3vw, 2.6rem); box-shadow: var(--shadow-md); position: relative; overflow: hidden;
 }
-.contact-form-wrap::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--gold-gradient); }
+.contact-form-wrap::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--gold-gradient); }
 .cf-head { margin-bottom: 1.6rem; }
 .cf-head h2 { font-family: var(--font-heading); font-size: 1.6rem; color: var(--royal-blue); margin-bottom: 0.4rem; }
 .cf-head p { color: var(--text-medium); }
@@ -131,10 +131,10 @@
 
 /* --------------------------- RESPONSIVE --------------------------------- */
 @media (max-width: 1024px) {
-    .contact-grid { grid-template-columns: 1fr; }
-    .cl-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-    .ins-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+.contact-grid { grid-template-columns: 1fr; }
+.cl-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+.ins-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
 }
 @media (max-width: 480px) {
-    .cm-card { flex-direction: column; }
+.cm-card { flex-direction: column; }
 }

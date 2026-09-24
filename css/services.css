@@ -25,7 +25,7 @@
     box-shadow: var(--shadow-lg); border: 1px solid var(--border); position: relative; overflow: hidden;
 }
 .services-hero-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--gold-gradient);
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--gold-gradient);
 }
 .services-hero-card h2 { font-family: var(--font-heading); font-size: 1.6rem; color: var(--royal-blue); margin-bottom: 0.7rem; }
 .services-hero-card > p { color: var(--text-medium); margin-bottom: 1.4rem; }
@@ -48,7 +48,7 @@
 .fs-media { position: relative; }
 .fs-media img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--r-lg); box-shadow: var(--shadow-md); }
 .fs-media::before {
-    content: ''; position: absolute; inset: auto -16px -16px 24px; height: 60%;
+    content: ""; position: absolute; inset: auto -16px -16px 24px; height: 60%;
     background: var(--gold-gradient); border-radius: var(--r-lg); z-index: -1; opacity: 0.2; filter: blur(6px);
 }
 .fs-stat-float {
@@ -88,7 +88,7 @@
 .add-card > p { color: var(--text-medium); margin-bottom: 1.2rem; }
 .add-card ul { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.3rem; flex-grow: 1; }
 .add-card ul li { position: relative; padding-left: 1.4rem; color: var(--text-medium); font-size: 0.93rem; }
-.add-card ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--gold); font-size: 0.78rem; }
+.add-card ul li::before { content: ""; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--gold); font-size: 0.78rem; }
 
 /* --------------------------- APPROACHES --------------------------------- */
 .approaches { padding: clamp(4.5rem, 9vw, 8rem) 0; }
@@ -125,17 +125,17 @@
 
 /* --------------------------- RESPONSIVE --------------------------------- */
 @media (max-width: 1024px) {
-    .services-hero-grid { grid-template-columns: 1fr; }
-    .fs-row, .fs-row.alt { grid-template-columns: 1fr; }
-    .fs-row.alt .fs-media, .fs-row.alt .fs-body { order: initial; }
-    .fs-media { order: -1; }
-    .add-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-    .approach-grid { grid-template-columns: 1fr 1fr; }
+.services-hero-grid { grid-template-columns: 1fr; }
+.fs-row, .fs-row.alt { grid-template-columns: 1fr; }
+.fs-row.alt .fs-media, .fs-row.alt .fs-body { order: initial; }
+.fs-media { order: -1; }
+.add-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+.approach-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
-    .fs-cards { grid-template-columns: 1fr; }
-    .approach-grid { grid-template-columns: 1fr; }
-    .acc-body { padding-left: 1.6rem; }
-    .fs-stat-float { right: 0; scale: 0.92; }
+.fs-cards { grid-template-columns: 1fr; }
+.approach-grid { grid-template-columns: 1fr; }
+.acc-body { padding-left: 1.6rem; }
+.fs-stat-float { right: 0; scale: 0.92; }
 }

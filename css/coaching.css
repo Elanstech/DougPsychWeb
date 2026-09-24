@@ -31,7 +31,7 @@
 }
 
 .section-tag::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -67,7 +67,7 @@
 }
 
 .coaching-hero::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -80,7 +80,7 @@
 }
 
 .coaching-hero::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -88,59 +88,6 @@
     height: 200px;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.03), transparent);
     z-index: 1;
-}
-
-.coaching-hero-container {
-    position: relative;
-    z-index: 2;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.coaching-hero-content {
-    position: relative;
-}
-
-.coaching-tag {
-    display: inline-block;
-    padding: 0.6rem 1.8rem;
-    background: rgba(180, 155, 87, 0.15);
-    border: 1px solid rgba(180, 155, 87, 0.4);
-    color: var(--gold-light);
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards 0.2s;
-}
-
-.coaching-hero-title {
-    font-family: var(--font-heading);
-    font-size: 3.8rem;
-    font-weight: 700;
-    line-height: 1.15;
-    color: white;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards 0.4s;
-}
-
-.coaching-hero-subtitle {
-    font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 560px;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards 0.6s;
 }
 
 .coaching-hero-stats {
@@ -151,46 +98,12 @@
     animation: fadeInUp 0.8s ease forwards 0.8s;
 }
 
-.hero-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.hero-stat:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
-    border-color: rgba(180, 155, 87, 0.4);
-}
-
 .hero-stat-number {
     font-family: var(--font-heading);
     font-size: 2.2rem;
     font-weight: 700;
     color: var(--gold-light);
     line-height: 1;
-}
-
-.hero-stat-label {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 0.3rem;
-}
-
-.coaching-hero-actions {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards 1s;
 }
 
 @keyframes fadeInUp {
@@ -218,27 +131,6 @@
     box-shadow: 0 8px 30px rgba(180, 155, 87, 0.4);
 }
 
-.btn-coaching-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 1.1rem 2.5rem;
-    background: transparent;
-    color: white;
-    font-size: 1.05rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.btn-coaching-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-3px);
-}
-
 .btn-coaching-outline {
     display: inline-flex;
     align-items: center;
@@ -263,18 +155,6 @@
 .btn-lg {
     padding: 1.3rem 3rem;
     font-size: 1.15rem;
-}
-
-.coaching-hero-image {
-    position: relative;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards 0.5s;
-}
-
-.coaching-image-wrapper {
-    position: relative;
-    max-width: 480px;
-    margin-left: auto;
 }
 
 .coaching-photo {
@@ -312,22 +192,6 @@
 .coaching-credential-badge i {
     font-size: 1.5rem;
     color: var(--gold-light);
-}
-
-.badge-title {
-    display: block;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #fff;
-}
-
-.badge-text {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #fff;
 }
 
 /* ==========================================================================
@@ -540,7 +404,7 @@
 }
 
 .coaching-approach::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -579,7 +443,7 @@
 }
 
 .approach-steps::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 90px;
     left: 16%;
@@ -784,7 +648,7 @@
 }
 
 .primary-offer::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse at 85% 15%, rgba(180, 155, 87, 0.18) 0%, transparent 55%);
@@ -975,50 +839,6 @@
 /* ==========================================================================
    6. PRICING — Programs & Rates
    ========================================================================== */
-.coaching-pricing {
-    position: relative;
-    padding: 120px 0;
-    background: linear-gradient(135deg, #f0f2f5 0%, #e9ecef 100%);
-    overflow: hidden;
-}
-
-.coaching-pricing-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background:
-        radial-gradient(ellipse at 90% 10%, rgba(180, 155, 87, 0.07) 0%, transparent 50%),
-        radial-gradient(ellipse at 10% 90%, rgba(26, 35, 126, 0.06) 0%, transparent 50%);
-}
-
-.coaching-pricing .container {
-    position: relative;
-    z-index: 1;
-}
-
-.coaching-pricing .section-header h2 {
-    color: var(--royal-blue);
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.coaching-pricing .section-header p {
-    color: var(--text-medium);
-    font-size: 1.2rem;
-    max-width: 640px;
-    margin: 0 auto;
-}
-
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    align-items: stretch;
-}
 
 .pricing-card {
     position: relative;
@@ -1037,157 +857,9 @@
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.14);
 }
 
-.pricing-card.pricing-featured {
-    background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-dark) 100%);
-    border: none;
-}
-
-.pricing-badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold-gradient);
-    color: var(--royal-blue-dark);
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(180, 155, 87, 0.4);
-}
-
-.pricing-tier {
-    display: inline-block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--gold);
-    margin-bottom: 0.8rem;
-}
-
-.pricing-featured .pricing-tier {
-    color: var(--gold-light);
-}
-
-.pricing-card-head h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    color: var(--royal-blue);
-    margin-bottom: 0.7rem;
-    font-weight: 700;
-}
-
-.pricing-featured .pricing-card-head h3 {
-    color: #fff;
-}
-
-.pricing-desc {
-    color: var(--text-medium);
-    font-size: 0.98rem;
-    line-height: 1.6;
-    margin-bottom: 1.8rem;
-}
-
-.pricing-featured .pricing-desc {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.pricing-amount {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0.4rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.07);
-}
-
-.pricing-featured .pricing-amount {
-    border-top-color: rgba(255, 255, 255, 0.15);
-}
-
-.pricing-price {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--royal-blue);
-    line-height: 1;
-}
-
-.pricing-featured .pricing-price {
-    color: var(--gold-light);
-}
-
-.pricing-period {
-    color: var(--text-light);
-    font-size: 0.95rem;
-    margin-top: 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.pricing-featured .pricing-period {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.pricing-alt {
-    color: var(--text-medium);
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 1.8rem;
-}
-
-.pricing-featured .pricing-alt {
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.pricing-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 2.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    flex-grow: 1;
-}
-
-.pricing-features li {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: var(--text-medium);
-    font-size: 1rem;
-}
-
-.pricing-featured .pricing-features li {
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.pricing-features li i {
-    color: var(--gold);
-    font-size: 0.85rem;
-    flex-shrink: 0;
-}
-
-.pricing-featured .pricing-features li i {
-    color: var(--gold-light);
-}
-
 .pricing-card .btn-coaching-primary {
     width: 100%;
     justify-content: center;
-}
-
-.pricing-note {
-    text-align: center;
-    color: var(--text-light);
-    font-size: 0.9rem;
-    font-style: italic;
-    max-width: 640px;
-    margin: 2.5rem auto 0;
-    line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -1201,7 +873,7 @@
 }
 
 .coaching-about::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
@@ -1283,7 +955,7 @@
 }
 
 .coaching-bio-card::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1506,107 +1178,8 @@
 /* ==========================================================================
    9. CORE SKILLS (optional section — kept for compatibility)
    ========================================================================== */
-.coaching-skills {
-    position: relative;
-    padding: 120px 0;
-    background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-dark) 100%);
-    overflow: hidden;
-}
-
-.coaching-skills-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(ellipse at 80% 20%, rgba(180, 155, 87, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
-}
-
-.coaching-skills .container {
-    position: relative;
-    z-index: 1;
-}
-
-.coaching-skills .section-header h2 {
-    color: white;
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.coaching-skills .section-header p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
 
 /* eyebrow label on this dark section */
-.coaching-skills .section-tag {
-    background: none;
-    border: none;
-    color: var(--gold-light);
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-}
-
-.skill-item {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.skill-item:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-8px);
-    border-color: rgba(180, 155, 87, 0.4);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-.skill-icon {
-    width: 65px;
-    height: 65px;
-    background: rgba(180, 155, 87, 0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.2rem;
-    transition: all 0.3s ease;
-}
-
-.skill-icon i {
-    font-size: 1.5rem;
-    color: var(--gold-light);
-    transition: all 0.3s ease;
-}
-
-.skill-item:hover .skill-icon {
-    background: var(--gold-gradient);
-    transform: scale(1.1);
-}
-
-.skill-item:hover .skill-icon i {
-    color: var(--royal-blue-dark);
-}
-
-.skill-item h4 {
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.4;
-}
 
 /* ==========================================================================
    10. BOOK PROMO (now positioned near the top of the page)
@@ -1722,7 +1295,7 @@
 }
 
 .coaching-locations-bg::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -2035,356 +1608,211 @@
 
 /* Tablet Landscape */
 @media screen and (max-width: 1199px) {
-    .coaching-hero-title {
-        font-size: 3rem;
-    }
-    
-    .supporting-services-grid {
+.supporting-services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .skills-grid {
+.clients-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .clients-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .credentials-layout {
+.credentials-layout {
         grid-template-columns: 1fr;
     }
-    
-    .timeline-items {
+.timeline-items {
         grid-template-columns: repeat(4, 1fr);
     }
-    
-    .coaching-locations-grid {
+.coaching-locations-grid {
         grid-template-columns: 1fr 1fr;
     }
-    
-    .coaching-locations-grid .coaching-location-card:first-child {
+.coaching-locations-grid .coaching-location-card:first-child {
         grid-column: span 2;
         max-width: 500px;
         margin: 0 auto;
         width: 100%;
     }
-    
-    .coaching-remote-banner {
+.coaching-remote-banner {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
         padding: 2rem;
     }
-    
-    .remote-icon-group {
+.remote-icon-group {
         justify-content: center;
     }
 }
 
 /* Tablet Portrait */
 @media screen and (max-width: 991px) {
-    .coaching-hero {
+.coaching-hero {
         min-height: auto;
         padding: 3rem 0;
     }
-    
-    .coaching-hero-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .coaching-hero-title {
-        font-size: 2.6rem;
-    }
-    
-    .coaching-image-wrapper {
-        max-width: 400px;
-        margin: 0 auto;
-    }
-    
-    .coaching-credential-badge {
+.coaching-credential-badge {
         left: 10px;
     }
-    
-    .coaching-struggle,
-    .coaching-approach,
-    .coaching-about,
-    .coaching-services,
-    .coaching-clients,
-    .coaching-pricing,
-    .coaching-credentials,
-    .coaching-skills,
-    .coaching-book,
-    .coaching-locations,
-    .coaching-cta {
+.coaching-struggle, .coaching-approach, .coaching-about, .coaching-services, .coaching-clients, .coaching-credentials, .coaching-book, .coaching-locations, .coaching-cta {
         padding: 80px 0;
     }
-    
-    .coaching-struggle .section-header h2,
-    .coaching-approach .section-header h2,
-    .coaching-pricing .section-header h2 {
+.coaching-struggle .section-header h2, .coaching-approach .section-header h2 {
         font-size: 2.5rem;
     }
-    
-    .approach-steps {
+.approach-steps {
         grid-template-columns: 1fr;
         gap: 1.5rem;
         max-width: 520px;
         margin: 0 auto;
     }
-    
-    .approach-steps::before {
+.approach-steps::before {
         display: none;
     }
-
-    /* before / after stacks vertically */
-    .before-after {
+.before-after {
         grid-template-columns: 1fr;
         gap: 1.2rem;
     }
-
-    .ba-arrow {
+.ba-arrow {
         margin: 0 auto;
         transform: rotate(90deg);
     }
-
-    /* primary offer + portrait stack */
-    .primary-offer {
+.primary-offer {
         padding: 2.5rem;
     }
-
-    .primary-offer h3 {
+.primary-offer h3 {
         font-size: 1.6rem;
     }
-
-    .coaching-about-intro {
+.coaching-about-intro {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
     }
-
-    .about-portrait-img {
+.about-portrait-img {
         max-width: 300px;
     }
-    
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 480px;
-    }
-    
-    .panel-inner {
+.panel-inner {
         padding: 2.2rem;
     }
-    
-    .coaching-about-grid {
+.coaching-about-grid {
         grid-template-columns: 1fr;
     }
-    
-    .clients-grid {
+.clients-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .timeline-items {
+.timeline-items {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .coaching-locations-grid {
+.coaching-locations-grid {
         grid-template-columns: 1fr;
         max-width: 500px;
         margin: 0 auto 3rem;
     }
-    
-    .coaching-locations-grid .coaching-location-card:first-child {
+.coaching-locations-grid .coaching-location-card:first-child {
         grid-column: span 1;
         max-width: none;
     }
-    
-    .coaching-book-wrapper {
+.coaching-book-wrapper {
         grid-template-columns: 1fr;
         padding: 2.5rem;
         text-align: center;
     }
-    
-    .section-header h2 {
+.section-header h2 {
         font-size: 2.5rem;
     }
 }
 
 /* Mobile */
 @media screen and (max-width: 767px) {
-    .coaching-hero {
+.coaching-hero {
         padding: 2rem 0;
     }
-    
-    .coaching-hero-title {
-        font-size: 2.2rem;
-    }
-    
-    .coaching-hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .coaching-hero-stats {
+.coaching-hero-stats {
         gap: 1rem;
     }
-    
-    .hero-stat {
-        padding: 0.8rem 1rem;
-    }
-    
-    .hero-stat-number {
+.hero-stat-number {
         font-size: 1.8rem;
     }
-    
-    .coaching-hero-actions {
-        flex-direction: column;
-    }
-    
-    .btn-coaching-primary,
-    .btn-coaching-secondary,
-    .btn-coaching-outline {
+.btn-coaching-primary, .btn-coaching-outline {
         width: 100%;
         justify-content: center;
     }
-    
-    .coaching-struggle,
-    .coaching-approach,
-    .coaching-about,
-    .coaching-services,
-    .coaching-clients,
-    .coaching-pricing,
-    .coaching-credentials,
-    .coaching-skills,
-    .coaching-book,
-    .coaching-locations,
-    .coaching-cta {
+.coaching-struggle, .coaching-approach, .coaching-about, .coaching-services, .coaching-clients, .coaching-credentials, .coaching-book, .coaching-locations, .coaching-cta {
         padding: 60px 0;
     }
-    
-    .coaching-struggle .section-header h2,
-    .coaching-approach .section-header h2,
-    .coaching-pricing .section-header h2 {
+.coaching-struggle .section-header h2, .coaching-approach .section-header h2 {
         font-size: 2rem;
     }
-    
-    .struggle-btn {
+.struggle-btn {
         padding: 0.7rem 1.2rem;
         font-size: 0.88rem;
     }
-    
-    .panel-head {
+.panel-head {
         flex-direction: column;
         text-align: center;
     }
-    
-    .panel-icon {
+.panel-icon {
         width: 60px;
         height: 60px;
     }
-    
-    .panel-questions li {
+.panel-questions li {
         font-size: 1rem;
     }
-
-    .supporting-services-grid {
+.supporting-services-grid {
         grid-template-columns: 1fr;
     }
-
-    .primary-offer {
+.primary-offer {
         padding: 2rem;
     }
-    
-    .pricing-card {
+.pricing-card {
         padding: 2.5rem 2rem;
     }
-    
-    .pricing-price {
-        font-size: 2.6rem;
-    }
-    
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-    
-    .clients-grid {
+.clients-grid {
         grid-template-columns: 1fr;
     }
-    
-    .timeline-items {
+.timeline-items {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
-    
-    .coaching-cta-content h2 {
+.coaching-cta-content h2 {
         font-size: 2.2rem;
     }
-    
-    .cta-actions {
+.cta-actions {
         flex-direction: column;
         align-items: center;
     }
-    
-    .btn-lg {
+.btn-lg {
         width: 100%;
         justify-content: center;
     }
-    
-    .book-highlights {
+.book-highlights {
         justify-content: center;
     }
-    
-    .section-header h2 {
+.section-header h2 {
         font-size: 2rem;
     }
-
-    /* Shared mobile action bar is visible at this width (from styles.css),
-       so lift the back-to-top button above it to match index behavior. */
-    .to-top {
+.to-top {
         bottom: 84px;
     }
 }
 
 /* Small Mobile */
 @media screen and (max-width: 480px) {
-    .coaching-hero-stats {
+.coaching-hero-stats {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
     }
-    
-    .hero-stat {
-        flex: 1;
-        min-width: 90px;
-    }
-    
-    .coaching-book-wrapper {
+.coaching-book-wrapper {
         padding: 1.5rem;
-    }
-    
-    .skill-item {
-        padding: 1.5rem 1rem;
     }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-    .coaching-tag,
-    .coaching-hero-title,
-    .coaching-hero-subtitle,
-    .coaching-hero-stats,
-    .coaching-hero-actions,
-    .coaching-hero-image {
+.coaching-hero-stats {
         opacity: 1 !important;
         animation: none !important;
     }
-    
-    .struggle-panel {
+.struggle-panel {
         animation: none;
     }
-    
-    .struggle-btn,
+.struggle-btn,
     .approach-step,
     .pricing-card {
         transition: none;
@@ -2645,10 +2073,10 @@
 
 /* ---- Responsive for new sections ---- */
 @media (max-width: 992px) {
-    .fit-grid { grid-template-columns: 1fr; gap: 1.5rem; max-width: 560px; }
-    .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
-    .transformation-heading h3 { font-size: 1.6rem; }
-    .coaching-testimonials .section-header h2 { font-size: 2.2rem; }
+.fit-grid { grid-template-columns: 1fr; gap: 1.5rem; max-width: 560px; }
+.testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+.transformation-heading h3 { font-size: 1.6rem; }
+.coaching-testimonials .section-header h2 { font-size: 2.2rem; }
 }
 
 /* ==========================================================================
@@ -2693,7 +2121,6 @@
     color: var(--royal-blue);
 }
 
-
 /* ==========================================================================
    MECC HEADER — transparent over the hero, solid white once scrolled
    (script.js toggles .scrolled / .hide on #header; coaching.js does the rest)
@@ -2737,7 +2164,7 @@
 }
 .mecc-step:hover, .mecc-step.is-active { opacity: 1; }
 .mecc-step::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
     background: var(--gold); transform: scaleX(0); transform-origin: left;
     transition: transform 0.3s var(--ease-out);
 }
@@ -2798,15 +2225,15 @@
 }
 
 @media (max-width: 1180px) {
-    .mecc-bar-name small { display: none; }
+.mecc-bar-name small { display: none; }
 }
 @media (max-width: 1060px) {
-    .mecc-status, .mecc-bar-actions > .mecc-switch, .mecc-cta { display: none; }
-    .mecc-bar-actions { margin-left: auto; }
-    .mecc-burger { display: flex; }
+.mecc-status, .mecc-bar-actions > .mecc-switch, .mecc-cta { display: none; }
+.mecc-bar-actions { margin-left: auto; }
+.mecc-burger { display: flex; }
 }
 @media (min-width: 1061px) {
-    .mecc-sheet { display: none !important; }
+.mecc-sheet { display: none !important; }
 }
 
 /* ==========================================================================
@@ -2933,14 +2360,14 @@
 }
 
 @media (max-width: 991px) {
-    .mecc-intro-grid, .mecc-assess-grid { grid-template-columns: 1fr; }
-    .mecc-assess-intro { position: static; }
+.mecc-intro-grid, .mecc-assess-grid { grid-template-columns: 1fr; }
+.mecc-assess-intro { position: static; }
 }
 @media (max-width: 560px) {
-    .mecc-hero-inner { padding-top: 120px; }
-    .mecc-hero-actions .mecc-btn { width: 100%; }
-    .mecc-coach { grid-template-columns: 1fr; }
-    .mecc-coach-photo { width: 120px; }
-    .mecc-unique { padding: 1.5rem 1.25rem 0.75rem; }
-    .mecc-form-wrap { min-height: 420px; }
+.mecc-hero-inner { padding-top: 120px; }
+.mecc-hero-actions .mecc-btn { width: 100%; }
+.mecc-coach { grid-template-columns: 1fr; }
+.mecc-coach-photo { width: 120px; }
+.mecc-unique { padding: 1.5rem 1.25rem 0.75rem; }
+.mecc-form-wrap { min-height: 420px; }
 }
