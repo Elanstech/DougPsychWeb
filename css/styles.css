@@ -710,7 +710,7 @@ body.gate-open { overflow: hidden; }
     transform: translate(-50%, -8px); opacity: 0;
     display: flex; flex-direction: column; align-items: center; text-align: center;
     pointer-events: none;
-    transition: opacity 0.9s ease 0.2s, transform 0.9s var(--ease-out) 0.2s;
+    transition: opacity 0.8s ease, transform 0.8s var(--ease-out);
 }
 .gate-id-photo {
     width: clamp(76px, 7vw, 96px); height: clamp(76px, 7vw, 96px);
@@ -813,7 +813,7 @@ body.gate-open { overflow: hidden; }
 .gate.is-ready .gate-inner { opacity: 1; transform: none; }
 .gate.is-ready .gate-coaching .gate-inner { transition-delay: 0.35s; }
 .gate.is-ready .gate-therapy .gate-inner { transition-delay: 0.5s; }
-.gate.is-ready .gate-id { opacity: 1; transform: translate(-50%, 0); }
+.gate.is-intro .gate-id, .gate.is-ready .gate-id { opacity: 1; transform: translate(-50%, 0); }
 
 /* Phones & tablets: identity becomes a top bar, panels stack */
 @media (max-width: 899px) {
@@ -824,7 +824,7 @@ body.gate-open { overflow: hidden; }
         background: var(--royal-blue-deeper);
         border-bottom: 1px solid rgba(230, 213, 172, 0.35);
     }
-    .gate.is-ready .gate-id { transform: none; }
+    .gate.is-intro .gate-id, .gate.is-ready .gate-id { transform: none; }
     .gate-id-photo { width: 52px; height: 52px; box-shadow: none; }
     .gate-id-name { margin-top: 0; font-size: 1.1rem; }
     .gate-id-role { font-size: 0.82rem; }
