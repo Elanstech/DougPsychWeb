@@ -242,7 +242,7 @@
         {
             name: "Melanie Chandan",
             role: "Mental Health Counselor",
-            img: "",
+            img: "https://photos.psychologytoday.com/f532f572-b651-4009-8131-4f3e02b1ca62/2/320x400.jpeg",
             specialty: "Mental Health Counseling",
             blurb: "Dedicated to compassionate, client-centered care and a warm therapeutic environment.",
             sections: [
@@ -334,7 +334,7 @@
         {
             name: "Oxana Turgiss",
             role: "Clinical Social Worker, LMSW",
-            img: "https://photos.psychologytoday.com/ab970a2b-15f3-465a-b17b-4838575ea550/2/320x400.jpeg",
+            img: "https://photos.psychologytoday.com/b1a37b2e-0d6d-42eb-a8f7-b37e118d76c7/1/320x400.jpeg",
             specialty: "Trauma-Informed Care & PTSD",
             blurb: "NYU-trained social worker specializing in trauma-informed care, PTSD, and psychodynamic therapy.",
             sections: [
