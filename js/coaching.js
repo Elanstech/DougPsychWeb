@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function initCoachingPage() {
     initMeccBar();
     initMeccQuiz();
+    initCoachProfiles();
     initCoachingParallax();
     initCoachingLocations();
 }
@@ -273,4 +274,41 @@ function initMeccQuiz() {
     });
 
     show(loadDraft(), false);
+}
+
+
+/* ==========================================================================
+   COACH PROFILE POP-UPS — [data-profile="dialog-id"] opens that <dialog>
+   Native <dialog> handles focus, Esc and screen readers; clicking the dark
+   backdrop or the X closes it.
+   ========================================================================== */
+function initCoachProfiles() {
+    var triggers = document.querySelectorAll('[data-profile]');
+    if (!triggers.length) return;
+
+    function open(dialog) {
+        if (typeof dialog.showModal === 'function') { dialog.showModal(); }
+        else { dialog.setAttribute('open', ''); }
+        document.body.classList.add('modal-open');
+        var body = dialog.querySelector('.coach-modal-inner');
+        if (body) body.scrollTop = 0;
+    }
+    function close(dialog) {
+        if (typeof dialog.close === 'function') { dialog.close(); }
+        else { dialog.removeAttribute('open'); document.body.classList.remove('modal-open'); }
+    }
+
+    triggers.forEach(function (btn) {
+        var dialog = document.getElementById(btn.getAttribute('data-profile'));
+        if (!dialog) return;
+        btn.addEventListener('click', function () { open(dialog); });
+    });
+
+    document.querySelectorAll('.coach-modal').forEach(function (dialog) {
+        var x = dialog.querySelector('.coach-modal-close');
+        if (x) x.addEventListener('click', function () { close(dialog); });
+        /* Click on the backdrop (the dialog box itself, outside the panel) */
+        dialog.addEventListener('click', function (e) { if (e.target === dialog) close(dialog); });
+        dialog.addEventListener('close', function () { document.body.classList.remove('modal-open'); });
+    });
 }
