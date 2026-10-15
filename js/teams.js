@@ -473,26 +473,6 @@
             ]
         },
         {
-            name: "Defne Sagdic",
-            role: "Pre-Licensed Professional",
-            img: "https://photos.psychologytoday.com/231a202e-58ad-452f-917d-8ecb854a113b/2/320x400.jpeg",
-            specialty: "Creative Arts Therapy & Trauma",
-            blurb: "Bilingual therapist using creative expression and a holistic lens for trauma and identity work.",
-            sections: [
-                { title: "About", icon: "fa-heart-pulse", paragraphs: [
-                    "When words aren't enough, healing can come through creativity, connection, and care. In therapy, I offer a space where creative expression honors your story and supports your healing.",
-                    "Viewing each person through a systemic and holistic lens lets me understand the many layers of identity, experience, and meaning that shape who you are."
-                ]},
-                { title: "Areas of Expertise", icon: "fa-tools", tags: [
-                    "Trauma Healing", "Identity & Immigration", "Survivors of Violence",
-                    "Expressive Arts Therapy", "Teens & Adults"
-                ]},
-                { title: "Credentials", icon: "fa-graduation-cap", tags: [
-                    "Pre-Licensed Professional", "Bilingual Therapist", "Creative Arts Therapy"
-                ]}
-            ]
-        },
-        {
             name: "Shameen Joshi",
             role: "Pre-Licensed Mental Health Counselor",
             img: "https://openpathcollective.org/wp-content/uploads/IMG_0012-rotated.jpg",

@@ -6,7 +6,6 @@ function initCoachingPage() {
     initMeccBar();
     initMeccQuiz();
     initCoachingParallax();
-    initStruggleTabs();
     initCoachingLocations();
 }
  
@@ -44,59 +43,6 @@ function initCoachingParallax() {
 }
  
 /* ==========================================================================
-   5. FOCUS AREAS — "If You're Struggling With…" TAB SWITCHING
-   ========================================================================== */
-function initStruggleTabs() {
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('.struggle-btn'));
-    var panels = document.querySelectorAll('.struggle-panel');
-    if (!tabs.length) return;
- 
-    function activate(tab) {
-        tabs.forEach(function (t) {
-            var on = t === tab;
-            t.classList.toggle('active', on);
-            t.setAttribute('aria-selected', on ? 'true' : 'false');
-            t.tabIndex = on ? 0 : -1;
-        });
- 
-        var target = tab.getAttribute('data-target');
-        panels.forEach(function (p) {
-            var on = p.id === 'panel-' + target;
-            p.classList.toggle('active', on);
-            if (on) {
-                p.removeAttribute('hidden');
-            } else {
-                p.setAttribute('hidden', '');
-            }
-        });
-    }
- 
-    tabs.forEach(function (tab, i) {
-        tab.addEventListener('click', function () {
-            activate(tab);
-        });
- 
-        tab.addEventListener('keydown', function (e) {
-            var next;
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                next = tabs[(i + 1) % tabs.length];
-            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                next = tabs[(i - 1 + tabs.length) % tabs.length];
-            } else if (e.key === 'Home') {
-                next = tabs[0];
-            } else if (e.key === 'End') {
-                next = tabs[tabs.length - 1];
-            }
-            if (next) {
-                e.preventDefault();
-                activate(next);
-                next.focus();
-            }
-        });
-    });
-}
- 
-/* ==========================================================================
    6. LOCATION CARD INTERACTIONS
    ========================================================================== */
 function initCoachingLocations() {
@@ -111,18 +57,6 @@ function initCoachingLocations() {
             card.style.transform = 'translateY(0)';
         });
     });
- 
-    var remoteBanner = document.querySelector('.coaching-remote-banner');
-    if (remoteBanner) {
-        remoteBanner.addEventListener('mouseenter', function () {
-            if (window.innerWidth < 992) return;
-            remoteBanner.style.transform = 'translateY(-3px)';
-        });
-        remoteBanner.addEventListener('mouseleave', function () {
-            if (window.innerWidth < 992) return;
-            remoteBanner.style.transform = 'translateY(0)';
-        });
-    }
 }
 
 
@@ -200,7 +134,7 @@ function initMeccQuiz() {
     if (!form) return;
 
     var ENDPOINT = 'https://formsubmit.co/ajax/duhlig2004@yahoo.com';
-    var DRAFT_KEY = 'meccQuizDraft';
+    var DRAFT_KEY = 'meccQuizDraft2'; /* v2 = shortened 4-part quiz */
 
     var steps = Array.prototype.slice.call(form.querySelectorAll('.mq-step'));
     var total = steps.length;
@@ -212,8 +146,8 @@ function initMeccQuiz() {
     var next = document.getElementById('mqNext');
     var errorBox = document.getElementById('mqError');
     var done = document.getElementById('mqDone');
-    var otherToggle = document.getElementById('q5aOtherToggle');
-    var otherText = document.getElementById('q5aOther');
+    var otherToggle = document.getElementById('q5OtherToggle');
+    var otherText = document.getElementById('q5Other');
     var current = 0;
 
     function showError(msg) { errorBox.textContent = msg; errorBox.hidden = !msg; }

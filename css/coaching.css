@@ -2470,3 +2470,142 @@
     .mq-options, .mq-grid { grid-template-columns: 1fr; }
     .mq-point span { height: 46px; }
 }
+
+/* ==========================================================================
+   OCT 2026 REVISION — Doug's 10/4 notes + Liz's feedback
+   (bright single CTA colour, streamlined hero, coach cards, founder, office)
+   ========================================================================== */
+
+/* Brighter call-to-action buttons (stand out from the page, brighter on hover) */
+.mecc-btn-gold, .mecc-cta, .mecc-sheet-cta, .btn-coaching-primary {
+    background: #f4c542; color: var(--royal-blue-deeper);
+    box-shadow: 0 8px 22px rgba(244, 197, 66, 0.3);
+    transition: background-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s var(--ease-out);
+}
+.mecc-btn-gold:hover, .mecc-cta:hover, .mecc-sheet-cta:hover, .btn-coaching-primary:hover {
+    background: #ffd966; transform: translateY(-2px);
+    box-shadow: 0 0 0 4px rgba(255, 217, 102, 0.25), 0 14px 32px rgba(255, 210, 80, 0.45);
+}
+.btn-coaching-primary { font-weight: 700; }
+.mq-nav .mecc-btn-gold:disabled { transform: none; }
+.mecc-sheet-call {
+    display: block; text-align: center; margin-top: 0.85rem;
+    font-size: 0.95rem; font-weight: 600; color: var(--royal-blue);
+}
+
+/* Hero: title + "What do you want to change?" */
+.mecc-hero-title { max-width: 16ch; font-weight: 700; }
+.mecc-hero-lead { margin-bottom: 2rem; }
+.mecc-hero-change {
+    max-width: 36rem; margin-bottom: 2.25rem;
+    padding-left: 1.25rem; border-left: 3px solid #f4c542;
+}
+.mecc-hero-change-title {
+    font-family: var(--font-heading); font-weight: 700;
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem); line-height: 1.2; color: #fff;
+    margin-bottom: 0.75rem;
+}
+.mecc-hero-questions { list-style: none; margin: 0 0 0.75rem; padding: 0; }
+.mecc-hero-questions li {
+    font-size: clamp(1rem, 1.3vw, 1.12rem); line-height: 1.55;
+    color: rgba(255, 255, 255, 0.88); margin-bottom: 0.35rem;
+}
+.mecc-hero-promise { font-weight: 700; font-size: clamp(1rem, 1.3vw, 1.12rem); color: var(--gold-light); }
+
+/* Left-aligned eyebrow label (Who We Are / Our Coaches) */
+.mecc-eyebrow {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-medium); margin-bottom: 0.9rem;
+}
+.mecc-intro-text .mecc-eyebrow { color: var(--gold-medium); font-size: 0.8rem; line-height: 1.4; margin-bottom: 0.9rem; }
+
+/* Coaching or Therapy */
+.coaching-fit .section-header h2 { margin-bottom: 0; }
+.fit-grid { margin-top: 2.75rem; }
+.fit-therapy { display: flex; flex-direction: column; }
+.fit-link {
+    margin-top: auto; padding-top: 1.5rem; align-self: flex-start;
+    font-weight: 600; color: var(--royal-blue);
+    text-decoration: underline; text-decoration-color: rgba(26, 35, 126, 0.3); text-underline-offset: 4px;
+}
+.fit-link i { font-size: 0.8em; margin-left: 0.25rem; }
+.fit-link:hover { text-decoration-color: var(--royal-blue); }
+.fit-note { font-weight: 700; color: var(--text-dark); font-size: 1.08rem; }
+
+/* Coaches — equal cards so Doug is one of several */
+.mecc-coach-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 340px));
+    gap: 1.5rem; margin-top: 1rem;
+}
+.mecc-coach-card {
+    display: flex; flex-direction: column; overflow: hidden;
+    background: #fff; border: 1px solid var(--border); border-radius: var(--r-md);
+    box-shadow: var(--shadow-sm);
+}
+.mecc-coach-card .mecc-coach-photo {
+    width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 4%; border-radius: 0;
+}
+.mecc-coach-card .mecc-coach-body { display: flex; flex-direction: column; flex: 1; padding: 1.5rem; }
+.mecc-coach-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 0 0 1.1rem; padding: 0; }
+.mecc-coach-tags li {
+    padding: 0.3rem 0.7rem; border-radius: var(--r-pill);
+    background: var(--bg-tint); color: var(--royal-blue-dark); font-size: 0.8rem; font-weight: 600;
+}
+.mecc-coach-quote { margin: 0 0 1.25rem; padding: 0.9rem 1rem; border-left: 3px solid var(--gold); background: var(--bg-soft); }
+.mecc-coach-quote p { margin: 0 0 0.4rem; font-style: italic; font-size: 0.95rem; line-height: 1.6; color: var(--text-medium); }
+.mecc-coach-body .mecc-coach-quote p { margin-bottom: 0.4rem; }
+.mecc-coach-quote cite { font-style: normal; font-size: 0.82rem; font-weight: 600; color: var(--text-light); }
+.mecc-coach-actions { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+.mecc-coach-actions .mecc-btn { padding: 0.8rem 1.3rem; font-size: 0.92rem; }
+
+.mecc-coach-soon {
+    justify-content: center; align-items: flex-start; padding: 2rem;
+    background: transparent; border: 2px dashed rgba(26, 35, 126, 0.18); box-shadow: none;
+}
+.mecc-coach-soon-icon {
+    width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--bg-tint); color: var(--royal-blue); font-size: 1.25rem; margin-bottom: 1.25rem;
+}
+.mecc-coach-soon h3 { font-family: var(--font-heading); font-weight: 500; font-size: 1.35rem; color: var(--royal-blue-dark); margin-bottom: 0.6rem; }
+.mecc-coach-soon p { color: var(--text-medium); line-height: 1.65; margin-bottom: 1rem; }
+
+/* Assessment lead-in */
+.mecc-assess-intro .mecc-assess-why { color: var(--text-dark); }
+.mecc-assess-why strong { display: block; margin-bottom: 0.35rem; font-size: 1.1rem; color: var(--royal-blue-dark); }
+.mq-bar span { width: 25%; }
+
+/* Founder — short version, full head in frame */
+.coaching-about .section-header { margin-bottom: 3rem; }
+.coaching-about-intro { margin-bottom: 0; }
+.about-portrait-img { object-position: center top; max-width: 320px; }
+.founder-highlights { list-style: none; margin: 1.75rem 0 0; padding: 0; }
+.founder-highlights li {
+    display: flex; gap: 0.9rem; align-items: flex-start;
+    padding: 0.9rem 0; border-top: 1px solid var(--border);
+    color: var(--text-medium); font-size: 1.02rem; line-height: 1.55;
+}
+.founder-highlights i { flex-shrink: 0; width: 1.25rem; margin-top: 0.25rem; text-align: center; color: var(--gold-dark); }
+.founder-highlights strong { color: var(--text-dark); }
+
+/* Office: Manhattan only + virtual */
+.coaching-locations { background: linear-gradient(135deg, #0a1628 0%, #1a237e 55%, #0d2137 100%); }
+.coaching-office-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem; align-items: stretch; max-width: 1000px; margin: 0 auto;
+}
+.coaching-office-grid .coaching-remote-banner {
+    flex-direction: column; align-items: flex-start; justify-content: center; gap: 1.5rem;
+}
+.coaching-office-grid .remote-content { flex: none; }
+.coaching-remote-banner:hover { transform: none; }
+
+@media (max-width: 991px) {
+.coaching-office-grid { grid-template-columns: 1fr; max-width: 520px; }
+.coaching-office-grid .coaching-remote-banner { align-items: center; text-align: center; }
+.founder-highlights li { text-align: left; }
+.coaching-fit, .coaching-testimonials { padding: 80px 0; }
+}
+@media (max-width: 560px) {
+.mecc-hero-change { padding-left: 1rem; }
+.mecc-coach-actions .mecc-btn { width: 100%; }
+}

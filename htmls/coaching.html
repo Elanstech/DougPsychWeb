@@ -384,10 +384,10 @@
         <nav class="mecc-status" aria-label="Page sections">
             <a href="#mecc" class="mecc-step">About</a>
             <a href="#coaches" class="mecc-step">Coaches</a>
-            <a href="#assessment" class="mecc-step">Assessment</a>
+            <a href="#assessment" class="mecc-step">Quiz</a>
             <a href="#approach" class="mecc-step">Method</a>
             <a href="#services" class="mecc-step">Services</a>
-            <a href="#locations" class="mecc-step">Locations</a>
+            <a href="#office" class="mecc-step">Contact</a>
         </nav>
 
         <div class="mecc-bar-actions">
@@ -395,7 +395,7 @@
                 <a href="coaching.html" aria-current="page">Coaching</a>
                 <a href="../index.html?site=therapy">Therapy</a>
             </div>
-            <a href="tel:3473951759" class="mecc-cta">Call (347) 395-1759</a>
+            <a href="contact.html" class="mecc-cta">Book a Consultation</a>
             <button class="mecc-burger" id="meccBurger" aria-label="Open menu" aria-expanded="false" aria-controls="meccSheet">
                 <span></span><span></span><span></span>
             </button>
@@ -406,46 +406,98 @@
 
 <div class="mecc-sheet" id="meccSheet" hidden>
     <nav aria-label="Page sections">
-        <a href="#mecc">About MECC</a>
+        <a href="#mecc">Who we are</a>
         <a href="#coaches">Our coaches</a>
-        <a href="#assessment">Self-assessment</a>
+        <a href="#assessment">Take the quiz</a>
         <a href="#approach">Method</a>
         <a href="#services">Services</a>
-        <a href="#locations">Locations</a>
+        <a href="#office">Contact</a>
     </nav>
     <div class="mecc-switch mecc-switch-light" role="group" aria-label="Switch between coaching and therapy">
         <a href="coaching.html" aria-current="page">Coaching</a>
         <a href="../index.html?site=therapy">Therapy</a>
     </div>
-    <a href="tel:3473951759" class="mecc-sheet-cta">Call (347) 395-1759</a>
+    <a href="contact.html" class="mecc-sheet-cta">Book a Consultation</a>
+    <a href="tel:3473951759" class="mecc-sheet-call">or call (347) 395-1759</a>
 </div>
 
 <!-- Hero -->
 <section class="mecc-hero">
     <div class="mecc-hero-media" aria-hidden="true"></div>
     <div class="container mecc-hero-inner">
-        <p class="mecc-hero-dba">Doug Uhlig dba</p>
-        <h1 class="mecc-hero-title">Manhattan Executive Coach Consortium</h1>
-        <p class="mecc-hero-lead">We enjoy helping high performing professionals reach ambitious goals.</p>
+        <h1 class="mecc-hero-title">Build the Life and Career You Want</h1>
+        <p class="mecc-hero-lead">MECC helps high-performance executives reach ambitious goals.</p>
+        <div class="mecc-hero-change">
+            <h2 class="mecc-hero-change-title">What do you want to change?</h2>
+            <ul class="mecc-hero-questions">
+                <li>Are you an entrepreneur struggling to get a new business off the ground?</li>
+                <li>Are you an executive stuck in your career?</li>
+            </ul>
+            <p class="mecc-hero-promise">We will help you get unstuck.</p>
+        </div>
         <div class="mecc-hero-actions">
-            <a href="#assessment" class="mecc-btn mecc-btn-gold">Take the self-assessment</a>
-            <a href="#coaches" class="mecc-btn mecc-btn-ghost">Meet our coaches</a>
+            <a href="#assessment" class="mecc-btn mecc-btn-gold">Take the Quiz</a>
+            <a href="#coaches" class="mecc-btn mecc-btn-ghost">Meet Your Coaches</a>
         </div>
     </div>
 </section>
 
-<!-- About MECC -->
+<!-- Coaching or Therapy? -->
+<section class="coaching-fit" id="fit">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Is This Right for You?</span>
+            <h2>Coaching or Therapy?</h2>
+        </div>
+        <div class="fit-grid reveal">
+            <div class="fit-card fit-coaching">
+                <span class="fit-badge">You're here</span>
+                <div class="fit-card-head">
+                    <div class="fit-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Coaching is the right fit if you're&hellip;</h3>
+                </div>
+                <ul class="fit-list">
+                    <li><i class="fas fa-check"></i> Functioning well, but ready for more</li>
+                    <li><i class="fas fa-check"></i> Growing your career or your business</li>
+                    <li><i class="fas fa-check"></i> Stepping up as a stronger leader</li>
+                    <li><i class="fas fa-check"></i> Facing a major life or career decision</li>
+                    <li><i class="fas fa-check"></i> Wanting a partner to keep you accountable</li>
+                    <li><i class="fas fa-check"></i> Willing to pay directly for the benefits, using cash or credit card</li>
+                </ul>
+            </div>
+            <div class="fit-card fit-therapy">
+                <div class="fit-card-head">
+                    <div class="fit-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Therapy may be a better fit if you're&hellip;</h3>
+                </div>
+                <ul class="fit-list">
+                    <li><i class="fas fa-circle"></i> Healing from trauma or a painful past</li>
+                    <li><i class="fas fa-circle"></i> Struggling with anxiety or depression</li>
+                    <li><i class="fas fa-circle"></i> Working through deeper emotional challenges</li>
+                    <li><i class="fas fa-circle"></i> Looking to feel like yourself again</li>
+                    <li><i class="fas fa-circle"></i> Needing your health insurance to cover the costs of therapy</li>
+                </ul>
+                <a href="../index.html?site=therapy" class="fit-link">Explore our therapy practice <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <p class="fit-note reveal">Unfortunately, we do not accept insurance for coaching.</p>
+    </div>
+</section>
+
+<!-- Who We Are -->
 <section class="mecc-intro" id="mecc">
     <div class="container mecc-intro-grid">
         <div class="mecc-intro-text reveal">
+            <p class="mecc-eyebrow">Who We Are</p>
             <h2 class="mecc-h2">A Boutique Group of Executive Coaches</h2>
-            <p class="mecc-lead">We are a boutique group of executive coaches sharing our expertise to provide one on one executive and business coaching to professionals, entrepreneurs, executives, and emerging leaders.</p>
-            <p>Our approach combines evidence-based coaching, leadership development, mindfulness, emotional intelligence and organizational psychology to help clients overcome challenges and maximize performance.</p>
-            <p>Our coaches are certified with a minimum of five years of executive, leadership, business or organizational coaching experience.</p>
+            <p class="mecc-lead">We share our expertise to provide one-on-one executive and business coaching to professionals, entrepreneurs, executives and emerging leaders.</p>
+            <p>Our approach combines evidence-based coaching, leadership development, mindfulness, emotional intelligence and organizational psychology to help you overcome challenges and maximize performance.</p>
+            <p>Every coach is certified, with a minimum of five years of executive, leadership, business or organizational coaching experience.</p>
         </div>
         <aside class="mecc-unique reveal" aria-labelledby="meccUniqueTitle">
             <h3 id="meccUniqueTitle">Our Uniqueness</h3>
             <ul>
+                <li>Founded and led by a licensed psychologist</li>
                 <li>Shared intake and matching system</li>
                 <li>A common before and after assessment framework</li>
                 <li>A complete executive wellness program</li>
@@ -458,20 +510,45 @@
 <!-- Our Coaches -->
 <section class="mecc-coaches" id="coaches">
     <div class="container">
-        <h2 class="mecc-h2 reveal">Let Us Introduce Our Executive Coaches</h2>
-        <div class="mecc-coach-list">
-            <!-- Copy one <article> per coach when photos and profiles arrive -->
-            <article class="mecc-coach reveal">
+        <div class="reveal">
+            <p class="mecc-eyebrow">Our Coaches</p>
+            <h2 class="mecc-h2">Let Us Introduce Our Executive Coaches</h2>
+        </div>
+        <div class="mecc-coach-grid">
+            <!-- ONE <article class="mecc-coach-card"> PER COACH.
+                 To add a coach: copy Doug's card below, swap the photo, name, role,
+                 specialties and testimonial. Delete the "joining soon" card once
+                 two or more coaches are listed. -->
+            <article class="mecc-coach-card reveal">
                 <img src="../images/doug.jpeg" alt="Douglas Uhlig, Ph.D., MBA" class="mecc-coach-photo" loading="lazy">
                 <div class="mecc-coach-body">
                     <h3>Douglas Uhlig, Ph.D., MBA</h3>
-                    <p class="mecc-coach-role">Founder and executive coach</p>
-                    <p>Psychologist and mindfulness business and life coach with 25+ years of experience.</p>
-                    <a href="#about" class="mecc-coach-link">Read Doug&rsquo;s full profile</a>
+                    <p class="mecc-coach-role">Founder &middot; Mindfulness Business &amp; Executive Coach</p>
+                    <ul class="mecc-coach-tags" aria-label="Specialties">
+                        <li>Leadership &amp; presence</li>
+                        <li>Stress &amp; burnout</li>
+                        <li>Career transitions</li>
+                        <li>Entrepreneurs</li>
+                        <li>Japanese &amp; Chinese business</li>
+                    </ul>
+                    <blockquote class="mecc-coach-quote">
+                        <p>&ldquo;Working with Doug helped me recognize the habits that were keeping me stuck&hellip; I now approach leadership with much more confidence and clarity.&rdquo;</p>
+                        <cite>Jordan M., navigating a career transition</cite>
+                    </blockquote>
+                    <div class="mecc-coach-actions">
+                        <a href="contact.html" class="mecc-btn mecc-btn-gold">Book a Consultation</a>
+                        <a href="#founder" class="mecc-coach-link">Full profile</a>
+                    </div>
                 </div>
             </article>
+
+            <aside class="mecc-coach-card mecc-coach-soon reveal" aria-label="More coaches">
+                <div class="mecc-coach-soon-icon" aria-hidden="true"><i class="fas fa-user-plus"></i></div>
+                <h3>More coaches joining soon</h3>
+                <p>We introduce each certified MECC coach here as they join. Take the quiz and we&rsquo;ll match you with the coach who fits your goals.</p>
+                <a href="#assessment" class="mecc-coach-link">Take the Quiz</a>
+            </aside>
         </div>
-        <p class="mecc-coach-note reveal">More of our certified executive coaches will be introduced here soon.</p>
     </div>
 </section>
 
@@ -480,13 +557,11 @@
     <div class="container mecc-assess-grid">
         <div class="mecc-assess-intro reveal">
             <h2 class="mecc-h2">Leadership Intake &amp; Self-Assessment</h2>
-            <p>This brief assessment is designed to help us understand where you are today, what matters most to you, and how coaching can best support your leadership and professional growth.</p>
-            <p>There are no right or wrong answers. Your responses go directly to Dr. Uhlig and give us a starting point for our first coaching conversation.</p>
+            <p class="mecc-assess-why"><strong>Not sure where to start? Take this short quiz first.</strong> In about five minutes it helps you get clear on what you want from coaching, and it helps us match you with the right coach so your first consultation is focused on you from minute one.</p>
+            <p>There are no right or wrong answers. Your responses go directly to Dr. Uhlig and are kept confidential.</p>
             <ol class="mecc-assess-parts">
-                <li>Your current leadership</li>
-                <li>Your current situation</li>
+                <li>Where you are now</li>
                 <li>Your coaching goals</li>
-                <li>Reflection and feedback</li>
                 <li>Coaching partnership</li>
                 <li>Your contact details</li>
             </ol>
@@ -495,94 +570,66 @@
             <!-- Self-assessment quiz — logic: js/coaching.js (initMeccQuiz). Answers are emailed to Doug via FormSubmit. -->
             <form class="mq" id="meccQuiz" novalidate>
                 <div class="mq-top">
-                    <p class="mq-count" id="mqCount" aria-live="polite">Part 1 of 6</p>
-                    <div class="mq-bar" role="progressbar" aria-label="Assessment progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><span id="mqBar"></span></div>
+                    <p class="mq-count" id="mqCount" aria-live="polite">Part 1 of 4</p>
+                    <div class="mq-bar" role="progressbar" aria-label="Assessment progress" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"><span id="mqBar"></span></div>
                 </div>
 
                 <fieldset class="mq-step" tabindex="-1">
-                    <legend class="mq-title">Your current leadership</legend>
-                <div class="mq-field">
-                    <label for="q1a">What do you consider your greatest leadership strength?</label>
-                    <textarea id="q1a" name="1a. Greatest leadership strength" rows="3"></textarea>
-                </div>
-                <div class="mq-field">
-                    <label for="q1b">What leadership capability would you most like to strengthen?</label>
-                    <textarea id="q1b" name="1b. Capability to strengthen" rows="3"></textarea>
-                </div>
-                </fieldset>
-
-                <fieldset class="mq-step" tabindex="-1" hidden>
-                    <legend class="mq-title">Your current situation</legend>
-                <div class="mq-field">
-                    <label for="q2a">What is the most important leadership or professional challenge you are facing right now?</label>
-                    <textarea id="q2a" name="2a. Most important current challenge" rows="3"></textarea>
-                </div>
-                <div class="mq-field">
-                    <label for="q2b">What is currently taking the most of your time, attention, or energy?</label>
-                    <textarea id="q2b" name="2b. What takes most time and energy" rows="3"></textarea>
-                </div>
+                    <legend class="mq-title">Where you are now</legend>
+                    <div class="mq-field">
+                        <label for="q1">What leadership capability would you most like to strengthen?</label>
+                        <textarea id="q1" name="1. Capability to strengthen" rows="3"></textarea>
+                    </div>
+                    <div class="mq-field">
+                        <label for="q2">What is the most important leadership or professional challenge you are facing right now?</label>
+                        <textarea id="q2" name="2. Most important current challenge" rows="3"></textarea>
+                    </div>
                 </fieldset>
 
                 <fieldset class="mq-step" tabindex="-1" hidden>
                     <legend class="mq-title">Your coaching goals</legend>
-                <div class="mq-field">
-                    <label for="q3a">What would you most like to accomplish through executive coaching?</label>
-                    <textarea id="q3a" name="3a. What they want to accomplish" rows="3"></textarea>
-                </div>
-                <div class="mq-field">
-                    <label for="q3b">If coaching is successful, what would be noticeably different about you or your leadership 6&ndash;12 months from now?</label>
-                    <textarea id="q3b" name="3b. What would be different in 6 to 12 months" rows="3"></textarea>
-                </div>
-                <div class="mq-field">
-                    <label for="q3c">What is one outcome you would like to achieve in the next 90 days?</label>
-                    <textarea id="q3c" name="3c. 90-day outcome" rows="3"></textarea>
-                </div>
-                </fieldset>
-
-                <fieldset class="mq-step" tabindex="-1" hidden>
-                    <legend class="mq-title">Reflection and feedback</legend>
-                <div class="mq-field">
-                    <label for="q4a">What feedback have you received recently that has influenced how you think about your leadership?</label>
-                    <textarea id="q4a" name="4a. Recent feedback that shaped their thinking" rows="3"></textarea>
-                </div>
-                <div class="mq-field">
-                    <label for="q4b">Is there a leadership situation, relationship, or decision you would like to work through with your coach?</label>
-                    <textarea id="q4b" name="4b. Situation to work through with coach" rows="3"></textarea>
-                </div>
+                    <div class="mq-field">
+                        <label for="q3">What would you most like to accomplish through executive coaching?</label>
+                        <textarea id="q3" name="3. What they want to accomplish" rows="3"></textarea>
+                    </div>
+                    <div class="mq-field">
+                        <label for="q4">Is there a leadership situation, relationship, or decision you would like to work through with your coach?</label>
+                        <textarea id="q4" name="4. Situation to work through with coach" rows="3"></textarea>
+                    </div>
                 </fieldset>
 
                 <fieldset class="mq-step" tabindex="-1" hidden>
                     <legend class="mq-title">Coaching partnership</legend>
                     <div class="mq-field">
-                        <p class="mq-q" id="q5aLabel">What do you most want from your coach? <span class="mq-hint">Choose all that apply.</span></p>
-                        <div class="mq-options" role="group" aria-labelledby="q5aLabel">
-                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="A confidential sounding board"><span>A confidential sounding board</span></label>
-                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Honest, direct feedback"><span>Honest, direct feedback</span></label>
-                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Accountability"><span>Accountability</span></label>
-                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="New perspectives and ideas"><span>New perspectives and ideas</span></label>
-                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Help navigating a specific challenge"><span>Help navigating a specific challenge</span></label>
-                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Leadership skill development"><span>Leadership skill development</span></label>
-                        <label class="mq-option"><input type="checkbox" name="5a. What they want from a coach" value="Career/advancement guidance"><span>Career/advancement guidance</span></label>
-                            <label class="mq-option"><input type="checkbox" id="q5aOtherToggle" name="5a. What they want from a coach" value="Other"><span>Other</span></label>
+                        <p class="mq-q" id="q5Label">What do you most want from your coach? <span class="mq-hint">Choose all that apply.</span></p>
+                        <div class="mq-options" role="group" aria-labelledby="q5Label">
+                            <label class="mq-option"><input type="checkbox" name="5. What they want from a coach" value="A confidential sounding board"><span>A confidential sounding board</span></label>
+                            <label class="mq-option"><input type="checkbox" name="5. What they want from a coach" value="Honest, direct feedback"><span>Honest, direct feedback</span></label>
+                            <label class="mq-option"><input type="checkbox" name="5. What they want from a coach" value="Accountability"><span>Accountability</span></label>
+                            <label class="mq-option"><input type="checkbox" name="5. What they want from a coach" value="New perspectives and ideas"><span>New perspectives and ideas</span></label>
+                            <label class="mq-option"><input type="checkbox" name="5. What they want from a coach" value="Help navigating a specific challenge"><span>Help navigating a specific challenge</span></label>
+                            <label class="mq-option"><input type="checkbox" name="5. What they want from a coach" value="Leadership skill development"><span>Leadership skill development</span></label>
+                            <label class="mq-option"><input type="checkbox" name="5. What they want from a coach" value="Career/advancement guidance"><span>Career/advancement guidance</span></label>
+                            <label class="mq-option"><input type="checkbox" id="q5OtherToggle" name="5. What they want from a coach" value="Other"><span>Other</span></label>
                         </div>
-                        <label for="q5aOther" class="mq-sr">Other, please describe</label>
-                        <input type="text" id="q5aOther" name="5a. Other (described)" placeholder="Tell us what else you're looking for" hidden>
+                        <label for="q5Other" class="mq-sr">Other, please describe</label>
+                        <input type="text" id="q5Other" name="5. Other (described)" placeholder="Tell us what else you're looking for" hidden>
                     </div>
                     <div class="mq-field">
-                        <p class="mq-q" id="q5bLabel">How ready are you to make meaningful changes?</p>
-                        <div class="mq-scale" role="radiogroup" aria-labelledby="q5bLabel">
-                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="1"><span>1</span></label>
-                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="2"><span>2</span></label>
-                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="3"><span>3</span></label>
-                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="4"><span>4</span></label>
-                        <label class="mq-point"><input type="radio" name="5b. Readiness to change (1 to 5)" value="5"><span>5</span></label>
+                        <p class="mq-q" id="q6Label">How ready are you to make meaningful changes?</p>
+                        <div class="mq-scale" role="radiogroup" aria-labelledby="q6Label">
+                            <label class="mq-point"><input type="radio" name="6. Readiness to change (1 to 5)" value="1"><span>1</span></label>
+                            <label class="mq-point"><input type="radio" name="6. Readiness to change (1 to 5)" value="2"><span>2</span></label>
+                            <label class="mq-point"><input type="radio" name="6. Readiness to change (1 to 5)" value="3"><span>3</span></label>
+                            <label class="mq-point"><input type="radio" name="6. Readiness to change (1 to 5)" value="4"><span>4</span></label>
+                            <label class="mq-point"><input type="radio" name="6. Readiness to change (1 to 5)" value="5"><span>5</span></label>
                         </div>
                         <div class="mq-scale-ends" aria-hidden="true"><span>Not yet ready</span><span>Very ready</span></div>
                     </div>
-                <div class="mq-field">
-                    <label for="q5c">Is there anything else you would like your coach to know before we begin?</label>
-                    <textarea id="q5c" name="5c. Anything else for the coach" rows="3"></textarea>
-                </div>
+                    <div class="mq-field">
+                        <label for="q7">Is there anything else you would like your coach to know before we begin?</label>
+                        <textarea id="q7" name="7. Anything else for the coach" rows="3"></textarea>
+                    </div>
                 </fieldset>
 
                 <fieldset class="mq-step" tabindex="-1" hidden>
@@ -620,185 +667,12 @@
             <div class="mq-done" id="mqDone" tabindex="-1" hidden>
                 <h3>Thank you</h3>
                 <p>Thank you for taking the time to complete this reflection. Your responses will help us create a coaching experience that is focused, practical, confidential, and relevant to your goals.</p>
-                <p>Dr. Uhlig will review your answers and reach out to schedule your first conversation. If you'd like to talk sooner, call <a href="tel:3473951759">(347) 395-1759</a>.</p>
+                <p>Dr. Uhlig will review your answers and reach out to schedule your consultation. If you'd like to talk sooner, call <a href="tel:3473951759">(347) 395-1759</a>.</p>
             </div>
         </div>
     </div>
 </section>
-<!-- Focus Areas: "If You're Struggling With…" -->
-<section class="coaching-struggle" id="focus">
-    <div class="struggle-bg"></div>
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Where You Are Right Now</span>
-            <h2>What Do You Want to Change?</h2>
-            <p>Pick what resonates — and see exactly how coaching moves you forward. Think of me as your partner in getting there.</p>
-        </div>
-        <div class="struggle-tabs" role="tablist" aria-label="Coaching focus areas">
-            <button class="struggle-btn active" role="tab" aria-selected="true" aria-controls="panel-calmness" id="tab-calmness" data-target="calmness">
-                <i class="fas fa-spa" aria-hidden="true"></i><span>Calmness</span>
-            </button>
-            <button class="struggle-btn" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-clarity" id="tab-clarity" data-target="clarity">
-                <i class="fas fa-bullseye" aria-hidden="true"></i><span>Clarity</span>
-            </button>
-            <button class="struggle-btn" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-relationships" id="tab-relationships" data-target="relationships">
-                <i class="fas fa-handshake" aria-hidden="true"></i><span>Relationships</span>
-            </button>
-            <button class="struggle-btn" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-confidence" id="tab-confidence" data-target="confidence">
-                <i class="fas fa-star" aria-hidden="true"></i><span>Confidence</span>
-            </button>
-            <button class="struggle-btn" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-leadership" id="tab-leadership" data-target="leadership">
-                <i class="fas fa-chess-king" aria-hidden="true"></i><span>Leadership</span>
-            </button>
-            <button class="struggle-btn" role="tab" aria-selected="false" tabindex="-1" aria-controls="panel-meditation" id="tab-meditation" data-target="meditation">
-                <i class="fas fa-leaf" aria-hidden="true"></i><span>Meditation</span>
-            </button>
-        </div>
-        <div class="struggle-panels">
-            <div class="struggle-panel active" id="panel-calmness" role="tabpanel" aria-labelledby="tab-calmness" tabindex="0">
-                <div class="panel-inner">
-                    <div class="panel-head">
-                        <div class="panel-icon"><i class="fas fa-spa" aria-hidden="true"></i></div>
-                        <div class="panel-head-text">
-                            <h3>Calmness</h3>
-                            <p class="panel-sub">Trade stress and burnout for steady focus — with mindfulness and cognitive reframing that actually stick.</p>
-                        </div>
-                    </div>
-                    <ul class="panel-questions">
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are stress and burnout starting to cost you?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are you overworking but under-producing?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do you feel overwhelmed and unable to switch off?</li>
-                    </ul>
-                    <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-                </div>
-            </div>
-            <div class="struggle-panel" id="panel-clarity" role="tabpanel" aria-labelledby="tab-clarity" tabindex="0" hidden>
-                <div class="panel-inner">
-                    <div class="panel-head">
-                        <div class="panel-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></div>
-                        <div class="panel-head-text">
-                            <h3>Clarity</h3>
-                            <p class="panel-sub">Turn scattered goals into a clear, focused plan you can actually execute.</p>
-                        </div>
-                    </div>
-                    <ul class="panel-questions">
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are you an entrepreneur with a business that has stopped growing?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do you need direction for your career or your company?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Does it feel like there's a mismatch between you and your organization?</li>
-                    </ul>
-                    <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-                </div>
-            </div>
-            <div class="struggle-panel" id="panel-relationships" role="tabpanel" aria-labelledby="tab-relationships" tabindex="0" hidden>
-                <div class="panel-inner">
-                    <div class="panel-head">
-                        <div class="panel-icon"><i class="fas fa-handshake" aria-hidden="true"></i></div>
-                        <div class="panel-head-text">
-                            <h3>Relationships</h3>
-                            <p class="panel-sub">Build stronger, more productive relationships with colleagues and leadership.</p>
-                        </div>
-                    </div>
-                    <ul class="panel-questions">
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are difficult coworkers or bosses wearing you down?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are layoffs, office politics, or conflict weighing on you?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do you want to communicate more effectively under pressure?</li>
-                    </ul>
-                    <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-                </div>
-            </div>
-            <div class="struggle-panel" id="panel-confidence" role="tabpanel" aria-labelledby="tab-confidence" tabindex="0" hidden>
-                <div class="panel-inner">
-                    <div class="panel-head">
-                        <div class="panel-icon"><i class="fas fa-star" aria-hidden="true"></i></div>
-                        <div class="panel-head-text">
-                            <h3>Confidence</h3>
-                            <p class="panel-sub">Make decisions and take decisive action — without the second-guessing.</p>
-                        </div>
-                    </div>
-                    <ul class="panel-questions">
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do you hesitate on big business decisions?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do you want to grow your revenue as an entrepreneur?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are you ready to act on your potential instead of doubting it?</li>
-                    </ul>
-                    <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-                </div>
-            </div>
-            <div class="struggle-panel" id="panel-leadership" role="tabpanel" aria-labelledby="tab-leadership" tabindex="0" hidden>
-                <div class="panel-inner">
-                    <div class="panel-head">
-                        <div class="panel-icon"><i class="fas fa-chess-king" aria-hidden="true"></i></div>
-                        <div class="panel-head-text">
-                            <h3>Leadership</h3>
-                            <p class="panel-sub">Lead with emotional intelligence — and make sharper decisions your team respects.</p>
-                        </div>
-                    </div>
-                    <ul class="panel-questions">
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are you in a new leadership role and feeling in over your head?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Are you making the most of your leadership potential?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do you want to lead with influence, not just authority?</li>
-                    </ul>
-                    <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-                </div>
-            </div>
-            <div class="struggle-panel" id="panel-meditation" role="tabpanel" aria-labelledby="tab-meditation" tabindex="0" hidden>
-                <div class="panel-inner">
-                    <div class="panel-head">
-                        <div class="panel-icon"><i class="fas fa-leaf" aria-hidden="true"></i></div>
-                        <div class="panel-head-text">
-                            <h3>Meditation</h3>
-                            <p class="panel-sub">Get practical tools to manage perfectionism, overthinking, and the fear of failure.</p>
-                        </div>
-                    </div>
-                    <ul class="panel-questions">
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Is fear of failure holding you back?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do perfectionism and overthinking drain your energy?</li>
-                        <li><i class="fas fa-circle-question" aria-hidden="true"></i> Do you want a reliable way to manage your emotional state?</li>
-                    </ul>
-                    <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Coaching vs Therapy — clarifier (per Liz's feedback) -->
-<section class="coaching-fit" id="fit">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Is This Right for You?</span>
-            <h2>Coaching or Therapy?</h2>
-            <p>They're different tools for different moments. Here's a simple way to tell which one fits where you are right now.</p>
-        </div>
-        <div class="fit-grid reveal">
-            <div class="fit-card fit-therapy">
-                <div class="fit-card-head">
-                    <div class="fit-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Therapy may be the better fit if you're…</h3>
-                </div>
-                <ul class="fit-list">
-                    <li><i class="fas fa-circle"></i> Healing from trauma or a painful past</li>
-                    <li><i class="fas fa-circle"></i> Struggling with anxiety or depression</li>
-                    <li><i class="fas fa-circle"></i> Working through deeper emotional challenges</li>
-                    <li><i class="fas fa-circle"></i> Looking to feel like yourself again</li>
-                </ul>
-            </div>
-            <div class="fit-card fit-coaching">
-                <span class="fit-badge">You're here</span>
-                <div class="fit-card-head">
-                    <div class="fit-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>Coaching is the right fit if you're…</h3>
-                </div>
-                <ul class="fit-list">
-                    <li><i class="fas fa-check"></i> Functioning well, but ready for more</li>
-                    <li><i class="fas fa-check"></i> Growing your career or your business</li>
-                    <li><i class="fas fa-check"></i> Stepping up as a stronger leader</li>
-                    <li><i class="fas fa-check"></i> Facing a major life or career decision</li>
-                    <li><i class="fas fa-check"></i> Wanting a partner to keep you accountable</li>
-                </ul>
-            </div>
-        </div>
-        <p class="fit-note">As both a licensed psychologist and a credentialed coach, I can help you pinpoint which is right for where you are — and we'll only move forward with coaching once it's clearly the best call for you.</p>
-    </div>
-</section>
+
 <!-- Methodology: Self-Leadership Transformation Framework -->
 <section class="coaching-approach" id="approach">
     <div class="container">
@@ -830,7 +704,7 @@
         <!-- Before / After transformation -->
         <div class="transformation-heading reveal">
             <h3>What Changes When We Work Together</h3>
-            <p>You're not buying a method — you're buying a different way of showing up. Here's the shift most clients feel.</p>
+            <p>You're not investing in a method — you're investing in a different way of showing up. Here's the shift most clients feel.</p>
         </div>
         <div class="before-after reveal">
             <div class="ba-column ba-before">
@@ -855,49 +729,50 @@
                 </ul>
             </div>
         </div>
-        <div class="section-cta reveal">
-            <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-        </div>
     </div>
 </section>
-<!-- Who I Serve (moved above What I Offer) -->
-<section class="coaching-clients" id="clients">
+
+<!-- Client Testimonials (moved up so they sit next to the call to action) -->
+<section class="coaching-testimonials" id="testimonials">
     <div class="container">
         <div class="section-header reveal">
-            <span class="section-tag">Who I Work With</span>
-            <h2>Is This You?</h2>
-            <p>You'll probably recognize yourself in one of these. If you do, let's talk.</p>
+            <span class="section-tag">Client Testimonials</span>
+            <h2>What It's Like to Work With Us</h2>
+            <p>Real words from professionals and leaders who were stuck — and what changed.</p>
         </div>
-        <div class="clients-grid">
-            <div class="client-card reveal">
-                <div class="client-icon"><i class="fas fa-user-tie"></i></div>
-                <h3>Young Professionals</h3>
-                <p>Ambitious professionals in their 30s building momentum, stepping into leadership, and defining their path.</p>
+        <div class="testimonials-grid reveal">
+            <div class="testimonial-card">
+                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
+                <p class="testimonial-text">I came into coaching feeling overwhelmed and burned out. Over several months, I developed better boundaries, clearer priorities, and a healthier mindset that positively affected both my work and personal life.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AR</div>
+                    <div class="testimonial-meta">
+                        <span class="testimonial-name">Alicia R.</span>
+                        <span class="testimonial-role">Overcoming burnout</span>
+                    </div>
+                </div>
             </div>
-            <div class="client-card reveal">
-                <div class="client-icon"><i class="fas fa-briefcase"></i></div>
-                <h3>Career &amp; Job Search</h3>
-                <p>Professionals chasing a new role, a company transition, or an edge in a competitive job search.</p>
+            <div class="testimonial-card">
+                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
+                <p class="testimonial-text">The combination of business strategy and psychology made this coaching experience different from anything I'd tried before. I left each session with actionable insights that I could immediately apply.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MT</div>
+                    <div class="testimonial-meta">
+                        <span class="testimonial-name">Michael T.</span>
+                        <span class="testimonial-role">Coaching client</span>
+                    </div>
+                </div>
             </div>
-            <div class="client-card reveal">
-                <div class="client-icon"><i class="fas fa-rocket"></i></div>
-                <h3>Entrepreneurs</h3>
-                <p>Founders and owners of small to mid-sized businesses working to grow, scale, and get unstuck.</p>
-            </div>
-            <div class="client-card reveal">
-                <div class="client-icon"><i class="fas fa-hospital"></i></div>
-                <h3>Healthcare Managers</h3>
-                <p>Clinical and administrative leaders balancing patient outcomes with operational demands and team management.</p>
-            </div>
-            <div class="client-card reveal">
-                <div class="client-icon"><i class="fas fa-torii-gate"></i></div>
-                <h3>Japanese &amp; Chinese Businesses</h3>
-                <p>Leaders and teams who value a coach fluent in Japanese and Chinese, with years of firsthand experience in Tokyo.</p>
-            </div>
-            <div class="client-card reveal">
-                <div class="client-icon"><i class="fas fa-comments"></i></div>
-                <h3>CEOs with Communication Challenges</h3>
-                <p>Senior executives sharpening their communication, executive presence, and connection with their organization.</p>
+            <div class="testimonial-card">
+                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
+                <p class="testimonial-text">As a first-time entrepreneur, I struggled with self-doubt and decision fatigue. Coaching helped me build confidence, communicate more effectively, and lead my team with greater purpose.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SL</div>
+                    <div class="testimonial-meta">
+                        <span class="testimonial-name">Sophia L.</span>
+                        <span class="testimonial-role">First-time entrepreneur</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="section-cta reveal">
@@ -905,12 +780,13 @@
         </div>
     </div>
 </section>
-<!-- What I Offer (primary offer highlighted, supporting services condensed) -->
+
+<!-- What We Offer -->
 <section class="coaching-services" id="services">
     <div class="coaching-services-bg"></div>
     <div class="container">
         <div class="section-header reveal">
-            <span class="section-tag">What I Offer</span>
+            <span class="section-tag">What We Offer</span>
             <h2>Coaching &amp; Advisory Services</h2>
             <p>One flagship program to transform how you lead — backed by targeted advisory whenever you need it.</p>
         </div>
@@ -919,12 +795,12 @@
             <div class="primary-offer-content">
                 <span class="primary-offer-label"><i class="fas fa-star"></i> Flagship Coaching Program</span>
                 <h3>Mindfulness-Based High-Performance Identity Coaching</h3>
-                <p>My flagship program helps high-achieving entrepreneurs and professionals break the habits and self-doubt that quietly hold them back — so you make sharper decisions, lead with confidence, handle pressure without burning out, and finally follow through on what matters most. It draws on mindfulness, cognitive reframing, and 25+ years across business and psychology.</p>
+                <p>Our flagship program helps high-achieving entrepreneurs and professionals break the habits and self-doubt that quietly hold them back — so you make sharper decisions, lead with confidence, handle pressure without burning out, and follow through on what matters most. It draws on mindfulness, cognitive reframing, and 25+ years across business and psychology.</p>
                 <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
             </div>
         </div>
         <!-- Supporting services (condensed) -->
-        <h4 class="supporting-heading">Additional Areas I Support</h4>
+        <h4 class="supporting-heading">Additional Areas We Support</h4>
         <div class="supporting-services-grid">
             <div class="supporting-card reveal">
                 <div class="sc-icon"><i class="fas fa-chess-king"></i></div>
@@ -967,194 +843,46 @@
                 <p>Handle disputes with emotional maturity and wisdom.</p>
             </div>
         </div>
-        <div class="section-cta reveal">
-            <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
+    </div>
+</section>
+
+<!-- Meet Our Founder (kept short — Doug refers clients to the coaches) -->
+<section class="coaching-about" id="founder">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Meet Our Founder</span>
+            <h2>Douglas Uhlig, Ph.D., MBA</h2>
+            <p>A rare mix of Wall Street, boardroom, and psychology</p>
+        </div>
+        <div class="coaching-about-intro reveal">
+            <div class="about-portrait">
+                <img src="../images/doug.jpeg" alt="Douglas Uhlig, Ph.D., Mindfulness Business &amp; Executive Coach" class="about-portrait-img" loading="lazy">
+            </div>
+            <div class="about-intro-text">
+                <p><strong>Dr. Uhlig brings together two worlds that rarely meet: high-stakes business and human psychology.</strong> With a Ph.D. in Counseling Psychology and an MBA from NYU, he helps clients understand not just <em>what</em> to change, but <em>why</em> the old patterns took hold, and how to replace them for good.</p>
+                <ul class="founder-highlights">
+                    <li><i class="fas fa-landmark" aria-hidden="true"></i><span><strong>Wall Street &amp; corporate HR</strong> at JP Morgan Chase, Citibank and Bank of New York</span></li>
+                    <li><i class="fas fa-globe-asia" aria-hidden="true"></i><span><strong>Banking in Tokyo</strong> at Fuji Bank and the Industrial Bank of Japan; proficient in Japanese and Chinese</span></li>
+                    <li><i class="fas fa-shield-alt" aria-hidden="true"></i><span><strong>Retired U.S. Air Force Lt. Colonel</strong> with 29 years of service training leaders</span></li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Meet Your Coach -->
-<section class="coaching-about" id="about">
+<!-- Manhattan Office + Virtual -->
+<section class="coaching-locations" id="office">
     <div class="container">
         <div class="section-header reveal">
-            <span class="section-tag">Meet Your Coach</span>
-            <h2>Douglas Uhlig, Ph.D., MBA</h2>
-            <p>A rare mix of Wall Street, boardroom, and psychology — in one coach</p>
+            <span class="section-tag">Where We Meet</span>
+            <h2>Manhattan Office + Virtual Sessions</h2>
+            <p>Meet with your coach in person in Midtown Manhattan, or virtually from anywhere.</p>
         </div>
-        <!-- Portrait + intro. Replace the image below with the new photo you're sending over. -->
-        <div class="coaching-about-intro reveal">
-            <div class="about-portrait">
-                <img src="../images/doug.jpeg" alt="Douglas Uhlig, Ph.D. — Business &amp; Life Coach" class="about-portrait-img">
-                <!-- Using the same photo as the hero until Doug provides a new headshot for this section -->
-            </div>
-            <div class="about-intro-text">
-                <p><strong>I bring together two worlds that rarely meet: high-stakes business and human psychology.</strong> With a Ph.D. in Counseling Psychology and an MBA from NYU, plus decades in banking, leadership, and the military, I help you understand not just <em>what</em> to change, but <em>why</em> the old patterns took hold — and how to replace them for good.</p>
-            </div>
-        </div>
-        <div class="coaching-about-grid">
-            <div class="coaching-bio-card reveal">
-                <div class="bio-icon"><i class="fas fa-user-tie"></i></div>
-                <h3>Business &amp; Life Coach</h3>
-                <p>I coach professionals through workplace challenges, job insecurity, burnout, and stress. A rare combination of a Ph.D. in Counseling Psychology and an MBA in Marketing &amp; Finance from NYU gives me an insider's read on both the business and the human side of leadership.</p>
-            </div>
-            <div class="coaching-bio-card reveal">
-                <div class="bio-icon"><i class="fas fa-globe-asia"></i></div>
-                <h3>International Experience</h3>
-                <p>I bring hard-won global perspective from my years living and working in Tokyo, where I held positions at Fuji Bank and the Industrial Bank of Japan. Proficient in Japanese and Chinese, I coach leaders navigating cross-border business with confidence.</p>
-            </div>
-            <div class="coaching-bio-card reveal">
-                <div class="bio-icon"><i class="fas fa-landmark"></i></div>
-                <h3>Wall Street &amp; Corporate Leadership</h3>
-                <p>With extensive Human Resources experience at JP Morgan Chase, Citibank, and Bank of New York, I've placed leadership talent for major corporations — and worked alongside hedge funds and financial firms in high-stakes environments.</p>
-            </div>
-            <div class="coaching-bio-card reveal">
-                <div class="bio-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Military Leadership</h3>
-                <p>A retired Lt. Colonel in the Air Force, I served for 29 years — training over thirty reservists a year in team building and leadership, and cultivating the discipline, strategy, and focus that mission-critical work demands.</p>
-            </div>
-        </div>
-        <div class="coaching-career-timeline reveal">
-            <h3 class="timeline-title">A Career of Diverse Excellence</h3>
-            <div class="timeline-items">
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-fighter-jet"></i></div>
-                    <span>Military Officer</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-code"></i></div>
-                    <span>Computer Programmer</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-chart-line"></i></div>
-                    <span>Commodities Broker</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-box-open"></i></div>
-                    <span>Consumer Products Manager</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-search"></i></div>
-                    <span>Executive Recruiter</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-brain"></i></div>
-                    <span>Psychologist</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-torii-gate"></i></div>
-                    <span>Banking in Tokyo</span>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
-                    <span>Entrepreneur</span>
-                </div>
-            </div>
-        </div>
-        <div class="section-cta reveal">
-            <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-        </div>
-    </div>
-</section>
-<!-- Book (moved to the end, alongside Meet Your Coach, per request) -->
-<section class="coaching-book" id="book">
-    <div class="container">
-        <div class="coaching-book-wrapper reveal">
-            <div class="coaching-book-image">
-                <img src="../frontbook.jpeg" alt="Memoir of a Positive Psychologist">
-            </div>
-            <div class="coaching-book-content">
-                <span class="section-tag">Featured Book</span>
-                <h2>Memoir of a Positive Psychologist</h2>
-                <p>Drawing on decades of career reinvention, my book is a guide to navigating transitions, finding meaning, and building a life that actually fulfills you — essential reading for anyone facing professional change or searching for purpose in their work.</p>
-                <div class="book-highlights">
-                    <div class="book-highlight-item"><i class="fas fa-lightbulb"></i><span>Career Transitions</span></div>
-                    <div class="book-highlight-item"><i class="fas fa-compass"></i><span>Finding Meaning</span></div>
-                    <div class="book-highlight-item"><i class="fas fa-star"></i><span>Life Fulfillment</span></div>
-                </div>
-                <div class="stripe-button-container">
-                    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1R6dnSAS8CoG2CHCUa13RvHl"
-                      publishable-key="pk_live_51QmM74AS8CoG2CHCpMd47KTpWqAtX0WVr69YTsLhq3XqbfQq1DPK4bYe7nz2azJrDQDnFw8rNaENc1QVk3iB7kgT00U96A3EVa">
-                    </stripe-buy-button>
-                </div>
-                <p class="book-consult-link">Prefer to work together directly? <a href="contact.html">Book a consultation →</a></p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Credentials -->
-<section class="coaching-credentials" id="credentials">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Credentials</span>
-            <h2>Education &amp; Certifications</h2>
-            <p>A foundation of academic excellence and professional distinction</p>
-        </div>
-        <div class="credentials-layout">
-            <div class="credentials-column reveal">
-                <h3 class="credentials-heading"><i class="fas fa-graduation-cap"></i> Education</h3>
-                <div class="credential-entry">
-                    <div class="credential-degree">Ph.D. — Counseling Psychology</div>
-                    <div class="credential-school">Walden University</div>
-                </div>
-                <div class="credential-entry">
-                    <div class="credential-degree">MBA — Marketing &amp; Finance</div>
-                    <div class="credential-school">New York University</div>
-                </div>
-                <div class="credential-entry">
-                    <div class="credential-degree">Bachelor of Arts</div>
-                    <div class="credential-school">University of Virginia</div>
-                </div>
-            </div>
-            <div class="credentials-column reveal">
-                <h3 class="credentials-heading"><i class="fas fa-certificate"></i> Certifications</h3>
-                <div class="credential-entry">
-                    <div class="credential-degree">Credentialed Coach</div>
-                    <div class="credential-school">Mindfulness-Based Business &amp; Life Coaching</div>
-                </div>
-                <div class="credential-entry">
-                    <div class="credential-degree">Certified Executive Coach</div>
-                    <div class="credential-school">International Association of Professionals (IAP)</div>
-                </div>
-            </div>
-            <div class="credentials-column reveal">
-                <h3 class="credentials-heading"><i class="fas fa-language"></i> Languages &amp; Global Reach</h3>
-                <div class="credential-entry">
-                    <div class="credential-degree">English — Native</div>
-                    <div class="credential-school">Primary language</div>
-                </div>
-                <div class="credential-entry">
-                    <div class="credential-degree">Japanese — Proficient</div>
-                    <div class="credential-school">Lived &amp; worked in Tokyo</div>
-                </div>
-                <div class="credential-entry">
-                    <div class="credential-degree">Chinese — Proficient</div>
-                    <div class="credential-school">Business communication</div>
-                </div>
-            </div>
-        </div>
-        <div class="section-cta reveal">
-            <a href="contact.html" class="btn-coaching-primary"><i class="fas fa-calendar-check"></i> Book a Consultation</a>
-        </div>
-    </div>
-</section>
-<!-- Locations -->
-<section class="coaching-locations" id="locations">
-    <div class="coaching-locations-bg">
-        <img src="https://4kwallpapers.com/images/wallpapers/tiles-blue-background-squares-blue-tiles-blue-squares-3840x2160-6042.jpg" alt="Background" class="coaching-locations-bg-img">
-    </div>
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Meet With Me</span>
-            <h2>Three NYC Offices + Remote Worldwide</h2>
-            <p>Work with me in person at any of my three NYC offices — or virtually from anywhere in the world</p>
-        </div>
-        <div class="coaching-locations-grid">
+        <div class="coaching-office-grid">
             <div class="coaching-location-card card-manhattan reveal">
                 <div class="coaching-location-map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.183!2d-73.9808!3d40.7516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2590099e1a8d9%3A0x5e8f5e5d0a2c89a!2s274+Madison+Ave%2C+New+York%2C+NY+10016!5e0!3m2!1sen!2sus"
-                            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            title="Map of 274 Madison Ave, New York" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <div class="coaching-location-badge coaching-badge-featured">
                         <i class="fas fa-star"></i>
                         <span>Manhattan Office</span>
@@ -1183,170 +911,32 @@
                     </a>
                 </div>
             </div>
-            <div class="coaching-location-card reveal">
-                <div class="coaching-location-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.4838763894636!2d-73.8636697!3d40.729377099999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25e3a7c91fded%3A0xdccebf9f0c35f06f!2sDoug%20Uhlig%20Psychological%20Services%20PLLC!5e0!3m2!1sen!2sus"
-                            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <div class="coaching-location-badge">
-                        <i class="fas fa-building"></i>
-                        <span>Queens Office</span>
-                    </div>
+            <div class="coaching-remote-banner reveal">
+                <div class="remote-icon-group">
+                    <div class="remote-icon"><i class="fas fa-video"></i></div>
+                    <div class="remote-icon"><i class="fas fa-laptop"></i></div>
+                    <div class="remote-icon"><i class="fas fa-globe-americas"></i></div>
                 </div>
-                <div class="coaching-location-info">
-                    <h3>Queens</h3>
-                    <div class="coaching-location-detail">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <p>63-44 Saunders St, Suite 106</p>
-                            <p>Rego Park, NY 11374</p>
-                        </div>
-                    </div>
-                    <div class="coaching-location-detail">
-                        <i class="fas fa-phone-alt"></i>
-                        <a href="tel:3473951759">(347) 395-1759</a>
-                    </div>
-                    <div class="coaching-location-detail">
-                        <i class="fas fa-clock"></i>
-                        <p>Mon – Fri, 9:00 AM – 7:00 PM</p>
-                    </div>
-                    <a href="https://maps.google.com/?q=63-44+Saunders+St,+Suite+106,+Rego+Park,+NY+11374" class="btn-coaching-directions" target="_blank" rel="noopener">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
-                </div>
-            </div>
-            <div class="coaching-location-card reveal">
-                <div class="coaching-location-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116655.80947434566!2d-73.98041460615221!3d40.657543963162276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2450ac0cc1135%3A0x7a3ea2f1eb5d8f5!2sSouth%20Brooklyn%20Psychological%20Services%20PLLC!5e1!3m2!1sen!2sus!4v1747959727291!5m2!1sen!2sus"
-                            width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <div class="coaching-location-badge">
-                        <i class="fas fa-building"></i>
-                        <span>Brooklyn Office</span>
-                    </div>
-                </div>
-                <div class="coaching-location-info">
-                    <h3>Brooklyn</h3>
-                    <div class="coaching-location-detail">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <p>1517 Voorhies Ave, 2nd Floor</p>
-                            <p>Brooklyn, NY 11235</p>
-                        </div>
-                    </div>
-                    <div class="coaching-location-detail">
-                        <i class="fas fa-phone-alt"></i>
-                        <a href="tel:3473951759">(347) 395-1759</a>
-                    </div>
-                    <div class="coaching-location-detail">
-                        <i class="fas fa-clock"></i>
-                        <p>Mon – Fri, 9:00 AM – 7:00 PM</p>
-                    </div>
-                    <a href="https://maps.google.com/?q=1517+Voorhies+Ave,+Brooklyn,+NY+11235" class="btn-coaching-directions" target="_blank" rel="noopener">
-                        <i class="fas fa-directions"></i>
-                        Get Directions
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="coaching-remote-banner reveal">
-            <div class="remote-icon-group">
-                <div class="remote-icon"><i class="fas fa-video"></i></div>
-                <div class="remote-icon"><i class="fas fa-laptop"></i></div>
-                <div class="remote-icon"><i class="fas fa-globe-americas"></i></div>
-            </div>
-            <div class="remote-content">
-                <h3>Virtual Coaching Available Worldwide</h3>
-                <p>Can't make it in person? I run full coaching sessions remotely via Zoom, Teams, or phone — so you get world-class coaching from anywhere.</p>
-            </div>
-            <a href="contact.html" class="btn-coaching-primary">
-                <i class="fas fa-calendar-check"></i>
-                Book a Virtual Session
-            </a>
-        </div>
-    </div>
-</section>
-<!-- ============================================================
-     TESTIMONIALS
-     NOTE: Names are placeholder/anonymized initials (client privacy).
-     These should reflect genuine client feedback before publishing.
-     ============================================================ -->
-<section class="coaching-testimonials" id="testimonials">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Client Stories</span>
-            <h2>What It's Like to Work With Me</h2>
-            <p>Real words from professionals and leaders who were stuck — and what changed.</p>
-        </div>
-        <div class="testimonials-grid reveal">
-            <div class="testimonial-card">
-                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">Working with Doug helped me recognize the habits that were keeping me stuck. The mindfulness techniques gave me a practical way to stay focused during a major career transition, and I now approach leadership with much more confidence and clarity.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">JM</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Jordan M.</span>
-                        <span class="testimonial-role">Navigating a career transition</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">I came into coaching feeling overwhelmed and burned out. Over several months, I developed better boundaries, clearer priorities, and a healthier mindset that positively affected both my work and personal life.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">AR</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Alicia R.</span>
-                        <span class="testimonial-role">Overcoming burnout</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">The combination of business strategy and psychology made this coaching experience different from anything I'd tried before. I left each session with actionable insights that I could immediately apply.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">MT</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Michael T.</span>
-                        <span class="testimonial-role">Coaching client</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">As a first-time entrepreneur, I struggled with self-doubt and decision fatigue. Coaching helped me build confidence, communicate more effectively, and lead my team with greater purpose.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">SL</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Sophia L.</span>
-                        <span class="testimonial-role">First-time entrepreneur</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-quote-mark"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">The mindfulness practices were simple to implement but had a profound impact on how I handled stress. I became more present, more focused, and better equipped to navigate difficult conversations.</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">DC</div>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">David C.</span>
-                        <span class="testimonial-role">Coaching client</span>
-                    </div>
+                <div class="remote-content">
+                    <h3>Virtual Coaching Available Worldwide</h3>
+                    <p>Can't make it in person? Our coaches run full sessions via Zoom, Teams, or phone, so you get the same coaching from anywhere.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <!-- CTA -->
 <section class="coaching-cta" id="contact">
     <div class="coaching-cta-overlay"></div>
     <div class="container">
         <div class="coaching-cta-content reveal">
             <h2>Ready to Perform at Your Best?</h2>
-            <p>Book a complimentary 30-minute session with me. We'll talk through where you feel stuck — and map out how mindfulness-based coaching can move you toward real results, with clarity and confidence.</p>
+            <p>Book a complimentary 30-minute consultation. We'll talk through where you feel stuck — and map out how coaching can move you toward real results, with clarity and confidence.</p>
             <div class="cta-actions">
                 <a href="contact.html" class="btn-coaching-primary btn-lg">
                     <i class="fas fa-calendar-check"></i>
-                    Schedule Your Free Consultation
+                    Book a Consultation
                 </a>
                 <a href="tel:3473951759" class="btn-coaching-outline btn-lg">
                     <i class="fas fa-phone"></i>
@@ -1363,24 +953,24 @@
             <div class="footer-brand">
                 <div class="footer-logo-wrapper">
                     <div class="footer-logo-circle">
-                        <img loading="lazy" src="../logo.png" alt="Dr. Doug Uhlig" class="footer-logo">
+                        <img loading="lazy" src="../logo.png" alt="Manhattan Executive Coach Consortium" class="footer-logo">
                     </div>
                     <div class="footer-brand-text">
                         <span class="brand-title">Douglas Uhlig, Ph.D.</span>
-                        <span class="brand-subtitle">Mindfulness Business &amp; Life Coach</span>
+                        <span class="brand-subtitle">Mindfulness Business &amp; Executive Coach</span>
                     </div>
                 </div>
-                <p class="footer-description">I help driven professionals grow profitability with less stress, sharpen their career strategy, strengthen relationships at work, and lead with clarity and confidence. In-person across NYC and remote worldwide.</p>
+                <p class="footer-description">We help driven professionals grow profitability with less stress, sharpen their career strategy, strengthen relationships at work, and lead with clarity and confidence. In person in Manhattan and virtually worldwide.</p>
             </div>
             <div class="footer-content">
                 <div class="footer-widget">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#focus">Focus Areas</a></li>
-                        <li><a href="#approach">Methodology</a></li>
+                        <li><a href="#mecc">Who We Are</a></li>
+                        <li><a href="#coaches">Our Coaches</a></li>
+                        <li><a href="#assessment">Take the Quiz</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="../index.html?site=therapy">Therapy</a></li>
-                        <li><a href="#about">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-widget">
@@ -1407,9 +997,7 @@
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <div class="address-group">
-                                <p>Manhattan: 274 Madison Ave, Suite 905, New York, NY 10016</p>
-                                <p>Queens: 63-44 Saunders St, Suite 106, Rego Park, NY 11374</p>
-                                <p>Brooklyn: 1517 Voorhies Ave, Brooklyn, NY 11235</p>
+                                <p>274 Madison Ave, Suite 905, New York, NY 10016</p>
                             </div>
                         </div>
                     </div>
@@ -1420,7 +1008,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="footer-bottom-content">
-                <p class="copyright">&copy; 2026 Doug Uhlig dba Manhattan Executive Coach Consortium. All rights reserved.</p>
+                <p class="copyright">&copy; 2026 Manhattan Executive Coach Consortium. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/terms">Terms of Service</a>

@@ -288,7 +288,7 @@ function initSmoothScroll() {
 
 /* ==========================================================================
    SPLIT-SCREEN GATE (index.html) — acts as the preloader
-   Shows every time index.html loads. Doug's photo/name appear first, the two
+   Shows every time index.html loads. The logo/name appear first, the two
    photos fade in once they've downloaded (max 1.8s wait), then the visitor
    picks Coaching (goes to htmls/coaching.html) or Therapy (reveals this page).
    Skipped only for section links (index.html#services) and the Therapy
@@ -357,19 +357,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* Coaching: leave for the coaching site */
+    /* Coaching: leave for the coaching site.
+       The gate stays up (its panels fade into the gate's navy backdrop) so the
+       therapy page underneath is never shown on the way out. */
     if (coaching) {
         coaching.addEventListener('click', function () {
             if (reduced) { window.location.href = 'htmls/coaching.html'; return; }
-            gate.classList.add('is-dismissed');
-            setTimeout(function () { window.location.href = 'htmls/coaching.html'; }, 420);
+            gate.classList.add('is-leaving');
+            setTimeout(function () { window.location.href = 'htmls/coaching.html'; }, 320);
         });
     }
 
     /* Back button (page restored from cache): show the gate again */
     window.addEventListener('pageshow', function (e) {
         if (!e.persisted) return;
-        gate.classList.remove('is-dismissed');
+        gate.classList.remove('is-dismissed', 'is-leaving');
         document.body.classList.add('gate-open');
         window.scrollTo(0, 0);
     });
@@ -390,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* Keyboard: left = coaching, right = therapy */
     document.addEventListener('keydown', function (e) {
-        if (gate.classList.contains('is-dismissed')) return;
+        if (gate.classList.contains('is-dismissed') || gate.classList.contains('is-leaving')) return;
         if (e.key === 'ArrowLeft' && coaching) coaching.click();
         if (e.key === 'ArrowRight' && therapy) therapy.click();
     });

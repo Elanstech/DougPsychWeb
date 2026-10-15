@@ -292,6 +292,8 @@
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Coaching page is one click away from the gate: fetch it early so the switch is instant -->
+    <link rel="prefetch" href="htmls/coaching.html">
 
     <!-- Fonts & icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -325,7 +327,7 @@
      ===================================================================== -->
 <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateName">
     <div class="gate-id">
-        <img src="images/doug.jpeg" alt="" class="gate-id-photo">
+        <img src="logo.png" alt="" class="gate-id-logo" width="400" height="400">
         <div class="gate-id-text">
             <p class="gate-id-name" id="gateName">Doug Uhlig, PhD</p>
             <p class="gate-id-role">Psychologist and Coach</p>
@@ -338,10 +340,10 @@
             <span class="gate-bg" aria-hidden="true"></span>
             <span class="gate-shade" aria-hidden="true"></span>
             <span class="gate-inner">
-                <span class="gate-kicker">Executive coaching</span>
+                <span class="gate-kicker">Manhattan Executive Coach Consortium</span>
                 <span class="gate-headline">Build the career and life that you want</span>
-                <span class="gate-sub">One-on-one coaching for executives, founders and emerging leaders through the Manhattan Executive Coach Consortium.</span>
-                <span class="gate-enter">Explore coaching</span>
+                <span class="gate-sub">One-on-one coaching for executives, founders and emerging leaders who want to accomplish ambitious goals.</span>
+                <span class="gate-enter">Explore Executive Coaching <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </span>
         </button>
 
@@ -349,10 +351,10 @@
             <span class="gate-bg" aria-hidden="true"></span>
             <span class="gate-shade" aria-hidden="true"></span>
             <span class="gate-inner">
-                <span class="gate-kicker">Therapy</span>
+                <span class="gate-kicker">Doug Uhlig Psychological Services</span>
                 <span class="gate-headline">Understand yourself, feel better, live fully</span>
                 <span class="gate-sub">Evidence-based care for depression, anxiety, trauma and relationships across Manhattan, Brooklyn and Queens.</span>
-                <span class="gate-enter">Explore therapy</span>
+                <span class="gate-enter">Explore Transformational Therapy <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
             </span>
         </button>
     </div>
