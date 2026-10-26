@@ -743,7 +743,7 @@ body.gate-open { overflow: hidden; }
 .gate-therapy .gate-bg {
     background-color: #22403f;
     background-image: url("../split-therapy.jpg");
-    background-position: 33% 40%;
+    background-position: 80% 40%; /* keep the therapist fully in frame */
 }
 
 .gate-shade {
@@ -846,7 +846,7 @@ body.gate-open { overflow: hidden; }
 .gate.is-ready .gate-panel { opacity: 1; transform: none; }
 .gate.is-ready .gate-therapy { transition-delay: 0.12s; }
 .gate-coaching .gate-bg { background-position: 62% 45%; }
-.gate-therapy .gate-bg { background-position: 72% 40%; }
+.gate-therapy .gate-bg { background-position: 75% 20%; }
 .gate-coaching .gate-shade, .gate-therapy .gate-shade {
         background-image: linear-gradient(180deg, rgba(7, 9, 38, 0) 25%, rgba(7, 9, 38, 0.55) 60%, rgba(7, 9, 38, 0.9) 100%);
     }
