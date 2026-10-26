@@ -866,3 +866,7 @@ body.gate-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
 .gate, .gate * { transition: none !important; animation: none !important; }
 }
+
+/* Dr. Uhlig's photo has little room above his hair — anchor every crop
+   (hero, about, team cards, coach cards, pop-ups) to the top so his head is never cut */
+img[src$="doug.jpeg"] { object-position: center top !important; transform-origin: center top; }
