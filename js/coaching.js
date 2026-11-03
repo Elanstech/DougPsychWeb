@@ -267,7 +267,7 @@ function initMeccQuiz() {
             done.focus();
         })
         .catch(function () {
-            showError('Your answers could not be sent. Please check your connection and try again, or call (347) 395-1759.');
+            showError('Your answers could not be sent. Please check your connection and try again, or call (212) 419-4884.');
             next.disabled = false; back.disabled = false;
             next.textContent = 'Send to Dr. Uhlig';
         });
