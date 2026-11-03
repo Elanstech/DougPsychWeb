@@ -6,6 +6,7 @@ function initCoachingPage() {
     initMeccBar();
     initMeccQuiz();
     initCoachProfiles();
+    initCoachCarousel();
     initCoachingParallax();
     initCoachingLocations();
 }
@@ -311,4 +312,83 @@ function initCoachProfiles() {
         dialog.addEventListener('click', function (e) { if (e.target === dialog) close(dialog); });
         dialog.addEventListener('close', function () { document.body.classList.remove('modal-open'); });
     });
+}
+
+
+/* ---------------------------------------------------------------------------
+   COACH CAROUSEL — scroll-snap track + prev/next arrows + dots
+   Markup: htmls/coaching.html (#coachTrack) · Styles: css/coaching.css (COACH CAROUSEL)
+   --------------------------------------------------------------------------- */
+function initCoachCarousel() {
+    var track = document.getElementById('coachTrack');
+    if (!track) return;
+    var prev = document.getElementById('coachPrev');
+    var next = document.getElementById('coachNext');
+    var dotsWrap = document.getElementById('coachDots');
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.mecc-coach-card'));
+    if (!cards.length) return;
+
+    function gap() {
+        var g = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+        return g;
+    }
+    function step() { return cards[0].getBoundingClientRect().width + gap(); }
+    function perView() { return Math.max(1, Math.round((track.clientWidth + gap()) / step())); }
+    function pageCount() { return Math.max(1, Math.ceil(cards.length / perView())); }
+    function currentPage() { return Math.min(pageCount() - 1, Math.round(track.scrollLeft / (step() * perView()))); }
+
+    function buildDots() {
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = '';
+        var n = pageCount();
+        for (var i = 0; i < n; i++) {
+            var b = document.createElement('button');
+            b.type = 'button'; b.setAttribute('role', 'tab');
+            b.setAttribute('aria-label', 'Coaches page ' + (i + 1) + ' of ' + n);
+            b.dataset.page = i;
+            b.addEventListener('click', function () { goTo(parseInt(this.dataset.page, 10)); });
+            dotsWrap.appendChild(b);
+        }
+        dotsWrap.hidden = n < 2;
+        sync();
+    }
+    function sync() {
+        var max = track.scrollWidth - track.clientWidth - 2;
+        if (prev) prev.disabled = track.scrollLeft <= 2;
+        if (next) next.disabled = track.scrollLeft >= max;
+        if (dotsWrap) {
+            var cur = currentPage();
+            Array.prototype.forEach.call(dotsWrap.children, function (d, i) {
+                d.setAttribute('aria-selected', i === cur ? 'true' : 'false');
+            });
+        }
+    }
+    function goTo(page) {
+        var n = pageCount();
+        page = Math.max(0, Math.min(n - 1, page));
+        track.scrollTo({ left: page * step() * perView(), behavior: 'smooth' });
+    }
+
+    if (prev) prev.addEventListener('click', function () { goTo(currentPage() - 1); });
+    if (next) next.addEventListener('click', function () { goTo(currentPage() + 1); });
+
+    var raf;
+    track.addEventListener('scroll', function () {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(sync);
+    }, { passive: true });
+
+    track.setAttribute('tabindex', '0');
+    track.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentPage() + 1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentPage() - 1); }
+    });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildDots, 150);
+    });
+
+    buildDots();
 }

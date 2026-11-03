@@ -512,13 +512,17 @@
             <p class="mecc-eyebrow">Our Coaches</p>
             <h2 class="mecc-h2">Let Us Introduce Our Executive Coaches</h2>
         </div>
-        <div class="mecc-coach-grid">
+        <!-- Coach carousel — styles: css/coaching.css (COACH CAROUSEL) · logic: js/coaching.js (initCoachCarousel) -->
+        <div class="mecc-coach-carousel reveal">
+            <button type="button" class="mecc-car-arrow mecc-car-prev" id="coachPrev" aria-label="Previous coaches"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+            <button type="button" class="mecc-car-arrow mecc-car-next" id="coachNext" aria-label="Next coaches"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        <div class="mecc-coach-grid mecc-coach-track" id="coachTrack" aria-label="Our executive coaches">
             <!-- ONE <article class="mecc-coach-card"> PER COACH + ONE <dialog> (at the bottom of the page) PER COACH.
                  To add a coach: copy a card, swap photo / name / role / areas / quote,
                  point its "View full profile" button's data-profile at a new dialog id,
-                 then copy one of the dialogs near the end of this file. -->
+                 then copy one of the dialogs near the end of this file. The carousel picks it up automatically. -->
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/rini-adhikari.jpg" alt="Rini Adhikari" class="mecc-coach-photo" style="object-position: center 12%;" loading="lazy" width="800" height="1176">
                 <div class="mecc-coach-body">
                     <h3>Rini Adhikari</h3>
@@ -540,7 +544,7 @@
                 </div>
             </article>
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/maxine-attong.jpg" alt="Maxine Attong" class="mecc-coach-photo" style="object-position: center 20%;" loading="lazy" width="205" height="200">
                 <div class="mecc-coach-body">
                     <h3>Maxine Attong</h3>
@@ -562,7 +566,7 @@
                 </div>
             </article>
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/lois-barth.jpg" alt="Lois Barth" class="mecc-coach-photo" style="object-position: center 2%;" loading="lazy" width="441" height="640">
                 <div class="mecc-coach-body">
                     <h3>Lois Barth</h3>
@@ -584,7 +588,7 @@
                 </div>
             </article>
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/cindy-taylor.jpg" alt="Cindy Taylor" class="mecc-coach-photo" style="object-position: center 15%;" loading="lazy" width="404" height="456">
                 <div class="mecc-coach-body">
                     <h3>Cindy Taylor</h3>
@@ -602,7 +606,7 @@
                 </div>
             </article>
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/jennifer-stringer.jpg" alt="Jennifer Stringer" class="mecc-coach-photo" style="object-position: center 10%;" loading="lazy" width="397" height="608">
                 <div class="mecc-coach-body">
                     <h3>Jennifer Stringer</h3>
@@ -624,7 +628,7 @@
                 </div>
             </article>
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/sherley-delia.jpg" alt="Sherley Delia, MA" class="mecc-coach-photo" style="object-position: center 8%;" loading="lazy" width="667" height="1000">
                 <div class="mecc-coach-body">
                     <h3>Sherley Delia, MA</h3>
@@ -642,7 +646,7 @@
                 </div>
             </article>
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/saroosh-gull.jpg" alt="Saroosh Gull" class="mecc-coach-photo" style="object-position: center 25%;" loading="lazy" width="528" height="460">
                 <div class="mecc-coach-body">
                     <h3>Saroosh Gull</h3>
@@ -664,7 +668,7 @@
                 </div>
             </article>
 
-            <article class="mecc-coach-card reveal">
+            <article class="mecc-coach-card">
                 <img src="../images/doug.jpeg" alt="Douglas Uhlig, Ph.D., MBA" class="mecc-coach-photo" loading="lazy" width="345" height="579">
                 <div class="mecc-coach-body">
                     <h3>Douglas Uhlig, Ph.D., MBA</h3>
@@ -685,6 +689,8 @@
                     </div>
                 </div>
             </article>
+        </div>
+            <div class="mecc-car-dots" id="coachDots" role="tablist" aria-label="Coach pages"></div>
         </div>
         <p class="mecc-coach-note reveal">Not sure who fits best? <a href="#assessment">Take the quiz</a> and we&rsquo;ll match you with the right coach.</p>
     </div>
